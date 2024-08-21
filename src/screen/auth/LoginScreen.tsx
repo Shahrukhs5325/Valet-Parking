@@ -1,11 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { StatusBar, StyleSheet, View } from 'react-native';
+import { StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Text, TextInput } from 'react-native-paper';
 import ZapsIcon from '../../asset/svg/logo.svg'
 import { palette } from '../../theme/themes';
 import PrimaryButton from '../../components/button/PrimaryButton';
+import TextInputCust from '../../components/textInput/TextInput';
 
 type Props = {};
 
@@ -31,32 +32,31 @@ const LoginScreen: React.FC<Props> = () => {
       <View style={styles.container}>
         <StatusBar
           animated={true}
-          backgroundColor={palette.primaryDark}
+          backgroundColor={palette.primaryLight}
         />
         <Text variant="titleLarge" style={styles.txtSty}>Login</Text>
-        <View style={{ gap: 15 }}>
-          <TextInput
-            // label="Email"
+        <View style={{ gap: 0 }}>
+          <TextInputCust
             placeholder='Email'
-            mode='outlined'
             value={text}
-            onChangeText={text => setText(text)}
-            style={{ borderWidth: 0 }}
+            onChangeText={(text: any) => setText(text)}
           />
-          <TextInput
-            // label="Email"
+          <TextInputCust
             placeholder='Password'
-            mode='outlined'
             value={text}
-            onChangeText={text => setText(text)}
+            onChangeText={(text: any) => setText(text)}
+            secureTextEntry={false}
+            right={<TextInputCust.Icon icon="eye" />}
           />
         </View>
         <View style={{ gap: 30, marginTop: 20 }}>
-          <PrimaryButton onPress={() => console.log()}>Sign In</PrimaryButton>
+          <PrimaryButton onPress={() => navigation.replace("RegisterScreen")}>Sign In</PrimaryButton>
           <Text variant="labelLarge" style={{ textAlign: 'center' }}>Forgot password?</Text>
         </View>
         <View style={styles.containerRegister}>
-          <Text variant="labelLarge" style={{ textAlign: 'center', color: palette.txtGray }}>Don’t have an account? <Text variant="labelLarge">Sign up</Text></Text>
+          <TouchableOpacity onPress={() => navigation.replace("RegisterScreen")}>
+            <Text variant="labelLarge" style={{ textAlign: 'center', color: palette.txtGray }}>Don’t have an account? <Text variant="labelLarge">Sign up</Text></Text>
+          </TouchableOpacity>
         </View>
       </View>
     </>
@@ -70,7 +70,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     //  alignItems: "center",
-    backgroundColor: palette.primaryLight,
     margin: 15,
     gap: 15
   },

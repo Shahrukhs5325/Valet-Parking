@@ -4,6 +4,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import React, { useEffect } from "react";
 import SplashScreen from "../../screen/splashScreen/SplashScreen";
 import LoginScreen from "../../screen/auth/LoginScreen";
+import RegisterScreen from "../../screen/auth/RegisterScreen";
+import { palette } from "../../theme/themes";
 
 
 const Stack = createStackNavigator();
@@ -14,7 +16,7 @@ const Navigation = () => {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      background: '#FFF'
+      background: palette.bgGray
     },
   };
 
@@ -49,10 +51,13 @@ const Navigation = () => {
           name={"SplashScreen"}
           component={SplashScreen}
         />
-
         <Stack.Screen
           name={"LoginScreen"}
           component={LoginScreen}
+        />
+        <Stack.Screen
+          name={"RegisterScreen"}
+          component={RegisterScreen}
         />
 
 

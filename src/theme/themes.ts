@@ -4,6 +4,7 @@ export const palette = {
   primaryDark: "#000",
 
   txtGray:"#999999",
+  bgGray:"#F2F2F2",
 
   primaryLight: "#FFF",
   secondary: "#ff6a00",
