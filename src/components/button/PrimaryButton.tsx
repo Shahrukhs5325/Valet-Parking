@@ -27,14 +27,14 @@ const PrimaryButton: React.FC<Props> = ({
 
     return (
         <Button
+            buttonColor={palette.primaryDark}
             icon={icon}
-            mode={"outlined"}
+            mode={"contained"}
             loading={loading}
             disabled={disabled}
             uppercase={uppercase}
             onPress={() => onPress()}
-            style={{ borderRadius: 5 }}
-            
+            style={{ borderRadius: 5, height: 52, justifyContent: 'center' }}
         >
             {children}
         </Button>

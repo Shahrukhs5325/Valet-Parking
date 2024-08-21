@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 // import { Hub } from 'aws-amplify';
 import React, { useEffect } from "react";
 import SplashScreen from "../../screen/splashScreen/SplashScreen";
+import LoginScreen from "../../screen/auth/LoginScreen";
 
 
 const Stack = createStackNavigator();
@@ -47,6 +48,11 @@ const Navigation = () => {
         <Stack.Screen
           name={"SplashScreen"}
           component={SplashScreen}
+        />
+
+        <Stack.Screen
+          name={"LoginScreen"}
+          component={LoginScreen}
         />
 
 

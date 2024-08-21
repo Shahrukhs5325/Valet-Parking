@@ -1,46 +1,47 @@
-import { Button } from "native-base";
 import React from "react";
 import { palette } from "../../theme/themes";
+import { Button } from "react-native-paper";
 
 // sizes: "xs", "sm", "md", "lg"
 
 interface Props {
     children?: React.ReactNode | any;
     onPress: () => void | any;
-    isDisabled?: boolean | undefined;
-    size?: string;
-    colorScheme?: string;
-    isLoading?: boolean | undefined;
+    mode?: string;
+    disabled?: boolean | undefined;
+    icon?: string;
+    loading?: boolean | undefined;
+    uppercase?: boolean | undefined;
+
 }
 
 const SecondaryButton: React.FC<Props> = ({
     children,
     onPress,
-    isDisabled,
-    size,
-    colorScheme,
-    isLoading
+    mode,
+    disabled,
+    uppercase,
+    icon,
+    loading
 }) => {
 
     return (
         <Button
-            size={size}
-            colorScheme={colorScheme}
-            variant="outline"
-            isDisabled={isDisabled}
-            isLoading={isLoading}
-            isLoadingText="Loading"
+            buttonColor={palette.primaryDark}
+            icon={icon}
+            mode={"outlined"}
+            loading={loading}
+            disabled={disabled}
+            uppercase={uppercase}
             onPress={() => onPress()}
-            style={{
-                borderColor: palette.primary,
-                borderWidth: 1,
-                borderRadius: 5,
-                width: '100%'
-            }}
+            style={{ borderRadius: 5, height: 52, justifyContent: 'center' }}
+
         >
             {children}
         </Button>
     );
 }
+
+
 
 export default SecondaryButton;

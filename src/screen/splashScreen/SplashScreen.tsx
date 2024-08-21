@@ -21,10 +21,17 @@ const SplashScreen: React.FC<Props> = () => {
 
 
   React.useEffect(() => {
-
+    timerFunction();
   }, []);
 
 
+  const timerFunction = () => {
+    const timerId = setTimeout(() => {
+      navigation.replace("LoginScreen");
+    }, 2000);
+
+    return () => clearTimeout(timerId);
+  }
 
 
 
