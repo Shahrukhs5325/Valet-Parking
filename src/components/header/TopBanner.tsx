@@ -1,8 +1,7 @@
 import React from "react";
-import { Dimensions, Image, ImageBackground, StyleSheet, View } from "react-native";
+import { Dimensions, ImageBackground, StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 import Header from "./Header";
-import CustomRadialGradient from "../RadialGradient/CustomRadialGradient";
 import { palette } from "../../theme/themes";
 
 
