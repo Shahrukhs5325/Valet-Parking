@@ -1,9 +1,7 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { ScrollView, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Text, } from 'react-native-paper';
-import ZapsIcon from '../../asset/svg/logo.svg'
 import { palette } from '../../theme/themes';
 import PrimaryButton from '../../components/button/PrimaryButton';
 import TextInputCust from '../../components/textInput/TextInput';
@@ -98,7 +96,7 @@ const RegisterScreen: React.FC<Props> = () => {
 
           </View>
           <View style={{ marginTop: 20 }}>
-            <PrimaryButton onPress={() => console.log()}>Register</PrimaryButton>
+            <PrimaryButton onPress={() => navigation.replace("LoginScreen")}>Register</PrimaryButton>
           </View>
           <View style={styles.containerRegister}>
             <TouchableOpacity onPress={() => navigation.replace("LoginScreen")}>

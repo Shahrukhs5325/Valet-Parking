@@ -1,9 +1,7 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Text, TextInput } from 'react-native-paper';
-import ZapsIcon from '../../asset/svg/logo.svg'
+import { Text } from 'react-native-paper';
 import { palette } from '../../theme/themes';
 import PrimaryButton from '../../components/button/PrimaryButton';
 import TextInputCust from '../../components/textInput/TextInput';
@@ -50,7 +48,7 @@ const LoginScreen: React.FC<Props> = () => {
           />
         </View>
         <View style={{ gap: 30, marginTop: 20 }}>
-          <PrimaryButton onPress={() => navigation.replace("RegisterScreen")}>Sign In</PrimaryButton>
+          <PrimaryButton onPress={() => navigation.replace("HomeScreen")}>Sign In</PrimaryButton>
           <Text variant="labelLarge" style={{ textAlign: 'center' }}>Forgot password?</Text>
         </View>
         <View style={styles.containerRegister}>

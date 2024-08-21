@@ -1,0 +1,62 @@
+import React from "react";
+import { Dimensions, Image, ImageBackground, StyleSheet, View } from "react-native";
+import { Text } from "react-native-paper";
+import Header from "./Header";
+import CustomRadialGradient from "../RadialGradient/CustomRadialGradient";
+import { palette } from "../../theme/themes";
+
+
+interface Props {
+
+}
+const WIDTH = Dimensions.get('window').width;
+const ImageHeight = Math.round(Dimensions.get('window').width * 9 / 9);
+
+const TopBanner: React.FC<Props> = ({
+
+}) => {
+
+    return (
+
+        <View style={styles.image}>
+            <ImageBackground
+                source={require('../../asset/valet.png')}
+                resizeMode="cover"
+                style={styles.image}>
+                <Header />
+                <View style={{ position: 'absolute', bottom: 0, justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', padding: 20, gap: 6 }}>
+                    <Text variant="titleLarge" style={{ color: palette.primaryLight, fontWeight: 800 }}>Valet Services</Text>
+                    <Text variant="bodyMedium" style={{ color: palette.primaryLight, textAlign: 'center' }}>Our professional valet team ensures your vehicle is safe and secure.</Text>
+
+                </View>
+            </ImageBackground>
+
+        </View>
+
+    );
+}
+
+
+
+export default TopBanner;
+
+const styles = StyleSheet.create({
+    container: {
+        //   flexDirection: 'row',
+        //  alignItems: "center",
+        justifyContent: 'space-between',
+        height: 300,
+        // width: '100%'
+    },
+    image: {
+
+        ...StyleSheet.absoluteFillObject,
+        resizeMode: 'cover',
+        width: WIDTH,
+        // width: 50,
+        height: ImageHeight,
+        //  backgroundColor:'red'
+    },
+
+
+});
