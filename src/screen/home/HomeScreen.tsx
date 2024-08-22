@@ -75,7 +75,7 @@ const HomeScreen: React.FC<Props> = () => {
           animated={true}
           backgroundColor={palette.primaryDark}
         />
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <TopBanner />
           <View style={styles.compView}>
             <View>

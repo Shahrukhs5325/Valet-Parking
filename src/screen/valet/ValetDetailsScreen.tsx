@@ -11,6 +11,7 @@ import SpotnIcon from '../../asset/svg/stop.svg';
 import PrimaryButton from '../../components/button/PrimaryButton';
 import Header from '../../components/header/Header';
 import { palette } from '../../theme/themes';
+import TermIcon from '../../asset/svg/gifts.svg';
 
 
 type Props = {
@@ -33,7 +34,7 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
           animated={true}
           backgroundColor={palette.primaryDark}
         />
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           {/* <TopBanner navbar={true} /> */}
           <ImageBackground
             source={require('../../asset/man-sitting-car.png')}
@@ -107,6 +108,17 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
                 </View>
 
               </View>
+            </View>
+            <View>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, }}>
+                <TermIcon />
+                <Text variant="bodyLarge" style={styles.txtSty}>Terms & conditions</Text>
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, }}>
+                <TermIcon />
+                <Text variant="bodyLarge" style={styles.txtSty}>How to redeem</Text>
+              </View>
+
             </View>
             <View style={{ marginBottom: 20 }}>
               <PrimaryButton onPress={() => navigation.navigate("RedeemScreen", { coupon: coupon })} buttonColor={palette.primaryLight}>Redeem</PrimaryButton>

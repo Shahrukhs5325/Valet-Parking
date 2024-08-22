@@ -210,7 +210,7 @@ const RegisterScreen: React.FC<Props> = () => {
 
   return (
     <>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <StatusBar
             animated={true}

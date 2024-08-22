@@ -33,6 +33,11 @@ export const getCustomerCoupons = async (user: any,) => {
     return response;
 };
 
+export const redeemCouponByqrCode = async (payload: any) => {
+    const response = await instance.post(`/customers/redeemCouponByqrCode`, payload);
+    return response;
+};
+
 // export const getStoresByMerchantId = async (merchantId: number, temId: any) => {
 //     const response = await instance.get(`/customers/getStoresByMerchantId?merchantId=${merchantId}&couponId=${temId}`);
 

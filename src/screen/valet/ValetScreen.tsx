@@ -35,7 +35,7 @@ const ValetScreen: React.FC<Props> = () => {
           animated={true}
           backgroundColor={palette.primaryDark}
         />
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <TopBanner navbar={true} />
           <View style={styles.compView}>
             <View>
