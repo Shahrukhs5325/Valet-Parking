@@ -1,14 +1,12 @@
 import axios from 'axios'
-// import { API_URL } from "@env"
-//import { Auth } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const API_URL = 'http://ebs-qa-zap-customer-springboot-env.me-south-1.elasticbeanstalk.com/zapsmobilecustomers/v1'
 
-
 const currentSession = async () => {
     try {
-        const data = ""// await Auth.currentSession();
+        const data = await Auth.currentSession();
         return data
     } catch (err) {
         console.log(err);
@@ -17,7 +15,7 @@ const currentSession = async () => {
 }
 
 const instance = axios.create({
-    baseURL: ""
+    baseURL: API_URL
 })
 
 // global request from all apis,
@@ -34,7 +32,7 @@ instance.interceptors.request.use(
             config.headers.Authorization = `Bearer ${token?.accessToken?.jwtToken}`;
         }
 
-        console.log("\n\n\n** url **\n", (API_URL + config?.url))
+         console.log("\n\n\n** url **\n",(API_URL+config?.url))
         // console.log("\n\n\n** token **\n",(token?.accessToken?.jwtToken))
         return config;
     },

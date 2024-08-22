@@ -157,7 +157,7 @@ const RegisterScreen: React.FC<Props> = () => {
         statusId: 1,
         correlationId: "1",
         countryId: "155",
-        stateId: 0,
+        stateId: 1,
         cityName: "",
         pinCode: "",
         address: "",
@@ -180,17 +180,15 @@ const RegisterScreen: React.FC<Props> = () => {
           "statusName": ""
         },
       }
-      console.log("payload", payload);
 
       const res = await addCustomerPostApi(payload);
-      console.log("++++++++++ customer added : ", res);
 
-      if (res?.status === 200) {
-        const customerId = res?.data?.data?.customerId;
-        console.log("++++++++++ customer added : ", res?.data);
-
+      if (res?.data) {
+        const customerId = res?.data?.customerId;
+        console.log("++++++++++ customer added : ", res?.data?.data);
+        await updateUser(res?.data?.data);
         //    await userContext.setUser(res?.data?.data);
-        navigation.replace("MarketPlace");
+        navigation.replace("HomeScreen");
       } else {
         navigation.replace("LoginScreen");
       }
@@ -201,7 +199,13 @@ const RegisterScreen: React.FC<Props> = () => {
     }
   }
 
-
+  // Update cognito customerId
+  const updateUser = async (data: any) => {
+    const user = await Auth.currentAuthenticatedUser();
+    await Auth.updateUserAttributes(user, {
+      "custom:customerId": data?.customerId?.toString(),
+    });
+  }
 
   return (
     <>
