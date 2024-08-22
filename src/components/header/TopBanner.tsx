@@ -16,8 +16,7 @@ const TopBanner: React.FC<Props> = ({
 }) => {
 
     return (
-        !navbar ?
-            <View style={styles.image}>
+             <View style={styles.image}>
                 <ImageBackground
                     source={require('../../asset/valet.png')}
                     resizeMode="cover"
@@ -30,8 +29,7 @@ const TopBanner: React.FC<Props> = ({
                     </View>
                 </ImageBackground>
 
-            </View> :
-            <Header navbar={navbar} />
+            </View>  
 
     );
 }

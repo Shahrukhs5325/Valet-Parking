@@ -8,6 +8,7 @@ import { Text } from 'react-native-paper';
 import Store from '../../components/store/Store';
 import CityComonent from '../../components/city/CityComonent';
 import Arrow from '../../asset/svg/arrow_forward.svg';
+import Header from '../../components/header/Header';
 
 type Props = {
   route?: any;
@@ -28,11 +29,6 @@ const ValetServicesScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
   const { city } = route.params;
 
-  // const userContext = React.useContext(UserContext);
-  const [isEnable, setIsEnable] = React.useState(false);
-
-  console.log("city", city);
-
 
   React.useEffect(() => {
 
@@ -44,7 +40,7 @@ const ValetServicesScreen: React.FC<Props> = ({ route }) => {
 
   return (
     <View style={{ backgroundColor: palette.primaryDark, gap: 50 }}>
-      <TopBanner navbar={true} />
+      <Header navbar={true} />
       <View style={styles.container}>
         <StatusBar
           animated={true}
@@ -60,9 +56,11 @@ const ValetServicesScreen: React.FC<Props> = ({ route }) => {
             renderItem={({ item }) =>
               <View style={styles.card}>
                 <Text variant="titleMedium" style={styles.txtSty}>{item.name}</Text>
-                <View style={{ borderRadius: 90, backgroundColor: palette.primaryLight, padding: 6 }}>
-                  <Arrow width={20} height={20} />
-                </View>
+                <TouchableOpacity>
+                  <View style={{ borderRadius: 90, backgroundColor: palette.primaryLight, padding: 6, borderWidth: 5, borderColor: palette.bgGray, height: 46, width: 46, alignItems: 'center', justifyContent: 'center' }}>
+                    <Arrow width={20} height={20} />
+                  </View>
+                </TouchableOpacity>
               </View>
             }
             style={styles.list}
