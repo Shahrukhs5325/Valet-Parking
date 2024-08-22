@@ -9,6 +9,7 @@ import { palette } from "../../theme/themes";
 import HomeScreen from "../../screen/home/HomeScreen";
 import ValetScreen from "../../screen/valet/ValetScreen";
 import ValetServicesScreen from "../../screen/valet/ValetServicesScreen";
+import ValetDetailsScreen from "../../screen/valet/ValetDetailsScreen";
 
 
 const Stack = createStackNavigator();
@@ -73,6 +74,10 @@ const Navigation = () => {
          <Stack.Screen
           name={"ValetServicesScreen"}
           component={ValetServicesScreen}
+        />
+         <Stack.Screen
+          name={"ValetDetailsScreen"}
+          component={ValetDetailsScreen}
         />
 
 

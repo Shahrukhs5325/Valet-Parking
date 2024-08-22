@@ -47,6 +47,7 @@ const SplashScreen: React.FC<Props> = () => {
       }
     } catch (error) {
       console.log('Error: ' + JSON.stringify(error));
+      navigation.replace("LoginScreen");
       // timerFunction();
     }
   };
