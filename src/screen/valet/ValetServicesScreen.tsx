@@ -7,7 +7,7 @@ import Arrow from '../../asset/svg/arrow_forward.svg';
 import Header from '../../components/header/Header';
 import { useQuery } from '@tanstack/react-query';
 import { UserContext } from '../../context/user/UserContext';
-import { getNearByCoupon, getStoresByCityName } from '../../api/common/commonApi';
+import { getCustomerCoupons, getNearByCoupon, getStoresByCityName } from '../../api/common/commonApi';
 
 type Props = {
   route?: any;
@@ -26,24 +26,25 @@ const DATA = [
 
 const ValetServicesScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
-  const { city ,location} = route.params;
+  const { city } = route.params;
 
   const userContext = React.useContext(UserContext);
+  const [couponList, setCouponList] = React.useState([]);
 
   const {
     isLoading,
     data,
     refetch,
-} = useQuery({
-    queryKey: ['near_by_coupon', userContext?.user, location],
-    queryFn: () => getNearByCoupon(userContext?.user, location),
-});
+  } = useQuery({
+    queryKey: ['near_by_coupon', userContext?.user],
+    queryFn: () => getCustomerCoupons(userContext?.user),
+  });
 
-console.log("near_by_coupon",data?.data?.data);
+  console.log("getCustomerCoupons", couponList);
 
   React.useEffect(() => {
-
-  }, []);
+    setCouponList(data?.data?.data);
+  }, [data?.data?.data]);
 
 
 
@@ -60,27 +61,29 @@ console.log("near_by_coupon",data?.data?.data);
 
         <View style={{ gap: 15 }}>
           <Text variant="titleLarge" style={styles.txtTitleSty}>Premium Valet Services Across {city.cityName}</Text>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            keyExtractor={(item, index) => index.toString()}
-            data={DATA}
-            renderItem={({ item }) =>
-              <View style={styles.card}>
-                <Text variant="titleMedium" style={styles.txtSty}>{item.name}</Text>
-                <TouchableOpacity onPress={() => navigation.navigate("ValetDetailsScreen")}>
-                  <View style={{ borderRadius: 90, backgroundColor: palette.primaryLight, padding: 6, borderWidth: 5, borderColor: palette.bgGray, height: 46, width: 46, alignItems: 'center', justifyContent: 'center' }}>
-                    <Arrow width={20} height={20} />
-                  </View>
-                </TouchableOpacity>
-              </View>
-            }
-            style={styles.list}
-            contentContainerStyle={styles.listContents}
-            initialNumToRender={5}
-            maxToRenderPerBatch={10}
-            windowSize={10}
-            updateCellsBatchingPeriod={50}
-          />
+
+          {couponList && couponList.length > 0 ?
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              keyExtractor={(item, index) => index.toString()}
+              data={couponList}
+              renderItem={({ item }) =>
+                <View style={styles.card}>
+                  <Text variant="titleMedium" style={styles.txtSty}>{item?.templateName}</Text>
+                  <TouchableOpacity onPress={() => navigation.navigate("ValetDetailsScreen", { coupon: item })}>
+                    <View style={{ borderRadius: 90, backgroundColor: palette.primaryLight, padding: 6, borderWidth: 5, borderColor: palette.bgGray, height: 46, width: 46, alignItems: 'center', justifyContent: 'center' }}>
+                      <Arrow width={20} height={20} />
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              }
+              style={styles.list}
+              contentContainerStyle={styles.listContents}
+              initialNumToRender={5}
+              maxToRenderPerBatch={10}
+              windowSize={10}
+              updateCellsBatchingPeriod={50}
+            /> : null}
 
         </View>
       </View>

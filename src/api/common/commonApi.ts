@@ -27,6 +27,12 @@ export const getNearByCoupon = async (user: any, location: any) => {
     return response;
 };
 
+export const getCustomerCoupons = async (user: any,) => {
+     const response = await instance.get(`/customers/getCustomerCoupons?customerId=${user?.customerId}&couponTypeName=Vallet Card&generic=Unique`);
+
+    return response;
+};
+
 // export const getStoresByMerchantId = async (merchantId: number, temId: any) => {
 //     const response = await instance.get(`/customers/getStoresByMerchantId?merchantId=${merchantId}&couponId=${temId}`);
 

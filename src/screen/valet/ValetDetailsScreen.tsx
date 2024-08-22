@@ -18,23 +18,19 @@ import ShareIcon from '../../asset/svg/communities.svg';
 import PrimaryButton from '../../components/button/PrimaryButton';
 
 
-type Props = {};
+type Props = {
+  route?: any;
+};
 
 
 const WIDTH = Dimensions.get('window').width;
 const ImageHeight = Math.round(Dimensions.get('window').width * 6 / 9);
 
-const ValetDetailsScreen: React.FC<Props> = () => {
+const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
+  const { coupon } = route.params;
+
   // const userContext = React.useContext(UserContext);
-  const [isEnable, setIsEnable] = React.useState(false);
-
-
-
-  React.useEffect(() => {
-
-  }, []);
-
 
 
 
@@ -53,19 +49,14 @@ const ValetDetailsScreen: React.FC<Props> = () => {
             resizeMode="cover"
             style={styles.image}>
             <Header navbar={true} />
-            <View style={{ position: 'absolute', bottom: 0, justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', padding: 20, gap: 6 }}>
-              <Text variant="titleLarge" style={{ color: palette.primaryLight, fontWeight: 800 }}>Valet Services</Text>
-              <Text variant="bodyMedium" style={{ color: palette.primaryLight, textAlign: 'center' }}>Our professional valet team ensures your vehicle is safe and secure.</Text>
-
-            </View>
           </ImageBackground>
           <View style={styles.compView}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-              <View>
-                <Text variant="headlineMedium" style={styles.txtTitleSty}>Billionaire</Text>
+              <View style={{ width: '75%' }}>
+                <Text variant="headlineMedium" style={styles.txtTitleSty}>{coupon.templateName}</Text>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginVertical: 6 }}>
                   <LocationIcon />
-                  <Text variant="titleSmall" style={styles.txtSty}>Billionaire</Text>
+                  <Text variant="titleSmall" style={styles.txtSty}>{coupon.address}</Text>
                 </View>
               </View>
               <Image source={require('../../asset/valet.png')}
@@ -73,11 +64,11 @@ const ValetDetailsScreen: React.FC<Props> = () => {
             </View>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 40, }}>
 
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginVertical: 6 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginVertical: 6 }}>
                 <View style={{ width: 16, height: 16, backgroundColor: '#FFF', alignItems: 'center', justifyContent: 'center' }}><WalkIcon /></View>
                 <Text variant="titleSmall" style={styles.txtSty}>800m away</Text>
               </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginVertical: 6 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginVertical: 6 }}>
                 <SpotnIcon />
                 <Text variant="titleSmall" style={styles.txtSty}>19 Spots</Text>
               </View>
@@ -100,16 +91,34 @@ const ValetDetailsScreen: React.FC<Props> = () => {
 
             </View>
 
-            <View>
+            <View style={{ gap: 8 }}>
               <Text variant="titleSmall" style={styles.txtheadSty}>Service description</Text>
+              <View style={{ gap: 4, marginLeft: 16 }}>
+                <Text variant="bodySmall" style={styles.txtSty}>Safe and secure parking</Text>
+                <Text variant="bodySmall" style={styles.txtSty}>Professional and courteous staff</Text>
+                <Text variant="bodySmall" style={styles.txtSty}>Quick and easy vehicle retrieval</Text>
+                <Text variant="bodySmall" style={styles.txtSty}>Special attention to your vehicle's needs</Text>
+
+              </View>
 
             </View>
-            <View>
+            <View style={{ gap: 8 }}>
               <Text variant="titleSmall" style={styles.txtheadSty}>parking duration</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 6, justifyContent: "space-between" }}>
 
+                <View style={{}}>
+                  <View style={styles.serviceView}>
+                    <Text variant="bodySmall" style={styles.txtSty}>{Math.round(coupon?.validityDuration / 60)} Hour</Text>
+                  </View>
+                  <View style={styles.serviceBtmView}>
+                    <Text variant="bodySmall" style={styles.txtSty}>1-Redeems</Text>
+                  </View>
+                </View>
+
+              </View>
             </View>
-            <View>
-              <PrimaryButton onPress={() => navigation.navigate("RedeemScreen")} buttonColor={palette.primaryLight}>Redeem</PrimaryButton>
+            <View style={{ marginBottom: 20 }}>
+              <PrimaryButton onPress={() => navigation.navigate("RedeemScreen", { coupon: coupon })} buttonColor={palette.primaryLight}>Redeem</PrimaryButton>
 
             </View>
           </View>
@@ -125,16 +134,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     //paddingHorizontal: 15,
-    backgroundColor: palette.primaryDark
+    backgroundColor: palette.primaryDark,
+
   },
   compView: {
+    backgroundColor: palette.primaryDark,
+    // borderRadius:17,
     padding: 10,
     marginTop: 26,
     gap: 26,
   },
   txtSty: {
     color: palette.primaryLight,
-
   },
   txtTitleSty: {
     fontWeight: '700',
@@ -162,6 +173,36 @@ const styles = StyleSheet.create({
     height: 70,
     borderWidth: 1,
     borderColor: '#FFF'
+  },
+  serviceView: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    backgroundColor: '#333333',
+    borderRadius: 10,
+    borderColor: '#FFF',
+    borderWidth: 1, zIndex: 1,
+    paddingTop: 20,
+    paddingBottom: 20,
+  },
+  serviceBtmView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    backgroundColor: '#333333',
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    borderColor: '#FFF',
+    borderWidth: 1,
+    // position: "relative",
+    // bottom: 10,
+    paddingTop: 18,
+    marginTop: -10
   }
 
 

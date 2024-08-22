@@ -1,32 +1,24 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Dimensions, Image, ImageBackground, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
-import { palette } from '../../theme/themes';
-import TopBanner from '../../components/header/TopBanner';
-import Services from '../../components/services/Services';
+import { Dimensions, StatusBar, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
-import Store from '../../components/store/Store';
-import CityComonent from '../../components/city/CityComonent';
-import Header from '../../components/header/Header';
-import WalkIcon from '../../asset/svg/directions_walk.svg';
-import SpotnIcon from '../../asset/svg/stop.svg';
-import LocationIcon from '../../asset/svg/location_on.svg';
-import CallIcon from '../../asset/svg/call.svg';
-import DirectionIcon from '../../asset/svg/.svg';
-import NearmeIcon from '../../asset/svg/near_me.svg';
-import ShareIcon from '../../asset/svg/communities.svg';
-import PrimaryButton from '../../components/button/PrimaryButton';
 import QRCode from 'react-native-qrcode-svg';
+import PrimaryButton from '../../components/button/PrimaryButton';
+import { palette } from '../../theme/themes';
 
 
-type Props = {};
+type Props = {
+  route?: any;
+};
 
 
 const WIDTH = Dimensions.get('window').width;
 const ImageHeight = Math.round(Dimensions.get('window').width * 6 / 9);
 
-const RedeemScreen: React.FC<Props> = () => {
+const RedeemScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
+  const { coupon } = route.params;
+
   // const userContext = React.useContext(UserContext);
   const [isEnable, setIsEnable] = React.useState(false);
 
