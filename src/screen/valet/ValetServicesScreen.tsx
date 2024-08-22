@@ -1,17 +1,13 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Dimensions, FlatList, Image, ScrollView, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Dimensions, FlatList, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { palette } from '../../theme/themes';
-import TopBanner from '../../components/header/TopBanner';
-import Services from '../../components/services/Services';
 import { Text } from 'react-native-paper';
-import Store from '../../components/store/Store';
-import CityComonent from '../../components/city/CityComonent';
 import Arrow from '../../asset/svg/arrow_forward.svg';
 import Header from '../../components/header/Header';
 import { useQuery } from '@tanstack/react-query';
 import { UserContext } from '../../context/user/UserContext';
-import { getStoresByCityName } from '../../api/common/commonApi';
+import { getNearByCoupon, getStoresByCityName } from '../../api/common/commonApi';
 
 type Props = {
   route?: any;
@@ -30,7 +26,7 @@ const DATA = [
 
 const ValetServicesScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
-  const { city } = route.params;
+  const { city ,location} = route.params;
 
   const userContext = React.useContext(UserContext);
 
@@ -38,11 +34,12 @@ const ValetServicesScreen: React.FC<Props> = ({ route }) => {
     isLoading,
     data,
     refetch,
-  } = useQuery({
-    queryKey: ['City_List', userContext?.user],
-    queryFn: () => getStoresByCityName(userContext?.user, city.cityName),
-  });
+} = useQuery({
+    queryKey: ['near_by_coupon', userContext?.user, location],
+    queryFn: () => getNearByCoupon(userContext?.user, location),
+});
 
+console.log("near_by_coupon",data?.data?.data);
 
   React.useEffect(() => {
 

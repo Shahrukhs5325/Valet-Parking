@@ -109,7 +109,7 @@ const ValetDetailsScreen: React.FC<Props> = () => {
 
             </View>
             <View>
-            <PrimaryButton onPress={() => console.log()} buttonColor={palette.primaryLight}>Redeem</PrimaryButton>
+              <PrimaryButton onPress={() => navigation.navigate("RedeemScreen")} buttonColor={palette.primaryLight}>Redeem</PrimaryButton>
 
             </View>
           </View>

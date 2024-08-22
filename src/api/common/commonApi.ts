@@ -8,15 +8,22 @@ export const getAllCity = async (user: any) => {
 
 
 export const getNearByStores = async (user: any, location: any) => {
-    const response = await instance.get(`/customers/getNearByStores?latitude=${location?.coords?.latitude ? location?.coords?.latitude : ""}&longitude=${location?.coords?.longitude ? location?.coords?.longitude : ""}&distance=${150}&clientId=${user?.correlationId ? user?.correlationId : "1"}&countryCode=${user?.countryId}`);
+    // const response = await instance.get(`/customers/getNearByStores?latitude=${location?.coords?.latitude ? location?.coords?.latitude : ""}&longitude=${location?.coords?.longitude ? location?.coords?.longitude : ""}&distance=${150}&clientId=${user?.correlationId ? user?.correlationId : "1"}&countryCode=${user?.countryId}`);
 
-    // const response = await instance.get(`/customers/getNearByStores?latitude=${"24.7136"}&longitude=${"46.6753"}&distance=${100}&clientId=${user?.correlationId ? user?.correlationId : "1"}&countryCode=${user?.countryId}`);
+    const response = await instance.get(`/customers/getNearByStores?latitude=${"24.7136"}&longitude=${"46.6753"}&distance=${100}&clientId=${user?.correlationId ? user?.correlationId : "1"}&countryCode=${user?.countryId}`);
 
     return response;
 };
 
 export const getStoresByCityName = async (user: any, cityName: any) => {
     const response = await instance.get(`/customers/getStoresByCityName?countryId=${user?.countryId}&cityName=${cityName}`);
+    return response;
+};
+
+export const getNearByCoupon = async (user: any, location: any) => {
+    // const response= await instance.get(`/customers/getNearByCoupon?latitude=${location?.coords?.latitude ? location?.coords?.latitude : ""}&longitude=${location?.coords?.longitude ? location?.coords?.longitude : ""}&distance=${DEFAULT_DISTANCE}&clientId=${user?.correlationId ? user?.correlationId : DEFAULT_CLIENT_ID}&couponTypeName=Promo Code&countryCode=${user?.countryId}`);
+    const response = await instance.get(`/customers/getNearByCoupon?latitude=${24.7136}&longitude=${46.6753}&distance=${100}&clientId=${user?.correlationId ? user?.correlationId : "1"}&couponTypeName=Vallet Card&countryCode=${user?.countryId}`);
+
     return response;
 };
 

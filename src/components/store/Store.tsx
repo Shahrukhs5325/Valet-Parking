@@ -7,16 +7,17 @@ import Arrow from '../../asset/svg/arrow_forward.svg';
 import { UserContext } from "../../context/user/UserContext";
 import { palette } from "../../theme/themes";
 
- const WIDTH = Math.round(Dimensions.get('window').width);
+const WIDTH = Math.round(Dimensions.get('window').width);
 
 interface Props {
     location?: any;
 }
 
- 
+
 
 const Store: React.FC<Props> = ({ location }) => {
     const userContext = React.useContext(UserContext);
+    const [storeList, setStoreList] = React.useState([]);
 
     const {
         isLoading,
@@ -31,17 +32,21 @@ const Store: React.FC<Props> = ({ location }) => {
         refetch();
     }, [location]);
 
-    const NearStoreList = data?.data?.data
- 
+
+    React.useEffect(() => {
+        setStoreList(data?.data?.data);
+    }, [data?.data?.data]);
+
+
     return (
-        NearStoreList && NearStoreList.length > 0 ?
+        storeList && storeList.length > 0 ?
             <View style={styles.container}>
                 <View>
                     <FlatList
                         showsHorizontalScrollIndicator={false}
                         horizontal={true}
                         keyExtractor={(item, index) => index.toString()}
-                        data={NearStoreList}
+                        data={storeList}
                         renderItem={({ item }) =>
                             <View style={styles.card}>
                                 <Image source={require('../../asset/valet.png')}
