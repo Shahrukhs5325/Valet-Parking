@@ -9,6 +9,7 @@ interface Props {
     placeholder?: string;
     disabled?: boolean | undefined;
     value?: string;
+    error?: boolean;
     secureTextEntry?: boolean | undefined;
     right?: React.ReactNode;
 }
@@ -18,6 +19,7 @@ const TextInputCust: React.FC<Props> = ({
     placeholder,
     disabled,
     value,
+    error,
     secureTextEntry,
     right
 
@@ -28,6 +30,7 @@ const TextInputCust: React.FC<Props> = ({
             placeholder={placeholder}
             mode='outlined'
             value={value}
+            error={error}
             disabled={disabled}
             secureTextEntry={secureTextEntry}
             onChangeText={onChangeText}

@@ -13,16 +13,38 @@ type Props = {};
 const LoginScreen: React.FC<Props> = () => {
   const navigation = useNavigation();
   // const userContext = React.useContext(UserContext);
-  const [text, setText] = React.useState("");
-
-
+  const [emailId, setEmailId] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [errors, setErrors] = React.useState("");
 
   React.useEffect(() => {
 
   }, []);
 
+  const validate = () => {
+    const EmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+    const isEmailValid = EmailRegex.test(emailId);
 
+    if (!emailId) {
+      setErrors("Please enter email");
+      return false;
+    } else if (!isEmailValid) {
+      setErrors("Please enter valid email");
+      return false;
+    } else if (password.length < 5) {
+      setErrors("Password with 8 characters including 1 uppercase letter, 1 special character, and alphanumeric characters");
+      return false;
+    }
+
+    return true;
+  };
+
+  const submitHandler = () => {
+    const val = validate()
+    console.log("submit ", val);
+    val && navigation.replace("HomeScreen")
+  }
 
 
   return (
@@ -36,19 +58,20 @@ const LoginScreen: React.FC<Props> = () => {
         <View style={{ gap: 0 }}>
           <TextInputCust
             placeholder='Email'
-            value={text}
-            onChangeText={(text: any) => setText(text)}
+            value={emailId}
+            onChangeText={(text: any) => { setEmailId(text); setErrors("") }}
           />
           <TextInputCust
             placeholder='Password'
-            value={text}
-            onChangeText={(text: any) => setText(text)}
+            value={password}
+            onChangeText={(text: any) => { setPassword(text); setErrors("") }}
             secureTextEntry={false}
             right={<TextInputCust.Icon icon="eye" />}
           />
+          <Text variant="labelMedium" style={{ marginVertical: 10, color: 'red', height: 36 }}>{errors}</Text>
         </View>
-        <View style={{ gap: 30, marginTop: 20 }}>
-          <PrimaryButton onPress={() => navigation.replace("HomeScreen")}>Sign In</PrimaryButton>
+        <View style={{ gap: 30 }}>
+          <PrimaryButton onPress={() => submitHandler()}>Sign In</PrimaryButton>
           <Text variant="labelLarge" style={{ textAlign: 'center' }}>Forgot password?</Text>
         </View>
         <View style={styles.containerRegister}>
