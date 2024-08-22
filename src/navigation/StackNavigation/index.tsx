@@ -11,6 +11,7 @@ import ValetScreen from "../../screen/valet/ValetScreen";
 import ValetServicesScreen from "../../screen/valet/ValetServicesScreen";
 import ValetDetailsScreen from "../../screen/valet/ValetDetailsScreen";
 import RedeemScreen from "../../screen/valet/RedeemScreen";
+import SucessScreen from "../../screen/valet/SucessScreen";
 
 
 const Stack = createStackNavigator();
@@ -83,6 +84,10 @@ const Navigation = () => {
         <Stack.Screen
           name={"RedeemScreen"}
           component={RedeemScreen}
+        />
+         <Stack.Screen
+          name={"SucessScreen"}
+          component={SucessScreen}
         />
 
 

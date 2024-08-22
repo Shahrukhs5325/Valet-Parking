@@ -100,7 +100,7 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
 
         </View>
         <View style={{ width: '100%', marginTop: 60 }}>
-          <PrimaryButton onPress={() => console.log()} buttonColor={palette.primaryLight}>Redeem</PrimaryButton>
+        <PrimaryButton onPress={() => navigation.navigate("SucessScreen")} buttonColor={palette.primaryLight}>Redeem</PrimaryButton>
 
         </View>
       </View>

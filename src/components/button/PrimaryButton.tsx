@@ -2,7 +2,6 @@ import React from "react";
 import { palette } from "../../theme/themes";
 import { Button } from "react-native-paper";
 
-// sizes: "xs", "sm", "md", "lg"
 
 interface Props {
     children?: React.ReactNode | any;
