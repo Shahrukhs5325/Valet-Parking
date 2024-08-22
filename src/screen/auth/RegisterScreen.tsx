@@ -8,6 +8,7 @@ import TextInputCust from '../../components/textInput/TextInput';
 import { Auth, Hub } from 'aws-amplify';
 import { handleCognitoError } from '../../constant/constFunction';
 import { addCustomerPostApi } from '../../api/user/userApi';
+import { UserContext } from '../../context/user/UserContext';
 
 type Props = {};
 
@@ -15,7 +16,7 @@ type Props = {};
 
 const RegisterScreen: React.FC<Props> = () => {
   const navigation = useNavigation();
-  // const userContext = React.useContext(UserContext);
+  const userContext = React.useContext(UserContext);
   const [isLoading, setIsLoading] = React.useState(false);
   const [isSentOTP, setIsSentOTP] = React.useState(false);
 
@@ -184,10 +185,10 @@ const RegisterScreen: React.FC<Props> = () => {
       const res = await addCustomerPostApi(payload);
 
       if (res?.data) {
-        const customerId = res?.data?.customerId;
-        console.log("++++++++++ customer added : ", res?.data?.data);
+        const customerId = res?.data?.data?.customerId;
+        console.log("++++++++++ customer added : ", customerId);
         await updateUser(res?.data?.data);
-        //    await userContext.setUser(res?.data?.data);
+        await userContext.setUser(res?.data?.data);
         navigation.replace("HomeScreen");
       } else {
         navigation.replace("LoginScreen");

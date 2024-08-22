@@ -8,6 +8,7 @@ import TextInputCust from '../../components/textInput/TextInput';
 import { Auth } from 'aws-amplify';
 import { handleCognitoError } from '../../constant/constFunction';
 import { getCustomerByIdApi } from '../../api/user/userApi';
+import { UserContext } from '../../context/user/UserContext';
 
 type Props = {};
 
@@ -15,7 +16,7 @@ type Props = {};
 
 const LoginScreen: React.FC<Props> = () => {
   const navigation = useNavigation();
-  // const userContext = React.useContext(UserContext);
+  const userContext = React.useContext(UserContext);
   const [isLoading, setIsLoading] = React.useState(false);
   const [emailId, setEmailId] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -73,7 +74,7 @@ const LoginScreen: React.FC<Props> = () => {
       if (user?.status === 200 && user?.data?.data) {
         console.log("***** Zaps user *****", user?.data?.data)
 
-        // userContext.setUser(user?.data?.data);
+        userContext.setUser(user?.data?.data);
         navigation.replace("HomeScreen")
       } else {
         setIsLoading(false);

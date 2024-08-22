@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
 import Navigation from './src/navigation/StackNavigation';
 import { Amplify } from 'aws-amplify';
+import { UserContextProvider } from './src/context/user/UserContext';
 
 const config = {
   identityPoolId: '',
@@ -18,9 +19,11 @@ function App(): React.JSX.Element {
 
   return (
     <>
-      <PaperProvider>
-        <Navigation />
-      </PaperProvider>
+      <UserContextProvider>
+        <PaperProvider>
+          <Navigation />
+        </PaperProvider>
+      </UserContextProvider>
     </>
   );
 }

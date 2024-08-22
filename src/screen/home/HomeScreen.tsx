@@ -6,6 +6,7 @@ import TopBanner from '../../components/header/TopBanner';
 import Services from '../../components/services/Services';
 import { Text } from 'react-native-paper';
 import Store from '../../components/store/Store';
+import { UserContext } from '../../context/user/UserContext';
 
 type Props = {};
 
@@ -14,8 +15,10 @@ const ImageHeight = Math.round(Dimensions.get('window').width * 9 / 9);
 
 const HomeScreen: React.FC<Props> = () => {
   const navigation = useNavigation();
-  
+  const userContext = React.useContext(UserContext);
 
+
+console.log("userContext",userContext);
 
   React.useEffect(() => {
 

@@ -5,6 +5,7 @@ import ZapsIcon from '../../asset/svg/logo.svg';
 import { palette } from '../../theme/themes';
 import { Auth } from 'aws-amplify';
 import { getCustomerByIdApi } from '../../api/user/userApi';
+import { UserContext } from '../../context/user/UserContext';
 
 type Props = {};
 
@@ -12,7 +13,7 @@ type Props = {};
 
 const SplashScreen: React.FC<Props> = () => {
   const navigation = useNavigation();
-  // const userContext = React.useContext(UserContext);
+  const userContext = React.useContext(UserContext);
 
 
 
@@ -54,7 +55,7 @@ const SplashScreen: React.FC<Props> = () => {
     try {
       const user = await getCustomerByIdApi(customerId);
       if (user?.status === 200 && user?.data?.data) {
-
+        userContext.setUser(user?.data?.data);
         setIsLoginIn(true);
         navigation.replace("HomeScreen");
         console.log("***** Zaps user *****", user?.data?.data)
