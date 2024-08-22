@@ -16,21 +16,22 @@ const TopBanner: React.FC<Props> = ({
 }) => {
 
     return (
+        !navbar ?
+            <View style={styles.image}>
+                <ImageBackground
+                    source={require('../../asset/valet.png')}
+                    resizeMode="cover"
+                    style={styles.image}>
+                    <Header navbar={navbar} />
+                    <View style={{ position: 'absolute', bottom: 0, justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', padding: 20, gap: 6 }}>
+                        <Text variant="titleLarge" style={{ color: palette.primaryLight, fontWeight: 800 }}>Valet Services</Text>
+                        <Text variant="bodyMedium" style={{ color: palette.primaryLight, textAlign: 'center' }}>Our professional valet team ensures your vehicle is safe and secure.</Text>
 
-        <View style={styles.image}>
-            <ImageBackground
-                source={require('../../asset/valet.png')}
-                resizeMode="cover"
-                style={styles.image}>
-                <Header navbar={navbar} />
-                <View style={{ position: 'absolute', bottom: 0, justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', padding: 20, gap: 6 }}>
-                    <Text variant="titleLarge" style={{ color: palette.primaryLight, fontWeight: 800 }}>Valet Services</Text>
-                    <Text variant="bodyMedium" style={{ color: palette.primaryLight, textAlign: 'center' }}>Our professional valet team ensures your vehicle is safe and secure.</Text>
+                    </View>
+                </ImageBackground>
 
-                </View>
-            </ImageBackground>
-
-        </View>
+            </View> :
+            <Header navbar={navbar} />
 
     );
 }

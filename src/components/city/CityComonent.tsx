@@ -5,6 +5,7 @@ import { Dimensions, FlatList, ScrollView, StyleSheet, TouchableOpacity, View } 
 import Car from '../../asset/svg/car.svg';
 import Parking from '../../asset/svg/Parking.svg';
 import Smiley from '../../asset/svg/smiley-smile.svg';
+import { useNavigation } from "@react-navigation/native";
 
 // sizes: "xs", "sm", "md", "lg"
 const ImageHeight = Math.round(Dimensions.get('window').width / 4);
@@ -28,6 +29,7 @@ const DATA = [
 const CityComonent: React.FC<Props> = ({
 
 }) => {
+    const navigation = useNavigation();
 
     return (
 
@@ -45,7 +47,7 @@ const CityComonent: React.FC<Props> = ({
                     keyExtractor={(item, index) => index.toString()}
                     data={DATA}
                     renderItem={({ item }) =>
-                        <TouchableOpacity onPress={() => console.log()}>
+                        <TouchableOpacity onPress={() => navigation.navigate("ValetServicesScreen", { city: item })}>
                             <View style={styles.card}>
                                 {/* {item.icon} */}
                                 <Text variant="titleSmall" style={styles.txtSty}>{item.name}</Text>

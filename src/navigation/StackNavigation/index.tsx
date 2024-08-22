@@ -8,6 +8,7 @@ import RegisterScreen from "../../screen/auth/RegisterScreen";
 import { palette } from "../../theme/themes";
 import HomeScreen from "../../screen/home/HomeScreen";
 import ValetScreen from "../../screen/valet/ValetScreen";
+import ValetServicesScreen from "../../screen/valet/ValetServicesScreen";
 
 
 const Stack = createStackNavigator();
@@ -68,6 +69,10 @@ const Navigation = () => {
         <Stack.Screen
           name={"ValetScreen"}
           component={ValetScreen}
+        />
+         <Stack.Screen
+          name={"ValetServicesScreen"}
+          component={ValetServicesScreen}
         />
 
 

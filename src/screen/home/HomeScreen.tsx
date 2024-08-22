@@ -6,7 +6,6 @@ import TopBanner from '../../components/header/TopBanner';
 import Services from '../../components/services/Services';
 import { Text } from 'react-native-paper';
 import Store from '../../components/store/Store';
-import CityComonent from '../../components/city/CityComonent';
 
 type Props = {};
 
@@ -15,16 +14,12 @@ const ImageHeight = Math.round(Dimensions.get('window').width * 9 / 9);
 
 const HomeScreen: React.FC<Props> = () => {
   const navigation = useNavigation();
-  // const userContext = React.useContext(UserContext);
-  const [isEnable, setIsEnable] = React.useState(false);
-
+  
 
 
   React.useEffect(() => {
 
   }, []);
-
-
 
 
 

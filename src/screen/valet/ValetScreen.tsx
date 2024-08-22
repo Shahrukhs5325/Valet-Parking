@@ -36,7 +36,7 @@ const ValetScreen: React.FC<Props> = () => {
           backgroundColor={palette.primaryDark}
         />
         <ScrollView>
-          <TopBanner navbar={true} />
+          <TopBanner navbar={false} />
           <View style={styles.compView}>
             <View>
               <Text variant="titleSmall" style={styles.txtTitleSty}>Services you have</Text>
