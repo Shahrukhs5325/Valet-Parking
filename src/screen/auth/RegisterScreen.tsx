@@ -13,17 +13,61 @@ type Props = {};
 const RegisterScreen: React.FC<Props> = () => {
   const navigation = useNavigation();
   // const userContext = React.useContext(UserContext);
-  const [text, setText] = React.useState("");
-
+  const [otp, setOTP] = React.useState("");
+  const [formData, setFormData] = React.useState({
+    firstName: '',
+    LastName: '',
+    email: '',
+    password: '',
+    activationCode: '',
+    lastSixDigit: '',
+    firstFourDigit: ''
+  });
+  const [errors, setErrors] = React.useState("");
 
 
   React.useEffect(() => {
-
   }, []);
 
+  const validate = () => {
+    const EmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+    const isEmailValid = EmailRegex.test(formData.email);
 
+    if (!formData?.firstName) {
+      setErrors("Please enter first name");
+      return false;
+    } else if (!formData?.LastName) {
+      setErrors("Please enter last name");
+      return false;
+    } else if (!formData?.email) {
+      setErrors("Please enter email");
+      return false;
+    } else if (!isEmailValid) {
+      setErrors("Please enter valid email");
+      return false;
+    } else if (formData.password.length < 5) {
+      setErrors("Password with 8 characters including 1 uppercase letter, 1 special character, and alphanumeric characters");
+      return false; errors
+    } else if (!formData?.activationCode) {
+      setErrors("Please enter activation code");
+      return false;
+    } else if (!formData?.lastSixDigit) {
+      setErrors("Please enter last 6 digit number");
+      return false;
+    } else if (!formData?.firstFourDigit) {
+      setErrors("Please enter first 4 digit number");
+      return false;
+    }
 
+    return true;
+  };
+
+  const submitHandler = () => {
+    const val = validate()
+    console.log("submit ", val);
+    !val && navigation.replace("HomeScreen")
+  }
 
   return (
     <>
@@ -38,65 +82,88 @@ const RegisterScreen: React.FC<Props> = () => {
           <View style={{ gap: 0 }}>
             <TextInputCust
               placeholder='First Name'
-              value={text}
-              onChangeText={(text: any) => setText(text)}
+              value={formData.firstName}
+              onChangeText={value => {
+                setFormData({ ...formData, firstName: value });
+                setErrors("");
+              }}
             />
             <TextInputCust
               placeholder='Last name'
-              value={text}
-              onChangeText={(text: any) => setText(text)}
-            />
-            <TextInputCust
-              placeholder='Last name'
-              value={text}
-              onChangeText={(text: any) => setText(text)}
+              value={formData.LastName}
+              onChangeText={value => {
+                setFormData({ ...formData, LastName: value });
+                setErrors("");
+              }}
             />
             <TextInputCust
               placeholder='Email'
-              value={text}
-              onChangeText={(text: any) => setText(text)}
+              value={formData.email}
+              onChangeText={value => {
+                setFormData({ ...formData, email: value });
+                setErrors("");
+              }}
             />
             <TextInputCust
               placeholder='Password'
-              value={text}
-              onChangeText={(text: any) => setText(text)}
+              value={formData.password}
+              onChangeText={value => {
+                setFormData({ ...formData, password: value });
+                setErrors("");
+              }}
               secureTextEntry={false}
               right={<TextInputCust.Icon icon="eye" />}
             />
             <TextInputCust
               placeholder='Activation code'
-              value={text}
-              onChangeText={(text: any) => setText(text)}
+              value={formData.activationCode}
+              onChangeText={value => {
+                setFormData({ ...formData, activationCode: value });
+                setErrors("");
+              }}
             />
             <TextInputCust
               placeholder='OTP'
-              value={text}
-              onChangeText={(text: any) => setText(text)}
+              value={otp}
+              keyboardType={"numeric"}
+              onChangeText={value => {
+                setOTP(value);
+                setErrors("");
+              }}
             />
           </View>
           <View style={{ gap: 8, marginTop: 10 }}>
-            <Text variant="titleLarge"  >Credit card details</Text>
+            <Text variant="titleMedium" style={{ letterSpacing: 3, textTransform: 'uppercase' }} >Credit card details</Text>
 
             <View style={{ gap: 4 }}>
               <Text variant="titleSmall"  >Enter last 6 digits</Text>
               <TextInputCust
-                placeholder='First Name'
-                value={text}
-                onChangeText={(text: any) => setText(text)}
+                placeholder='x x x x x x'
+                value={formData.lastSixDigit}
+                onChangeText={value => {
+                  setFormData({ ...formData, lastSixDigit: value });
+                  setErrors("");
+                }}
               />
             </View>
             <View style={{ gap: 4 }}>
               <Text variant="titleSmall"  >Enter first 4 digits</Text>
               <TextInputCust
-                placeholder='First Name'
-                value={text}
-                onChangeText={(text: any) => setText(text)}
+                placeholder='x x x x'
+                value={formData.firstFourDigit}
+                onChangeText={value => {
+                  setFormData({ ...formData, firstFourDigit: value });
+                  setErrors("");
+                }}
               />
             </View>
 
           </View>
-          <View style={{ marginTop: 20 }}>
-            <PrimaryButton onPress={() => navigation.replace("LoginScreen")}>Register</PrimaryButton>
+
+          <View style={{ gap: 6 }}>
+            <Text variant="labelMedium" style={{ color: 'red', height: 36 }}>{errors}</Text>
+
+            <PrimaryButton onPress={() => submitHandler()}>Register</PrimaryButton>
           </View>
           <View style={styles.containerRegister}>
             <TouchableOpacity onPress={() => navigation.replace("LoginScreen")}>

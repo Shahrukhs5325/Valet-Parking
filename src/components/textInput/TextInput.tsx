@@ -1,6 +1,7 @@
 import React from "react";
 import { TextInput } from "react-native-paper";
 import { palette } from "../../theme/themes";
+import { KeyboardTypeOptions } from "react-native";
 
 // sizes: "xs", "sm", "md", "lg"
 
@@ -12,6 +13,7 @@ interface Props {
     error?: boolean;
     secureTextEntry?: boolean | undefined;
     right?: React.ReactNode;
+    keyboardType?: KeyboardTypeOptions | undefined;
 }
 
 const TextInputCust: React.FC<Props> = ({
@@ -20,6 +22,7 @@ const TextInputCust: React.FC<Props> = ({
     disabled,
     value,
     error,
+    keyboardType,
     secureTextEntry,
     right
 
@@ -32,6 +35,7 @@ const TextInputCust: React.FC<Props> = ({
             value={value}
             error={error}
             disabled={disabled}
+            keyboardType={keyboardType}
             secureTextEntry={secureTextEntry}
             onChangeText={onChangeText}
             style={{ borderWidth: 0, backgroundColor: palette.primaryLight }}

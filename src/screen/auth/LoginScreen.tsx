@@ -43,7 +43,7 @@ const LoginScreen: React.FC<Props> = () => {
   const submitHandler = () => {
     const val = validate()
     console.log("submit ", val);
-    val && navigation.replace("HomeScreen")
+    !val && navigation.replace("HomeScreen")
   }
 
 
@@ -68,7 +68,7 @@ const LoginScreen: React.FC<Props> = () => {
             secureTextEntry={false}
             right={<TextInputCust.Icon icon="eye" />}
           />
-          <Text variant="labelMedium" style={{ marginVertical: 10, color: 'red', height: 36 }}>{errors}</Text>
+          <Text variant="labelMedium" style={{ marginVertical: 8, color: 'red', height: 36 }}>{errors}</Text>
         </View>
         <View style={{ gap: 30 }}>
           <PrimaryButton onPress={() => submitHandler()}>Sign In</PrimaryButton>
