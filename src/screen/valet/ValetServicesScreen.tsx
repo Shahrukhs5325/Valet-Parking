@@ -1,27 +1,19 @@
 import { useNavigation } from '@react-navigation/native';
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Dimensions, FlatList, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { palette } from '../../theme/themes';
 import { Text } from 'react-native-paper';
+import { getCustomerCoupons } from '../../api/common/commonApi';
 import Arrow from '../../asset/svg/arrow_forward.svg';
 import Header from '../../components/header/Header';
-import { useQuery } from '@tanstack/react-query';
 import { UserContext } from '../../context/user/UserContext';
-import { getCustomerCoupons, getNearByCoupon, getStoresByCityName } from '../../api/common/commonApi';
+import { palette } from '../../theme/themes';
 
 type Props = {
   route?: any;
 };
 
 const WIDTH = Math.round(Dimensions.get('window').width);
-
-const DATA = [
-  { id: 1, name: "Valet Service", address: "Forum Sujana Mall-Kphb Colony, Hyderabad.", km: 5 },
-  { id: 2, name: "Store 2", address: "Forum Sujana Mall-Kphb Colony, Hyderabad.", km: 10 },
-  { id: 3, name: "Store 3", address: "Forum Sujana Mall-Kphb Colony, Hyderabad.", km: 12 },
-  { id: 1, name: "Valet Service", address: "Forum Sujana Mall-Kphb Colony, Hyderabad.", km: 15 },
-
-]
 
 
 const ValetServicesScreen: React.FC<Props> = ({ route }) => {
@@ -40,7 +32,6 @@ const ValetServicesScreen: React.FC<Props> = ({ route }) => {
     queryFn: () => getCustomerCoupons(userContext?.user),
   });
 
-  console.log("getCustomerCoupons", couponList);
 
   React.useEffect(() => {
     setCouponList(data?.data?.data);
