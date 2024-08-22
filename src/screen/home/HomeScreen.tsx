@@ -18,8 +18,6 @@ const HomeScreen: React.FC<Props> = () => {
   const userContext = React.useContext(UserContext);
 
 
-console.log("userContext",userContext);
-
   React.useEffect(() => {
 
   }, []);

@@ -4,6 +4,7 @@ import { PaperProvider } from 'react-native-paper';
 import Navigation from './src/navigation/StackNavigation';
 import { Amplify } from 'aws-amplify';
 import { UserContextProvider } from './src/context/user/UserContext';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const config = {
   identityPoolId: '',
@@ -16,14 +17,24 @@ const config = {
 function App(): React.JSX.Element {
   Amplify.configure(config);
 
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: 2,
+        retryDelay: 2000,
+      }
+    },
+  });
 
   return (
     <>
-      <UserContextProvider>
-        <PaperProvider>
-          <Navigation />
-        </PaperProvider>
-      </UserContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <UserContextProvider>
+          <PaperProvider>
+            <Navigation />
+          </PaperProvider>
+        </UserContextProvider>
+      </QueryClientProvider>
     </>
   );
 }

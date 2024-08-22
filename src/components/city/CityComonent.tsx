@@ -1,70 +1,68 @@
-import React from "react";
-import { palette } from "../../theme/themes";
-import { Text } from "react-native-paper";
-import { Dimensions, FlatList, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
-import Car from '../../asset/svg/car.svg';
-import Parking from '../../asset/svg/Parking.svg';
-import Smiley from '../../asset/svg/smiley-smile.svg';
 import { useNavigation } from "@react-navigation/native";
+import { useQuery } from "@tanstack/react-query";
+import React from "react";
+import { Dimensions, FlatList, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Text } from "react-native-paper";
+import { getAllCity } from "../../api/common/commonApi";
+import { UserContext } from "../../context/user/UserContext";
+import { palette } from "../../theme/themes";
 
-// sizes: "xs", "sm", "md", "lg"
 const ImageHeight = Math.round(Dimensions.get('window').width / 4);
 
 interface Props {
 
 }
 
-const DATA = [
-    { id: 1, name: "Riyadh", icon: <Car width={40} height={40} /> },
-    { id: 2, name: "Jeddah", icon: <Parking width={40} height={40} /> },
-    { id: 3, name: "Khobar", icon: <Smiley width={40} height={40} /> },
-    { id: 4, name: "Makkah", icon: <Car width={40} height={40} /> },
-    { id: 5, name: "Dammam", icon: <Car width={40} height={40} /> },
-    { id: 6, name: "Al ula", icon: <Car width={40} height={40} /> },
-
-    { id: 7, name: "Al ula", icon: <Car width={40} height={40} /> },
-
-]
 
 const CityComonent: React.FC<Props> = ({
 
 }) => {
     const navigation = useNavigation();
+    const userContext = React.useContext(UserContext);
+
+    const {
+        isLoading,
+        data: CityList,
+        refetch,
+    } = useQuery({
+        queryKey: ['City_List', userContext?.user],
+        queryFn: () => getAllCity(userContext?.user),
+    });
+
 
     return (
 
-        <View style={styles.container}>
-            <ScrollView
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                directionalLockEnabled={true}
-                alwaysBounceVertical={false}
-            >
-                <FlatList
-                    numColumns={Math.ceil(DATA.length / 2)}
-                    showsVerticalScrollIndicator={false}
+        CityList && CityList.length > 0 ?
+            <View style={styles.container}>
+                <ScrollView
+                    horizontal
                     showsHorizontalScrollIndicator={false}
-                    keyExtractor={(item, index) => index.toString()}
-                    data={DATA}
-                    renderItem={({ item }) =>
-                        <TouchableOpacity onPress={() => navigation.navigate("ValetServicesScreen", { city: item })}>
-                            <View style={styles.card}>
-                                {/* {item.icon} */}
-                                <Text variant="titleSmall" style={styles.txtSty}>{item.name}</Text>
+                    directionalLockEnabled={true}
+                    alwaysBounceVertical={false}
+                >
+                    <FlatList
+                        numColumns={Math.ceil(CityList?.length / 2)}
+                        showsVerticalScrollIndicator={false}
+                        showsHorizontalScrollIndicator={false}
+                        keyExtractor={(item, index) => index.toString()}
+                        data={CityList.length > 0 ? CityList : []}
+                        renderItem={({ item }) =>
+                            <TouchableOpacity onPress={() => navigation.navigate("ValetServicesScreen", { city: item })}>
+                                <View style={styles.card}>
+                                    <Text variant="titleSmall" style={styles.txtSty}>{item.cityName}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        }
 
-                            </View>
-                        </TouchableOpacity>
-                    }
-
-                    style={styles.list}
-                    contentContainerStyle={styles.listContents}
-                    initialNumToRender={5}
-                    maxToRenderPerBatch={10}
-                    windowSize={10}
-                    updateCellsBatchingPeriod={50}
-                />
-            </ScrollView>
-        </View>
+                        style={styles.list}
+                        contentContainerStyle={styles.listContents}
+                        initialNumToRender={5}
+                        maxToRenderPerBatch={10}
+                        windowSize={10}
+                        updateCellsBatchingPeriod={50}
+                    />
+                </ScrollView>
+            </View> : null
     );
 }
 

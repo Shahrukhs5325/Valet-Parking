@@ -1,11 +1,10 @@
-import React from "react";
-import { palette } from "../../theme/themes";
-import { Button, Icon, Text } from "react-native-paper";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
-import BackIcon from '../../asset/svg/back-icon.svg';
 import { useNavigation } from "@react-navigation/native";
-
-// sizes: "xs", "sm", "md", "lg"
+import React from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { Icon, Text } from "react-native-paper";
+import BackIcon from '../../asset/svg/back-icon.svg';
+import { UserContext } from "../../context/user/UserContext";
+import { palette } from "../../theme/themes";
 
 interface Props {
     navbar?: boolean | undefined;
@@ -15,13 +14,14 @@ const Header: React.FC<Props> = ({
     navbar
 }) => {
     const navigation = useNavigation();
+    const userContext = React.useContext(UserContext);
 
     return (
 
         <View style={styles.container}>
             {!navbar ?
                 <>
-                    <Text variant="titleLarge" style={styles.txtSty}>User Name</Text>
+                    <Text variant="titleLarge" style={styles.txtSty}>{userContext?.user?.customerName}</Text>
                     <View style={{}}>
                         <Icon
                             source="bell"

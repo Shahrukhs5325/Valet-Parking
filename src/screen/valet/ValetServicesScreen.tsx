@@ -48,7 +48,7 @@ const ValetServicesScreen: React.FC<Props> = ({ route }) => {
         />
 
         <View style={{ gap: 15 }}>
-          <Text variant="titleLarge" style={styles.txtTitleSty}>Premium Valet Services Across {city.name}</Text>
+          <Text variant="titleLarge" style={styles.txtTitleSty}>Premium Valet Services Across {city.cityName}</Text>
           <FlatList
             showsVerticalScrollIndicator={false}
             keyExtractor={(item, index) => index.toString()}
