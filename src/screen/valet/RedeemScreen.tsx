@@ -8,6 +8,7 @@ import PrimaryButton from '../../components/button/PrimaryButton';
 import Header from '../../components/header/Header';
 import { UserContext } from '../../context/user/UserContext';
 import { palette } from '../../theme/themes';
+import { redeemCouponByqrCode } from '../../api/common/commonApi';
 
 
 type Props = {
@@ -39,7 +40,42 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
   }, []);
 
 
+  const redeemCouponByqrCodeHandler = async () => {
+    const payload = {
+      "couponCode": coupon?.couponCode,
+      "redeemptionId": 0,
+      "storeId": 0,
+      "couponId": coupon?.couponId ? coupon?.couponId : 0,
+      "statusId": 0,
+      "userId": userContext?.user?.customerId,
+      "invoiceAmount": 0,
+      "phoneNumber": userContext?.user?.phoneNo,
+      "merchantId": coupon?.merchantId,
+      "binNumber": 0,
+      "redemptionAmount": 0,
+      "redeemptionTypeName": "online",
+      "redeemptionTypeId": 0,
+      "points": coupon?.sellingPoints,
+      "email": userContext?.user?.email,
+      "name": userContext?.user?.customerName,
+      "merchantName": coupon?.merchantName,
+      "qrCode": "",
+      "storePin": storeCode,
+      "redeemByPin": true
+    }
+ 
+    try {
+      const res = await redeemCouponByqrCode(payload);
+      if (res.status === 200) {
+        console.log("___________res:", res?.data);
+        navigation.navigate("SucessScreen")
+      }
+    } catch (err) {
 
+
+      console.log("error redeemCouponByqrCode ", err.response.data.errorMessages)
+    }
+  }
 
 
   return (
@@ -63,8 +99,7 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
             <Text variant="titleSmall" style={styles.txtheadSty}>Please share this QR to valet counter</Text>
             <View style={{ backgroundColor: "#FFF", height: 140, width: 140, borderRadius: 17, alignItems: 'center', justifyContent: 'center' }}>
               <QRCode
-                value={"gvhvj"}
-                // logo={{ uri: payload?.imageLink }}
+                value={coupon?.couponCode}
                 logoSize={30}
                 logoBorderRadius={20}
                 logoBackgroundColor="transparent"
@@ -100,7 +135,7 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
 
         </View>
         <View style={{ width: '100%', marginTop: 60 }}>
-        <PrimaryButton onPress={() => navigation.navigate("SucessScreen")} buttonColor={palette.primaryLight}>Redeem</PrimaryButton>
+          <PrimaryButton onPress={() => redeemCouponByqrCodeHandler()} buttonColor={palette.primaryLight}>Redeem</PrimaryButton>
 
         </View>
       </View>

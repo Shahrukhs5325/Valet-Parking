@@ -27,7 +27,7 @@ const RegisterScreen: React.FC<Props> = () => {
     email: '',
     password: '',
     activationCode: '',
-    lastSixDigit: '456523',
+    lastSixDigit: '',
     firstFourDigit: ''
   });
   const [errors, setErrors] = React.useState("");
@@ -167,7 +167,7 @@ const RegisterScreen: React.FC<Props> = () => {
         errorMsg: "",
         userName: user?.username,
         binNumber: formData?.lastSixDigit,
-        activationCode: "6E32WDGX",
+        activationCode: formData?.activationCode,
         newCustomer: true,
         deleteRequest: false,
         deletionDateTime: 0,
