@@ -1,47 +1,59 @@
 import React from "react";
 import { palette } from "../../theme/themes";
 import { Text } from "react-native-paper";
-import { Dimensions, FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Dimensions, FlatList, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import Car from '../../asset/svg/car.svg';
 import Parking from '../../asset/svg/Parking.svg';
 import Smiley from '../../asset/svg/smiley-smile.svg';
-import { useNavigation } from "@react-navigation/native";
 
 // sizes: "xs", "sm", "md", "lg"
-const ImageHeight = Math.round(Dimensions.get('window').width / 3.3);
+const ImageHeight = Math.round(Dimensions.get('window').width / 4);
 
 interface Props {
+
 }
 
 const DATA = [
-    { id: 1, name: "Valet Service", icon: <Car width={40} height={40} /> },
-    { id: 2, name: "Airport Transfer services", icon: <Parking width={40} height={40} /> },
-    { id: 3, name: "Airport Meet & Greet", icon: <Smiley width={40} height={40} /> },
-    { id: 1, name: "Valet Service", icon: <Car width={40} height={40} /> },
+    { id: 1, name: "Riyadh", icon: <Car width={40} height={40} /> },
+    { id: 2, name: "Jeddah", icon: <Parking width={40} height={40} /> },
+    { id: 3, name: "Khobar", icon: <Smiley width={40} height={40} /> },
+    { id: 4, name: "Makkah", icon: <Car width={40} height={40} /> },
+    { id: 5, name: "Dammam", icon: <Car width={40} height={40} /> },
+    { id: 6, name: "Al ula", icon: <Car width={40} height={40} /> },
+
+    { id: 7, name: "Al ula", icon: <Car width={40} height={40} /> },
 
 ]
 
-const Services: React.FC<Props> = ({ }) => {
-    const navigation = useNavigation();
+const CityComonent: React.FC<Props> = ({
+
+}) => {
 
     return (
 
         <View style={styles.container}>
-            <View>
+            <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                directionalLockEnabled={true}
+                alwaysBounceVertical={false}
+            >
                 <FlatList
+                    numColumns={Math.ceil(DATA.length / 2)}
+                    showsVerticalScrollIndicator={false}
                     showsHorizontalScrollIndicator={false}
-                    horizontal={true}
                     keyExtractor={(item, index) => index.toString()}
                     data={DATA}
                     renderItem={({ item }) =>
-                        <TouchableOpacity onPress={() => navigation.navigate("ValetScreen")}>
+                        <TouchableOpacity onPress={() => console.log()}>
                             <View style={styles.card}>
-                                {item.icon}
+                                {/* {item.icon} */}
                                 <Text variant="titleSmall" style={styles.txtSty}>{item.name}</Text>
 
                             </View>
                         </TouchableOpacity>
                     }
+
                     style={styles.list}
                     contentContainerStyle={styles.listContents}
                     initialNumToRender={5}
@@ -49,18 +61,18 @@ const Services: React.FC<Props> = ({ }) => {
                     windowSize={10}
                     updateCellsBatchingPeriod={50}
                 />
-            </View>
-
+            </ScrollView>
         </View>
     );
 }
 
 
 
-export default Services;
+export default CityComonent;
 
 const styles = StyleSheet.create({
     container: {
+        flexDirection: 'column',
     },
     txtTitleSty: {
         fontWeight: '600',
@@ -71,15 +83,17 @@ const styles = StyleSheet.create({
     list: {
     },
     listContents: {
-        gap: 16
+        // gap: 16,
+        alignSelf: 'flex-start'
     },
     card: {
+        margin: 6,
         padding: 13,
         backgroundColor: "#333333",
         width: ImageHeight,
         height: ImageHeight,
         borderRadius: 17,
-        justifyContent: 'space-between'
+        justifyContent: 'flex-end'
     },
     txtSty: {
         fontWeight: '600',

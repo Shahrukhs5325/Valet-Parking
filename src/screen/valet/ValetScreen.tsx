@@ -13,7 +13,7 @@ type Props = {};
 const ImageHeight = Math.round(Dimensions.get('window').width * 9 / 9);
 
 
-const HomeScreen: React.FC<Props> = () => {
+const ValetScreen: React.FC<Props> = () => {
   const navigation = useNavigation();
   // const userContext = React.useContext(UserContext);
   const [isEnable, setIsEnable] = React.useState(false);
@@ -36,11 +36,11 @@ const HomeScreen: React.FC<Props> = () => {
           backgroundColor={palette.primaryDark}
         />
         <ScrollView>
-          <TopBanner />
+          <TopBanner navbar={true} />
           <View style={styles.compView}>
             <View>
               <Text variant="titleSmall" style={styles.txtTitleSty}>Services you have</Text>
-              <Services />
+              <CityComonent />
             </View>
             <View>
               <Text variant="titleSmall" style={styles.txtTitleSty}>Services you have</Text>
@@ -53,12 +53,12 @@ const HomeScreen: React.FC<Props> = () => {
   );
 };
 
-export default HomeScreen;
+export default ValetScreen;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingHorizontal: 15,
+    //paddingHorizontal: 15,
     backgroundColor: palette.primaryDark
   },
   compView: {
