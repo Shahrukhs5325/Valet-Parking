@@ -12,7 +12,7 @@ interface Props {
     icon?: string;
     loading?: boolean | undefined;
     uppercase?: boolean | undefined;
-
+    buttonColor?: string | undefined;
 }
 
 const PrimaryButton: React.FC<Props> = ({
@@ -22,12 +22,14 @@ const PrimaryButton: React.FC<Props> = ({
     disabled,
     uppercase,
     icon,
-    loading
+    loading,
+    buttonColor
 }) => {
 
     return (
         <Button
-            buttonColor={palette.primaryDark}
+            buttonColor={buttonColor}
+            textColor={buttonColor === '#000' ? "#fff" : "#000"}
             icon={icon}
             mode={"contained"}
             loading={loading}

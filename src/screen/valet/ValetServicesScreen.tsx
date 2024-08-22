@@ -9,6 +9,9 @@ import Store from '../../components/store/Store';
 import CityComonent from '../../components/city/CityComonent';
 import Arrow from '../../asset/svg/arrow_forward.svg';
 import Header from '../../components/header/Header';
+import { useQuery } from '@tanstack/react-query';
+import { UserContext } from '../../context/user/UserContext';
+import { getStoresByCityName } from '../../api/common/commonApi';
 
 type Props = {
   route?: any;
@@ -28,6 +31,17 @@ const DATA = [
 const ValetServicesScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
   const { city } = route.params;
+
+  const userContext = React.useContext(UserContext);
+
+  const {
+    isLoading,
+    data,
+    refetch,
+  } = useQuery({
+    queryKey: ['City_List', userContext?.user],
+    queryFn: () => getStoresByCityName(userContext?.user, city.cityName),
+  });
 
 
   React.useEffect(() => {
@@ -56,7 +70,7 @@ const ValetServicesScreen: React.FC<Props> = ({ route }) => {
             renderItem={({ item }) =>
               <View style={styles.card}>
                 <Text variant="titleMedium" style={styles.txtSty}>{item.name}</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate("ValetDetailsScreen")}>
                   <View style={{ borderRadius: 90, backgroundColor: palette.primaryLight, padding: 6, borderWidth: 5, borderColor: palette.bgGray, height: 46, width: 46, alignItems: 'center', justifyContent: 'center' }}>
                     <Arrow width={20} height={20} />
                   </View>

@@ -308,8 +308,8 @@ const RegisterScreen: React.FC<Props> = () => {
             <Text variant="labelMedium" style={{ color: 'red', height: 36 }}>{errors}</Text>
 
             {!isSentOTP ?
-              <PrimaryButton loading={isLoading} onPress={() => submitHandler()}>Send OTP</PrimaryButton> :
-              <PrimaryButton loading={isLoading} onPress={() => confirmSignUpHandler()}>Register</PrimaryButton>
+              <PrimaryButton buttonColor={palette.primaryDark} loading={isLoading} onPress={() => submitHandler()}>Send OTP</PrimaryButton> :
+              <PrimaryButton buttonColor={palette.primaryDark} loading={isLoading} onPress={() => confirmSignUpHandler()}>Register</PrimaryButton>
             }
           </View>
           <View style={styles.containerRegister}>

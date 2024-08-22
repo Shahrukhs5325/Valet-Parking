@@ -22,7 +22,7 @@ const CityComonent: React.FC<Props> = ({
 
     const {
         isLoading,
-        data: CityList,
+        data,
         refetch,
     } = useQuery({
         queryKey: ['City_List', userContext?.user],
@@ -30,9 +30,11 @@ const CityComonent: React.FC<Props> = ({
     });
 
 
+    React.useEffect(() => { }, [data]);
+
     return (
 
-        CityList && CityList.length > 0 ?
+        data && data?.data && data?.data.length > 0 ?
             <View style={styles.container}>
                 <ScrollView
                     horizontal
@@ -41,11 +43,11 @@ const CityComonent: React.FC<Props> = ({
                     alwaysBounceVertical={false}
                 >
                     <FlatList
-                        numColumns={Math.ceil(CityList?.length / 2)}
+                        numColumns={Math.ceil(data?.data?.length / 2)}
                         showsVerticalScrollIndicator={false}
                         showsHorizontalScrollIndicator={false}
                         keyExtractor={(item, index) => index.toString()}
-                        data={CityList.length > 0 ? CityList : []}
+                        data={data?.data.length > 0 ? data?.data : []}
                         renderItem={({ item }) =>
                             <TouchableOpacity onPress={() => navigation.navigate("ValetServicesScreen", { city: item })}>
                                 <View style={styles.card}>

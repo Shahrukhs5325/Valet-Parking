@@ -3,12 +3,15 @@ import { palette } from "../../theme/themes";
 import { Text } from "react-native-paper";
 import { Dimensions, FlatList, Image, StyleSheet, View } from "react-native";
 import Arrow from '../../asset/svg/arrow_forward.svg';
+import { UserContext } from "../../context/user/UserContext";
+import { useQuery } from "@tanstack/react-query";
+import { getNearByStores } from "../../api/common/commonApi";
 
 // sizes: "xs", "sm", "md", "lg"
 const WIDTH = Math.round(Dimensions.get('window').width);
 
 interface Props {
-
+    location?: any;
 }
 
 const DATA = [
@@ -19,9 +22,21 @@ const DATA = [
 
 ]
 
-const Store: React.FC<Props> = ({
+const Store: React.FC<Props> = ({ location }) => {
+    const userContext = React.useContext(UserContext);
 
-}) => {
+    // const {
+    //     isLoading,
+    //     data: CityList,
+    //     refetch,
+    // } = useQuery({
+    //     queryKey: ['City_List', userContext?.user],
+    //     queryFn: () => getNearByStores(userContext?.user, location),
+    // });
+
+    // React.useEffect(() => {
+    //     refetch();
+    // }, [location]);
 
     return (
 

@@ -111,7 +111,7 @@ const LoginScreen: React.FC<Props> = () => {
           <Text variant="labelMedium" style={{ marginVertical: 8, color: 'red', height: 36 }}>{errors}</Text>
         </View>
         <View style={{ gap: 30 }}>
-          <PrimaryButton loading={isLoading} onPress={() => submitHandler()}>Sign In</PrimaryButton>
+          <PrimaryButton loading={isLoading} onPress={() => submitHandler()} buttonColor={palette.primaryDark}>Sign In</PrimaryButton>
           <Text variant="labelLarge" style={{ textAlign: 'center' }}>Forgot password?</Text>
         </View>
         <View style={styles.containerRegister}>

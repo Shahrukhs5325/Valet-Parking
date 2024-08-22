@@ -42,8 +42,8 @@ instance.interceptors.request.use(
     // global response from all apis
     instance.interceptors.response.use(
         async (response) => {
-            console.log("\n\n\n** responseURL **\n", (response?.request?.responseURL))
-            console.log("** response **\n\n\n", (JSON.stringify(response?.data)))
+            // console.log("\n\n\n** responseURL **\n", (response?.request?.responseURL))
+            // console.log("** response **\n\n\n", (JSON.stringify(response?.data)))
 
             return response
         },
