@@ -267,7 +267,7 @@ const RegisterScreen: React.FC<Props> = () => {
             <Text variant="titleMedium" style={{ letterSpacing: 3, textTransform: 'uppercase' }} >Credit card details</Text>
 
             <View style={{ gap: 4 }}>
-              <Text variant="titleSmall"  >Enter last 6 digits</Text>
+              <Text variant="titleSmall" style={{ color: palette.primaryDark }} >Enter last 6 digits</Text>
               <TextInputCust
                 placeholder='x x x x x x'
                 value={formData.lastSixDigit}
@@ -278,7 +278,7 @@ const RegisterScreen: React.FC<Props> = () => {
               />
             </View>
             <View style={{ gap: 4 }}>
-              <Text variant="titleSmall"  >Enter first 4 digits</Text>
+              <Text variant="titleSmall" style={{ color: palette.primaryDark }} >Enter first 4 digits</Text>
               <TextInputCust
                 placeholder='x x x x'
                 value={formData.firstFourDigit}
@@ -290,7 +290,7 @@ const RegisterScreen: React.FC<Props> = () => {
             </View>
 
             {isSentOTP ? <View style={{ gap: 4 }}>
-              <Text variant="titleSmall"  >Enter OTP</Text>
+              <Text variant="titleSmall" style={{ color: palette.primaryDark }} >Enter OTP</Text>
               <TextInputCust
                 placeholder='OTP'
                 value={otp}
@@ -314,7 +314,7 @@ const RegisterScreen: React.FC<Props> = () => {
           </View>
           <View style={styles.containerRegister}>
             <TouchableOpacity onPress={() => navigation.replace("LoginScreen")}>
-              <Text variant="labelLarge" style={{ textAlign: 'center', color: palette.txtGray }}>Already have an account? <Text variant="labelLarge">Sign in</Text></Text>
+              <Text variant="labelLarge" style={{ textAlign: 'center', color: palette.txtGray }}>Already have an account? <Text variant="labelLarge" style={{ color: palette.primaryDark }}>Sign in</Text></Text>
             </TouchableOpacity>
           </View>
 
@@ -336,12 +336,13 @@ const styles = StyleSheet.create({
     paddingBottom: 24
   },
   txtSty: {
-    fontWeight: '800'
+    fontWeight: '800',
+    color: palette.primaryDark
   },
   containerRegister: {
-    position: 'absolute',
-    bottom: 0,
-    // alignItems: "center",
+    // position: 'absolute',
+    // bottom: -20,
+    alignSelf: "center",
     // textAlign: 'center',
 
   }

@@ -63,11 +63,11 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
       "storePin": storeCode,
       "redeemByPin": true
     }
- 
+
     try {
       const res = await redeemCouponByqrCode(payload);
       if (res.status === 200) {
-        console.log("___________res:", res?.data);
+        console.log("___________res:", res?.data?.data);
         navigation.navigate("SucessScreen")
       }
     } catch (err) {
