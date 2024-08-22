@@ -5,6 +5,9 @@ import { Text } from 'react-native-paper';
 import { palette } from '../../theme/themes';
 import PrimaryButton from '../../components/button/PrimaryButton';
 import TextInputCust from '../../components/textInput/TextInput';
+import { Auth } from 'aws-amplify';
+import { handleCognitoError } from '../../constant/constFunction';
+import { getCustomerByIdApi } from '../../api/user/userApi';
 
 type Props = {};
 
@@ -13,6 +16,7 @@ type Props = {};
 const LoginScreen: React.FC<Props> = () => {
   const navigation = useNavigation();
   // const userContext = React.useContext(UserContext);
+  const [isLoading, setIsLoading] = React.useState(false);
   const [emailId, setEmailId] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [errors, setErrors] = React.useState("");
@@ -40,12 +44,47 @@ const LoginScreen: React.FC<Props> = () => {
     return true;
   };
 
-  const submitHandler = () => {
+  const submitHandler = async () => {
     const val = validate()
+    if (val) {
+      try {
+        setIsLoading(true);
+        const user = await Auth.signIn(emailId?.toLowerCase(), password);
+        if (user?.attributes) {
+          console.log("***** cognito user *****", user?.attributes)
+          const customerId = user?.attributes?.["custom:customerId"];
+          getCustDetails(customerId);
+          // setIsLoading(false);
+        }
+      } catch (error) {
+        console.log('error signing in', error);
+        const msg = handleCognitoError(error);
+        setIsLoading(false);
+        setErrors(msg);
+      }
+    }
     console.log("submit ", val);
-    !val && navigation.replace("HomeScreen")
+    // val && navigation.replace("HomeScreen")
   }
 
+  const getCustDetails = async (customerId: number | string) => {
+    try {
+      const user = await getCustomerByIdApi(customerId);
+      if (user?.status === 200 && user?.data?.data) {
+        console.log("***** Zaps user *****", user?.data?.data)
+
+        // userContext.setUser(user?.data?.data);
+        navigation.replace("HomeScreen")
+      } else {
+        setIsLoading(false);
+        // await AsyncStorage.clear();
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.log("get customer details ", error)
+      // showSnackbar(t("toast.somethingWrong"), 'error')
+    }
+  }
 
   return (
     <>
@@ -71,7 +110,7 @@ const LoginScreen: React.FC<Props> = () => {
           <Text variant="labelMedium" style={{ marginVertical: 8, color: 'red', height: 36 }}>{errors}</Text>
         </View>
         <View style={{ gap: 30 }}>
-          <PrimaryButton onPress={() => submitHandler()}>Sign In</PrimaryButton>
+          <PrimaryButton loading={isLoading} onPress={() => submitHandler()}>Sign In</PrimaryButton>
           <Text variant="labelLarge" style={{ textAlign: 'center' }}>Forgot password?</Text>
         </View>
         <View style={styles.containerRegister}>
