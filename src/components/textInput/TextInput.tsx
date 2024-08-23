@@ -34,6 +34,7 @@ const TextInputCust: React.FC<Props> = ({
             mode='outlined'
             value={value}
             error={error}
+            textColor={"#000"}
             disabled={disabled}
             keyboardType={keyboardType}
             secureTextEntry={secureTextEntry}
