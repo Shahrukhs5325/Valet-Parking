@@ -11,14 +11,15 @@ import SecondaryButton from '../../components/button/SecondaryButton';
 
 
 type Props = {
+  route?: any;
 };
 
 
-const SucessScreen: React.FC<Props> = ({ }) => {
+const SucessScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
+  const { response } = route.params;
 
-  const userContext = React.useContext(UserContext);
-
+  //  const userContext = React.useContext(UserContext);
 
   React.useEffect(() => {
 
@@ -40,14 +41,14 @@ const SucessScreen: React.FC<Props> = ({ }) => {
           <CircleIcon />
           <View style={{ gap: 8, marginVertical: 6, alignItems: 'center' }}>
             <Text variant="titleLarge" style={styles.txtTitleSty}>Thank you</Text>
-            <Text variant="titleSmall" style={styles.txtSty}>You’re using valet service at Billionaire</Text>
+            <Text variant="titleSmall" style={styles.txtSty}>You’re using valet service at {response?.templateName}</Text>
           </View>
 
 
         </View>
         <View style={{ marginTop: 50, flexDirection: 'row', gap: 20, justifyContent: 'space-evenly' }}>
           <SecondaryButton onPress={() => navigation.navigate("HomeScreen")} buttonColor={palette.primaryLight}>Home</SecondaryButton>
-          <PrimaryButton onPress={() => navigation.navigate("SucessScreen")} buttonColor={palette.primaryLight}>View Status</PrimaryButton>
+          <PrimaryButton onPress={() => navigation.navigate("HomeScreen")} buttonColor={palette.primaryLight}>View Status</PrimaryButton>
         </View>
       </View>
 

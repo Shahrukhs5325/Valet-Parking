@@ -6,6 +6,7 @@ export const palette = {
   txtGray:"#999999",
   bgGray:"#F2F2F2",
   txtGold:"#AE8C59",
+  bgcard:"#333333",
 
   primaryLight: "#FFF",
   secondary: "#ff6a00",

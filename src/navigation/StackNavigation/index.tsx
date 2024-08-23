@@ -1,7 +1,6 @@
 import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-// import { Hub } from 'aws-amplify';
-import React, { useEffect } from "react";
+import React from "react";
 import SplashScreen from "../../screen/splashScreen/SplashScreen";
 import LoginScreen from "../../screen/auth/LoginScreen";
 import RegisterScreen from "../../screen/auth/RegisterScreen";
@@ -12,6 +11,7 @@ import ValetServicesScreen from "../../screen/valet/ValetServicesScreen";
 import ValetDetailsScreen from "../../screen/valet/ValetDetailsScreen";
 import RedeemScreen from "../../screen/valet/RedeemScreen";
 import SucessScreen from "../../screen/valet/SucessScreen";
+import { RenderTabNavigation } from "../TabNavigation";
 
 
 const Stack = createStackNavigator();
@@ -26,27 +26,6 @@ const Navigation = () => {
     },
   };
 
-
-  useEffect(() => {
-    // listenToAutoSignInEvent();
-  }, []);
-
-
-  // function listenToAutoSignInEvent() {
-  //   Hub.listen('auth', ({ payload }) => {
-  //     const { event } = payload;
-  //     if (event === 'autoSignIn') {
-  //       const user = payload.data;
-  //       console.log("user ", user);
-
-  //       // assign user
-  //     } else if (event === 'autoSignIn_failure') {
-  //       // redirect to sign in page
-  //       console.log("user ", event);
-
-  //     }
-  //   })
-  // }
 
 
   return (
@@ -65,7 +44,11 @@ const Navigation = () => {
           name={"RegisterScreen"}
           component={RegisterScreen}
         />
-         <Stack.Screen
+        {/* <Stack.Screen
+          name={"HomeScreen"}
+          component={RenderTabNavigation}
+        /> */}
+        <Stack.Screen
           name={"HomeScreen"}
           component={HomeScreen}
         />
@@ -73,11 +56,11 @@ const Navigation = () => {
           name={"ValetScreen"}
           component={ValetScreen}
         />
-         <Stack.Screen
+        <Stack.Screen
           name={"ValetServicesScreen"}
           component={ValetServicesScreen}
         />
-         <Stack.Screen
+        <Stack.Screen
           name={"ValetDetailsScreen"}
           component={ValetDetailsScreen}
         />
@@ -85,7 +68,7 @@ const Navigation = () => {
           name={"RedeemScreen"}
           component={RedeemScreen}
         />
-         <Stack.Screen
+        <Stack.Screen
           name={"SucessScreen"}
           component={SucessScreen}
         />

@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Dimensions, StatusBar, StyleSheet, View } from 'react-native';
 import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell } from 'react-native-confirmation-code-field';
-import { Text } from 'react-native-paper';
+import { Snackbar, Text } from 'react-native-paper';
 import QRCode from 'react-native-qrcode-svg';
 import PrimaryButton from '../../components/button/PrimaryButton';
 import Header from '../../components/header/Header';
@@ -25,6 +25,8 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
 
   const userContext = React.useContext(UserContext);
   const [storeCode, setStoreCode] = React.useState('');
+  const [visible, setVisible] = React.useState(false);
+  const [error, setError] = React.useState("");
 
   const ref = useBlurOnFulfill({ storeCode, cellCount: STORE_CODE_COUNT });
 
@@ -34,10 +36,11 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
   });
 
 
-
   React.useEffect(() => {
 
   }, []);
+
+  const onDismissSnackBar = () => setVisible(false);
 
 
   const redeemCouponByqrCodeHandler = async () => {
@@ -67,16 +70,20 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
     try {
       const res = await redeemCouponByqrCode(payload);
       if (res.status === 200) {
-        console.log("___________res:", res?.data?.data);
-        navigation.navigate("SucessScreen")
+        console.log("___________res:", res?.data?.data?.coupondetails);
+        const resData = res?.data?.data?.coupondetails
+        navigation.navigate("SucessScreen", { response: resData })
       }
     } catch (err) {
+
+      setError(err.response.data.errorMessages ? err.response.data.errorMessages : "Error");
+      setVisible(true);
 
 
       console.log("error redeemCouponByqrCode ", err.response.data.errorMessages)
     }
   }
-
+  console.log(error?.[0]);
 
   return (
     <>
@@ -139,7 +146,19 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
 
         </View>
       </View>
-
+      <View style={{}}>
+        <Snackbar
+          visible={visible}
+          onDismiss={onDismissSnackBar}
+          action={{
+            label: 'Undo',
+            onPress: () => {
+              // Do something
+            },
+          }}>
+          {error && error?.[0]}
+        </Snackbar>
+      </View>
     </>
   );
 };
