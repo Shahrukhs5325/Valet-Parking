@@ -1,10 +1,18 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
-import { TouchableOpacity, View } from "react-native";
-import LocationIcon from '../../asset/svg/call.svg';
+import { Image, TouchableOpacity, View } from "react-native";
 import { UserContext } from "../../context/user/UserContext";
 import HomeScreen from "../../screen/home/HomeScreen";
 import { palette } from "../../theme/themes";
+import HomeInActiveIcon from '../../asset/bottomtab/home-gray.svg';
+import HomeActiveIcon from '../../asset/bottomtab/home-white.svg';
+import BagInActiveIcon from '../../asset/bottomtab/bag-gray.svg';
+import BagActiveIcon from '../../asset/bottomtab/bag-white.svg';
+import CardInActiveIcon from '../../asset/bottomtab/card-gray.svg';
+import CardActiveIcon from '../../asset/bottomtab/card-white.svg';
+import PinInActiveIcon from '../../asset/bottomtab/pin-gray.svg';
+import PinActiveIcon from '../../asset/bottomtab/pin-white.svg';
+import MiddleIcon from '../../asset/bottomtab/middle.svg';
 
 
 
@@ -20,10 +28,10 @@ export const RenderTabNavigation = () => {
 
     const CustomTabBarButton = ({ children, onPress }) => (
         <TouchableOpacity
-            style={{ top: - 12, justifyContent: 'center', alignItems: 'center' }}
+            style={{ top: - 16, justifyContent: 'center', alignItems: 'center' }}
             onPress={onPress}
         >
-            <View style={{ width: 60, height: 60, backgroundColor: palette.primaryLight, borderRadius: 90, justifyContent: 'center', alignItems: 'center' }}>
+            <View >
                 {children}
             </ View>
         </TouchableOpacity >
@@ -42,7 +50,7 @@ export const RenderTabNavigation = () => {
                     // shadowColor: '#54336E24',
                     // boxShadow: "0px -4px 12px 0px #54336E24",
                     // shadowOpacity: 4,
-                    height: 80,
+                    height: 64,
 
                     shadowColor: "#000000",
                     shadowOffset: {
@@ -71,8 +79,24 @@ export const RenderTabNavigation = () => {
                     tabBarLabelStyle: { fontWeight: "600", },
                     tabBarIcon: ({ color }) => (
                         color === palette.primaryDark ?
-                            <LocationIcon width={40} height={40} /> :
-                            <LocationIcon width={30} height={30} fill={palette.bgGray} />
+                            <HomeActiveIcon width={120} height={120} /> :
+                            <HomeInActiveIcon width={120} height={120} fill={palette.bgGray} />
+                    ),
+
+                }}
+            />
+            <Tab.Screen
+                name={"HoeScreen"}
+                component={HomeScreen}
+
+                options={{
+                    tabBarShowLabel: false,
+                    // tabBarLabel: "Home",
+                    tabBarLabelStyle: { fontWeight: "600", },
+                    tabBarIcon: ({ color }) => (
+                        color === palette.primaryDark ?
+                            <BagActiveIcon width={30} height={30} /> :
+                            <BagInActiveIcon width={30} height={30} fill={palette.bgGray} />
                     ),
 
                 }}
@@ -95,7 +119,9 @@ export const RenderTabNavigation = () => {
                     // ),
                     tabBarIcon: ({ focused }) => (
                         <CustomTabBarButton onPress={() => console.log()}>
-                            <LocationIcon width={40} height={40} stroke={"#000"} />
+                            {/* <MiddleIcon width={60} height={60} stroke={"#000"} /> */}
+                            <Image source={require('../../asset//bottomtab/middle-img.png')}
+                                style={{ width: 60, height: 60 }} />
                         </CustomTabBarButton>
                     ),
                 }}
@@ -111,9 +137,26 @@ export const RenderTabNavigation = () => {
                     tabBarLabelStyle: { fontWeight: "600", },
                     tabBarIcon: ({ color }) => (
                         color === palette.primaryDark ?
-                            <LocationIcon width={40} height={40} /> :
-                            <LocationIcon width={30} height={30} />
+                            <CardActiveIcon width={30} height={30} /> :
+                            <CardInActiveIcon width={30} height={30} />
                     ),
+                }}
+            />
+
+            <Tab.Screen
+                name={"HomScreen"}
+                component={HomeScreen}
+
+                options={{
+                    tabBarShowLabel: false,
+                    // tabBarLabel: "Home",
+                    tabBarLabelStyle: { fontWeight: "600", },
+                    tabBarIcon: ({ color }) => (
+                        color === palette.primaryDark ?
+                            <PinActiveIcon width={30} height={30} /> :
+                            <PinInActiveIcon width={30} height={30} fill={palette.bgGray} />
+                    ),
+
                 }}
             />
 
