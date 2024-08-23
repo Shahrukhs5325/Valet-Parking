@@ -264,7 +264,7 @@ const RegisterScreen: React.FC<Props> = () => {
 
           </View>
           <View style={{ gap: 8, marginTop: 10 }}>
-            <Text variant="titleMedium" style={{ letterSpacing: 3, textTransform: 'uppercase' }} >Credit card details</Text>
+            <Text variant="titleMedium" style={{ letterSpacing: 3, textTransform: 'uppercase', color: palette.primaryDark }} >Credit card details</Text>
 
             <View style={{ gap: 4 }}>
               <Text variant="titleSmall" style={{ color: palette.primaryDark }} >Enter last 6 digits</Text>
