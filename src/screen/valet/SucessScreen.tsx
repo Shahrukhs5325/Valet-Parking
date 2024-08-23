@@ -35,7 +35,7 @@ const SucessScreen: React.FC<Props> = ({ route }) => {
           animated={true}
           backgroundColor={palette.primaryDark}
         />
-        <Header navbar={true} />
+        {/* <Header navbar={true} /> */}
 
         <View style={styles.compView}>
           <CircleIcon />
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     padding: 15,
     // justifyContent: 'center',
     // alignItems: 'center',
+    paddingTop: 70,
     backgroundColor: palette.primaryDark
   },
   compView: {

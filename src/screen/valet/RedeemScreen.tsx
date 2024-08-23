@@ -27,6 +27,7 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
   const [storeCode, setStoreCode] = React.useState('');
   const [visible, setVisible] = React.useState(false);
   const [error, setError] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const ref = useBlurOnFulfill({ storeCode, cellCount: STORE_CODE_COUNT });
 
@@ -44,6 +45,7 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
 
 
   const redeemCouponByqrCodeHandler = async () => {
+    setIsLoading(true);
     const payload = {
       "couponCode": coupon?.couponCode,
       "redeemptionId": 0,
@@ -72,18 +74,18 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
       if (res.status === 200) {
         console.log("___________res:", res?.data?.data?.coupondetails);
         const resData = res?.data?.data?.coupondetails
-        navigation.navigate("SucessScreen", { response: resData })
+        navigation.navigate("SucessScreen", { response: resData });
+        setIsLoading(false);
       }
     } catch (err) {
 
       setError(err.response.data.errorMessages ? err.response.data.errorMessages : "Error");
       setVisible(true);
-
+      setIsLoading(false);
 
       console.log("error redeemCouponByqrCode ", err.response.data.errorMessages)
     }
   }
-  console.log(error?.[0]);
 
   return (
     <>
@@ -142,7 +144,7 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
 
         </View>
         <View style={{ width: '100%', marginTop: 60 }}>
-          <PrimaryButton onPress={() => redeemCouponByqrCodeHandler()} buttonColor={palette.primaryLight}>Redeem</PrimaryButton>
+          <PrimaryButton loading={isLoading} onPress={() => redeemCouponByqrCodeHandler()} buttonColor={palette.primaryLight}>Redeem</PrimaryButton>
 
         </View>
       </View>
