@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { ScrollView, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Text, } from 'react-native-paper';
+import { Snackbar, Text, } from 'react-native-paper';
 import { palette } from '../../theme/themes';
 import PrimaryButton from '../../components/button/PrimaryButton';
 import TextInputCust from '../../components/textInput/TextInput';
@@ -19,6 +19,8 @@ const RegisterScreen: React.FC<Props> = () => {
   const userContext = React.useContext(UserContext);
   const [isLoading, setIsLoading] = React.useState(false);
   const [isSentOTP, setIsSentOTP] = React.useState(false);
+
+  const [visible, setVisible] = React.useState(false);
 
   const [otp, setOTP] = React.useState("");
   const [formData, setFormData] = React.useState({
@@ -72,6 +74,8 @@ const RegisterScreen: React.FC<Props> = () => {
 
     return true;
   };
+
+  const onDismissSnackBar = () => setVisible(false);
 
   const submitHandler = () => {
     const val = validate()
@@ -127,6 +131,7 @@ const RegisterScreen: React.FC<Props> = () => {
       console.log('error confirming sign up', error);
       const msg = handleCognitoError(error)
       setIsLoading(false);
+      setErrors(msg);
       //  showSnackbar(msg, 'error')
     }
   }
@@ -196,6 +201,8 @@ const RegisterScreen: React.FC<Props> = () => {
 
     } catch (error) {
       setIsLoading(false);
+      setErrors("something went wrong");
+
       console.log("error customer ", error.response.data)
     }
   }
@@ -308,8 +315,8 @@ const RegisterScreen: React.FC<Props> = () => {
             <Text variant="labelMedium" style={{ color: 'red', height: 36 }}>{errors}</Text>
 
             {!isSentOTP ?
-              <PrimaryButton buttonColor={palette.primaryDark} loading={isLoading} onPress={() => submitHandler()}>Send OTP</PrimaryButton> :
-              <PrimaryButton buttonColor={palette.primaryDark} loading={isLoading} onPress={() => confirmSignUpHandler()}>Register</PrimaryButton>
+              <PrimaryButton buttonColor={palette.primaryDark} disabled={isLoading} loading={isLoading} onPress={() => submitHandler()}>Send OTP</PrimaryButton> :
+              <PrimaryButton buttonColor={palette.primaryDark} disabled={isLoading} loading={isLoading} onPress={() => confirmSignUpHandler()}>Register</PrimaryButton>
             }
           </View>
           <View style={styles.containerRegister}>
@@ -320,6 +327,17 @@ const RegisterScreen: React.FC<Props> = () => {
 
         </View>
       </ScrollView>
+      <Snackbar
+        visible={visible}
+        onDismiss={onDismissSnackBar}
+        action={{
+          label: 'Undo',
+          onPress: () => {
+            // Do something
+          },
+        }}>
+        {errors}
+      </Snackbar>
     </>
   );
 };
