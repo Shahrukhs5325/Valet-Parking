@@ -121,7 +121,7 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
 
             </View>
             <View style={{ marginBottom: 20 }}>
-              <PrimaryButton onPress={() => navigation.navigate("RedeemScreen", { coupon: coupon })} buttonColor={palette.txtWhite}>Redeem</PrimaryButton>
+              <PrimaryButton onPress={() => navigation.navigate("RedeemScreen", { coupon: coupon })} buttonColor={"light"}>Redeem</PrimaryButton>
 
             </View>
           </View>

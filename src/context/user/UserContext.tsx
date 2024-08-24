@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
+import { palette } from '../../theme/themes';
 
 
 type UserContextProviderType = {
@@ -23,6 +24,7 @@ type UserType = {
     statusName: number;
     userName: string;
     userTypeId: number;
+    
 }
 
 
@@ -35,6 +37,8 @@ type UserContextType = {
     setAppLanguage?: any;
     geoLocation?: any;
     seGeoLocation?: any;
+    customTheme?: any;
+    secCustomTheme?: any;
 }
 
 export const UserContext = React.createContext({} as UserContextType)
@@ -44,6 +48,7 @@ export const UserContextProvider = ({ children }: UserContextProviderType) => {
     const [user, setUser] = React.useState<UserType | null>(null);
     const [appLanguage, setAppLanguage] = React.useState<string | null>("en");
     const [geoLocation, seGeoLocation] = React.useState<string | null>(null);
+    const [customTheme, secCustomTheme] = React.useState<any | null>(null);
 
 
     React.useEffect(() => {
@@ -60,7 +65,7 @@ export const UserContextProvider = ({ children }: UserContextProviderType) => {
     }
 
     return (
-        <UserContext.Provider value={{ user, setUser, appLanguage, setAppLanguage, geoLocation, seGeoLocation }}>
+        <UserContext.Provider value={{ user, setUser, appLanguage, setAppLanguage, geoLocation, seGeoLocation,customTheme, secCustomTheme }}>
             {children}
         </UserContext.Provider>
     );

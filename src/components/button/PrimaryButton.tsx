@@ -22,13 +22,13 @@ const PrimaryButton: React.FC<Props> = ({
     uppercase,
     icon,
     loading,
-    buttonColor
+    buttonColor,
 }) => {
 
     return (
         <Button
-            buttonColor={buttonColor}
-            textColor={buttonColor === '#000' ? "#fff" : "#000"}
+            buttonColor={buttonColor === "light" ? palette.txtWhite : palette.primaryDark}
+            textColor={buttonColor === "light" ? palette.primaryDark : palette.txtWhite}
             icon={icon}
             mode={"contained"}
             loading={loading}

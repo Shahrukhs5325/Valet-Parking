@@ -45,8 +45,8 @@ const SucessScreen: React.FC<Props> = ({ route }) => {
 
         </View>
         <View style={{ marginTop: 50, flexDirection: 'row', gap: 20, justifyContent: 'space-evenly' }}>
-          <SecondaryButton onPress={() => navigation.navigate("HomeScreen")} buttonColor={palette.txtWhite}>Home</SecondaryButton>
-          <PrimaryButton onPress={() => navigation.navigate("HomeScreen")} buttonColor={palette.txtWhite}>View Status</PrimaryButton>
+          <SecondaryButton onPress={() => navigation.navigate("HomeScreen")} >Home</SecondaryButton>
+          <PrimaryButton onPress={() => navigation.navigate("HomeScreen")} buttonColor={"light"} >View Status</PrimaryButton>
         </View>
       </View>
 

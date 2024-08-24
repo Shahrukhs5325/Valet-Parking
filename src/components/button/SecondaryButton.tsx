@@ -26,8 +26,8 @@ const SecondaryButton: React.FC<Props> = ({
 
     return (
         <Button
-            // buttonColor={buttonColor}
-            textColor={"#fff"}
+            buttonColor={buttonColor === "light" ? palette.txtWhite : palette.primaryDark}
+            textColor={buttonColor === "light" ? palette.primaryDark : palette.txtWhite}
             icon={icon}
             mode={"outlined"}
             loading={loading}
