@@ -44,14 +44,14 @@ const Navigation = () => {
           name={"RegisterScreen"}
           component={RegisterScreen}
         />
-        {/* <Stack.Screen
-          name={"HomeScreen"}
-          component={RenderTabNavigation}
-        /> */}
         <Stack.Screen
           name={"HomeScreen"}
-          component={HomeScreen}
+          component={RenderTabNavigation}
         />
+        {/* <Stack.Screen
+          name={"HomeScreen"}
+          component={HomeScreen}
+        /> */}
         <Stack.Screen
           name={"ValetScreen"}
           component={ValetScreen}

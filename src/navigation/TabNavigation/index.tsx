@@ -13,6 +13,7 @@ import CardActiveIcon from '../../asset/bottomtab/card-white.svg';
 import PinInActiveIcon from '../../asset/bottomtab/pin-gray.svg';
 import PinActiveIcon from '../../asset/bottomtab/pin-white.svg';
 import MiddleIcon from '../../asset/bottomtab/middle.svg';
+import CommingSoonScreen from "../../screen/commingSoon/CommingSoonScreen";
 
 
 
@@ -43,8 +44,9 @@ export const RenderTabNavigation = () => {
             screenOptions={() => ({
 
                 tabBarStyle: {
-                    backgroundColor: palette.bgcard,
-                    paddingBottom: 5, paddingTop: 5,
+                    backgroundColor: palette.bgCard,
+                    // paddingBottom: 5, 
+                    // paddingTop: 5,
                     // borderTopRightRadius: 20,
                     // borderTopLeftRadius: 20,
                     // shadowColor: '#54336E24',
@@ -129,8 +131,8 @@ export const RenderTabNavigation = () => {
 
 
             <Tab.Screen
-                name={"AccountScreen"}
-                component={HomeScreen}
+                name={"CommingSoonScreenb"}
+                component={CommingSoonScreen}
                 options={{
                     tabBarShowLabel: false,
                     tabBarLabel: "abc",
@@ -144,8 +146,8 @@ export const RenderTabNavigation = () => {
             />
 
             <Tab.Screen
-                name={"HomScreen"}
-                component={HomeScreen}
+                name={"CommingSoonScreena"}
+                component={CommingSoonScreen}
 
                 options={{
                     tabBarShowLabel: false,
