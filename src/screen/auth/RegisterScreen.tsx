@@ -69,9 +69,12 @@ const RegisterScreen: React.FC<Props> = () => {
       return false;
     } else if (formData.password.length < 5) {
       setErrors("Password with 8 characters including 1 uppercase letter, 1 special character, and alphanumeric characters");
-      return false; errors
+      return false;
     } else if (!formData?.activationCode) {
       setErrors("Please enter activation code");
+      return false;
+    } else if (!formData?.creditCardName) {
+      setErrors("Please enter card holder name");
       return false;
     } else if (!formData?.lastSixDigit) {
       setErrors("Please enter last 6 digit number");

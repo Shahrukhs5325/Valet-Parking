@@ -24,7 +24,7 @@ export const getNearByStores = async (user: any, location: any) => {
 };
 
 export const getStoresByCityName = async (user: any, cityName: any) => {
-    const response = await instance.get(`/customers/getStoresByCityName?countryId=${155}&cityName=${cityName}&clientId=136`);
+    const response = await instance.get(`/customers/getStoresByCityName?countryId=${155}&cityName=${cityName}&clientId=${user?.correlationId}`);
     return response;
 };
 

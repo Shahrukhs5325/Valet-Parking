@@ -1,72 +1,28 @@
-import Geolocation from '@react-native-community/geolocation';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Dimensions, PermissionsAndroid, Platform, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
+import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
-import TopBanner from '../../components/header/TopBanner';
-import Services from '../../components/services/Services';
-import Store from '../../components/store/Store';
+import CallIcon from '../../asset/svg/call-white.svg';
+import Header from '../../components/header/Header';
+import { utcDateConvoter } from '../../constant/constFunction';
 import { UserContext } from '../../context/user/UserContext';
 import { palette } from '../../theme/themes';
 
-type Props = {};
+type Props = {
+  route?: any;
+};
 
-const ImageHeight = Math.round(Dimensions.get('window').width * 9 / 9);
 
 
-const TransactionDetailsScreen: React.FC<Props> = () => {
+const TransactionDetailsScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
+  const { coupon } = route.params;
+
   const userContext = React.useContext(UserContext);
-  const [location, setLocation] = React.useState(null);
 
 
-  React.useEffect(() => {
-    requestAuthorizationHandler();
-  }, []);
 
 
-  const requestAuthorizationHandler = async () => {
-    if (Platform.OS === 'ios') {
-      getCurrentLocation();
-    } else {
-      try {
-        const granted = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-          {
-            title: 'Device current location permission',
-            message:
-              'Allow app to get your current location',
-            buttonNeutral: 'Ask Me Later',
-            buttonNegative: 'Cancel',
-            buttonPositive: 'OK',
-          },
-        );
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-          getCurrentLocation();
-        } else {
-          console.log('Location permission denied');
-        }
-      } catch (err) {
-        console.warn(err);
-      }
-    }
-  }
-
-  const getCurrentLocation = () => {
-    Geolocation.requestAuthorization();
-    Geolocation.getCurrentPosition(
-      (position) => {
-        setLocation(position);
-        userContext?.seGeoLocation(position);
-        // refetch();
-      },
-      (error) => {
-        console.log("map error: ", error);
-        console.log(error.code, error.message);
-      },
-      { enableHighAccuracy: false, timeout: 1000000, maximumAge: 1000000 }
-    );
-  }
 
   return (
     <>
@@ -76,15 +32,56 @@ const TransactionDetailsScreen: React.FC<Props> = () => {
           backgroundColor={palette.primaryDark}
         />
         <ScrollView showsVerticalScrollIndicator={false}>
-          <TopBanner />
-          <View style={styles.compView}>
-            <View>
-              <Text variant="titleSmall" style={styles.txtTitleSty}>Services you have</Text>
-              <Services />
+          <View style={{ flex: 1, backgroundColor: palette.primaryDark, paddingBottom: 50 }}>
+            <Header navbar={true} />
+            <View style={styles.compView}>
+              <Text variant="titleLarge" style={styles.txtSty}>Your booking is confirmed</Text>
+              <Text variant="titleSmall" style={styles.txtStysec}>Booking booking confirmed! Your exclusive valete service is confirmed and active</Text>
             </View>
-            <View>
-              <Text variant="titleSmall" style={styles.txtTitleSty}>Services you have</Text>
-              <Store location={location} />
+
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 60, marginHorizontal: 40 }}>
+              <View style={{ alignItems: 'center', gap: 6 }}>
+                <Text variant="displayMedium" style={styles.txtTitleSty}>33:33</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Text variant="titleSmall" style={styles.txtStatusSty}>In Progress</Text>
+                </View>
+              </View>
+              <View style={{ alignItems: 'center', gap: 10 }}>
+                <CallIcon />
+                <Text variant="titleSmall" style={styles.txtStysec}>Call support</Text>
+              </View>
+
+            </View>
+          </View>
+
+          <View style={{ flex: 1, borderTopLeftRadius: 20, borderTopRightRadius: 20, marginTop: -28, backgroundColor: palette.bgGray }}>
+            <View style={{ padding: 15, gap: 8 }}>
+              <Text variant="titleMedium" style={styles.txtBlackHeading}>Booking Summary</Text>
+              <View style={{}}>
+                <Text variant="titleMedium" style={styles.txtSummHeading}>Booking ID</Text>
+                <Text variant="bodyLarge" style={styles.txtBodyHeading}>987654321</Text>
+              </View>
+              <View style={{}}>
+                <Text variant="titleMedium" style={styles.txtSummHeading}>Booked for</Text>
+                <Text variant="bodyLarge" style={styles.txtBodyHeading}>{userContext.user?.customerName}</Text>
+              </View>
+              <View style={{}}>
+                <Text variant="titleMedium" style={styles.txtSummHeading}>Booked Date</Text>
+                <Text variant="bodyLarge" style={styles.txtBodyHeading}>{utcDateConvoter(coupon?.createdDateTime)}</Text>
+              </View>
+            </View>
+            <View style={{ borderBottomWidth: 1, borderColor: palette.txtGray, marginHorizontal: 30 }}></View>
+            <View style={{ padding: 15, gap: 8 }}>
+              <Text variant="titleMedium" style={styles.txtBlackHeading}>Service Details</Text>
+              <View style={{}}>
+                <Text variant="titleMedium" style={styles.txtSummHeading}>Service Type</Text>
+                <Text variant="bodyLarge" style={styles.txtBodyHeading}>Valet Parking Service</Text>
+              </View>
+              <View style={{}}>
+                <Text variant="titleMedium" style={styles.txtSummHeading}>Service Name</Text>
+                <Text variant="bodyLarge" style={styles.txtBodyHeading}>{coupon?.templateName}</Text>
+              </View>
+
             </View>
           </View>
         </ScrollView>
@@ -98,24 +95,50 @@ export default TransactionDetailsScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingHorizontal: 15,
-    backgroundColor: palette.primaryDark
+
   },
   compView: {
-    padding: 10,
-    gap: 26,
-    marginTop: ImageHeight + 10
+    marginTop: 50,
+    paddingHorizontal: 15,
+    gap: 10,
+    backgroundColor: palette.primaryDark
   },
   txtSty: {
-    fontWeight: '800'
+    fontWeight: '800',
+    color: palette.primaryLight,
+  },
+  txtStysec: {
+    color: palette.primaryLight,
   },
   txtTitleSty: {
-    fontWeight: '600',
+    fontWeight: '800',
     color: palette.primaryLight,
     textTransform: 'uppercase',
     letterSpacing: 3,
-    paddingBottom: 12
   },
+  img: {
+    width: 100,
+    height: 100
+  },
+  txtStatusSty: {
+    backgroundColor: palette.txtGold,
+    color: palette.primaryLight,
+    paddingHorizontal: 14,
+    paddingVertical: 4,
+    borderRadius: 15
+  },
+  txtBlackHeading: {
+    color: palette.primaryDark,
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+  },
+  txtSummHeading: {
+    color: palette.primaryDark,
+    fontWeight: '800',
+  },
+  txtBodyHeading: {
+    color: palette.txtGray,
+  }
 
 
 
