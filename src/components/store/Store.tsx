@@ -51,8 +51,8 @@ const Store: React.FC<Props> = ({ location }) => {
                             <View style={styles.card}>
                                 <Image source={require('../../asset/valet.png')}
                                     style={styles.img} />
-                                <View style={{ width: WIDTH / 2 }}>
-                                    <Text variant="titleMedium" style={styles.txtTitleSty}>{item.name}</Text>
+                                <View style={{ width: WIDTH / 2, gap: 3 }}>
+                                    <Text variant="titleMedium" style={styles.txtTitleSty}>{item.storeName}</Text>
                                     <Text variant="bodySmall" style={styles.txtSty} numberOfLines={2}>{item.address}</Text>
 
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -96,13 +96,13 @@ const styles = StyleSheet.create({
     },
     card: {
         flexDirection: 'row',
+        alignItems: 'center',
         padding: 16,
         backgroundColor: "#424242",
         width: WIDTH - 40,
-        height: WIDTH / 3,
+        height: 145,
         borderRadius: 17,
         gap: 16
-        //   justifyContent: 'space-between'
     },
     txtSty: {
         fontWeight: '600',
@@ -111,8 +111,8 @@ const styles = StyleSheet.create({
     },
     img: {
         borderRadius: 17,
-        width: WIDTH / 4,
-        height: WIDTH / 4
+        width: 110,
+        height: 110
     }
 
 

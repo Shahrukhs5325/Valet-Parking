@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { Dimensions, FlatList, Image, StyleSheet, View } from "react-native";
+import { Dimensions, FlatList, Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-paper";
 import { getNearByStores, getTransactionByCustomerId } from "../../api/common/commonApi";
 import Arrow from '../../asset/svg/arrow_forward.svg';
 import { UserContext } from "../../context/user/UserContext";
 import { palette } from "../../theme/themes";
 import { utcDateConvoter } from "../../constant/constFunction";
+import { useNavigation } from "@react-navigation/native";
 
 const WIDTH = Math.round(Dimensions.get('window').width);
 
@@ -17,32 +18,34 @@ interface Props {
 
 
 const Transaction: React.FC<Props> = ({ }) => {
+    const navigation = useNavigation();
+
     const userContext = React.useContext(UserContext);
     const [transList, setTransList] = React.useState([]);
-
-    // const {
-    //     isLoading,
-    //     data,
-    //     refetch,
-    // } = useQuery({
-    //     queryKey: ['Transaction_List', userContext?.user],
-    //     queryFn: () => getTransactionByCustomerId(userContext?.user),
-    // });
 
     const {
         isLoading,
         data,
         refetch,
     } = useQuery({
-        queryKey: ['Near_Store_List', userContext?.user],
-        queryFn: () => getNearByStores(userContext?.user, null),
+        queryKey: ['Transaction_List', userContext?.user],
+        queryFn: () => getTransactionByCustomerId(userContext?.user),
     });
 
-    console.log(data?.data?.data);
+    // const {
+    //     isLoading,
+    //     data,
+    //     refetch,
+    // } = useQuery({
+    //     queryKey: ['Near_Store_List', userContext?.user],
+    //     queryFn: () => getNearByStores(userContext?.user, null),
+    // });
+
+    console.log(data?.data?.data?.cTransaction?.[0]);
 
 
     React.useEffect(() => {
-        setTransList(data?.data?.data);
+        setTransList(data?.data?.data?.cTransaction);
     }, [data?.data?.data]);
 
 
@@ -59,18 +62,21 @@ const Transaction: React.FC<Props> = ({ }) => {
                                 <Image source={require('../../asset/valet.png')}
                                     style={styles.img} />
                                 <View style={{ width: '64%' }}>
-                                    <Text variant="titleMedium" style={styles.txtTitleSty}>Billoni</Text>
+                                    <Text variant="titleMedium" style={styles.txtTitleSty}>{item?.templateName}</Text>
                                     <Text variant="bodySmall" style={styles.txtAddSty} numberOfLines={3}>{item?.address}</Text>
                                     <Text variant="bodySmall" style={styles.txtSty} numberOfLines={1}>{utcDateConvoter(item?.createdDateTime)}</Text>
 
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                                         <Text variant="titleMedium" style={styles.txtTitleSty}>5 Kms</Text>
-                                        <View style={{ borderRadius: 90, backgroundColor: palette.primaryLight, padding: 6 }}>
-                                            <Arrow width={20} height={20} />
-                                        </View>
+                                        <TouchableOpacity onPress={() => navigation.navigate("TransactionDetailsScreen", { coupon: item })}>
+                                            <View style={{ borderRadius: 90, backgroundColor: palette.primaryLight, padding: 6 }}>
+                                                <Arrow width={20} height={20} />
+                                            </View>
+                                        </TouchableOpacity>
                                     </View>
                                 </View>
                             </View>
+
                         }
                         style={styles.list}
                         contentContainerStyle={styles.listContents}
@@ -81,7 +87,6 @@ const Transaction: React.FC<Props> = ({ }) => {
                         ListEmptyComponent={<>
                             <Text variant="bodyMedium" style={styles.emtTxt}>Data Not Found</Text>
                         </>}
-
                     />
                 </View>
 
@@ -108,10 +113,11 @@ const styles = StyleSheet.create({
     },
     card: {
         flexDirection: 'row',
+        alignItems: 'center',
         padding: 16,
         backgroundColor: "#424242",
         width: '100%',
-        height: 150,
+        height: 148,
         borderRadius: 17,
         gap: 16
     },
@@ -126,8 +132,8 @@ const styles = StyleSheet.create({
     },
     img: {
         borderRadius: 17,
-        width: 100,
-        height: 100
+        width: 110,
+        height: 110
     },
     emtTxt: {
         color: palette.primaryLight,
