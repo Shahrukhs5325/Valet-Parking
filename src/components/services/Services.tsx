@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     },
     card: {
         padding: 13,
-        backgroundColor: palette.primaryLight,
+        backgroundColor: palette.bgCard,
         width: ImageHeight,
         height: ImageHeight,
         borderRadius: 17,

@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: 16,
-        backgroundColor: palette.primaryLight,
+        backgroundColor: palette.bgCard,
         width: '100%',
         height: 148,
         borderRadius: 17,

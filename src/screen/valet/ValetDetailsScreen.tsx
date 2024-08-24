@@ -68,15 +68,15 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
 
             <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 6, justifyContent: "space-between" }}>
 
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: palette.primaryLight, borderRadius: 10 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: palette.bgCard, borderRadius: 10 }}>
                 <CallIcon />
                 <Text variant="titleSmall" style={styles.txtSty}>Call</Text>
               </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: palette.primaryLight, borderRadius: 10 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: palette.bgCard, borderRadius: 10 }}>
                 <NearmeIcon />
                 <Text variant="titleSmall" style={styles.txtSty}>Direction</Text>
               </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: palette.primaryLight, borderRadius: 10 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: palette.bgCard, borderRadius: 10 }}>
                 <ShareIcon />
                 <Text variant="titleSmall" style={styles.txtSty}>Share</Text>
               </View>
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingHorizontal: 16,
     paddingVertical: 10,
-    backgroundColor: palette.primaryLight,
+    backgroundColor: palette.bgCard,
     borderRadius: 10,
     borderColor: '#FFF',
     borderWidth: 1, zIndex: 1,
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingHorizontal: 16,
     paddingVertical: 10,
-    backgroundColor: palette.primaryLight,
+    backgroundColor: palette.bgCard,
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     borderColor: '#FFF',
