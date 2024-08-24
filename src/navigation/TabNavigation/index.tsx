@@ -14,6 +14,7 @@ import PinInActiveIcon from '../../asset/bottomtab/pin-gray.svg';
 import PinActiveIcon from '../../asset/bottomtab/pin-white.svg';
 import MiddleIcon from '../../asset/bottomtab/middle.svg';
 import CommingSoonScreen from "../../screen/commingSoon/CommingSoonScreen";
+import TransactionScreen from "../../screen/transaction/TransactionScreen";
 
 
 
@@ -84,12 +85,11 @@ export const RenderTabNavigation = () => {
                             <HomeActiveIcon width={120} height={120} /> :
                             <HomeInActiveIcon width={120} height={120} fill={palette.bgGray} />
                     ),
-
                 }}
             />
             <Tab.Screen
-                name={"HoeScreen"}
-                component={HomeScreen}
+                name={"TransactionScreen"}
+                component={TransactionScreen}
 
                 options={{
                     tabBarShowLabel: false,
@@ -107,7 +107,7 @@ export const RenderTabNavigation = () => {
 
 
             <Tab.Screen
-                name={"HomeScreens"}
+                name={"HomeScreenss"}
                 component={HomeScreen}
 
                 options={{

@@ -12,6 +12,7 @@ import ValetDetailsScreen from "../../screen/valet/ValetDetailsScreen";
 import RedeemScreen from "../../screen/valet/RedeemScreen";
 import SucessScreen from "../../screen/valet/SucessScreen";
 import { RenderTabNavigation } from "../TabNavigation";
+import TransactionDetailsScreen from "../../screen/transaction/TransactionDetailsScreen";
 
 
 const Stack = createStackNavigator();
@@ -71,6 +72,10 @@ const Navigation = () => {
         <Stack.Screen
           name={"SucessScreen"}
           component={SucessScreen}
+        />
+        <Stack.Screen
+          name={"TransactionDetailsScreen"}
+          component={TransactionDetailsScreen}
         />
 
 

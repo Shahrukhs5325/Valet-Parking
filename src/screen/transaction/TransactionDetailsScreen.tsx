@@ -14,7 +14,7 @@ type Props = {};
 const ImageHeight = Math.round(Dimensions.get('window').width * 9 / 9);
 
 
-const HomeScreen: React.FC<Props> = () => {
+const TransactionDetailsScreen: React.FC<Props> = () => {
   const navigation = useNavigation();
   const userContext = React.useContext(UserContext);
   const [location, setLocation] = React.useState(null);
@@ -82,7 +82,7 @@ const HomeScreen: React.FC<Props> = () => {
               <Text variant="titleSmall" style={styles.txtTitleSty}>Services you have</Text>
               <Services />
             </View>
-            <View style={{ paddingBottom: 30 }}>
+            <View>
               <Text variant="titleSmall" style={styles.txtTitleSty}>Services you have</Text>
               <Store location={location} />
             </View>
@@ -93,13 +93,13 @@ const HomeScreen: React.FC<Props> = () => {
   );
 };
 
-export default HomeScreen;
+export default TransactionDetailsScreen;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     // paddingHorizontal: 15,
-    backgroundColor: palette.primaryDark,
+    backgroundColor: palette.primaryDark
   },
   compView: {
     padding: 10,

@@ -33,6 +33,12 @@ export const getCustomerCoupons = async (user: any,) => {
     return response;
 };
 
+export const getTransactionByCustomerId = async (user: any,) => {
+    const response = await instance.get(`/customers/getTransactionByCustomerId?customerId=${user?.customerId}&couponTypeName=Vallet Card`);
+
+   return response;
+};
+
 export const redeemCouponByqrCode = async (payload: any) => {
     const response = await instance.post(`/customers/redeemCouponByqrCode`, payload);
     return response;
