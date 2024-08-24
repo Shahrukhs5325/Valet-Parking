@@ -68,15 +68,15 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
 
             <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 6, justifyContent: "space-between" }}>
 
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: '#333333', borderRadius: 10 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: palette.primaryLight, borderRadius: 10 }}>
                 <CallIcon />
                 <Text variant="titleSmall" style={styles.txtSty}>Call</Text>
               </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: '#333333', borderRadius: 10 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: palette.primaryLight, borderRadius: 10 }}>
                 <NearmeIcon />
                 <Text variant="titleSmall" style={styles.txtSty}>Direction</Text>
               </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: '#333333', borderRadius: 10 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: palette.primaryLight, borderRadius: 10 }}>
                 <ShareIcon />
                 <Text variant="titleSmall" style={styles.txtSty}>Share</Text>
               </View>
@@ -121,7 +121,7 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
 
             </View>
             <View style={{ marginBottom: 20 }}>
-              <PrimaryButton onPress={() => navigation.navigate("RedeemScreen", { coupon: coupon })} buttonColor={palette.primaryLight}>Redeem</PrimaryButton>
+              <PrimaryButton onPress={() => navigation.navigate("RedeemScreen", { coupon: coupon })} buttonColor={palette.txtWhite}>Redeem</PrimaryButton>
 
             </View>
           </View>
@@ -148,16 +148,16 @@ const styles = StyleSheet.create({
     gap: 26,
   },
   txtSty: {
-    color: palette.primaryLight,
+    color: palette.txtWhite,
   },
   txtTitleSty: {
     fontWeight: '700',
-    color: palette.primaryLight,
+    color: palette.txtWhite,
     textTransform: 'capitalize',
 
   },
   txtheadSty: {
-    color: palette.primaryLight,
+    color: palette.txtWhite,
     textTransform: 'uppercase',
     letterSpacing: 3
   },
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingHorizontal: 16,
     paddingVertical: 10,
-    backgroundColor: '#333333',
+    backgroundColor: palette.primaryLight,
     borderRadius: 10,
     borderColor: '#FFF',
     borderWidth: 1, zIndex: 1,
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingHorizontal: 16,
     paddingVertical: 10,
-    backgroundColor: '#333333',
+    backgroundColor: palette.primaryLight,
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     borderColor: '#FFF',

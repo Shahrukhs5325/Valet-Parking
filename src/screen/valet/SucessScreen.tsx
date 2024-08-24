@@ -45,8 +45,8 @@ const SucessScreen: React.FC<Props> = ({ route }) => {
 
         </View>
         <View style={{ marginTop: 50, flexDirection: 'row', gap: 20, justifyContent: 'space-evenly' }}>
-          <SecondaryButton onPress={() => navigation.navigate("HomeScreen")} buttonColor={palette.primaryLight}>Home</SecondaryButton>
-          <PrimaryButton onPress={() => navigation.navigate("HomeScreen")} buttonColor={palette.primaryLight}>View Status</PrimaryButton>
+          <SecondaryButton onPress={() => navigation.navigate("HomeScreen")} buttonColor={palette.txtWhite}>Home</SecondaryButton>
+          <PrimaryButton onPress={() => navigation.navigate("HomeScreen")} buttonColor={palette.txtWhite}>View Status</PrimaryButton>
         </View>
       </View>
 
@@ -73,18 +73,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   txtSty: {
-    color: palette.primaryLight,
+    color: palette.txtWhite,
 
   },
   txtTitleSty: {
     fontWeight: '700',
-    color: palette.primaryLight,
+    color: palette.txtWhite,
     textTransform: 'capitalize',
     textAlign: 'center'
 
   },
   txtheadSty: {
-    color: palette.primaryLight,
+    color: palette.txtWhite,
     textAlign: 'center'
   },
 

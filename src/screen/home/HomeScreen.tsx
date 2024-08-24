@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   },
   txtTitleSty: {
     fontWeight: '600',
-    color: palette.primaryLight,
+    color: palette.txtWhite,
     textTransform: 'uppercase',
     letterSpacing: 3,
     paddingBottom: 12

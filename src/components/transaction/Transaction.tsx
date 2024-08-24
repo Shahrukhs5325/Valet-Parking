@@ -57,7 +57,7 @@ const Transaction: React.FC<Props> = ({ }) => {
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                                         <Text variant="titleMedium" style={styles.txtTitleSty}>5 Kms</Text>
                                         <TouchableOpacity onPress={() => navigation.navigate("TransactionDetailsScreen", { coupon: item })}>
-                                            <View style={{ borderRadius: 90, backgroundColor: palette.primaryLight, padding: 6 }}>
+                                            <View style={{ borderRadius: 90, backgroundColor: palette.txtWhite, padding: 6 }}>
                                                 <Arrow width={20} height={20} />
                                             </View>
                                         </TouchableOpacity>
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     },
     txtTitleSty: {
         fontWeight: '600',
-        color: palette.primaryLight,
+        color: palette.txtWhite,
     },
     list: {
     },
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: 16,
-        backgroundColor: "#424242",
+        backgroundColor: palette.primaryLight,
         width: '100%',
         height: 148,
         borderRadius: 17,
@@ -111,12 +111,12 @@ const styles = StyleSheet.create({
     },
     txtSty: {
         fontWeight: '600',
-        color: palette.primaryLight,
+        color: palette.txtWhite,
     },
     txtAddSty: {
         height: 48,
         fontWeight: '600',
-        color: palette.primaryLight,
+        color: palette.txtWhite,
     },
     img: {
         borderRadius: 17,
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
         height: 110
     },
     emtTxt: {
-        color: palette.primaryLight,
+        color: palette.txtWhite,
         textAlign: 'center',
         paddingVertical: 30
     }

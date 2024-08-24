@@ -60,7 +60,7 @@ const ValetServicesScreen: React.FC<Props> = ({ route }) => {
               <View style={styles.card}>
                 <Text variant="titleMedium" style={styles.txtSty}>{item?.storeName}</Text>
                 <TouchableOpacity onPress={() => navigation.navigate("ValetDetailsScreen", { coupon: item })}>
-                  <View style={{ borderRadius: 90, backgroundColor: palette.primaryLight, padding: 6, borderWidth: 5, borderColor: palette.bgGray, height: 46, width: 46, alignItems: 'center', justifyContent: 'center' }}>
+                  <View style={{ borderRadius: 90, backgroundColor: palette.txtWhite, padding: 6, borderWidth: 5, borderColor: palette.bgGray, height: 46, width: 46, alignItems: 'center', justifyContent: 'center' }}>
                     <Arrow width={20} height={20} />
                   </View>
                 </TouchableOpacity>
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
   txtTitleSty: {
     fontWeight: '600',
-    color: palette.primaryLight,
+    color: palette.txtWhite,
     textTransform: 'uppercase',
     letterSpacing: 3,
     paddingBottom: 12
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 16,
-    backgroundColor: palette.primaryLight,
+    backgroundColor: palette.txtWhite,
     width: WIDTH - 40,
     height: 100,
     borderRadius: 17,
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     height: WIDTH / 4
   },
   emtTxt: {
-    color: palette.primaryLight,
+    color: palette.txtWhite,
     textAlign: 'center',
     paddingVertical: 30
   }

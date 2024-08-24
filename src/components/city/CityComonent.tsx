@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     },
     txtTitleSty: {
         fontWeight: '600',
-        color: palette.primaryLight,
+        color: palette.txtWhite,
         textTransform: 'uppercase',
         letterSpacing: 3
     },
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     card: {
         margin: 6,
         padding: 13,
-        backgroundColor: "#333333",
+        backgroundColor: palette.primaryLight,
         width: ImageHeight,
         height: ImageHeight,
         borderRadius: 17,
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     },
     txtSty: {
         fontWeight: '600',
-        color: palette.primaryLight,
+        color: palette.txtWhite,
     }
 
 

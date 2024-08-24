@@ -144,7 +144,7 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
 
         </View>
         <View style={{ width: '100%', marginTop: 60 }}>
-          <PrimaryButton loading={isLoading} onPress={() => redeemCouponByqrCodeHandler()} buttonColor={palette.primaryLight}>Redeem</PrimaryButton>
+          <PrimaryButton loading={isLoading} onPress={() => redeemCouponByqrCodeHandler()} buttonColor={palette.txtWhite}>Redeem</PrimaryButton>
 
         </View>
       </View>
@@ -181,18 +181,18 @@ const styles = StyleSheet.create({
     gap: 26,
   },
   txtSty: {
-    color: palette.primaryLight,
+    color: palette.txtWhite,
 
   },
   txtTitleSty: {
     fontWeight: '700',
-    color: palette.primaryLight,
+    color: palette.txtWhite,
     textTransform: 'capitalize',
     textAlign: 'center'
 
   },
   txtheadSty: {
-    color: palette.primaryLight,
+    color: palette.txtWhite,
     textAlign: 'center'
   },
   image: {

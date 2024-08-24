@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
   txtTitleSty: {
     fontWeight: '700',
-    color: palette.primaryLight,
+    color: palette.txtWhite,
     textTransform: 'capitalize',
     textAlign: 'center'
 

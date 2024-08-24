@@ -105,14 +105,14 @@ const styles = StyleSheet.create({
   },
   txtSty: {
     fontWeight: '800',
-    color: palette.primaryLight,
+    color: palette.txtWhite,
   },
   txtStysec: {
-    color: palette.primaryLight,
+    color: palette.txtWhite,
   },
   txtTitleSty: {
     fontWeight: '800',
-    color: palette.primaryLight,
+    color: palette.txtWhite,
     textTransform: 'uppercase',
     letterSpacing: 3,
   },
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
   },
   txtStatusSty: {
     backgroundColor: palette.txtGold,
-    color: palette.primaryLight,
+    color: palette.txtWhite,
     paddingHorizontal: 14,
     paddingVertical: 4,
     borderRadius: 15

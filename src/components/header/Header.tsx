@@ -25,7 +25,7 @@ const Header: React.FC<Props> = ({
                     <View style={{}}>
                         <Icon
                             source="bell"
-                            color={palette.primaryLight}
+                            color={palette.txtWhite}
                             size={24}
                         />
                     </View>
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     },
     txtSty: {
         fontWeight: '800',
-        color: palette.primaryLight
+        color: palette.txtWhite
     },
 
 
