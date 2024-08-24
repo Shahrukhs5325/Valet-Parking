@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { ScrollView, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Snackbar, Text, } from 'react-native-paper';
+import { Checkbox, Snackbar, Text, } from 'react-native-paper';
 import { palette } from '../../theme/themes';
 import PrimaryButton from '../../components/button/PrimaryButton';
 import TextInputCust from '../../components/textInput/TextInput';
@@ -19,6 +19,7 @@ const RegisterScreen: React.FC<Props> = () => {
   const userContext = React.useContext(UserContext);
   const [isLoading, setIsLoading] = React.useState(false);
   const [isSentOTP, setIsSentOTP] = React.useState(false);
+  const [isNameAsPer, setIsNameAsPer] = React.useState(false);
 
   const [visible, setVisible] = React.useState(false);
 
@@ -30,7 +31,8 @@ const RegisterScreen: React.FC<Props> = () => {
     password: '',
     activationCode: '',
     lastSixDigit: '',
-    firstFourDigit: ''
+    firstFourDigit: '',
+    creditCardName: '',
   });
   const [errors, setErrors] = React.useState("");
 
@@ -40,6 +42,12 @@ const RegisterScreen: React.FC<Props> = () => {
     setOTP("");
     setIsSentOTP(false);
   }, [formData]);
+
+  React.useEffect(() => {
+    isNameAsPer && setFormData({ ...formData, creditCardName: formData.firstName + " " + formData.LastName });
+    !isNameAsPer && setFormData({ ...formData, creditCardName: "" });
+    setErrors("");
+  }, [isNameAsPer]);
 
   const validate = () => {
     const EmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -273,6 +281,24 @@ const RegisterScreen: React.FC<Props> = () => {
           <View style={{ gap: 8, marginTop: 10 }}>
             <Text variant="titleMedium" style={{ letterSpacing: 3, textTransform: 'uppercase', color: palette.primaryDark }} >Credit card details</Text>
 
+            <View>
+              <Checkbox.Item label="Card name as per user"
+                status={isNameAsPer ? "checked" : "unchecked"}
+                onPress={() => setIsNameAsPer(!isNameAsPer)}
+                color={palette.primaryDark}
+                style={{ marginLeft: -15, marginVertical: -10 }} />
+            </View>
+            <View style={{ gap: 4 }}>
+              <Text variant="titleSmall" style={{ color: palette.primaryDark }} >Enter card holder name</Text>
+              <TextInputCust
+                placeholder='Card holder name'
+                value={formData.creditCardName}
+                onChangeText={value => {
+                  setFormData({ ...formData, creditCardName: value });
+                  setErrors("");
+                }}
+              />
+            </View>
             <View style={{ gap: 4 }}>
               <Text variant="titleSmall" style={{ color: palette.primaryDark }} >Enter last 6 digits</Text>
               <TextInputCust
