@@ -9,6 +9,7 @@ import { Auth, Hub } from 'aws-amplify';
 import { handleCognitoError } from '../../constant/constFunction';
 import { addCustomerPostApi } from '../../api/user/userApi';
 import { UserContext } from '../../context/user/UserContext';
+import { getActivationCodeDetails } from '../../api/common/commonApi';
 
 type Props = {};
 
@@ -87,10 +88,29 @@ const RegisterScreen: React.FC<Props> = () => {
 
   const submitHandler = () => {
     const val = validate()
-    console.log("val", val);
-
-    val && signUpSubmit();
+    val && getStatusHandler();
+    // val && signUpSubmit();
   }
+
+  const getStatusHandler = async () => {
+    try {
+      const res = await getActivationCodeDetails(formData.activationCode);
+
+      if (res?.status === 200 && res?.data?.data) {
+        if (res?.data?.data?.redeemed) {
+          setErrors("Activation code used");
+        } else {
+          signUpSubmit();
+        }
+      } else {
+        setErrors("Enter valid activation code");
+      }
+    } catch (err) {
+      setErrors("Enter valid activation code");
+      console.log('error fetchCountries : ', err);
+    }
+  }
+
 
   const signUpSubmit = async () => {
 
