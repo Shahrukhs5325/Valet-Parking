@@ -1,3 +1,10 @@
+import moment from 'moment';
+
+
+export const utcDateConvoter = (date: any) => {
+  return moment(date, 'YYYY-MM-DD').format('DD MMM YYYY');
+};
+
 export const handleCognitoError = (error: any) => {
     if (error.code === 'UsernameExistsException') {
       return 'An account with the given username already exists.';

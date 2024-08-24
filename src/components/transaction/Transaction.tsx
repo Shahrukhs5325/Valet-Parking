@@ -6,6 +6,7 @@ import { getNearByStores, getTransactionByCustomerId } from "../../api/common/co
 import Arrow from '../../asset/svg/arrow_forward.svg';
 import { UserContext } from "../../context/user/UserContext";
 import { palette } from "../../theme/themes";
+import { utcDateConvoter } from "../../constant/constFunction";
 
 const WIDTH = Math.round(Dimensions.get('window').width);
 
@@ -19,15 +20,25 @@ const Transaction: React.FC<Props> = ({ }) => {
     const userContext = React.useContext(UserContext);
     const [transList, setTransList] = React.useState([]);
 
+    // const {
+    //     isLoading,
+    //     data,
+    //     refetch,
+    // } = useQuery({
+    //     queryKey: ['Transaction_List', userContext?.user],
+    //     queryFn: () => getTransactionByCustomerId(userContext?.user),
+    // });
+
     const {
         isLoading,
         data,
         refetch,
     } = useQuery({
-        queryKey: ['Transaction_List', userContext?.user],
-        queryFn: () => getTransactionByCustomerId(userContext?.user),
+        queryKey: ['Near_Store_List', userContext?.user],
+        queryFn: () => getNearByStores(userContext?.user, null),
     });
 
+    console.log(data?.data?.data);
 
 
     React.useEffect(() => {
@@ -38,7 +49,7 @@ const Transaction: React.FC<Props> = ({ }) => {
     return (
         transList && transList.length > 0 ?
             <View style={styles.container}>
-                <View>
+                <View style={{ paddingBottom: 30 }}>
                     <FlatList
                         showsVerticalScrollIndicator={false}
                         keyExtractor={(item, index) => index.toString()}
@@ -47,9 +58,10 @@ const Transaction: React.FC<Props> = ({ }) => {
                             <View style={styles.card}>
                                 <Image source={require('../../asset/valet.png')}
                                     style={styles.img} />
-                                <View style={{ width: WIDTH / 2 }}>
-                                    <Text variant="titleMedium" style={styles.txtTitleSty}>{item.name}</Text>
-                                    <Text variant="bodySmall" style={styles.txtSty} numberOfLines={2}>{item.address}</Text>
+                                <View style={{ width: '64%' }}>
+                                    <Text variant="titleMedium" style={styles.txtTitleSty}>Billoni</Text>
+                                    <Text variant="bodySmall" style={styles.txtAddSty} numberOfLines={3}>{item?.address}</Text>
+                                    <Text variant="bodySmall" style={styles.txtSty} numberOfLines={1}>{utcDateConvoter(item?.createdDateTime)}</Text>
 
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                                         <Text variant="titleMedium" style={styles.txtTitleSty}>5 Kms</Text>
@@ -66,6 +78,10 @@ const Transaction: React.FC<Props> = ({ }) => {
                         maxToRenderPerBatch={10}
                         windowSize={10}
                         updateCellsBatchingPeriod={50}
+                        ListEmptyComponent={<>
+                            <Text variant="bodyMedium" style={styles.emtTxt}>Data Not Found</Text>
+                        </>}
+
                     />
                 </View>
 
@@ -94,21 +110,29 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: 16,
         backgroundColor: "#424242",
-        width: WIDTH - 40,
-        height: WIDTH / 3,
+        width: '100%',
+        height: 150,
         borderRadius: 17,
         gap: 16
-        //   justifyContent: 'space-between'
     },
     txtSty: {
         fontWeight: '600',
         color: palette.primaryLight,
-        height: 52
+    },
+    txtAddSty: {
+        height: 48,
+        fontWeight: '600',
+        color: palette.primaryLight,
     },
     img: {
         borderRadius: 17,
-        width: WIDTH / 4,
-        height: WIDTH / 4
+        width: 100,
+        height: 100
+    },
+    emtTxt: {
+        color: palette.primaryLight,
+        textAlign: 'center',
+        paddingVertical: 30
     }
 
 
