@@ -41,9 +41,6 @@ const Transaction: React.FC<Props> = ({ }) => {
     //     queryFn: () => getNearByStores(userContext?.user, null),
     // });
 
-    console.log(data?.data?.data?.cTransaction?.[0]);
-
-
     React.useEffect(() => {
         setTransList(data?.data?.data?.cTransaction);
     }, [data?.data?.data]);
