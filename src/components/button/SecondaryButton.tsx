@@ -1,6 +1,7 @@
 import React from "react";
 import { palette } from "../../theme/themes";
 import { Button } from "react-native-paper";
+import { UserContext } from "../../context/user/UserContext";
 
 interface Props {
     children?: React.ReactNode | any;
@@ -23,18 +24,19 @@ const SecondaryButton: React.FC<Props> = ({
     loading,
     buttonColor
 }) => {
+    const userContext = React.useContext(UserContext);
 
     return (
         <Button
-            buttonColor={buttonColor === "light" ? palette.txtWhite : palette.primaryDark}
-            textColor={buttonColor === "light" ? palette.primaryDark : palette.txtWhite}
+            buttonColor={buttonColor === "light" ? palette.txtWhite : userContext?.customTheme?.primaryDark}
+            textColor={buttonColor === "light" ? userContext?.customTheme?.primaryDark : palette.txtWhite}
             icon={icon}
             mode={"outlined"}
             loading={loading}
             disabled={disabled}
             uppercase={uppercase}
             onPress={() => onPress()}
-            style={{ borderRadius: 5, height: 52, justifyContent: 'center' }}
+            style={{ borderRadius: 5, height: 52, justifyContent: 'center', borderColor: palette.txtWhite }}
         >
             {children}
         </Button>

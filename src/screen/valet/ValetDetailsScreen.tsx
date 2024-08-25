@@ -51,106 +51,110 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
     setCouponList(data?.data?.data)
   }, [data?.data?.data]);
 
+  console.log(data?.data?.data);
+
+  console.log(coupon);
+
 
   return (
     <>
-      <View style={styles.container}>
-        <StatusBar
-          animated={true}
-          backgroundColor={palette.primaryDark}
-        />
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {/* <TopBanner navbar={true} /> */}
-          <ImageBackground
-            source={require('../../asset/man-sitting-car.png')}
-            resizeMode="cover"
-            style={styles.image}>
-            <Header navbar={true} />
-          </ImageBackground>
-          <View style={styles.compView}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-              <View style={{ width: '75%' }}>
-                <Text variant="headlineMedium" style={styles.txtTitleSty}>{coupon.templateName}</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginVertical: 6 }}>
-                  <LocationIcon />
-                  <Text variant="titleSmall" style={styles.txtSty}>{coupon.address}</Text>
+      {coupon ?
+        <View style={[styles.container, { backgroundColor: userContext?.customTheme?.primaryDark }]}>
+          <StatusBar
+            animated={true}
+          // backgroundColor={palette.primaryDark}
+          />
+          <ScrollView showsVerticalScrollIndicator={false}>
+            {/* <TopBanner navbar={true} /> */}
+            <ImageBackground
+              source={require('../../asset/man-sitting-car.png')}
+              resizeMode="cover"
+              style={styles.image}>
+              <Header navbar={true} />
+            </ImageBackground>
+            <View style={[styles.compView, { backgroundColor: userContext?.customTheme?.primaryDark }]}>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                <View style={{ width: '75%' }}>
+                  <Text variant="headlineMedium" style={styles.txtTitleSty}>{coupon.templateName}</Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginVertical: 6 }}>
+                    <LocationIcon />
+                    <Text variant="titleSmall" style={styles.txtSty}>{coupon.address}</Text>
+                  </View>
+                </View>
+                <Image source={require('../../asset/valet.png')}
+                  style={styles.img} />
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 40, }}>
+
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginVertical: 6 }}>
+                  <View style={{ width: 16, height: 16, backgroundColor: '#FFF', alignItems: 'center', justifyContent: 'center' }}><WalkIcon /></View>
+                  <Text variant="titleSmall" style={styles.txtSty}>800m away</Text>
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginVertical: 6 }}>
+                  <SpotnIcon />
+                  <Text variant="titleSmall" style={styles.txtSty}>19 Spots</Text>
                 </View>
               </View>
-              <Image source={require('../../asset/valet.png')}
-                style={styles.img} />
-            </View>
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 40, }}>
-
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginVertical: 6 }}>
-                <View style={{ width: 16, height: 16, backgroundColor: '#FFF', alignItems: 'center', justifyContent: 'center' }}><WalkIcon /></View>
-                <Text variant="titleSmall" style={styles.txtSty}>800m away</Text>
-              </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginVertical: 6 }}>
-                <SpotnIcon />
-                <Text variant="titleSmall" style={styles.txtSty}>19 Spots</Text>
-              </View>
-            </View>
-
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 6, justifyContent: "space-between" }}>
-
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: palette.bgCard, borderRadius: 10 }}>
-                <CallIcon />
-                <Text variant="titleSmall" style={styles.txtSty}>Call</Text>
-              </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: palette.bgCard, borderRadius: 10 }}>
-                <NearmeIcon />
-                <Text variant="titleSmall" style={styles.txtSty}>Direction</Text>
-              </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: palette.bgCard, borderRadius: 10 }}>
-                <ShareIcon />
-                <Text variant="titleSmall" style={styles.txtSty}>Share</Text>
-              </View>
-
-            </View>
-
-            <View style={{ gap: 8 }}>
-              <Text variant="titleSmall" style={styles.txtheadSty}>Service description</Text>
-              <View style={{ gap: 4, marginLeft: 16 }}>
-                <Text variant="bodySmall" style={styles.txtSty}>Safe and secure parking</Text>
-                <Text variant="bodySmall" style={styles.txtSty}>Professional and courteous staff</Text>
-                <Text variant="bodySmall" style={styles.txtSty}>Quick and easy vehicle retrieval</Text>
-                <Text variant="bodySmall" style={styles.txtSty}>Special attention to your vehicle's needs</Text>
-
-              </View>
-
-            </View>
-            <View style={{ gap: 8 }}>
-              <Text variant="titleSmall" style={styles.txtheadSty}>parking duration</Text>
               <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 6, justifyContent: "space-between" }}>
 
-                <FlatList
-                  horizontal={true}
-                  showsHorizontalScrollIndicator={false}
-                  keyExtractor={(item, index) => index.toString()}
-                  data={couponList}
-                  renderItem={({ item }) =>
-                    <View style={{}}>
-                      <View style={styles.serviceView}>
-                        <Text variant="bodySmall" style={styles.txtSty}>{coupon?.denomination} Hour</Text>
-                      </View>
-                      <View style={styles.serviceBtmView}>
-                        <Text variant="bodySmall" style={styles.txtSty}>1-Redeems</Text>
-                      </View>
-                    </View>
-                  }
-                  style={styles.list}
-                  contentContainerStyle={styles.listContents}
-                  // initialNumToRender={5}
-                  // maxToRenderPerBatch={10}
-                  // windowSize={10}
-                  // updateCellsBatchingPeriod={50}
-                  ListEmptyComponent={<>
-                    <Text variant="bodyMedium" style={styles.emtTxt}>Data Not Found</Text>
-                  </>}
-                />
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: userContext?.customTheme?.bgCard, borderRadius: 10 }}>
+                  <CallIcon />
+                  <Text variant="titleSmall" style={styles.txtSty}>Call</Text>
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: userContext?.customTheme?.bgCard, borderRadius: 10 }}>
+                  <NearmeIcon />
+                  <Text variant="titleSmall" style={styles.txtSty}>Direction</Text>
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: userContext?.customTheme?.bgCard, borderRadius: 10 }}>
+                  <ShareIcon />
+                  <Text variant="titleSmall" style={styles.txtSty}>Share</Text>
+                </View>
+
               </View>
-            </View>
-            {/* <View style={{ gap: 8 }}>
+
+              <View style={{ gap: 8 }}>
+                <Text variant="titleSmall" style={styles.txtheadSty}>Service description</Text>
+                <View style={{ gap: 4, marginLeft: 16 }}>
+                  <Text variant="bodySmall" style={styles.txtSty}>Safe and secure parking</Text>
+                  <Text variant="bodySmall" style={styles.txtSty}>Professional and courteous staff</Text>
+                  <Text variant="bodySmall" style={styles.txtSty}>Quick and easy vehicle retrieval</Text>
+                  <Text variant="bodySmall" style={styles.txtSty}>Special attention to your vehicle's needs</Text>
+
+                </View>
+
+              </View>
+              <View style={{ gap: 8 }}>
+                <Text variant="titleSmall" style={styles.txtheadSty}>parking duration</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 6, justifyContent: "space-between" }}>
+
+                  <FlatList
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    keyExtractor={(item, index) => index.toString()}
+                    data={couponList}
+                    renderItem={({ item }) =>
+                      <View style={{}}>
+                        <View style={[styles.serviceView, { backgroundColor: userContext?.customTheme?.bgCard }]}>
+                          <Text variant="bodySmall" style={styles.txtSty}>{coupon?.denomination} Hour</Text>
+                        </View>
+                        <View style={[styles.serviceBtmView, { backgroundColor: userContext?.customTheme?.bgCard }]}>
+                          <Text variant="bodySmall" style={styles.txtSty}>1-Redeems</Text>
+                        </View>
+                      </View>
+                    }
+                    style={styles.list}
+                    contentContainerStyle={styles.listContents}
+                    // initialNumToRender={5}
+                    // maxToRenderPerBatch={10}
+                    // windowSize={10}
+                    // updateCellsBatchingPeriod={50}
+                    ListEmptyComponent={<>
+                      <Text variant="bodyMedium" style={styles.emtTxt}>Data Not Found</Text>
+                    </>}
+                  />
+                </View>
+              </View>
+              {/* <View style={{ gap: 8 }}>
               <Text variant="titleSmall" style={styles.txtheadSty}>parking duration</Text>
               <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 6, justifyContent: "space-between" }}>
                 <View style={{}}>
@@ -163,24 +167,28 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
                 </View>
               </View>
             </View> */}
-            <View>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, }}>
-                <TermIcon />
-                <Text variant="bodyLarge" style={styles.txtSty}>Terms & conditions</Text>
-              </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, }}>
-                <TermIcon />
-                <Text variant="bodyLarge" style={styles.txtSty}>How to redeem</Text>
-              </View>
+              <View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, }}>
+                  <TermIcon />
+                  <Text variant="bodyLarge" style={styles.txtSty}>Terms & conditions</Text>
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, }}>
+                  <TermIcon />
+                  <Text variant="bodyLarge" style={styles.txtSty}>How to redeem</Text>
+                </View>
 
-            </View>
-            <View style={{ marginBottom: 20 }}>
-              <PrimaryButton onPress={() => navigation.navigate("RedeemScreen", { coupon: coupon })} buttonColor={"light"}>Redeem</PrimaryButton>
+              </View>
+              <View style={{ marginBottom: 20 }}>
+                <PrimaryButton onPress={() => navigation.navigate("RedeemScreen", { coupon: coupon })} buttonColor={"light"}>Redeem</PrimaryButton>
 
+              </View>
             </View>
-          </View>
-        </ScrollView>
-      </View>
+          </ScrollView>
+        </View> :
+        <View style={[styles.containerErr, { backgroundColor: userContext?.customTheme?.primaryDark }]}>
+          <Text variant="bodyMedium" style={styles.emtTxt}>Data Not Found</Text>
+        </View>
+      }
     </>
   );
 };
@@ -191,11 +199,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     //paddingHorizontal: 15,
-    backgroundColor: palette.primaryDark,
+
+  },
+  containerErr: {
+    flex: 1,
+    //paddingHorizontal: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
 
   },
   compView: {
-    backgroundColor: palette.primaryDark,
     // borderRadius:17,
     padding: 10,
     marginTop: 26,
@@ -238,7 +251,7 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingHorizontal: 16,
     paddingVertical: 10,
-    backgroundColor: palette.bgCard,
+    // backgroundColor: palette.bgCard,
     borderRadius: 10,
     borderColor: '#FFF',
     borderWidth: 1, zIndex: 1,
@@ -251,7 +264,7 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingHorizontal: 16,
     paddingVertical: 10,
-    backgroundColor: palette.bgCard,
+    // backgroundColor: palette.bgCard,
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     borderColor: '#FFF',

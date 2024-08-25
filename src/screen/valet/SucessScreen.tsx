@@ -6,6 +6,7 @@ import PrimaryButton from '../../components/button/PrimaryButton';
 import { palette } from '../../theme/themes';
 import CircleIcon from '../../asset/svg/check-circle-1.svg';
 import SecondaryButton from '../../components/button/SecondaryButton';
+import { UserContext } from '../../context/user/UserContext';
 
 
 type Props = {
@@ -16,8 +17,7 @@ type Props = {
 const SucessScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
   const { response } = route.params;
-
-  //  const userContext = React.useContext(UserContext);
+  const userContext = React.useContext(UserContext);
 
   React.useEffect(() => {
 
@@ -27,7 +27,7 @@ const SucessScreen: React.FC<Props> = ({ route }) => {
 
   return (
     <>
-      <View style={styles.container}>
+      <View style={[styles.container, { backgroundColor: userContext?.customTheme?.primaryDark }]}>
 
         <StatusBar
           animated={true}
@@ -60,10 +60,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 15,
-    // justifyContent: 'center',
-    // alignItems: 'center',
     paddingTop: 70,
-    backgroundColor: palette.primaryDark
   },
   compView: {
     padding: 10,

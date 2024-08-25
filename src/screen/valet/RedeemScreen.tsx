@@ -90,7 +90,7 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
   return (
     <>
 
-      <View style={styles.container}>
+      <View style={[styles.container, { backgroundColor: userContext?.customTheme?.primaryDark }]}>
 
         <StatusBar
           animated={true}
@@ -173,7 +173,6 @@ const styles = StyleSheet.create({
     padding: 15,
     // justifyContent: 'center',
     // alignItems: 'center',
-    backgroundColor: palette.primaryDark
   },
   compView: {
     padding: 10,
@@ -222,7 +221,7 @@ const styles = StyleSheet.create({
     borderRadius: 10
   },
   focusCell: {
-    borderColor: palette.primary
+    borderColor: palette.txtWhite
   },
 
 
