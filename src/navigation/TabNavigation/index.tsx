@@ -29,6 +29,7 @@ export const RenderTabNavigation = () => {
 
 
     const CustomTabBarButton = ({ children, onPress }) => (
+        // <View style={{ top: 20, backgroundColor: userContext?.customTheme?.bgCard, width: 160, height: 160, zIndex: -1, borderRadius: 360, alignItems: 'center', padding: 10 }}>
         <TouchableOpacity
             style={{ top: - 16, justifyContent: 'center', alignItems: 'center' }}
             onPress={onPress}
@@ -37,6 +38,7 @@ export const RenderTabNavigation = () => {
                 {children}
             </ View>
         </TouchableOpacity >
+        //  </ View>
     )
 
     return (
