@@ -32,9 +32,11 @@ const TransactionDetailsScreen: React.FC<Props> = ({ route }) => {
           backgroundColor={palette.primaryDark}
         />
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={{ flex: 1, backgroundColor: palette.primaryDark, paddingBottom: 50 }}>
+          <View style={{ flex: 1, backgroundColor: userContext?.customTheme?.primaryDark, paddingBottom: 50 }}>
             <Header navbar={true} />
-            <View style={styles.compView}>
+            <View
+              style={[styles.compView, { backgroundColor: userContext?.customTheme?.primaryDark }]}
+            >
               <Text variant="titleLarge" style={styles.txtSty}>Your booking is confirmed</Text>
               <Text variant="titleSmall" style={styles.txtStysec}>Booking booking confirmed! Your exclusive valete service is confirmed and active</Text>
             </View>
@@ -101,7 +103,7 @@ const styles = StyleSheet.create({
     marginTop: 50,
     paddingHorizontal: 15,
     gap: 10,
-    backgroundColor: palette.primaryDark
+    //  backgroundColor: palette.primaryDark
   },
   txtSty: {
     fontWeight: '800',
@@ -128,12 +130,12 @@ const styles = StyleSheet.create({
     borderRadius: 15
   },
   txtBlackHeading: {
-    color: palette.primaryDark,
+    color: palette.txtBlack,
     textTransform: 'uppercase',
     letterSpacing: 1,
   },
   txtSummHeading: {
-    color: palette.primaryDark,
+    color: palette.txtBlack,
     fontWeight: '800',
   },
   txtBodyHeading: {

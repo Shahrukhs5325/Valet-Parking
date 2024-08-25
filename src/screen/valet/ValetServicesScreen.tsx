@@ -41,12 +41,12 @@ const ValetServicesScreen: React.FC<Props> = ({ route }) => {
 
 
   return (
-    <View style={{ flex: 1, backgroundColor: palette.primaryDark, gap: 50 }}>
+    <View style={{ flex: 1, backgroundColor: userContext?.customTheme?.primaryDark, gap: 50 }}>
       <Header navbar={true} />
-      <View style={styles.container}>
+      <View style={[styles.container, { backgroundColor: userContext?.customTheme?.primaryDark }]}>
         <StatusBar
           animated={true}
-          backgroundColor={palette.primaryDark}
+          backgroundColor={userContext?.customTheme?.primaryDark}
         />
 
         <View style={{ gap: 15, }}>
@@ -87,10 +87,9 @@ export default ValetServicesScreen;
 
 const styles = StyleSheet.create({
   container: {
-    //  flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: palette.primaryDark
+    // backgroundColor: palette.primaryDark
   },
   txtTitleSty: {
     fontWeight: '600',
@@ -120,7 +119,7 @@ const styles = StyleSheet.create({
   },
   txtSty: {
     fontWeight: '700',
-    color: palette.primaryDark,
+    color: palette.txtBlack,
   },
   img: {
     borderRadius: 17,

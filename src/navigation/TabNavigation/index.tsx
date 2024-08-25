@@ -24,7 +24,7 @@ const Tab = createBottomTabNavigator();
 
 
 export const RenderTabNavigation = () => {
-    //  const userContext = React.useContext(UserContext);
+    const userContext = React.useContext(UserContext);
 
 
 
@@ -45,7 +45,7 @@ export const RenderTabNavigation = () => {
             screenOptions={() => ({
 
                 tabBarStyle: {
-                    backgroundColor: palette.bgCard,
+                    backgroundColor: userContext?.customTheme?.bgCard,
                     // paddingBottom: 5, 
                     // paddingTop: 5,
                     // borderTopRightRadius: 20,

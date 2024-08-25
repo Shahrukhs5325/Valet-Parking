@@ -48,7 +48,10 @@ const Store: React.FC<Props> = ({ location }) => {
                         keyExtractor={(item, index) => index.toString()}
                         data={storeList}
                         renderItem={({ item }) =>
-                            <View style={styles.card}>
+                            <View
+                                style={[styles.card, { backgroundColor: userContext?.customTheme?.bgCard }]}
+                            >
+
                                 <Image source={require('../../asset/valet.png')}
                                     style={styles.img} />
                                 <View style={{ width: WIDTH / 2, gap: 3 }}>
@@ -98,7 +101,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: 16,
-        backgroundColor: palette.bgCard,
+        //   backgroundColor: palette.bgCard,
         width: WIDTH - 40,
         height: 145,
         borderRadius: 17,

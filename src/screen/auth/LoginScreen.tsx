@@ -112,11 +112,11 @@ const LoginScreen: React.FC<Props> = () => {
         </View>
         <View style={{ gap: 30 }}>
           <PrimaryButton loading={isLoading} disabled={isLoading} onPress={() => submitHandler()} >Sign In</PrimaryButton>
-          <Text variant="labelLarge" style={{ textAlign: 'center', color: palette.primaryDark  }}>Forgot password?</Text>
+          <Text variant="labelLarge" style={{ textAlign: 'center', color: palette.txtBlack }}>Forgot password?</Text>
         </View>
         <View style={styles.containerRegister}>
           <TouchableOpacity onPress={() => navigation.replace("RegisterScreen")}>
-            <Text variant="labelLarge" style={{ textAlign: 'center', color: palette.txtGray }}>Don’t have an account? <Text variant="labelLarge" style={{color:palette.primaryDark}}>Sign up</Text></Text>
+            <Text variant="labelLarge" style={{ textAlign: 'center', color: palette.txtGray }}>Don’t have an account? <Text variant="labelLarge" style={{ color: palette.txtBlack }}>Sign up</Text></Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   },
   txtSty: {
     fontWeight: '800',
-    color:palette.primaryDark
+    color: "#000"
   },
   containerRegister: {
     // position: 'absolute',

@@ -6,8 +6,9 @@ import Car from '../../asset/svg/car.svg';
 import Parking from '../../asset/svg/Parking.svg';
 import Smiley from '../../asset/svg/smiley-smile.svg';
 import { useNavigation } from "@react-navigation/native";
+import { UserContext } from "../../context/user/UserContext";
 
-// sizes: "xs", "sm", "md", "lg"
+
 const ImageHeight = Math.round(Dimensions.get('window').width / 3.3);
 
 interface Props {
@@ -23,6 +24,7 @@ const DATA = [
 
 const Services: React.FC<Props> = ({ }) => {
     const navigation = useNavigation();
+    const userContext = React.useContext(UserContext);
 
     return (
 
@@ -35,7 +37,8 @@ const Services: React.FC<Props> = ({ }) => {
                     data={DATA}
                     renderItem={({ item }) =>
                         <TouchableOpacity onPress={() => navigation.navigate("ValetScreen")}>
-                            <View style={styles.card}>
+                            <View style={[styles.card, { backgroundColor: userContext?.customTheme?.bgCard }]}>
+
                                 {item.icon}
                                 <Text variant="titleSmall" style={styles.txtSty}>{item.name}</Text>
 
@@ -75,7 +78,7 @@ const styles = StyleSheet.create({
     },
     card: {
         padding: 13,
-        backgroundColor: palette.bgCard,
+        //   backgroundColor: palette.bgCard,
         width: ImageHeight,
         height: ImageHeight,
         borderRadius: 17,

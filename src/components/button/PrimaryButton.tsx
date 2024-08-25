@@ -1,6 +1,7 @@
 import React from "react";
 import { palette } from "../../theme/themes";
 import { Button } from "react-native-paper";
+import { UserContext } from "../../context/user/UserContext";
 
 
 interface Props {
@@ -24,10 +25,11 @@ const PrimaryButton: React.FC<Props> = ({
     loading,
     buttonColor,
 }) => {
+    const userContext = React.useContext(UserContext);
 
     return (
         <Button
-            buttonColor={buttonColor === "light" ? palette.txtWhite : palette.primaryDark}
+            buttonColor={buttonColor === "light" ? palette.txtWhite : userContext?.customTheme?.primaryDark}
             textColor={buttonColor === "light" ? palette.primaryDark : palette.txtWhite}
             icon={icon}
             mode={"contained"}

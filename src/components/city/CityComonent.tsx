@@ -50,7 +50,9 @@ const CityComonent: React.FC<Props> = ({
                         data={data?.data.length > 0 ? data?.data : []}
                         renderItem={({ item }) =>
                             <TouchableOpacity onPress={() => navigation.navigate("ValetServicesScreen", { city: item })}>
-                                <View style={styles.card}>
+                                <View
+                                    style={[styles.card, { backgroundColor: userContext?.customTheme?.bgCard }]}
+                                >
                                     <Text variant="titleSmall" style={styles.txtSty}>{item.cityName}</Text>
                                 </View>
                             </TouchableOpacity>
@@ -91,7 +93,7 @@ const styles = StyleSheet.create({
     card: {
         margin: 6,
         padding: 13,
-        backgroundColor: palette.bgCard,
+        //   backgroundColor: palette.bgCard,
         width: ImageHeight,
         height: ImageHeight,
         borderRadius: 17,

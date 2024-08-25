@@ -7,6 +7,7 @@ import Services from '../../components/services/Services';
 import { Text } from 'react-native-paper';
 import Store from '../../components/store/Store';
 import CityComonent from '../../components/city/CityComonent';
+import { UserContext } from '../../context/user/UserContext';
 
 type Props = {};
 
@@ -15,7 +16,7 @@ const ImageHeight = Math.round(Dimensions.get('window').width * 9 / 9);
 
 const ValetScreen: React.FC<Props> = () => {
   const navigation = useNavigation();
-  // const userContext = React.useContext(UserContext);
+  const userContext = React.useContext(UserContext);
   const [isEnable, setIsEnable] = React.useState(false);
 
 
@@ -30,7 +31,10 @@ const ValetScreen: React.FC<Props> = () => {
 
   return (
     <>
-      <View style={styles.container}>
+      <View style={{
+        flex: 1,
+        backgroundColor: userContext?.customTheme?.primaryDark,
+      }}>
         <StatusBar
           animated={true}
           backgroundColor={palette.primaryDark}
@@ -56,18 +60,10 @@ const ValetScreen: React.FC<Props> = () => {
 export default ValetScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    //paddingHorizontal: 15,
-    backgroundColor: palette.primaryDark
-  },
   compView: {
     padding: 10,
     gap: 26,
     marginTop: ImageHeight + 10
-  },
-  txtSty: {
-    fontWeight: '800'
   },
   txtTitleSty: {
     fontWeight: '600',

@@ -70,7 +70,10 @@ const HomeScreen: React.FC<Props> = () => {
 
   return (
     <>
-      <View style={styles.container}>
+      <View style={{
+        flex: 1,
+        backgroundColor: userContext?.customTheme?.primaryDark,
+      }}>
         <StatusBar
           animated={true}
           backgroundColor={palette.primaryDark}
@@ -96,18 +99,10 @@ const HomeScreen: React.FC<Props> = () => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // paddingHorizontal: 15,
-    backgroundColor: palette.primaryDark,
-  },
   compView: {
     padding: 10,
     gap: 26,
     marginTop: ImageHeight + 10
-  },
-  txtSty: {
-    fontWeight: '800'
   },
   txtTitleSty: {
     fontWeight: '600',

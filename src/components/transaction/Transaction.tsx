@@ -1,16 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { Dimensions, FlatList, Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-paper";
-import { getNearByStores, getTransactionByCustomerId } from "../../api/common/commonApi";
+import { getTransactionByCustomerId } from "../../api/common/commonApi";
 import Arrow from '../../asset/svg/arrow_forward.svg';
 import { UserContext } from "../../context/user/UserContext";
 import { palette } from "../../theme/themes";
 import { utcDateConvoter } from "../../constant/constFunction";
 import { useNavigation } from "@react-navigation/native";
 
-const WIDTH = Math.round(Dimensions.get('window').width);
-
+ 
 interface Props {
 
 }
@@ -46,7 +45,9 @@ const Transaction: React.FC<Props> = ({ }) => {
                         keyExtractor={(item, index) => index.toString()}
                         data={transList}
                         renderItem={({ item }) =>
-                            <View style={styles.card}>
+                            <View
+                                style={[styles.card, { backgroundColor: userContext?.customTheme?.bgCard }]}
+                            >
                                 <Image source={require('../../asset/valet.png')}
                                     style={styles.img} />
                                 <View style={{ width: '64%' }}>
@@ -103,7 +104,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: 16,
-        backgroundColor: palette.bgCard,
+        //   backgroundColor: palette.bgCard,
         width: '100%',
         height: 148,
         borderRadius: 17,

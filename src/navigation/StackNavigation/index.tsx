@@ -13,17 +13,19 @@ import RedeemScreen from "../../screen/valet/RedeemScreen";
 import SucessScreen from "../../screen/valet/SucessScreen";
 import { RenderTabNavigation } from "../TabNavigation";
 import TransactionDetailsScreen from "../../screen/transaction/TransactionDetailsScreen";
+import { UserContext } from "../../context/user/UserContext";
 
 
 const Stack = createStackNavigator();
 
 const Navigation = () => {
+  const userContext = React.useContext(UserContext);
 
   const MyTheme = {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      background: palette.bgGray
+      background: userContext?.customTheme?.bgGray
     },
   };
 
