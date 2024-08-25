@@ -59,7 +59,7 @@ const ValetServicesScreen: React.FC<Props> = ({ route }) => {
             renderItem={({ item }) =>
               <View style={styles.card}>
                 <Text variant="titleMedium" style={styles.txtSty}>{item?.storeName}</Text>
-                <TouchableOpacity onPress={() => navigation.navigate("ValetDetailsScreen", { coupon: item })}>
+                <TouchableOpacity onPress={() => navigation.navigate("ValetDetailsScreen", { store: item })}>
                   <View style={styles.arrowCard}>
                     <Arrow width={20} height={20} />
                   </View>

@@ -2,7 +2,7 @@ import instance from "../apiInstance";
 
 export const getActivationCodeDetails = async (code: any) => {
 
-    const response = await instance.get(`/customers/getActivationCodeDetails?activationCode=${"6E32WDGX"}`);
+    const response = await instance.get(`/customers/getActivationCodeDetails?activationCode=${code}`);
 
     return response;
 };
@@ -37,6 +37,12 @@ export const getNearByCoupon = async (user: any, location: any) => {
 
 export const getCustomerCoupons = async (user: any,) => {
     const response = await instance.get(`/customers/getCustomerCoupons?customerId=${user?.customerId}&couponTypeName=Vallet Card&generic=Unique`);
+
+    return response;
+};
+
+export const getCustomerCouponsByStoreIdNMerchantId = async (user: any,store:any) => {
+    const response = await instance.get(`/customers/getCustomerCouponsByStoreIdNMerchantId?customerId=${user?.customerId}&couponTypeName=Vallet Card&merchantId=${store?.merchantId}&storeId=${store?.storeId}`);
 
     return response;
 };

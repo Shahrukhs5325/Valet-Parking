@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Dimensions, Image, ImageBackground, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
+import { Dimensions, FlatList, Image, ImageBackground, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
 import CallIcon from '../../asset/svg/call.svg';
 import ShareIcon from '../../asset/svg/communities.svg';
@@ -12,6 +12,9 @@ import PrimaryButton from '../../components/button/PrimaryButton';
 import Header from '../../components/header/Header';
 import { palette } from '../../theme/themes';
 import TermIcon from '../../asset/svg/gifts.svg';
+import { useQuery } from '@tanstack/react-query';
+import { UserContext } from '../../context/user/UserContext';
+import { getCustomerCouponsByStoreIdNMerchantId } from '../../api/common/commonApi';
 
 
 type Props = {
@@ -24,7 +27,29 @@ const ImageHeight = Math.round(Dimensions.get('window').width * 6 / 9);
 
 const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
-  const { coupon } = route.params;
+  const userContext = React.useContext(UserContext);
+
+  const { store } = route.params;
+
+  const [coupon, setCoupon] = React.useState("");
+  const [couponList, setCouponList] = React.useState([]);
+
+
+
+  const {
+    isLoading,
+    data,
+    refetch,
+  } = useQuery({
+    queryKey: ['Coupon_list_by_city', userContext?.user, store],
+    queryFn: () => getCustomerCouponsByStoreIdNMerchantId(userContext?.user, store),
+  });
+
+
+  React.useEffect(() => {
+    setCoupon(data?.data?.data && data?.data?.data?.[0]);
+    setCouponList(data?.data?.data)
+  }, [data?.data?.data]);
 
 
   return (
@@ -98,6 +123,36 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
               <Text variant="titleSmall" style={styles.txtheadSty}>parking duration</Text>
               <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 6, justifyContent: "space-between" }}>
 
+                <FlatList
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                  keyExtractor={(item, index) => index.toString()}
+                  data={couponList}
+                  renderItem={({ item }) =>
+                    <View style={{}}>
+                      <View style={styles.serviceView}>
+                        <Text variant="bodySmall" style={styles.txtSty}>{coupon?.denomination} Hour</Text>
+                      </View>
+                      <View style={styles.serviceBtmView}>
+                        <Text variant="bodySmall" style={styles.txtSty}>1-Redeems</Text>
+                      </View>
+                    </View>
+                  }
+                  style={styles.list}
+                  contentContainerStyle={styles.listContents}
+                  // initialNumToRender={5}
+                  // maxToRenderPerBatch={10}
+                  // windowSize={10}
+                  // updateCellsBatchingPeriod={50}
+                  ListEmptyComponent={<>
+                    <Text variant="bodyMedium" style={styles.emtTxt}>Data Not Found</Text>
+                  </>}
+                />
+              </View>
+            </View>
+            {/* <View style={{ gap: 8 }}>
+              <Text variant="titleSmall" style={styles.txtheadSty}>parking duration</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 6, justifyContent: "space-between" }}>
                 <View style={{}}>
                   <View style={styles.serviceView}>
                     <Text variant="bodySmall" style={styles.txtSty}>{Math.round(coupon?.validityDuration / 60)} Hour</Text>
@@ -106,9 +161,8 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
                     <Text variant="bodySmall" style={styles.txtSty}>1-Redeems</Text>
                   </View>
                 </View>
-
               </View>
-            </View>
+            </View> */}
             <View>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, }}>
                 <TermIcon />
@@ -206,7 +260,19 @@ const styles = StyleSheet.create({
     // bottom: 10,
     paddingTop: 18,
     marginTop: -10
-  }
+  },
+  listContents: {
+    gap: 16,
+
+  },
+  list: {
+
+  },
+  emtTxt: {
+    color: palette.txtWhite,
+    textAlign: 'center',
+    paddingVertical: 30
+  },
 
 
 });
