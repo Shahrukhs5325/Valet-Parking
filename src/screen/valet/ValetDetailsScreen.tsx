@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Dimensions, FlatList, Image, ImageBackground, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
+import { Dimensions, FlatList, Image, ImageBackground, ScrollView, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native-paper';
 import CallIcon from '../../asset/svg/call.svg';
 import ShareIcon from '../../asset/svg/communities.svg';
@@ -33,8 +33,10 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
 
   const [coupon, setCoupon] = React.useState("");
   const [couponList, setCouponList] = React.useState([]);
+  const [selectQty, setSelectQty] = React.useState(1);
 
 
+  const ArrQty = [1, 2, 3];
 
   const {
     isLoading,
@@ -51,9 +53,6 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
     setCouponList(data?.data?.data)
   }, [data?.data?.data]);
 
-  console.log(data?.data?.data);
-
-  console.log(coupon);
 
 
   return (
@@ -123,7 +122,8 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
                 </View>
 
               </View>
-              <View style={{ gap: 8 }}>
+
+              {/* <View style={{ gap: 8 }}>
                 <Text variant="titleSmall" style={styles.txtheadSty}>parking duration</Text>
                 <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 6, justifyContent: "space-between" }}>
 
@@ -144,29 +144,37 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
                     }
                     style={styles.list}
                     contentContainerStyle={styles.listContents}
-                    // initialNumToRender={5}
-                    // maxToRenderPerBatch={10}
-                    // windowSize={10}
-                    // updateCellsBatchingPeriod={50}
+                    initialNumToRender={5}
+                    maxToRenderPerBatch={10}
+                    windowSize={10}
+                    updateCellsBatchingPeriod={50}
                     ListEmptyComponent={<>
                       <Text variant="bodyMedium" style={styles.emtTxt}>Data Not Found</Text>
                     </>}
                   />
                 </View>
-              </View>
-              {/* <View style={{ gap: 8 }}>
-              <Text variant="titleSmall" style={styles.txtheadSty}>parking duration</Text>
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 6, justifyContent: "space-between" }}>
-                <View style={{}}>
-                  <View style={styles.serviceView}>
-                    <Text variant="bodySmall" style={styles.txtSty}>{Math.round(coupon?.validityDuration / 60)} Hour</Text>
-                  </View>
-                  <View style={styles.serviceBtmView}>
-                    <Text variant="bodySmall" style={styles.txtSty}>1-Redeems</Text>
-                  </View>
+              </View> */}
+
+              <View style={{ gap: 8 }}>
+                <Text variant="titleSmall" style={styles.txtheadSty}>parking duration</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 6, justifyContent: "space-around" }}>
+
+                  {ArrQty.map((item, i) => (
+                    <TouchableOpacity onPress={() => setSelectQty(item)}>
+                      <View style={item === selectQty ? [styles.serviceView, { backgroundColor: userContext?.customTheme?.txtBlack, borderColor: userContext?.customTheme?.txtWhite }] : [styles.serviceView, { backgroundColor: userContext?.customTheme?.bgCard }]}>
+                        <Text variant="bodySmall" style={styles.txtSty}>{item} Hour</Text>
+                      </View>
+                      {/* <View style={[styles.serviceBtmView, { backgroundColor: userContext?.customTheme?.bgCard }]}> */}
+                      <View style={item === selectQty ? [styles.serviceBtmView, { backgroundColor: userContext?.customTheme?.txtBlack, borderColor: userContext?.customTheme?.txtWhite }] : [styles.serviceBtmView, { backgroundColor: userContext?.customTheme?.bgCard }]}>
+
+                        <Text variant="bodySmall" style={styles.txtSty}>1-Redeems</Text>
+                      </View>
+                    </TouchableOpacity>
+                  ))}
+
                 </View>
               </View>
-            </View> */}
+
               <View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, }}>
                   <TermIcon />
@@ -179,7 +187,7 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
 
               </View>
               <View style={{ marginBottom: 20 }}>
-                <PrimaryButton onPress={() => navigation.navigate("RedeemScreen", { coupon: coupon })} buttonColor={"light"}>Redeem</PrimaryButton>
+                <PrimaryButton onPress={() => navigation.navigate("RedeemScreen", { coupon: coupon, qty: selectQty, couponList: couponList })} buttonColor={"light"}>Redeem</PrimaryButton>
 
               </View>
             </View>
@@ -253,8 +261,9 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     // backgroundColor: palette.bgCard,
     borderRadius: 10,
-    borderColor: '#FFF',
-    borderWidth: 1, zIndex: 1,
+    // borderColor: '#FFF',
+    borderWidth: 1,
+    zIndex: 1,
     paddingTop: 20,
     paddingBottom: 20,
   },
@@ -267,7 +276,7 @@ const styles = StyleSheet.create({
     // backgroundColor: palette.bgCard,
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
-    borderColor: '#FFF',
+    // borderColor: '#FFF',
     borderWidth: 1,
     // position: "relative",
     // bottom: 10,

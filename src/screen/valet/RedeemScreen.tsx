@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Dimensions, StatusBar, StyleSheet, View } from 'react-native';
+import { Dimensions, FlatList, StatusBar, StyleSheet, View } from 'react-native';
 import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell } from 'react-native-confirmation-code-field';
 import { Snackbar, Text } from 'react-native-paper';
 import QRCode from 'react-native-qrcode-svg';
@@ -9,6 +9,7 @@ import Header from '../../components/header/Header';
 import { UserContext } from '../../context/user/UserContext';
 import { palette } from '../../theme/themes';
 import { redeemCouponByqrCode } from '../../api/common/commonApi';
+import moment from 'moment';
 
 
 type Props = {
@@ -21,7 +22,7 @@ const ImageHeight = Math.round(Dimensions.get('window').width * 6 / 9);
 
 const RedeemScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
-  const { coupon } = route.params;
+  const { coupon, qty, couponList } = route.params;
 
   const userContext = React.useContext(UserContext);
   const [storeCode, setStoreCode] = React.useState('');
@@ -43,39 +44,66 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
 
   const onDismissSnackBar = () => setVisible(false);
 
+  const submitHandler = () => {
 
-  const redeemCouponByqrCodeHandler = async () => {
+    const arrCoupon = couponList.slice(0, qty);
+    console.log("---arrCoupon____________");
+
+    var CurrentDate = moment();
+
+
+
+
+    arrCoupon && arrCoupon.length && arrCoupon.forEach((item: any, i: number) => {
+      var returned_endate = moment(CurrentDate).add(i, 'hours');
+      var date = moment(CurrentDate).add(i + 1, 'hours');
+
+      // console.log(i, "start", moment(returned_endate).format("DD-MM-YYYY HH:MM"));
+      // console.log(i, "end", moment(date).format("DD-MM-YYYY HH:MM"));
+
+      const payload = {
+        "couponCode": item?.couponCode,
+        "redeemptionId": 0,
+        "storeId": 0,
+        "couponId": item?.couponId ? item?.couponId : 0,
+        "statusId": 0,
+        "userId": userContext?.user?.customerId,
+        "invoiceAmount": 0,
+        "phoneNumber": userContext?.user?.phoneNo,
+        "merchantId": item?.merchantId,
+        "binNumber": 0,
+        "redemptionAmount": 0,
+        "redeemptionTypeName": "online",
+        "redeemptionTypeId": 0,
+        "points": item?.sellingPoints,
+        "email": userContext?.user?.email,
+        "name": userContext?.user?.customerName,
+        "merchantName": item?.merchantName,
+        "qrCode": "",
+        "storePin": storeCode,
+        "redeemByPin": true,
+        "startDate": moment(returned_endate).format("DD-MM-YYYY HH:MM"),
+        "endDate": moment(date).format("DD-MM-YYYY HH:MM"),
+      }
+      console.log("payload", i + 1, payload);
+
+      const isNextScr = (i + 1) === qty ? true : false;
+
+      redeemCouponByqrCodeHandler(payload, isNextScr);
+    });
+
+  }
+
+  const redeemCouponByqrCodeHandler = async (payload: any, isNextScr: boolean) => {
     setIsLoading(true);
-    const payload = {
-      "couponCode": coupon?.couponCode,
-      "redeemptionId": 0,
-      "storeId": 0,
-      "couponId": coupon?.couponId ? coupon?.couponId : 0,
-      "statusId": 0,
-      "userId": userContext?.user?.customerId,
-      "invoiceAmount": 0,
-      "phoneNumber": userContext?.user?.phoneNo,
-      "merchantId": coupon?.merchantId,
-      "binNumber": 0,
-      "redemptionAmount": 0,
-      "redeemptionTypeName": "online",
-      "redeemptionTypeId": 0,
-      "points": coupon?.sellingPoints,
-      "email": userContext?.user?.email,
-      "name": userContext?.user?.customerName,
-      "merchantName": coupon?.merchantName,
-      "qrCode": "",
-      "storePin": storeCode,
-      "redeemByPin": true
-    }
 
     try {
       const res = await redeemCouponByqrCode(payload);
       if (res.status === 200) {
         console.log("___________res:", res?.data?.data?.coupondetails);
         const resData = res?.data?.data?.coupondetails
-        navigation.navigate("SucessScreen", { response: resData });
-        setIsLoading(false);
+        isNextScr && navigation.navigate("SucessScreen", { response: resData });
+        isNextScr && setIsLoading(false);
       }
     } catch (err) {
 
@@ -100,8 +128,8 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
 
         <View style={styles.compView}>
           <View style={{ gap: 8, marginVertical: 6, alignItems: 'center' }}>
-            <Text variant="headlineMedium" style={styles.txtTitleSty}>Billionaire</Text>
-            <Text variant="bodySmall" style={styles.txtSty}>DISTRICT, RIYADH - DAB AB ST. SULAIMANIYA, Riyadh Saudi Arabia</Text>
+            <Text variant="headlineMedium" style={styles.txtTitleSty}>{coupon.templateName}</Text>
+            <Text variant="bodySmall" style={styles.txtSty}>{coupon.address}</Text>
           </View>
 
           <View style={{ justifyContent: 'center', alignItems: 'center', gap: 10 }}>
@@ -144,7 +172,7 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
 
         </View>
         <View style={{ width: '100%', marginTop: 60 }}>
-          <PrimaryButton loading={isLoading} onPress={() => redeemCouponByqrCodeHandler()} buttonColor={"light"}>Redeem</PrimaryButton>
+          <PrimaryButton loading={isLoading} onPress={() => submitHandler()} buttonColor={"light"}>Redeem</PrimaryButton>
 
         </View>
       </View>
@@ -222,6 +250,13 @@ const styles = StyleSheet.create({
   },
   focusCell: {
     borderColor: palette.txtWhite
+  },
+  listContents: {
+    gap: 16,
+
+  },
+  list: {
+
   },
 
 
