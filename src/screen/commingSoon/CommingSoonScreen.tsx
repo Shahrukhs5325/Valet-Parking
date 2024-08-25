@@ -2,19 +2,21 @@ import React from 'react';
 import { StatusBar, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
 import { palette } from '../../theme/themes';
+import { UserContext } from '../../context/user/UserContext';
 
 
 type Props = {};
 
 
 const CommingSoonScreen: React.FC<Props> = () => {
+  const userContext = React.useContext(UserContext);
 
   return (
     <>
-      <View style={styles.container}>
+      <View style={[styles.container, { backgroundColor: userContext?.customTheme?.primaryDark }]}>
         <StatusBar
           animated={true}
-          backgroundColor={palette.primaryDark}
+          backgroundColor={userContext?.customTheme?.primaryDark}
         />
         <View style={styles.compView}>
           <View style={{ gap: 8, marginVertical: 6, alignItems: 'center' }}>
@@ -33,7 +35,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: palette.primaryDark
+    //   backgroundColor: palette.primaryDark
   },
   compView: {
     justifyContent: 'center',

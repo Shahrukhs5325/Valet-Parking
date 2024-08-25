@@ -37,7 +37,7 @@ const ValetScreen: React.FC<Props> = () => {
       }}>
         <StatusBar
           animated={true}
-          backgroundColor={palette.primaryDark}
+          //  backgroundColor={userContext?.customTheme?.primaryDark}
         />
         <ScrollView showsVerticalScrollIndicator={false}>
           <TopBanner navbar={true} />

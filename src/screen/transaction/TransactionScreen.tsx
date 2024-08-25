@@ -26,7 +26,7 @@ const TransactionScreen: React.FC<Props> = () => {
       }}>
         <StatusBar
           animated={true}
-          backgroundColor={palette.primaryDark}
+          // backgroundColor={palette.txtWhite}
         />
         <ScrollView showsVerticalScrollIndicator={false}>
           <TopBanner />

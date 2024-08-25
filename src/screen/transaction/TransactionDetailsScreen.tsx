@@ -29,7 +29,7 @@ const TransactionDetailsScreen: React.FC<Props> = ({ route }) => {
       <View style={styles.container}>
         <StatusBar
           animated={true}
-          backgroundColor={palette.primaryDark}
+          backgroundColor={userContext?.customTheme?.primaryDark}
         />
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{ flex: 1, backgroundColor: userContext?.customTheme?.primaryDark, paddingBottom: 50 }}>
