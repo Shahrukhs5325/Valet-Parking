@@ -24,6 +24,7 @@ const Header: React.FC<Props> = ({
             setIsLoading(true);
             await Auth.signOut();
             await userContext.setUser(null);
+            await userContext.secCustomTheme(palette);
 
             navigation.replace('LoginScreen');
 
