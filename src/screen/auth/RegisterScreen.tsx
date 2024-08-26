@@ -9,7 +9,7 @@ import { Auth, Hub } from 'aws-amplify';
 import { handleCognitoError } from '../../constant/constFunction';
 import { addCustomerPostApi } from '../../api/user/userApi';
 import { UserContext } from '../../context/user/UserContext';
-import { getActivationCodeDetails } from '../../api/common/commonApi';
+import { getActivationCodeDetails, getClientTheme } from '../../api/common/commonApi';
 
 type Props = {};
 
@@ -225,6 +225,7 @@ const RegisterScreen: React.FC<Props> = () => {
         console.log("++++++++++ customer added : ", customerId);
         await updateUser(res?.data?.data);
         await userContext.setUser(res?.data?.data);
+        await getClientThemeApi(user?.data?.data?.correlationId)
         navigation.replace("HomeScreen");
       } else {
         navigation.replace("LoginScreen");
@@ -244,6 +245,25 @@ const RegisterScreen: React.FC<Props> = () => {
     await Auth.updateUserAttributes(user, {
       "custom:customerId": data?.customerId?.toString(),
     });
+  }
+
+  const getClientThemeApi = async (id: number | string) => {
+    try {
+      const res = await getClientTheme(id);
+      if (res?.data?.data) {
+        const theme = res?.data?.data?.customTheme
+        console.log("/n**** Custom Theme Color **** ", theme);
+        await userContext.secCustomTheme(theme);
+      } else {
+        console.log("\n**** Default Theme ****\n");
+        await userContext.secCustomTheme(palette);
+      }
+
+    } catch (error) {
+      await userContext.secCustomTheme(palette);
+      console.log("\n**** Default Theme ****\n");
+      console.log("getCustomerByIdApi err: ", error);
+    }
   }
 
   return (
