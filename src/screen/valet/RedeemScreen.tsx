@@ -44,64 +44,98 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
 
   const onDismissSnackBar = () => setVisible(false);
 
-  const submitHandler = () => {
+  // const submitHandler = () => {
 
-    const arrCoupon = couponList.slice(0, qty);
-    console.log("---arrCoupon____________");
+  //   const arrCoupon = couponList.slice(0, qty);
+  //   console.log("---arrCoupon____________");
 
-    var CurrentDate = moment();
-
-
+  //   var CurrentDate = moment();
 
 
-    arrCoupon && arrCoupon.length && arrCoupon.forEach((item: any, i: number) => {
-      var returned_endate = moment(CurrentDate).add(i, 'hours');
-      var date = moment(CurrentDate).add(i + 1, 'hours');
 
+
+  //   arrCoupon && arrCoupon.length && arrCoupon.forEach((item: any, i: number) => {
+  //     var returned_endate = moment(CurrentDate).add(i, 'hours');
+  //     var date = moment(CurrentDate).add(i + 1, 'hours');
+
+
+  //     const payload = {
+  //       "couponCode": item?.couponCode,
+  //       "redeemptionId": 0,
+  //       "storeId": 0,
+  //       "couponId": item?.couponId ? item?.couponId : 0,
+  //       "statusId": 0,
+  //       "userId": userContext?.user?.customerId,
+  //       "invoiceAmount": 0,
+  //       "phoneNumber": userContext?.user?.phoneNo,
+  //       "merchantId": item?.merchantId,
+  //       "binNumber": 0,
+  //       "redemptionAmount": 0,
+  //       "redeemptionTypeName": "online",
+  //       "redeemptionTypeId": 0,
+  //       "points": item?.sellingPoints,
+  //       "email": userContext?.user?.email,
+  //       "name": userContext?.user?.customerName,
+  //       "merchantName": item?.merchantName,
+  //       "qrCode": "",
+  //       "storePin": storeCode,
+  //       "redeemByPin": true,
+  //       "startDate": moment(returned_endate).format("DD-MM-YYYY HH:MM"),
+  //       "endDate": moment(date).format("DD-MM-YYYY HH:MM"),
+  //     }
+  //     console.log("payload", i + 1, payload);
+
+  //     const isNextScr = (i + 1) === qty ? true : false;
+
+  //     // redeemCouponByqrCodeHandler(payload, isNextScr);
+  //   });
+
+  // }
+
+  const redeemCouponByqrCodeHandler = async () => {
+    setIsLoading(true);
+
+    try {
+      const CurrentDate = moment();
+      const redeemEndDate = moment(CurrentDate).add(qty, 'hours');
 
       const payload = {
-        "couponCode": item?.couponCode,
+        "couponCode": coupon?.couponCode,
         "redeemptionId": 0,
         "storeId": 0,
-        "couponId": item?.couponId ? item?.couponId : 0,
+        "couponId": coupon?.couponId ? coupon?.couponId : 0,
         "statusId": 0,
         "userId": userContext?.user?.customerId,
         "invoiceAmount": 0,
         "phoneNumber": userContext?.user?.phoneNo,
-        "merchantId": item?.merchantId,
+        "merchantId": coupon?.merchantId,
         "binNumber": 0,
         "redemptionAmount": 0,
         "redeemptionTypeName": "online",
         "redeemptionTypeId": 0,
-        "points": item?.sellingPoints,
+        "points": coupon?.sellingPoints,
         "email": userContext?.user?.email,
         "name": userContext?.user?.customerName,
-        "merchantName": item?.merchantName,
+        "merchantName": coupon?.merchantName,
         "qrCode": "",
         "storePin": storeCode,
         "redeemByPin": true,
-        "startDate": moment(returned_endate).format("DD-MM-YYYY HH:MM"),
-        "endDate": moment(date).format("DD-MM-YYYY HH:MM"),
+        "redeemStartDate": moment(CurrentDate).format("DD-MM-YYYY HH:MM"),
+        "redeemEndDate": moment(redeemEndDate).format("DD-MM-YYYY HH:MM"),
+        "validityDuration": qty
       }
-      console.log("payload", i + 1, payload);
-
-      const isNextScr = (i + 1) === qty ? true : false;
-
-      redeemCouponByqrCodeHandler(payload, isNextScr);
-    });
-
-  }
-
-  const redeemCouponByqrCodeHandler = async (payload: any, isNextScr: boolean) => {
-    setIsLoading(true);
-
-    try {
       const res = await redeemCouponByqrCode(payload);
       if (res.status === 200) {
-        console.log("___________res:", res?.data?.data?.coupondetails);
-        const resData = res?.data?.data?.coupondetails
-        isNextScr && navigation.navigate("SucessScreen", { response: resData });
-        isNextScr && setIsLoading(false);
+        const redeemDate = {
+          redeemEndDate: res?.data?.data?.redeemCoupon?.redeemEndDate,
+          redeemStartDate: res?.data?.data?.redeemCoupon?.redeemStartDate
+        }
+        const resData = { ...res?.data?.data?.coupondetails, ...redeemDate }
+
+        console.log("___________res:", resData);
+
+        navigation.navigate("SucessScreen", { response: resData });
+        setIsLoading(false);
       }
     } catch (err) {
 
@@ -170,7 +204,7 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
 
         </View>
         <View style={{ width: '100%', marginTop: 60 }}>
-          <PrimaryButton loading={isLoading} onPress={() => submitHandler()} buttonColor={"light"}>Redeem</PrimaryButton>
+          <PrimaryButton loading={isLoading} onPress={() => redeemCouponByqrCodeHandler()} buttonColor={"light"}>Redeem</PrimaryButton>
 
         </View>
       </View>

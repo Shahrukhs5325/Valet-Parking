@@ -59,7 +59,6 @@ const TransactionDetailsScreen: React.FC<Props> = ({ route }) => {
   const isBeforeStart = moment().isBefore(startDate);
 
 
-
   return (
     <>
       <View style={styles.container}>
@@ -80,17 +79,25 @@ const TransactionDetailsScreen: React.FC<Props> = ({ route }) => {
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 60, marginHorizontal: 40 }}>
               <View style={{ alignItems: 'center', gap: 6 }}>
                 {isBeforeStart ? (
-                  <Text variant="displaySmall" style={styles.txtTitleSty}>NOT Start</Text>
+                  <Text variant="displaySmall" style={styles.txtTitleSty}>00:00</Text>
                 ) : timeLeft ? (
                   <Text variant="displayMedium" style={styles.txtTitleSty}>
                     {`${timeLeft.hours}:${timeLeft.minutes}`}
                   </Text>
                 ) : (
-                  <Text variant="displaySmall" style={styles.txtTitleSty}>END</Text>
+                  <Text variant="displaySmall" style={styles.txtTitleSty}>00:00</Text>
                 )}
 
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Text variant="titleSmall" style={styles.txtStatusSty}>In Progress</Text>
+                  {isBeforeStart ? (
+                    <Text variant="titleSmall" style={styles.txtStatusSty}>Not Started</Text>
+                  ) : timeLeft ? (
+                    <Text variant="displayMedium" style={styles.txtTitleSty}>
+                      <Text variant="titleSmall" style={styles.txtStatusSty}>In Progress</Text>
+                    </Text>
+                  ) : (
+                    <Text variant="titleSmall" style={styles.txtStatusSty}>Complete</Text>
+                  )}
                 </View>
               </View>
               <View style={{ alignItems: 'center', gap: 10 }}>
@@ -134,11 +141,15 @@ const TransactionDetailsScreen: React.FC<Props> = ({ route }) => {
             <View style={{ padding: 15, gap: 8 }}>
               <Text variant="titleMedium" style={styles.txtBlackHeading}>Service Time</Text>
               <View style={{}}>
-                <Text variant="titleMedium" style={styles.txtSummHeading}>Service Type</Text>
+                <Text variant="titleMedium" style={styles.txtSummHeading}>Duration</Text>
+                <Text variant="bodyLarge" style={styles.txtBodyHeading}>{coupon?.validityDuration} Hour</Text>
+              </View>
+              <View style={{}}>
+                <Text variant="titleMedium" style={styles.txtSummHeading}>Start Date & Time</Text>
                 <Text variant="bodyLarge" style={styles.txtBodyHeading}>{coupon?.redeemStartDate}</Text>
               </View>
               <View style={{}}>
-                <Text variant="titleMedium" style={styles.txtSummHeading}>Service Name</Text>
+                <Text variant="titleMedium" style={styles.txtSummHeading}>End Date & Time</Text>
                 <Text variant="bodyLarge" style={styles.txtBodyHeading}>{coupon?.redeemEndDate}</Text>
               </View>
             </View>

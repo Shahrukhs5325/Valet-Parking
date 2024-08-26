@@ -161,11 +161,11 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
 
                   {ArrQty.map((item, i) => (
                     <TouchableOpacity onPress={() => setSelectQty(item)}>
-                      <View key={i} style={item === selectQty ? [styles.serviceView, { backgroundColor: userContext?.customTheme?.txtBlack, borderColor: userContext?.customTheme?.txtWhite }] : [styles.serviceView, { backgroundColor: userContext?.customTheme?.bgCard }]}>
+                      <View key={i} style={item === selectQty ? [styles.serviceView, { backgroundColor: userContext?.customTheme?.primaryDark, borderColor: userContext?.customTheme?.txtWhite }] : [styles.serviceView, { backgroundColor: userContext?.customTheme?.bgCard }]}>
                         <Text variant="bodySmall" style={styles.txtSty}>{item} Hour</Text>
                       </View>
                       {/* <View style={[styles.serviceBtmView, { backgroundColor: userContext?.customTheme?.bgCard }]}> */}
-                      <View style={item === selectQty ? [styles.serviceBtmView, { backgroundColor: userContext?.customTheme?.txtBlack, borderColor: userContext?.customTheme?.txtWhite }] : [styles.serviceBtmView, { backgroundColor: userContext?.customTheme?.bgCard }]}>
+                      <View style={item === selectQty ? [styles.serviceBtmView, { backgroundColor: userContext?.customTheme?.primaryDark, borderColor: userContext?.customTheme?.txtWhite }] : [styles.serviceBtmView, { backgroundColor: userContext?.customTheme?.bgCard }]}>
 
                         <Text variant="bodySmall" style={styles.txtSty}>1-Redeems</Text>
                       </View>
