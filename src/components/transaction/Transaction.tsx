@@ -39,7 +39,7 @@ const Transaction: React.FC<Props> = ({ }) => {
     if (isLoading) {
         return (
             <View style={[styles.container, { backgroundColor: userContext?.customTheme?.primaryDark }]}>
-                <ActivityIndicator size="large" color="#FFF" />
+                <ActivityIndicator size="small" color="#FFF" />
             </View>
         )
     }

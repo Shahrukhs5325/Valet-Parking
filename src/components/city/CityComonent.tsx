@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { Dimensions, FlatList, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Dimensions, FlatList, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-paper";
 import { getAllCity } from "../../api/common/commonApi";
 import { UserContext } from "../../context/user/UserContext";
@@ -31,6 +31,14 @@ const CityComonent: React.FC<Props> = ({
 
 
     React.useEffect(() => { }, [data]);
+
+    if (isLoading) {
+        return (
+            <View style={[styles.container, { backgroundColor: userContext?.customTheme?.primaryDark }]}>
+                <ActivityIndicator size="small" color="#FFF" />
+            </View>
+        )
+    }
 
     return (
 
