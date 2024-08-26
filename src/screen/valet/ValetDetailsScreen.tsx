@@ -225,9 +225,10 @@ const styles = StyleSheet.create({
 
   },
   compView: {
-    // borderRadius:17,
+    borderRadius: 17,
     padding: 10,
-    marginTop: 26,
+    paddingTop: 26,
+    marginTop: -10,
     gap: 26,
   },
   txtSty: {
