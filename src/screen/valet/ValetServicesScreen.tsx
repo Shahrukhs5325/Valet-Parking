@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { Dimensions, FlatList, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Dimensions, FlatList, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native-paper';
 import { getStoresByCityName } from '../../api/common/commonApi';
 import Arrow from '../../asset/svg/arrow_forward.svg';
@@ -38,6 +38,13 @@ const ValetServicesScreen: React.FC<Props> = ({ route }) => {
   }, [data?.data?.data]);
 
 
+  if (isLoading) {
+    return (
+      <View style={[styles.container, { flex: 1, backgroundColor: userContext?.customTheme?.primaryDark }]}>
+        <ActivityIndicator size="large" color="#FFF" />
+      </View>
+    )
+  }
 
 
   return (

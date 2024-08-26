@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Dimensions, FlatList, Image, ImageBackground, ScrollView, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Dimensions, FlatList, Image, ImageBackground, ScrollView, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native-paper';
 import CallIcon from '../../asset/svg/call.svg';
 import ShareIcon from '../../asset/svg/communities.svg';
@@ -53,6 +53,14 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
     setCouponList(data?.data?.data)
   }, [data?.data?.data]);
 
+
+  if (isLoading) {
+    return (
+      <View style={[styles.containerErr, { backgroundColor: userContext?.customTheme?.primaryDark }]}>
+        <ActivityIndicator size="large" color="#FFF" />
+      </View>
+    )
+  }
 
 
   return (

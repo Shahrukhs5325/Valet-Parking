@@ -93,15 +93,16 @@ const LoginScreen: React.FC<Props> = () => {
       const res = await getClientTheme(id);
       if (res?.data?.data) {
         const theme = res?.data?.data?.customTheme
-        console.log("Theme Color", theme);
-
+        console.log("/n**** Custom Theme Color **** ", theme);
         await userContext.secCustomTheme(theme);
       } else {
+        console.log("\n**** Default Theme ****\n");
         await userContext.secCustomTheme(palette);
       }
 
     } catch (error) {
       await userContext.secCustomTheme(palette);
+      console.log("\n**** Default Theme ****\n");
       console.log("getCustomerByIdApi err: ", error);
     }
   }
