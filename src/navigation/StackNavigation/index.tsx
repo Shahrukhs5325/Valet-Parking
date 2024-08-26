@@ -6,7 +6,7 @@ import LoginScreen from "../../screen/auth/LoginScreen";
 import RegisterScreen from "../../screen/auth/RegisterScreen";
 import { palette } from "../../theme/themes";
 import HomeScreen from "../../screen/home/HomeScreen";
-import ValetScreen from "../../screen/valet/ValetScreen";
+import ServiceScreen from "../../screen/valet/ServiceScreen";
 import ValetServicesScreen from "../../screen/valet/ValetServicesScreen";
 import ValetDetailsScreen from "../../screen/valet/ValetDetailsScreen";
 import RedeemScreen from "../../screen/valet/RedeemScreen";
@@ -56,8 +56,8 @@ const Navigation = () => {
           component={HomeScreen}
         /> */}
         <Stack.Screen
-          name={"ValetScreen"}
-          component={ValetScreen}
+          name={"ServiceScreen"}
+          component={ServiceScreen}
         />
         <Stack.Screen
           name={"ValetServicesScreen"}

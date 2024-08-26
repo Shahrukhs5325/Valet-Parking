@@ -9,14 +9,18 @@ import Store from '../../components/store/Store';
 import CityComonent from '../../components/city/CityComonent';
 import { UserContext } from '../../context/user/UserContext';
 
-type Props = {};
+type Props = {
+  route?: any;
+};
 
 const ImageHeight = Math.round(Dimensions.get('window').width * 9 / 9);
 
 
-const ValetScreen: React.FC<Props> = () => {
+const ServiceScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
   const userContext = React.useContext(UserContext);
+  const { service } = route.params;
+
   const [isEnable, setIsEnable] = React.useState(false);
 
 
@@ -37,7 +41,7 @@ const ValetScreen: React.FC<Props> = () => {
       }}>
         <StatusBar
           animated={true}
-          //  backgroundColor={userContext?.customTheme?.primaryDark}
+        //  backgroundColor={userContext?.customTheme?.primaryDark}
         />
         <ScrollView showsVerticalScrollIndicator={false}>
           <TopBanner navbar={true} />
@@ -57,7 +61,7 @@ const ValetScreen: React.FC<Props> = () => {
   );
 };
 
-export default ValetScreen;
+export default ServiceScreen;
 
 const styles = StyleSheet.create({
   compView: {
