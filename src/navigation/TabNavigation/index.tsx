@@ -43,7 +43,7 @@ export const RenderTabNavigation = () => {
 
     return (
         <Tab.Navigator
-            initialRouteName="HomeScreen"
+            initialRouteName="Home"
             screenOptions={() => ({
 
                 tabBarStyle: {
@@ -75,7 +75,7 @@ export const RenderTabNavigation = () => {
 
         >
             <Tab.Screen
-                name={"HomeScreen"}
+                name={"Home"}
                 component={HomeScreen}
 
                 options={{

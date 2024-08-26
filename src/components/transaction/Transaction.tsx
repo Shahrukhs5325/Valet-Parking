@@ -7,7 +7,7 @@ import Arrow from '../../asset/svg/arrow_forward.svg';
 import { UserContext } from "../../context/user/UserContext";
 import { palette } from "../../theme/themes";
 import { utcDateConvoter } from "../../constant/constFunction";
-import { useNavigation } from "@react-navigation/native";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
 
 
 interface Props {
@@ -18,6 +18,8 @@ interface Props {
 
 const Transaction: React.FC<Props> = ({ }) => {
     const navigation = useNavigation();
+    const focus = useIsFocused();  // useIsFocused as shown   
+
 
     const userContext = React.useContext(UserContext);
     const [transList, setTransList] = React.useState([]);
@@ -30,6 +32,10 @@ const Transaction: React.FC<Props> = ({ }) => {
         queryKey: ['Transaction_List', userContext?.user],
         queryFn: () => getTransactionByCustomerId(userContext?.user),
     });
+
+    React.useEffect(() => {
+        focus && refetch();
+    }, [focus]);
 
     React.useEffect(() => {
         setTransList(data?.data?.data?.cTransaction);

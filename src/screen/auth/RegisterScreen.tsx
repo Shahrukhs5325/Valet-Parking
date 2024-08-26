@@ -221,11 +221,11 @@ const RegisterScreen: React.FC<Props> = () => {
       const res = await addCustomerPostApi(payload);
 
       if (res?.data) {
-        const customerId = res?.data?.data?.customerId;
-        console.log("++++++++++ customer added : ", customerId);
-        await updateUser(res?.data?.data);
-        await userContext.setUser(res?.data?.data);
-        await getClientThemeApi(user?.data?.data?.correlationId)
+        const customer = res?.data?.data;
+        console.log("++++++++++ customer added : ", customer?.customerId);
+        await updateUser(customer);
+        await userContext.setUser(customer);
+        await getClientThemeApi(customer?.correlationId)
         navigation.replace("HomeScreen");
       } else {
         navigation.replace("LoginScreen");
@@ -249,6 +249,7 @@ const RegisterScreen: React.FC<Props> = () => {
 
   const getClientThemeApi = async (id: number | string) => {
     try {
+
       const res = await getClientTheme(id);
       if (res?.data?.data) {
         const theme = res?.data?.data?.customTheme
