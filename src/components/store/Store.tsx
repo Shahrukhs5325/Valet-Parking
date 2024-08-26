@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { Dimensions, FlatList, Image, StyleSheet, View } from "react-native";
+import { ActivityIndicator, Dimensions, FlatList, Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-paper";
 import { getNearByStores } from "../../api/common/commonApi";
 import Arrow from '../../asset/svg/arrow_forward.svg';
 import { UserContext } from "../../context/user/UserContext";
 import { palette } from "../../theme/themes";
+import { useNavigation } from "@react-navigation/native";
 
 const WIDTH = Math.round(Dimensions.get('window').width);
 
@@ -18,6 +19,7 @@ interface Props {
 const Store: React.FC<Props> = ({ location }) => {
     const userContext = React.useContext(UserContext);
     const [storeList, setStoreList] = React.useState([]);
+    const navigation = useNavigation();
 
     const {
         isLoading,
@@ -37,6 +39,14 @@ const Store: React.FC<Props> = ({ location }) => {
         setStoreList(data?.data?.data);
     }, [data?.data?.data]);
 
+
+    if (isLoading) {
+        return (
+            <View style={[styles.container, { backgroundColor: userContext?.customTheme?.primaryDark }]}>
+                <ActivityIndicator size="small" color="#FFF" />
+            </View>
+        )
+    }
 
     return (
         storeList && storeList.length > 0 ?
@@ -60,9 +70,12 @@ const Store: React.FC<Props> = ({ location }) => {
 
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                                         <Text variant="titleMedium" style={styles.txtTitleSty}>5 Kms</Text>
-                                        <View style={{ borderRadius: 90, backgroundColor: palette.txtWhite, padding: 6 }}>
-                                            <Arrow width={20} height={20} />
-                                        </View>
+                                        <TouchableOpacity onPress={() => navigation.navigate("ValetDetailsScreen", { store: item })}>
+
+                                            <View style={{ borderRadius: 90, backgroundColor: palette.txtWhite, padding: 6 }}>
+                                                <Arrow width={20} height={20} />
+                                            </View>
+                                        </TouchableOpacity>
                                     </View>
                                 </View>
                             </View>
