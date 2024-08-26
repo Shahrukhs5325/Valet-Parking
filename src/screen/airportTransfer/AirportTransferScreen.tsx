@@ -1,26 +1,28 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
-import CallIcon from '../../asset/svg/call-white.svg';
+import StepOne from '../../components/airportTransfer/StepOne';
+import PrimaryButton from '../../components/button/PrimaryButton';
+import SecondaryButton from '../../components/button/SecondaryButton';
 import Header from '../../components/header/Header';
-import { utcDateConvoter } from '../../constant/constFunction';
 import { UserContext } from '../../context/user/UserContext';
 import { palette } from '../../theme/themes';
-import moment from 'moment';
-import TextInputCust from '../../components/textInput/TextInput';
-import SecondaryButton from '../../components/button/SecondaryButton';
-import PrimaryButton from '../../components/button/PrimaryButton';
+import Stepper from '../../components/stepper/Stepper';
 
-type Props = {};
+type Props = {
+  route: any;
+};
+
+const STEPPER_LABEL = ["Airport Service", "Flight details", "Confirmation"];
 
 
-
-const AirportTransferScreen: React.FC<Props> = () => {
+const AirportTransferScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
-  // const { city } = route.params;
-  const coupon = ""
+  const { city } = route.params;
   const userContext = React.useContext(UserContext);
+
+  const [currentPosition, setCurrentPosition] = React.useState(3);
 
   const [formData, setFormData] = React.useState({
     firstName: '',
@@ -52,65 +54,16 @@ const AirportTransferScreen: React.FC<Props> = () => {
           </View>
 
           <View style={{ flex: 1, borderTopLeftRadius: 20, borderTopRightRadius: 20, marginTop: -20, backgroundColor: palette.bgGray, paddingBottom: 30 }}>
-
-            <View style={{ gap: 0, margin: 20, }}>
-              <TextInputCust
-                placeholder='Select Airport'
-                value={formData.firstName}
-                onChangeText={value => {
-                  setFormData({ ...formData, firstName: value });
-                  setErrors("");
-                }}
-              />
-              <TextInputCust
-                placeholder='Type of Travel'
-                value={formData.LastName}
-                onChangeText={value => {
-                  setFormData({ ...formData, LastName: value });
-                  setErrors("");
-                }}
-              />
-              <TextInputCust
-                placeholder='Service Area'
-                value={formData.LastName}
-                onChangeText={value => {
-                  setFormData({ ...formData, LastName: value });
-                  setErrors("");
-                }}
-              />
-              <TextInputCust
-                placeholder='Pickup/Dropoff Location'
-                value={formData.LastName}
-                onChangeText={value => {
-                  setFormData({ ...formData, LastName: value });
-                  setErrors("");
-                }}
-              />
-              <TextInputCust
-                placeholder='Pickup Date & Time'
-                value={formData.LastName}
-                onChangeText={value => {
-                  setFormData({ ...formData, LastName: value });
-                  setErrors("");
-                }}
-              />
-              <TextInputCust
-                placeholder='Select Vehicle Type'
-                value={formData.LastName}
-                onChangeText={value => {
-                  setFormData({ ...formData, LastName: value });
-                  setErrors("");
-                }}
-              />
-              <TextInputCust
-                placeholder='Special Requests'
-                value={formData.LastName}
-                onChangeText={value => {
-                  setFormData({ ...formData, LastName: value });
-                  setErrors("");
-                }}
-              />
-            </View>
+            <Stepper
+              labels={STEPPER_LABEL}
+              currentPosition={currentPosition}
+              setCurrentPosition={setCurrentPosition}
+            />
+            <StepOne
+              formData={formData}
+              setFormData={setFormData}
+              setErrors={setErrors}
+            />
 
             <View style={{ width: '100%', marginTop: 30, flexDirection: 'row', justifyContent: 'space-around' }}>
               <View style={{ width: '40%' }}>
