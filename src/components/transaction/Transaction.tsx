@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { FlatList, Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, FlatList, Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-paper";
 import { getTransactionByCustomerId } from "../../api/common/commonApi";
 import Arrow from '../../asset/svg/arrow_forward.svg';
@@ -9,7 +9,7 @@ import { palette } from "../../theme/themes";
 import { utcDateConvoter } from "../../constant/constFunction";
 import { useNavigation } from "@react-navigation/native";
 
- 
+
 interface Props {
 
 }
@@ -36,9 +36,18 @@ const Transaction: React.FC<Props> = ({ }) => {
     }, [data?.data?.data]);
 
 
+    if (isLoading) {
+        return (
+            <View style={[styles.container, { backgroundColor: userContext?.customTheme?.primaryDark }]}>
+                <ActivityIndicator size="large" color="#FFF" />
+            </View>
+        )
+    }
+
+
     return (
         transList && transList.length > 0 ?
-            <View style={styles.container}>
+            <View >
                 <View style={{ paddingBottom: 30 }}>
                     <FlatList
                         showsVerticalScrollIndicator={false}
@@ -89,7 +98,9 @@ export default Transaction;
 
 const styles = StyleSheet.create({
     container: {
-
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     txtTitleSty: {
         fontWeight: '600',

@@ -128,13 +128,14 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
       if (res.status === 200) {
         const redeemDate = {
           redeemEndDate: res?.data?.data?.redeemCoupon?.redeemEndDate,
-          redeemStartDate: res?.data?.data?.redeemCoupon?.redeemStartDate
+          redeemStartDate: res?.data?.data?.redeemCoupon?.redeemStartDate,
+          validityDuration: res?.data?.data?.redeemCoupon?.validityDuration
         }
         const resData = { ...res?.data?.data?.coupondetails, ...redeemDate }
 
         console.log("___________res:", resData);
 
-        navigation.navigate("SucessScreen", { response: resData });
+        navigation.replace("SucessScreen", { response: resData });
         setIsLoading(false);
       }
     } catch (err) {
