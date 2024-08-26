@@ -41,7 +41,7 @@ export const getCustomerCoupons = async (user: any,) => {
     return response;
 };
 
-export const getCustomerCouponsByStoreIdNMerchantId = async (user: any,store:any) => {
+export const getCustomerCouponsByStoreIdNMerchantId = async (user: any, store: any) => {
     const response = await instance.get(`/customers/getCustomerCouponsByStoreIdNMerchantId?customerId=${user?.customerId}&couponTypeName=Vallet Card&merchantId=${store?.merchantId}&storeId=${store?.storeId}`);
 
     return response;
@@ -63,3 +63,10 @@ export const redeemCouponByqrCode = async (payload: any) => {
 
 //     return response;
 // };
+
+
+export const getClientTheme = async (id: any,) => {
+    const response = await instance.get(`/customers/getClientTheme?clientId=${id}`);
+
+    return response;
+};

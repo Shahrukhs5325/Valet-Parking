@@ -58,8 +58,6 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
       var returned_endate = moment(CurrentDate).add(i, 'hours');
       var date = moment(CurrentDate).add(i + 1, 'hours');
 
-      // console.log(i, "start", moment(returned_endate).format("DD-MM-YYYY HH:MM"));
-      // console.log(i, "end", moment(date).format("DD-MM-YYYY HH:MM"));
 
       const payload = {
         "couponCode": item?.couponCode,

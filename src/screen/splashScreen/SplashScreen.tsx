@@ -6,6 +6,7 @@ import { palette } from '../../theme/themes';
 import { Auth } from 'aws-amplify';
 import { getCustomerByIdApi } from '../../api/user/userApi';
 import { UserContext } from '../../context/user/UserContext';
+import { getClientTheme } from '../../api/common/commonApi';
 
 type Props = {};
 
@@ -56,17 +57,37 @@ const SplashScreen: React.FC<Props> = () => {
     try {
       const user = await getCustomerByIdApi(customerId);
       if (user?.status === 200 && user?.data?.data) {
-        userContext.setUser(user?.data?.data);
+        await userContext.setUser(user?.data?.data);
+        await getClientThemeApi(user?.data?.data?.correlationId);
+
         setIsLoginIn(true);
-        navigation.replace("HomeScreen");
+        await navigation.replace("HomeScreen");
         console.log("***** Zaps user *****", user?.data?.data)
       } else {
-        navigation.replace("LoginScreen");
+        await navigation.replace("LoginScreen");
       }
     } catch (error) {
       console.log("getCustomerByIdApi err: ", error);
       navigation.replace("LoginScreen");
 
+    }
+  }
+
+  const getClientThemeApi = async (id: number | string) => {
+    try {
+      const res = await getClientTheme(id);
+      if (res?.data?.data) {
+        const theme = res?.data?.data?.customTheme
+        console.log("Theme Color", theme);
+
+        await userContext.secCustomTheme(theme);
+      } else {
+        await userContext.secCustomTheme(palette);
+      }
+
+    } catch (error) {
+      await userContext.secCustomTheme(palette);
+      console.log("getCustomerByIdApi err: ", error);
     }
   }
 

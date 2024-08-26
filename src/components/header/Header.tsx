@@ -5,6 +5,7 @@ import { Icon, Text } from "react-native-paper";
 import BackIcon from '../../asset/svg/back-icon.svg';
 import { UserContext } from "../../context/user/UserContext";
 import { palette } from "../../theme/themes";
+import { Auth } from "aws-amplify";
 
 interface Props {
     navbar?: boolean | undefined;
@@ -16,6 +17,24 @@ const Header: React.FC<Props> = ({
     const navigation = useNavigation();
     const userContext = React.useContext(UserContext);
 
+    const [isLoading, setIsLoading] = React.useState(false);
+
+    const signOut = async () => {
+        try {
+            setIsLoading(true);
+            await Auth.signOut();
+            await userContext.setUser(null);
+
+            navigation.replace('LoginScreen');
+
+            setIsLoading(false);
+        } catch (error) {
+            setIsLoading(false);
+            console.log('error signing out: ', error);
+        }
+    };
+
+
     return (
 
         <View style={styles.container}>
@@ -23,11 +42,14 @@ const Header: React.FC<Props> = ({
                 <>
                     <Text variant="titleLarge" style={styles.txtSty}>{userContext?.user?.customerName}</Text>
                     <View style={{}}>
-                        <Icon
-                            source="bell"
-                            color={palette.txtWhite}
-                            size={24}
-                        />
+                        <TouchableOpacity onPress={() => signOut()}>
+                            <Icon
+
+                                source="bell"
+                                color={palette.txtWhite}
+                                size={24}
+                            />
+                        </TouchableOpacity>
                     </View>
                 </> :
                 <View style={{}}>

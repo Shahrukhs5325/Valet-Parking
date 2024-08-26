@@ -9,6 +9,7 @@ import { Auth } from 'aws-amplify';
 import { handleCognitoError } from '../../constant/constFunction';
 import { getCustomerByIdApi } from '../../api/user/userApi';
 import { UserContext } from '../../context/user/UserContext';
+import { getClientTheme } from '../../api/common/commonApi';
 
 type Props = {};
 
@@ -74,8 +75,9 @@ const LoginScreen: React.FC<Props> = () => {
       if (user?.status === 200 && user?.data?.data) {
         console.log("***** Zaps user *****", user?.data?.data)
 
-        userContext.setUser(user?.data?.data);
-        navigation.replace("HomeScreen")
+        await userContext.setUser(user?.data?.data);
+        await getClientThemeApi(user?.data?.data?.correlationId)
+        await navigation.replace("HomeScreen")
       } else {
         setIsLoading(false);
         // await AsyncStorage.clear();
@@ -84,6 +86,23 @@ const LoginScreen: React.FC<Props> = () => {
       setIsLoading(false);
       console.log("get customer details ", error)
       // showSnackbar(t("toast.somethingWrong"), 'error')
+    }
+  }
+  const getClientThemeApi = async (id: number | string) => {
+    try {
+      const res = await getClientTheme(id);
+      if (res?.data?.data) {
+        const theme = res?.data?.data?.customTheme
+        console.log("Theme Color", theme);
+
+        await userContext.secCustomTheme(theme);
+      } else {
+        await userContext.secCustomTheme(palette);
+      }
+
+    } catch (error) {
+      await userContext.secCustomTheme(palette);
+      console.log("getCustomerByIdApi err: ", error);
     }
   }
 
