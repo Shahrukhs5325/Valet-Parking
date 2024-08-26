@@ -16,9 +16,10 @@ interface Props {
     labels: string[];
     currentPosition: number;
     setCurrentPosition: any;
+    onPress: () => void;
 }
 
-const Stepper: React.FC<Props> = ({ labels, currentPosition, setCurrentPosition }) => {
+const Stepper: React.FC<Props> = ({ labels, currentPosition, setCurrentPosition, onPress }) => {
     const userContext = React.useContext(UserContext);
 
     const customStyles = {
@@ -51,6 +52,8 @@ const Stepper: React.FC<Props> = ({ labels, currentPosition, setCurrentPosition 
                 customStyles={customStyles}
                 currentPosition={currentPosition}
                 labels={labels}
+                stepCount={labels.length}
+                onPress={onPress}
             />
         </View>
     );
