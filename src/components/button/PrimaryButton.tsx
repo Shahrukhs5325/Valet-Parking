@@ -37,7 +37,11 @@ const PrimaryButton: React.FC<Props> = ({
             disabled={disabled}
             uppercase={uppercase}
             onPress={() => onPress()}
-            style={{ borderRadius: 5, height: 52, justifyContent: 'center' }}
+            style={{
+                borderRadius: 5, height: 52, justifyContent: 'center',
+                borderColor: buttonColor === "light" ? palette.primaryDark : userContext?.customTheme?.txtWhite,
+                borderWidth: 1
+            }}
         >
             {children}
         </Button>

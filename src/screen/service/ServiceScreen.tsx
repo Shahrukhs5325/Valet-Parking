@@ -48,7 +48,7 @@ const ServiceScreen: React.FC<Props> = ({ route }) => {
           <View style={styles.compView}>
             <View>
               <Text variant="titleSmall" style={styles.txtTitleSty}>Services you have</Text>
-              <CityComonent />
+              <CityComonent service={service}/>
             </View>
             <View style={{ paddingBottom: 30 }}>
               <Text variant="titleSmall" style={styles.txtTitleSty}>Services you have</Text>

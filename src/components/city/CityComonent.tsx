@@ -10,15 +10,14 @@ import { palette } from "../../theme/themes";
 const ImageHeight = Math.round(Dimensions.get('window').width / 4);
 
 interface Props {
-
+    service: any;
 }
 
 
-const CityComonent: React.FC<Props> = ({
-
-}) => {
+const CityComonent: React.FC<Props> = ({ service }) => {
     const navigation = useNavigation();
     const userContext = React.useContext(UserContext);
+    console.log(service);
 
     const {
         isLoading,
@@ -40,6 +39,18 @@ const CityComonent: React.FC<Props> = ({
         )
     }
 
+    const serviceScreenHandler = (item: any) => {
+        if (service?.key === "Valet_Service") {
+            navigation.navigate("ValetServicesScreen", { city: item });
+        } else if (service?.key === "Airport_Transfer") {
+            navigation.navigate("AirportTransferScreen", { city: item });
+        } else if (service?.key === "Meet_Greet") {
+
+        } else {
+
+        }
+    }
+
     return (
 
         data && data?.data && data?.data.length > 0 ?
@@ -57,7 +68,7 @@ const CityComonent: React.FC<Props> = ({
                         keyExtractor={(item, index) => index.toString()}
                         data={data?.data.length > 0 ? data?.data : []}
                         renderItem={({ item }) =>
-                            <TouchableOpacity onPress={() => navigation.navigate("ValetServicesScreen", { city: item })}>
+                            <TouchableOpacity onPress={() => serviceScreenHandler(item)}>
                                 <View
                                     style={[styles.card, { backgroundColor: userContext?.customTheme?.bgCard }]}
                                 >

@@ -39,12 +39,15 @@ const SucessScreen: React.FC<Props> = ({ route }) => {
             <Text variant="titleLarge" style={styles.txtTitleSty}>Thank you</Text>
             <Text variant="titleSmall" style={styles.txtSty}>You’re using valet service at {response?.templateName}</Text>
           </View>
-
-
         </View>
-        <View style={{ marginTop: 50, flexDirection: 'row', gap: 20, justifyContent: 'space-evenly' }}>
-          <SecondaryButton onPress={() => navigation.navigate("HomeScreen")} >Home</SecondaryButton>
-          <PrimaryButton onPress={() => navigation.replace("TransactionDetailsScreen", { coupon: response })} buttonColor={"light"} >View Status</PrimaryButton>
+
+        <View style={{ width: '100%', marginTop: 50, flexDirection: 'row', justifyContent: 'space-around' }}>
+          <View style={{ width: '40%' }}>
+            <SecondaryButton onPress={() => navigation.navigate("HomeScreen")} >Home</SecondaryButton>
+          </View>
+          <View style={{ width: '40%' }}>
+            <PrimaryButton onPress={() => navigation.replace("TransactionDetailsScreen", { coupon: response })} buttonColor={"light"} >View Status</PrimaryButton>
+          </View>
         </View>
       </View>
 

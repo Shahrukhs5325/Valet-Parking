@@ -4,9 +4,7 @@ import React from "react";
 import SplashScreen from "../../screen/splashScreen/SplashScreen";
 import LoginScreen from "../../screen/auth/LoginScreen";
 import RegisterScreen from "../../screen/auth/RegisterScreen";
-import { palette } from "../../theme/themes";
-import HomeScreen from "../../screen/home/HomeScreen";
-import ServiceScreen from "../../screen/valet/ServiceScreen";
+import ServiceScreen from "../../screen/service/ServiceScreen";
 import ValetServicesScreen from "../../screen/valet/ValetServicesScreen";
 import ValetDetailsScreen from "../../screen/valet/ValetDetailsScreen";
 import RedeemScreen from "../../screen/valet/RedeemScreen";
@@ -14,6 +12,7 @@ import SucessScreen from "../../screen/valet/SucessScreen";
 import { RenderTabNavigation } from "../TabNavigation";
 import TransactionDetailsScreen from "../../screen/transaction/TransactionDetailsScreen";
 import { UserContext } from "../../context/user/UserContext";
+import AirportTransferScreen from "../../screen/airportTransfer/AirportTransferScreen";
 
 
 const Stack = createStackNavigator();
@@ -78,6 +77,10 @@ const Navigation = () => {
         <Stack.Screen
           name={"TransactionDetailsScreen"}
           component={TransactionDetailsScreen}
+        />
+        <Stack.Screen
+          name={"AirportTransferScreen"}
+          component={AirportTransferScreen}
         />
 
 
