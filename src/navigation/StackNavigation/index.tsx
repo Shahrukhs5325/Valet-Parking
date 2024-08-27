@@ -10,10 +10,11 @@ import ValetDetailsScreen from "../../screen/valet/ValetDetailsScreen";
 import RedeemScreen from "../../screen/valet/RedeemScreen";
 import SucessValetScreen from "../../screen/valet/SucessValetScreen";
 import { RenderTabNavigation } from "../TabNavigation";
-import TransactionDetailsScreen from "../../screen/transaction/TransactionDetailsScreen";
+import TransactionDetailsScreen from "../../screen/transaction/valetParking/TransactionDetailsScreen";
 import { UserContext } from "../../context/user/UserContext";
 import AirportTransferScreen from "../../screen/airportTransfer/AirportTransferScreen";
 import SucessAirportScreen from "../../screen/airportTransfer/SucessAirportScreen";
+import AirportTransTransactionDetailsScreen from "../../screen/transaction/ariportTransfer/AirportTransTransactionDetailsScreen";
 
 
 const Stack = createStackNavigator();
@@ -86,6 +87,10 @@ const Navigation = () => {
          <Stack.Screen
           name={"SucessAirportScreen"}
           component={SucessAirportScreen}
+        />
+         <Stack.Screen
+          name={"AirportTransTransactionDetailsScreen"}
+          component={AirportTransTransactionDetailsScreen}
         />
 
 

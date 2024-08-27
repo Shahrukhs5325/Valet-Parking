@@ -2,10 +2,10 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Dimensions, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
-import TopBanner from '../../components/header/TopBanner';
-import Transaction from '../../components/transaction/Transaction';
-import { palette } from '../../theme/themes';
-import { UserContext } from '../../context/user/UserContext';
+import TopBanner from '../../../components/header/TopBanner';
+import Transaction from '../../../components/transaction/Transaction';
+import { palette } from '../../../theme/themes';
+import { UserContext } from '../../../context/user/UserContext';
 
 type Props = {};
 

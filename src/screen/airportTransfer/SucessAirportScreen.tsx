@@ -44,7 +44,7 @@ const SucessAirportScreen: React.FC<Props> = ({ }) => {
             <SecondaryButton onPress={() => navigation.navigate("HomeScreen")} >Home</SecondaryButton>
           </View>
           <View style={{ width: '45%' }}>
-            <PrimaryButton onPress={() => navigation.replace("HomeScreen")} buttonColor={"light"} >View Status</PrimaryButton>
+            <PrimaryButton onPress={() => navigation.replace("AirportTransTransactionDetailsScreen")} buttonColor={"light"} >View Status</PrimaryButton>
           </View>
         </View>
       </View>

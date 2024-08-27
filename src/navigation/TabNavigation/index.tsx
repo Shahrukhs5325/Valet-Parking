@@ -14,7 +14,7 @@ import PinInActiveIcon from '../../asset/bottomtab/pin-gray.svg';
 import PinActiveIcon from '../../asset/bottomtab/pin-white.svg';
 import MiddleIcon from '../../asset/bottomtab/middle.svg';
 import CommingSoonScreen from "../../screen/commingSoon/CommingSoonScreen";
-import TransactionScreen from "../../screen/transaction/TransactionScreen";
+import TransactionScreen from "../../screen/transaction/valetParking/TransactionScreen";
 
 
 
