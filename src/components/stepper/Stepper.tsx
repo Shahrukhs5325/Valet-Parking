@@ -1,18 +1,10 @@
 import React from "react";
-import { palette } from "../../theme/themes";
-import { Button } from "react-native-paper";
-import { UserContext } from "../../context/user/UserContext";
 import { View } from "react-native";
 import StepIndicator from 'react-native-step-indicator';
+import { UserContext } from "../../context/user/UserContext";
+import { palette } from "../../theme/themes";
 
 interface Props {
-    // children?: React.ReactNode | any;
-    // onPress: () => void | any;
-    // mode?: string;
-    // disabled?: boolean | undefined;
-    // icon?: string;
-    // loading?: boolean | undefined;
-    // uppercase?: boolean | undefined;
     labels: string[];
     currentPosition: number;
     setCurrentPosition: any;

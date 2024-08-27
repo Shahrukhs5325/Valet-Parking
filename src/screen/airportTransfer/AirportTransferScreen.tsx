@@ -38,9 +38,10 @@ const AirportTransferScreen: React.FC<Props> = ({ route }) => {
   });
   const [errors, setErrors] = React.useState("");
 
-  const nextStepHandler = () => {
-    setCurrentPosition(currentPosition + 1);
-  }
+
+  const nextStepHandler = (position: number) => {
+    setCurrentPosition(position);
+  };
 
   return (
     <>
@@ -50,7 +51,7 @@ const AirportTransferScreen: React.FC<Props> = ({ route }) => {
           backgroundColor={userContext?.customTheme?.primaryDark}
         />
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={{ flex: 1, backgroundColor: userContext?.customTheme?.primaryDark, paddingBottom: 50 }}>
+          <View style={{ flex: 1, backgroundColor: userContext?.customTheme?.primaryDark, paddingBottom: 40 }}>
             <Header navbar={true} />
             <View
               style={[styles.compView, { backgroundColor: userContext?.customTheme?.primaryDark }]}
@@ -91,18 +92,26 @@ const AirportTransferScreen: React.FC<Props> = ({ route }) => {
                   formData={formData}
                   setFormData={setFormData}
                   setErrors={setErrors}
+                  setCurrentPosition={setCurrentPosition}
 
                 />)
             }
 
 
             <View style={styles.btnView}>
-              <View style={{ width: '40%' }}>
-                <PrimaryButton disabled={currentPosition <= 0} onPress={() => setCurrentPosition(currentPosition - 1)} buttonColor={"light"} >Back</PrimaryButton>
-              </View>
-              <View style={{ width: '40%' }}>
-                <SecondaryButton onPress={() => nextStepHandler()} >Next</SecondaryButton>
-              </View>
+
+              {currentPosition !== 2 ?
+                <>
+                  <View style={{ width: '40%' }}>
+                    <PrimaryButton disabled={currentPosition <= 0} onPress={() => setCurrentPosition(currentPosition - 1)} buttonColor={"light"} >Back</PrimaryButton>
+                  </View>
+                  <View style={{ width: '40%' }}>
+                    <SecondaryButton onPress={() => nextStepHandler(currentPosition + 1)} >Next</SecondaryButton>
+                  </View>
+                </> :
+                <View style={{ width: '100%', paddingHorizontal: 15 }}>
+                  <SecondaryButton onPress={() => console.log()} >Next</SecondaryButton>
+                </View>}
             </View>
 
           </View>
@@ -130,7 +139,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   btnView: {
-    width: '100%', marginTop: 30,
+    width: '100%',
+    marginTop: 30,
     flexDirection: 'row',
     justifyContent: 'space-around'
   }
