@@ -44,18 +44,12 @@ export const RenderTabNavigation = () => {
         <Tab.Navigator
             initialRouteName="Home"
             screenOptions={() => ({
-
                 tabBarStyle: {
                     backgroundColor: userContext?.customTheme?.bgCard,
-                    // paddingBottom: 5, 
-                    // paddingTop: 5,
-                    // borderTopRightRadius: 20,
-                    // borderTopLeftRadius: 20,
-                    // shadowColor: '#54336E24',
-                    // boxShadow: "0px -4px 12px 0px #54336E24",
-                    // shadowOpacity: 4,
+                    marginTop: -16,
+                    borderTopRightRadius: 20,
+                    borderTopLeftRadius: 20,
                     height: 64,
-
                     shadowColor: "#000000",
                     shadowOffset: {
                         width: 0,
@@ -114,7 +108,7 @@ export const RenderTabNavigation = () => {
                 options={{
                     tabBarShowLabel: false,
                     // tabBarLabel: "Home",
-                    tabBarLabelStyle: { fontWeight: "600", },
+                    //tabBarLabelStyle: { fontWeight: "600", },
                     // tabBarIcon: ({ color }) => (
                     //     color === palette.primaryDark ?
                     //         <LocationIcon width={40} height={40} /> :
