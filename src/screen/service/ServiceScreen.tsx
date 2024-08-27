@@ -44,7 +44,7 @@ const ServiceScreen: React.FC<Props> = ({ route }) => {
         //  backgroundColor={userContext?.customTheme?.primaryDark}
         />
         <ScrollView showsVerticalScrollIndicator={false}>
-          <TopBanner navbar={true} />
+          <TopBanner navbar={true} service={service}/>
           <View style={styles.compView}>
             <View>
               <Text variant="titleSmall" style={styles.txtTitleSty}>Services you have</Text>

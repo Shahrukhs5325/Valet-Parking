@@ -7,13 +7,12 @@ import Header from "./Header";
 
 interface Props {
     navbar?: boolean | undefined;
+    service?: any;
 }
 const WIDTH = Dimensions.get('window').width;
 const ImageHeight = Math.round(Dimensions.get('window').width * 9 / 9);
 
-const TopBanner: React.FC<Props> = ({
-    navbar
-}) => {
+const TopBanner: React.FC<Props> = ({ navbar, service }) => {
 
     return (
         <View style={styles.image}>

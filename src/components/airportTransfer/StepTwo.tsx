@@ -1,9 +1,5 @@
-import { useNavigation } from "@react-navigation/native";
-import { useQuery } from "@tanstack/react-query";
-import React from "react";
-import { ActivityIndicator, Dimensions, FlatList, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
-import { Text } from "react-native-paper";
-import { getAllCity } from "../../api/common/commonApi";
+import React, { Dispatch, SetStateAction } from "react";
+import { Dimensions, StyleSheet, View } from "react-native";
 import { UserContext } from "../../context/user/UserContext";
 import { palette } from "../../theme/themes";
 import TextInputCust from "../textInput/TextInput";
@@ -12,8 +8,8 @@ const ImageHeight = Math.round(Dimensions.get('window').width / 4);
 
 interface Props {
     formData: any;
-    setFormData: any;
-    setErrors: any;
+    setFormData: Dispatch<SetStateAction<any>>;
+    setErrors: Dispatch<SetStateAction<any>>;
 }
 
 

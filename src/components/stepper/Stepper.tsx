@@ -8,7 +8,7 @@ interface Props {
     labels: string[];
     currentPosition: number;
     setCurrentPosition: any;
-    onPress: () => void;
+    onPress: (position: number) => void;
 }
 
 const Stepper: React.FC<Props> = ({ labels, currentPosition, setCurrentPosition, onPress }) => {

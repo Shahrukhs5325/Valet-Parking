@@ -135,7 +135,7 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
 
         console.log("___________res:", resData);
 
-        navigation.replace("SucessScreen", { response: resData });
+        navigation.replace("SucessValetScreen", { response: resData });
         setIsLoading(false);
       }
     } catch (err) {

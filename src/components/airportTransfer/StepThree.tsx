@@ -1,17 +1,16 @@
-import React from "react";
-import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
+import React, { Dispatch, SetStateAction } from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-paper";
 import { UserContext } from "../../context/user/UserContext";
 import { palette } from "../../theme/themes";
 import EditIcon from '../../asset/svg/pencil-1.svg';
 
-const ImageHeight = Math.round(Dimensions.get('window').width / 4);
 
 interface Props {
     formData: any;
-    setFormData: any;
-    setErrors: any;
-    setCurrentPosition: any;
+    setFormData: Dispatch<SetStateAction<any>>;
+    setErrors: Dispatch<SetStateAction<any>>;
+    setCurrentPosition: Dispatch<SetStateAction<number>>
 }
 
 
@@ -19,7 +18,6 @@ const StepThree: React.FC<Props> = ({ formData, setFormData, setErrors, setCurre
     const userContext = React.useContext(UserContext);
     const user = userContext.user;
 
-    console.log();
 
 
 

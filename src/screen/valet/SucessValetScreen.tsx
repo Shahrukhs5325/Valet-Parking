@@ -14,7 +14,7 @@ type Props = {
 };
 
 
-const SucessScreen: React.FC<Props> = ({ route }) => {
+const SucessValetScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
   const { response } = route.params;
   const userContext = React.useContext(UserContext);
@@ -41,11 +41,11 @@ const SucessScreen: React.FC<Props> = ({ route }) => {
           </View>
         </View>
 
-        <View style={{ width: '100%', marginTop: 50, flexDirection: 'row', justifyContent: 'space-around' }}>
-          <View style={{ width: '40%' }}>
+        <View style={styles.btnView}>
+          <View style={{ width: '45%' }}>
             <SecondaryButton onPress={() => navigation.navigate("HomeScreen")} >Home</SecondaryButton>
           </View>
-          <View style={{ width: '40%' }}>
+          <View style={{ width: '45%' }}>
             <PrimaryButton onPress={() => navigation.replace("TransactionDetailsScreen", { coupon: response })} buttonColor={"light"} >View Status</PrimaryButton>
           </View>
         </View>
@@ -55,37 +55,39 @@ const SucessScreen: React.FC<Props> = ({ route }) => {
   );
 };
 
-export default SucessScreen;
+export default SucessValetScreen;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15,
-    paddingTop: 70,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   compView: {
-    padding: 10,
-    marginTop: 100,
     gap: 26,
     justifyContent: 'center',
     alignItems: 'center',
   },
+  btnView: {
+    flex: 1,
+    position: 'absolute',
+    bottom: 30,
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  },
   txtSty: {
     color: palette.txtWhite,
-
   },
   txtTitleSty: {
     fontWeight: '700',
     color: palette.txtWhite,
     textTransform: 'capitalize',
     textAlign: 'center'
-
   },
   txtheadSty: {
     color: palette.txtWhite,
     textAlign: 'center'
   },
-
 
 });
 
