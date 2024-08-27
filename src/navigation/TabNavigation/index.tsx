@@ -28,17 +28,16 @@ export const RenderTabNavigation = () => {
 
 
 
-    const CustomTabBarButton = ({ children, onPress }) => (
-        // <View style={{ top: 20, backgroundColor: userContext?.customTheme?.bgCard, width: 160, height: 160, zIndex: -1, borderRadius: 360, alignItems: 'center', padding: 10 }}>
-        <TouchableOpacity
-            style={{ top: - 16, justifyContent: 'center', alignItems: 'center' }}
-            onPress={onPress}
-        >
-            <View >
-                {children}
-            </ View>
-        </TouchableOpacity >
-        //  </ View>
+    const CustomTabBarButton = ({ onPress }) => (
+
+        <View style={{ top: -2, backgroundColor: userContext?.customTheme?.bgCard, width: 105, height: 100, borderRadius: 90, alignItems: 'center', paddingTop: 14 }}>
+            <TouchableOpacity>
+                <Image
+                    source={require('../../asset//bottomtab/middle-img.png')}
+                    style={{ width: 58, height: 58 }}
+                />
+            </TouchableOpacity>
+        </ View>
     )
 
     return (
@@ -122,11 +121,7 @@ export const RenderTabNavigation = () => {
                     //         <LocationIcon width={30} height={30} fill={palette.bgGray}/>
                     // ),
                     tabBarIcon: ({ focused }) => (
-                        <CustomTabBarButton onPress={() => console.log()}>
-                            {/* <MiddleIcon width={60} height={60} stroke={"#000"} /> */}
-                            <Image source={require('../../asset//bottomtab/middle-img.png')}
-                                style={{ width: 60, height: 60 }} />
-                        </CustomTabBarButton>
+                        <CustomTabBarButton onPress={() => console.log()} />
                     ),
                 }}
             />
