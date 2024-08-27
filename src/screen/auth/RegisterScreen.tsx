@@ -330,6 +330,7 @@ const RegisterScreen: React.FC<Props> = () => {
                 status={isNameAsPer ? "checked" : "unchecked"}
                 onPress={() => setIsNameAsPer(!isNameAsPer)}
                 color={palette.primaryDark}
+                labelStyle={{ color: palette.txtBlack }}
                 style={{ marginLeft: -15, marginVertical: -10 }} />
             </View>
             <View style={{ gap: 4 }}>
