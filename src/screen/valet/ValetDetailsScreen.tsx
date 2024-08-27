@@ -246,13 +246,10 @@ const styles = StyleSheet.create({
     letterSpacing: 3
   },
   image: {
-
-    // ...StyleSheet.absoluteFillObject,
     resizeMode: 'cover',
     width: WIDTH,
     // width: 50,
     height: ImageHeight,
-    //  backgroundColor:'red'
   },
   img: {
     borderRadius: 17,
@@ -268,9 +265,7 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingHorizontal: 16,
     paddingVertical: 10,
-    // backgroundColor: palette.bgCard,
     borderRadius: 10,
-    // borderColor: '#FFF',
     borderWidth: 1,
     zIndex: 1,
     paddingTop: 20,
@@ -282,14 +277,11 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingHorizontal: 16,
     paddingVertical: 10,
-    // backgroundColor: palette.bgCard,
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
-    // borderColor: '#FFF',
     borderWidth: 1,
-    // position: "relative",
-    // bottom: 10,
     paddingTop: 18,
+    borderTopWidth: 0,
     marginTop: -10
   },
   listContents: {
