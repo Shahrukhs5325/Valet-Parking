@@ -1,3 +1,5 @@
+import { Platform } from "react-native";
+
 export const FONT = {
     // Inter
     regular: "Inter-Regular",
@@ -10,38 +12,44 @@ export const FONT = {
 export const fontConfig = {
     ios: {
         regular: {
-            fontFamily: 'sans-serif',
-            fontWeight: 'normal',
+            fontFamily: 'SFPRODISPLAYREGULAR',
+            fontWeight: 'regular',
         },
         medium: {
-            fontFamily: 'sans-serif-medium',
-            fontWeight: 'normal',
+            fontFamily: 'SFPRODISPLAYMEDIUM',
+            fontWeight: 'medium',
         },
         light: {
-            fontFamily: 'sans-serif-light',
-            fontWeight: 'normal',
+            fontFamily: 'SFPRODISPLAYREGULAR',
+            fontWeight: 'light',
         },
         thin: {
-            fontFamily: 'sans-serif-thin',
-            fontWeight: 'normal',
+            fontFamily: 'SFPRODISPLAYREGULAR',
+            fontWeight: 'thin',
         },
     },
     android: {
         regular: {
-            fontFamily: 'sans-serif',
-            fontWeight: 'normal',
+            fontFamily: 'SFPRODISPLAYREGULAR',
+            fontWeight: 'regular',
         },
         medium: {
-            fontFamily: 'sans-serif-medium',
-            fontWeight: 'normal',
+            fontFamily: 'SFPRODISPLAYMEDIUM',
+            fontWeight: 'medium',
         },
         light: {
-            fontFamily: 'sans-serif-light',
+            fontFamily: 'SFPRODISPLAYREGULAR',
             fontWeight: 'normal',
         },
         thin: {
-            fontFamily: 'sans-serif-thin',
-            fontWeight: 'normal',
+            fontFamily: 'SFPRODISPLAYREGULAR',
+            fontWeight: 'thin',
         },
+        bold: {
+            fontFamily: 'SFPRODISPLAYBOLD',
+            fontWeight: 'bold',
+        },
+
+
     }
 };

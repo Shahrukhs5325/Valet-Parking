@@ -17,7 +17,6 @@ interface Props {
 const CityComonent: React.FC<Props> = ({ service }) => {
     const navigation = useNavigation();
     const userContext = React.useContext(UserContext);
-    console.log(service);
 
     const {
         isLoading,
