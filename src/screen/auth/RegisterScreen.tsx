@@ -345,7 +345,7 @@ const RegisterScreen: React.FC<Props> = () => {
               />
             </View>
             <View style={{ gap: 4 }}>
-              <Text variant="titleSmall" style={{ color: palette.primaryDark }} >Enter last 6 digits</Text>
+              <Text variant="titleSmall" style={{ color: palette.primaryDark }} >Enter first 6 digits</Text>
               <TextInputCust
                 placeholder='x x x x x x'
                 value={formData.lastSixDigit}
@@ -356,7 +356,7 @@ const RegisterScreen: React.FC<Props> = () => {
               />
             </View>
             <View style={{ gap: 4 }}>
-              <Text variant="titleSmall" style={{ color: palette.primaryDark }} >Enter first 4 digits</Text>
+              <Text variant="titleSmall" style={{ color: palette.primaryDark }} >Enter last 4 digits</Text>
               <TextInputCust
                 placeholder='x x x x'
                 value={formData.firstFourDigit}
