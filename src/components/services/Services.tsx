@@ -2,9 +2,9 @@ import React from "react";
 import { palette } from "../../theme/themes";
 import { Text } from "react-native-paper";
 import { Dimensions, FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
-import Car from '../../asset/svg/car.svg';
-import Parking from '../../asset/svg/Parking.svg';
-import Smiley from '../../asset/svg/smiley-smile.svg';
+import Car from '../../assets/svg/car.svg';
+import Parking from '../../assets/svg/Parking.svg';
+import Smiley from '../../assets/svg/smiley-smile.svg';
 import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../../context/user/UserContext";
 

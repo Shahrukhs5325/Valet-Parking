@@ -3,7 +3,7 @@ import React from "react";
 import { ActivityIndicator, FlatList, Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-paper";
 import { getTransactionByCustomerId } from "../../api/common/commonApi";
-import Arrow from '../../asset/svg/arrow_forward.svg';
+import Arrow from '../../assets/svg/arrow_forward.svg';
 import { UserContext } from "../../context/user/UserContext";
 import { palette } from "../../theme/themes";
 import { utcDateConvoter } from "../../constant/constFunction";
@@ -63,7 +63,7 @@ const Transaction: React.FC<Props> = ({ }) => {
                             <View
                                 style={[styles.card, { backgroundColor: userContext?.customTheme?.bgCard }]}
                             >
-                                <Image source={require('../../asset/valet.png')}
+                                <Image source={require('../../assets/valet.png')}
                                     style={styles.img} />
                                 <View style={{ width: '64%' }}>
                                     <Text variant="titleMedium" style={styles.txtTitleSty}>{item?.templateName}</Text>

@@ -3,7 +3,7 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-paper";
 import { UserContext } from "../../context/user/UserContext";
 import { palette } from "../../theme/themes";
-import EditIcon from '../../asset/svg/pencil-1.svg';
+import EditIcon from '../../assets/svg/pencil-1.svg';
 
 
 interface Props {

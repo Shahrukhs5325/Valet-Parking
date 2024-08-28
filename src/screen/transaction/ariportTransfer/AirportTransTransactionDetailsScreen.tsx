@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
-import CallIcon from '../../../asset/svg/call-white.svg';
+import CallIcon from '../../../assets/svg/call-white.svg';
 import Header from '../../../components/header/Header';
 import { utcDateConvoter } from '../../../constant/constFunction';
 import { UserContext } from '../../../context/user/UserContext';

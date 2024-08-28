@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StatusBar, StyleSheet, View } from 'react-native';
-import ZapsIcon from '../../asset/svg/logo.svg';
+import ZapsIcon from '../../assets/svg/logo.svg';
 import { palette } from '../../theme/themes';
 import { Auth } from 'aws-amplify';
 import { getCustomerByIdApi } from '../../api/user/userApi';

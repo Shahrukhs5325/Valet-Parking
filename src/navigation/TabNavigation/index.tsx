@@ -4,15 +4,15 @@ import { Image, TouchableOpacity, View } from "react-native";
 import { UserContext } from "../../context/user/UserContext";
 import HomeScreen from "../../screen/home/HomeScreen";
 import { palette } from "../../theme/themes";
-import HomeInActiveIcon from '../../asset/bottomtab/home-gray.svg';
-import HomeActiveIcon from '../../asset/bottomtab/home-white.svg';
-import BagInActiveIcon from '../../asset/bottomtab/bag-gray.svg';
-import BagActiveIcon from '../../asset/bottomtab/bag-white.svg';
-import CardInActiveIcon from '../../asset/bottomtab/card-gray.svg';
-import CardActiveIcon from '../../asset/bottomtab/card-white.svg';
-import PinInActiveIcon from '../../asset/bottomtab/pin-gray.svg';
-import PinActiveIcon from '../../asset/bottomtab/pin-white.svg';
-import MiddleIcon from '../../asset/bottomtab/middle.svg';
+import HomeInActiveIcon from '../../assets/bottomtab/home-gray.svg';
+import HomeActiveIcon from '../../assets/bottomtab/home-white.svg';
+import BagInActiveIcon from '../../assets/bottomtab/bag-gray.svg';
+import BagActiveIcon from '../../assets/bottomtab/bag-white.svg';
+import CardInActiveIcon from '../../assets/bottomtab/card-gray.svg';
+import CardActiveIcon from '../../assets/bottomtab/card-white.svg';
+import PinInActiveIcon from '../../assets/bottomtab/pin-gray.svg';
+import PinActiveIcon from '../../assets/bottomtab/pin-white.svg';
+import MiddleIcon from '../../assets/bottomtab/middle.svg';
 import CommingSoonScreen from "../../screen/commingSoon/CommingSoonScreen";
 import TransactionScreen from "../../screen/transaction/valetParking/TransactionScreen";
 
@@ -33,7 +33,7 @@ export const RenderTabNavigation = () => {
         <View style={{ top: -2, backgroundColor: userContext?.customTheme?.bgCard, width: 105, height: 100, borderRadius: 90, alignItems: 'center', paddingTop: 14 }}>
             <TouchableOpacity>
                 <Image
-                    source={require('../../asset//bottomtab/middle-img.png')}
+                    source={require('../../assets//bottomtab/middle-img.png')}
                     style={{ width: 58, height: 58 }}
                 />
             </TouchableOpacity>

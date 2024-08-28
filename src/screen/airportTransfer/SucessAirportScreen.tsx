@@ -4,7 +4,7 @@ import { StatusBar, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
 import PrimaryButton from '../../components/button/PrimaryButton';
 import { palette } from '../../theme/themes';
-import CircleIcon from '../../asset/svg/check-circle-1.svg';
+import CircleIcon from '../../assets/svg/check-circle-1.svg';
 import SecondaryButton from '../../components/button/SecondaryButton';
 import { UserContext } from '../../context/user/UserContext';
 

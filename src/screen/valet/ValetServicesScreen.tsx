@@ -4,7 +4,7 @@ import React from 'react';
 import { ActivityIndicator, Dimensions, FlatList, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native-paper';
 import { getStoresByCityName } from '../../api/common/commonApi';
-import Arrow from '../../asset/svg/arrow_forward.svg';
+import Arrow from '../../assets/svg/arrow_forward.svg';
 import Header from '../../components/header/Header';
 import { UserContext } from '../../context/user/UserContext';
 import { palette } from '../../theme/themes';

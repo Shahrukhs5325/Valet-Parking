@@ -3,7 +3,7 @@ import React from "react";
 import { ActivityIndicator, Dimensions, FlatList, Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-paper";
 import { getNearByStores } from "../../api/common/commonApi";
-import Arrow from '../../asset/svg/arrow_forward.svg';
+import Arrow from '../../assets/svg/arrow_forward.svg';
 import { UserContext } from "../../context/user/UserContext";
 import { palette } from "../../theme/themes";
 import { useNavigation } from "@react-navigation/native";
@@ -62,7 +62,7 @@ const Store: React.FC<Props> = ({ location }) => {
                                 style={[styles.card, { backgroundColor: userContext?.customTheme?.bgCard }]}
                             >
 
-                                <Image source={require('../../asset/valet.png')}
+                                <Image source={require('../../assets/valet.png')}
                                     style={styles.img} />
                                 <View style={{ width: WIDTH / 2, gap: 3 }}>
                                     <Text variant="titleMedium" style={styles.txtTitleSty}>{item.storeName}</Text>

@@ -3,8 +3,8 @@ import { Auth } from "aws-amplify";
 import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Icon, Text } from "react-native-paper";
-import BackIcon from '../../asset/svg/back-icon.svg';
-import CrossIcon from '../../asset/svg/cross-icon.svg';
+import BackIcon from '../../assets/svg/back-icon.svg';
+import CrossIcon from '../../assets/svg/cross-icon.svg';
 import { UserContext } from "../../context/user/UserContext";
 import { palette } from "../../theme/themes";
 

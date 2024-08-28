@@ -2,16 +2,16 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { ActivityIndicator, Dimensions, FlatList, Image, ImageBackground, ScrollView, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native-paper';
-import CallIcon from '../../asset/svg/call.svg';
-import ShareIcon from '../../asset/svg/communities.svg';
-import WalkIcon from '../../asset/svg/directions_walk.svg';
-import LocationIcon from '../../asset/svg/location_on.svg';
-import NearmeIcon from '../../asset/svg/near_me.svg';
-import SpotnIcon from '../../asset/svg/stop.svg';
+import CallIcon from '../../assets/svg/call.svg';
+import ShareIcon from '../../assets/svg/communities.svg';
+import WalkIcon from '../../assets/svg/directions_walk.svg';
+import LocationIcon from '../../assets/svg/location_on.svg';
+import NearmeIcon from '../../assets/svg/near_me.svg';
+import SpotnIcon from '../../assets/svg/stop.svg';
 import PrimaryButton from '../../components/button/PrimaryButton';
 import Header from '../../components/header/Header';
 import { palette } from '../../theme/themes';
-import TermIcon from '../../asset/svg/gifts.svg';
+import TermIcon from '../../assets/svg/gifts.svg';
 import { useQuery } from '@tanstack/react-query';
 import { UserContext } from '../../context/user/UserContext';
 import { getCustomerCouponsByStoreIdNMerchantId } from '../../api/common/commonApi';
@@ -74,7 +74,7 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
           <ScrollView showsVerticalScrollIndicator={false}>
             {/* <TopBanner navbar={true} /> */}
             <ImageBackground
-              source={require('../../asset/man-sitting-car.png')}
+              source={require('../../assets/man-sitting-car.png')}
               resizeMode="cover"
               style={styles.image}>
               <Header navbar={true} />
@@ -88,7 +88,7 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
                     <Text variant="titleSmall" style={styles.txtSty}>{coupon.address}</Text>
                   </View>
                 </View>
-                <Image source={require('../../asset/valet.png')}
+                <Image source={require('../../assets/valet.png')}
                   style={styles.img} />
               </View>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 40, }}>
