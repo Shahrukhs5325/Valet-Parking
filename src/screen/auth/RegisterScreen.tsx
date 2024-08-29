@@ -22,6 +22,7 @@ const RegisterScreen: React.FC<Props> = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isSentOTP, setIsSentOTP] = React.useState(false);
   const [isNameAsPer, setIsNameAsPer] = React.useState(false);
+  const [isTerm, setIsTerm] = React.useState(false);
 
   const [visible, setVisible] = React.useState(false);
 
@@ -277,7 +278,7 @@ const RegisterScreen: React.FC<Props> = () => {
             backgroundColor={palette.bgGray}
           />
 
-          <Text variant="titleLarge" style={styles.txtSty}>Registration</Text>
+          <Text variant="titleLarge" style={styles.txtSty}>SIGN UP</Text>
           <View style={{ gap: 0 }}>
             <TextInputCust
               placeholder='First name'
@@ -331,8 +332,9 @@ const RegisterScreen: React.FC<Props> = () => {
                 status={isNameAsPer ? "checked" : "unchecked"}
                 onPress={() => setIsNameAsPer(!isNameAsPer)}
                 color={palette.primaryDark}
-                labelStyle={{ color: palette.txtBlack }}
-                style={{ marginLeft: -15, marginVertical: -10 }} />
+                labelStyle={styles.txtTextTitle}
+                style={{ marginLeft: -15, marginVertical: -2, }}
+              />
             </View>
             <View style={{ gap: 4 }}>
               <Text variant="titleSmall" style={{ color: palette.primaryDark }} >Enter card holder name</Text>
@@ -381,19 +383,37 @@ const RegisterScreen: React.FC<Props> = () => {
               />
             </View> : null}
 
+
+
           </View>
 
           <View style={{ gap: 6 }}>
-            <Text variant="labelMedium" style={{ color: 'red', height: 36 }}>{errors}</Text>
+            <Text variant="labelMedium" style={{ color: 'red', }}>{errors}</Text>
+
+            {!isSentOTP ? <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }}>
+              <Checkbox.Item
+                //label="Card name as per user"
+                status={isTerm ? "checked" : "unchecked"}
+                onPress={() => setIsTerm(!isTerm)}
+                color={palette.primaryDark}
+              // labelStyle={styles.txtTextTitle}
+
+              />
+              <View style={{ marginBottom: 10, }}>
+                <Text variant="titleSmall" style={styles.txtTerm} >I accept the Terms & Conditions</Text>
+                <Text variant="titleSmall" style={styles.txtTerm} >Privacy Policy</Text>
+              </View>
+            </View> : null}
 
             {!isSentOTP ?
-              <PrimaryButton disabled={isLoading} loading={isLoading} onPress={() => submitHandler()}>Send OTP</PrimaryButton> :
+              <PrimaryButton disabled={!isTerm || isLoading} loading={isLoading} onPress={() => submitHandler()}>Send OTP</PrimaryButton> :
               <PrimaryButton disabled={isLoading} loading={isLoading} onPress={() => confirmSignUpHandler()}>Register</PrimaryButton>
             }
           </View>
+
           <View style={styles.containerRegister}>
             <TouchableOpacity onPress={() => navigation.replace("LoginScreen")}>
-              <Text variant="labelLarge" style={{ textAlign: 'center', color: palette.txtGray }}>Already have an account? <Text variant="labelLarge" style={{ color: palette.primaryDark }}>Sign in</Text></Text>
+              <Text variant="labelLarge" style={[styles.txtSingIn, { color: palette.txtGray }]}>Already have an account? <Text variant="labelLarge" style={[styles.txtSingIn, { color: palette.txtBlack }]}>Sign in</Text></Text>
             </TouchableOpacity>
           </View>
 
@@ -421,7 +441,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     //  alignItems: "center",
-    margin: 15,
+    margin: 20,
     gap: 15,
     paddingBottom: 24
   },
@@ -435,10 +455,13 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     color: palette.primaryDark,
     fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 16,
   },
   txtTextTitle: {
+    fontFamily: FONT.Able.regular,
     color: palette.txtBlack,
     fontSize: 16,
+    fontWeight: '400'
   },
   containerRegister: {
     // position: 'absolute',
@@ -446,6 +469,18 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     // textAlign: 'center',
 
+  },
+  txtTerm: {
+    fontFamily: FONT.Able.regular,
+    color: palette.txtGray,
+    fontSize: 16,
+    fontWeight: '400'
+  },
+  txtSingIn: {
+    textAlign: 'center',
+    fontFamily: FONT.Able.regular,
+    fontSize: 14,
+    fontWeight: '400'
   }
 
 });

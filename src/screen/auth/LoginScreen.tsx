@@ -137,7 +137,7 @@ const LoginScreen: React.FC<Props> = () => {
         </View>
         <View style={styles.containerRegister}>
           <TouchableOpacity onPress={() => navigation.replace("RegisterScreen")}>
-            <Text variant="labelLarge" style={{ textAlign: 'center', color: palette.txtGray }}>Don’t have an account? <Text variant="labelLarge" style={{ color: palette.txtBlack }}>Sign up</Text></Text>
+            <Text variant="labelLarge" style={[styles.txtRegister, { color: palette.txtGray }]}>Don’t have an account? <Text variant="labelLarge" style={[styles.txtRegister, { color: palette.txtBlack }]}>Sign up</Text></Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     //  alignItems: "center",
-    margin: 15,
+    margin: 20,
     gap: 15
   },
   txtSty: {
@@ -166,6 +166,12 @@ const styles = StyleSheet.create({
     // alignItems: "center",
     // textAlign: 'center',
 
+  },
+  txtRegister: {
+    textAlign: 'center',
+    fontFamily: FONT.Able.regular,
+    fontSize: 14,
+    fontWeight: '400'
   }
 
 });
