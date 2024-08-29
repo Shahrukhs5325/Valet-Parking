@@ -8,6 +8,7 @@ import { Text } from 'react-native-paper';
 import Store from '../../components/store/Store';
 import CityComonent from '../../components/city/CityComonent';
 import { UserContext } from '../../context/user/UserContext';
+import { FONT } from '../../theme/fonts';
 
 type Props = {
   route?: any;
@@ -44,11 +45,11 @@ const ServiceScreen: React.FC<Props> = ({ route }) => {
         //  backgroundColor={userContext?.customTheme?.primaryDark}
         />
         <ScrollView showsVerticalScrollIndicator={false}>
-          <TopBanner navbar={true} service={service}/>
+          <TopBanner navbar={true} service={service} />
           <View style={styles.compView}>
             <View>
               <Text variant="titleSmall" style={styles.txtTitleSty}>Services you have</Text>
-              <CityComonent service={service}/>
+              <CityComonent service={service} />
             </View>
             <View style={{ paddingBottom: 30 }}>
               <Text variant="titleSmall" style={styles.txtTitleSty}>Services you have</Text>
@@ -70,7 +71,9 @@ const styles = StyleSheet.create({
     marginTop: ImageHeight + 10
   },
   txtTitleSty: {
-    fontWeight: '600',
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 16,
+    fontWeight: '400',
     color: palette.txtWhite,
     textTransform: 'uppercase',
     letterSpacing: 3,

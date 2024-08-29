@@ -14,6 +14,13 @@ export const FONT = {
         light: 'SFPRODISPLAYMEDIUM',
         thin: 'SFPRODISPLAYMEDIUM',
         bold: 'SFPRODISPLAYBOLD',
+    },
+    Able: {
+        regular: 'Abel-Regular',
+        medium: 'Abel-Regular',
+        light: 'Abel-Regular',
+        thin: 'Abel-Regular',
+        bold: 'Abel-Regular',
     }
 
 };

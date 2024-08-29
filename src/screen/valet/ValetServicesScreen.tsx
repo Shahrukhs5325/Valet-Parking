@@ -8,6 +8,7 @@ import Arrow from '../../assets/svg/arrow_forward.svg';
 import Header from '../../components/header/Header';
 import { UserContext } from '../../context/user/UserContext';
 import { palette } from '../../theme/themes';
+import { FONT } from '../../theme/fonts';
 
 type Props = {
   route?: any;
@@ -99,7 +100,9 @@ const styles = StyleSheet.create({
     // backgroundColor: palette.primaryDark
   },
   txtTitleSty: {
-    fontWeight: '600',
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 22,
+    fontWeight: '400',
     color: palette.txtWhite,
     textTransform: 'uppercase',
     letterSpacing: 3,
@@ -125,7 +128,9 @@ const styles = StyleSheet.create({
     //   justifyContent: 'space-between'
   },
   txtSty: {
-    fontWeight: '700',
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 16,
+    fontWeight: '400',
     color: palette.txtBlack,
   },
   img: {

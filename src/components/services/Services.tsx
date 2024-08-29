@@ -7,6 +7,7 @@ import Parking from '../../assets/svg/Parking.svg';
 import Smiley from '../../assets/svg/smiley-smile.svg';
 import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../../context/user/UserContext";
+import { FONT } from "../../theme/fonts";
 
 
 const ImageHeight = Math.round(Dimensions.get('window').width / 3.3);
@@ -15,9 +16,9 @@ interface Props {
 }
 
 const DATA = [
-    { id: 1, key: "Valet_Service", name: "Valet Service", icon: <Car width={40} height={40} /> },
-    { id: 2, key: "Airport_Transfer", name: "Airport Transfer Services", icon: <Parking width={40} height={40} /> },
-    { id: 3, key: "Meet_Greet", name: "Airport Meet & Greet", icon: <Smiley width={40} height={40} /> },
+    { id: 1, key: "Valet_Service", name: "Valet Service", icon: <Car width={30} height={30} /> },
+    { id: 2, key: "Airport_Transfer", name: "Airport Transfer Services", icon: <Parking width={30} height={30} /> },
+    { id: 3, key: "Meet_Greet", name: "Airport Meet & Greet", icon: <Smiley width={30} height={30} /> },
 
 ]
 
@@ -64,28 +65,24 @@ export default Services;
 const styles = StyleSheet.create({
     container: {
     },
-    txtTitleSty: {
-        fontWeight: '600',
-        color: palette.txtWhite,
-        textTransform: 'uppercase',
-        letterSpacing: 3
-    },
     list: {
     },
     listContents: {
         gap: 16
     },
     card: {
-        padding: 13,
-        //   backgroundColor: palette.bgCard,
+        paddingHorizontal: 12,
+        paddingVertical: 16,
         width: ImageHeight,
         height: ImageHeight,
         borderRadius: 17,
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     txtSty: {
-        fontWeight: '600',
+        fontWeight: '400',
         color: palette.txtWhite,
+        fontFamily: FONT.JuliusSansOne.regular,
+        fontSize: 12,
     }
 
 

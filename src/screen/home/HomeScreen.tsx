@@ -8,6 +8,7 @@ import Services from '../../components/services/Services';
 import Store from '../../components/store/Store';
 import { UserContext } from '../../context/user/UserContext';
 import { palette } from '../../theme/themes';
+import { FONT } from '../../theme/fonts';
 
 type Props = {};
 
@@ -105,7 +106,9 @@ const styles = StyleSheet.create({
     marginTop: ImageHeight + 10
   },
   txtTitleSty: {
-    fontWeight: '600',
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 16,
+    fontWeight: '400',
     color: palette.txtWhite,
     textTransform: 'uppercase',
     letterSpacing: 3,
