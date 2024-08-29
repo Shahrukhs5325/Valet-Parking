@@ -329,6 +329,7 @@ const RegisterScreen: React.FC<Props> = () => {
 
             <View>
               <Checkbox.Item label="Card name as per user"
+                disabled={!formData.firstName && !formData.LastName}
                 status={isNameAsPer ? "checked" : "unchecked"}
                 onPress={() => setIsNameAsPer(!isNameAsPer)}
                 color={palette.primaryDark}
