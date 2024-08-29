@@ -11,6 +11,7 @@ import { palette } from '../../theme/themes';
 import Stepper from '../../components/stepper/Stepper';
 import StepTwo from '../../components/airportTransfer/StepTwo';
 import StepThree from '../../components/airportTransfer/StepThree';
+import { FONT } from '../../theme/fonts';
 
 type Props = {
   route: any;
@@ -134,9 +135,11 @@ const styles = StyleSheet.create({
     marginBottom: 25
   },
   txtSty: {
-    fontWeight: '800',
+    fontWeight: '400',
     color: palette.txtWhite,
     paddingHorizontal: 15,
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 24,
   },
   btnView: {
     width: '100%',

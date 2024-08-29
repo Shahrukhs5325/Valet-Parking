@@ -118,8 +118,10 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end'
     },
     txtSty: {
-        fontWeight: '600',
+        fontWeight: '500',
         color: palette.txtWhite,
+        fontSize: 11,
+
     }
 
 

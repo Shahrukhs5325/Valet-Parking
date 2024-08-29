@@ -7,6 +7,7 @@ import { palette } from '../../theme/themes';
 import CircleIcon from '../../assets/svg/check-circle-1.svg';
 import SecondaryButton from '../../components/button/SecondaryButton';
 import { UserContext } from '../../context/user/UserContext';
+import { FONT } from '../../theme/fonts';
 
 
 type Props = {
@@ -33,17 +34,17 @@ const SucessAirportScreen: React.FC<Props> = ({ }) => {
 
         <View style={styles.compView}>
           <CircleIcon />
-          <View style={{ gap: 8, marginVertical: 6, alignItems: 'center' }}>
+          <View style={{ gap: 14, marginVertical: 6, alignItems: 'center' }}>
             <Text variant="titleLarge" style={styles.txtTitleSty}>Booking Confirmed!</Text>
             <Text variant="titleSmall" style={styles.txtSty}>Thank you for booking your exclusive airport service with us!</Text>
           </View>
         </View>
 
         <View style={styles.btnView}>
-          <View style={{ width: '45%' }}>
+          <View style={{ width: '46%' }}>
             <SecondaryButton onPress={() => navigation.navigate("HomeScreen")} >Home</SecondaryButton>
           </View>
-          <View style={{ width: '45%' }}>
+          <View style={{ width: '46%' }}>
             <PrimaryButton onPress={() => navigation.replace("AirportTransTransactionDetailsScreen")} buttonColor={"light"} >View Status</PrimaryButton>
           </View>
         </View>
@@ -60,9 +61,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 15
   },
   compView: {
-    gap: 26,
+    gap: 30,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -71,16 +73,22 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 30,
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: 'space-between'
   },
   txtSty: {
     color: palette.txtWhite,
+    fontSize: 16,
+    fontWeight: '400',
+    textAlign: 'center',
+    fontFamily: FONT.JuliusSansOne.regular,
   },
   txtTitleSty: {
-    fontWeight: '700',
+    fontWeight: '400',
     color: palette.txtWhite,
     textTransform: 'capitalize',
-    textAlign: 'center'
+    textAlign: 'center',
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 24,
   },
   txtheadSty: {
     color: palette.txtWhite,

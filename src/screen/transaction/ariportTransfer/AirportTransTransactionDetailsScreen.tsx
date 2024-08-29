@@ -8,6 +8,7 @@ import { utcDateConvoter } from '../../../constant/constFunction';
 import { UserContext } from '../../../context/user/UserContext';
 import { palette } from '../../../theme/themes';
 import moment from 'moment';
+import { FONT } from '../../../theme/fonts';
 
 type Props = {
   route?: any;
@@ -80,22 +81,20 @@ const AirportTransTransactionDetailsScreen: React.FC<Props> = ({ route }) => {
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 60, marginHorizontal: 40 }}>
               <View style={{ alignItems: 'center', gap: 6 }}>
                 {isBeforeStart ? (
-                  <Text variant="displaySmall" style={styles.txtTitleSty}>00:00</Text>
+                  <Text variant="displaySmall" style={styles.txtTimeTxt}>00:00</Text>
                 ) : timeLeft ? (
-                  <Text variant="displayMedium" style={styles.txtTitleSty}>
+                  <Text variant="displayMedium" style={styles.txtTimeTxt}>
                     {`${timeLeft.hours}:${timeLeft.minutes}`}
                   </Text>
                 ) : (
-                  <Text variant="displaySmall" style={styles.txtTitleSty}>00:00</Text>
+                  <Text variant="displaySmall" style={styles.txtTimeTxt}>00:00</Text>
                 )}
 
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <View style={styles.statusView}>
                   {isBeforeStart ? (
                     <Text variant="titleSmall" style={styles.txtStatusSty}>Not Started</Text>
                   ) : timeLeft ? (
-                    <Text variant="displayMedium" style={styles.txtTitleSty}>
-                      <Text variant="titleSmall" style={styles.txtStatusSty}>In Progress</Text>
-                    </Text>
+                    <Text variant="titleSmall" style={styles.txtStatusSty}>In Progress</Text>
                   ) : (
                     <Text variant="titleSmall" style={styles.txtStatusSty}>Complete</Text>
                   )}
@@ -103,7 +102,7 @@ const AirportTransTransactionDetailsScreen: React.FC<Props> = ({ route }) => {
               </View>
               <View style={{ alignItems: 'center', gap: 10 }}>
                 <CallIcon />
-                <Text variant="titleSmall" style={styles.txtStysec}>Call support</Text>
+                <Text variant="titleSmall" style={styles.txtCallSup}>Call support</Text>
               </View>
 
             </View>
@@ -181,13 +180,28 @@ const styles = StyleSheet.create({
     marginTop: 50,
     paddingHorizontal: 15,
     gap: 10,
-    //  backgroundColor: palette.primaryDark
   },
   txtSty: {
-    fontWeight: '800',
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 22,
+    fontWeight: '400',
+    color: palette.txtWhite,
+  },
+  txtTimeTxt: {
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 38,
+    fontWeight: '400',
+    color: palette.txtWhite,
+  },
+  txtCallSup: {
+    fontSize: 12,
+    fontWeight: '400',
     color: palette.txtWhite,
   },
   txtStysec: {
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 14,
+    fontWeight: '400',
     color: palette.txtWhite,
   },
   txtTitleSty: {
@@ -200,25 +214,37 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100
   },
-  txtStatusSty: {
+  statusView: {
+    width: 114,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    //  paddingHorizontal: 14,
+    paddingVertical: 5,
+    borderRadius: 15,
     backgroundColor: palette.txtGold,
+  },
+  txtStatusSty: {
     color: palette.txtWhite,
-    paddingHorizontal: 14,
-    paddingVertical: 4,
-    borderRadius: 15
+    fontWeight: '700',
+    fontSize: 14,
   },
   txtBlackHeading: {
     color: palette.txtBlack,
     textTransform: 'uppercase',
-    letterSpacing: 1,
-    fontWeight: '800',
+    // letterSpacing: 1,
+    fontWeight: '700',
+    fontSize: 16
   },
   txtSummHeading: {
     color: palette.txtBlack,
-    fontWeight: '800',
+    fontWeight: '400',
+    fontSize: 12
   },
   txtBodyHeading: {
     color: palette.txtGray,
+    fontWeight: '500',
+    fontSize: 14
   }
 
 
