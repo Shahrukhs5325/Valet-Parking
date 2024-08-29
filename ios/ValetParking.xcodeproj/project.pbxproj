@@ -18,6 +18,7 @@
 		0B40E9BD2EC349EB8D716707 /* SFPRODISPLAYBOLD.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 64AF8855D2A24A22BFBC0B93 /* SFPRODISPLAYBOLD.OTF */; };
 		6BFB50CC188747CBBF648F45 /* SFPRODISPLAYMEDIUM.OTF in Resources */ = {isa = PBXBuildFile; fileRef = D7C7C11DC8C545AB816BBE94 /* SFPRODISPLAYMEDIUM.OTF */; };
 		C948057D535B479F9199FFED /* SFPRODISPLAYREGULAR.OTF in Resources */ = {isa = PBXBuildFile; fileRef = BB3B615C867B4027B9D1F05A /* SFPRODISPLAYREGULAR.OTF */; };
+		D01041F8F46C484EB437D786 /* Abel-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1E51C1C4F6945CB926FA5D0 /* Abel-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		64AF8855D2A24A22BFBC0B93 /* SFPRODISPLAYBOLD.OTF */ = {isa = PBXFileReference; name = "SFPRODISPLAYBOLD.OTF"; path = "../src/assets/fonts/SFPRODISPLAYBOLD.OTF"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		D7C7C11DC8C545AB816BBE94 /* SFPRODISPLAYMEDIUM.OTF */ = {isa = PBXFileReference; name = "SFPRODISPLAYMEDIUM.OTF"; path = "../src/assets/fonts/SFPRODISPLAYMEDIUM.OTF"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		BB3B615C867B4027B9D1F05A /* SFPRODISPLAYREGULAR.OTF */ = {isa = PBXFileReference; name = "SFPRODISPLAYREGULAR.OTF"; path = "../src/assets/fonts/SFPRODISPLAYREGULAR.OTF"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A1E51C1C4F6945CB926FA5D0 /* Abel-Regular.ttf */ = {isa = PBXFileReference; name = "Abel-Regular.ttf"; path = "../src/assets/fonts/Abel-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 				64AF8855D2A24A22BFBC0B93 /* SFPRODISPLAYBOLD.OTF */,
 				D7C7C11DC8C545AB816BBE94 /* SFPRODISPLAYMEDIUM.OTF */,
 				BB3B615C867B4027B9D1F05A /* SFPRODISPLAYREGULAR.OTF */,
+				A1E51C1C4F6945CB926FA5D0 /* Abel-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				0B40E9BD2EC349EB8D716707 /* SFPRODISPLAYBOLD.OTF in Resources */,
 				6BFB50CC188747CBBF648F45 /* SFPRODISPLAYMEDIUM.OTF in Resources */,
 				C948057D535B479F9199FFED /* SFPRODISPLAYREGULAR.OTF in Resources */,
+				D01041F8F46C484EB437D786 /* Abel-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

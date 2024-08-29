@@ -2,6 +2,10 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "src/assets/fonts/Abel-Regular.ttf",
+      "sha1": "5a10c588371618fdcd5555b126121a0fb9ec4c26"
+    },
+    {
       "path": "src/assets/fonts/JuliusSansOne-Regular.ttf",
       "sha1": "d66ed30f0709dcc4707d1f62158274814e8690b1"
     },

@@ -50,6 +50,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>JuliusSansOne-Regular.ttf</string>
+		<string>Abel-Regular.ttf</string>
 	</array>
 </dict>
 </plist>
