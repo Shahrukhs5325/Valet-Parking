@@ -10,6 +10,7 @@ import { handleCognitoError } from '../../constant/constFunction';
 import { getCustomerByIdApi } from '../../api/user/userApi';
 import { UserContext } from '../../context/user/UserContext';
 import { getClientTheme } from '../../api/common/commonApi';
+import { FONT } from '../../theme/fonts';
 
 type Props = {};
 
@@ -155,8 +156,9 @@ const styles = StyleSheet.create({
     gap: 15
   },
   txtSty: {
-    fontWeight: '800',
-    color: "#000"
+    color: palette.txtBlack,
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 24,
   },
   containerRegister: {
     // position: 'absolute',

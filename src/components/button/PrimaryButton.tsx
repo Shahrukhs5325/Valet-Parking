@@ -35,7 +35,7 @@ const PrimaryButton: React.FC<Props> = ({
             mode={"contained"}
             loading={loading}
             disabled={disabled}
-            uppercase={uppercase}
+            uppercase={false}
             onPress={() => onPress()}
             style={{
                 borderRadius: 15, height: 52, justifyContent: 'center',

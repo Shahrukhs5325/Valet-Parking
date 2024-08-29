@@ -1,12 +1,21 @@
 import { Platform } from "react-native";
 
 export const FONT = {
-    // Inter
-    regular: "Inter-Regular",
-    thin: "Inter-Thin",
-    bold: "Inter-Bold",
-    semiBold: "Inter-SemiBold",
-    extraBold: "Inter-ExtraBold",
+    JuliusSansOne: {
+        regular: 'JuliusSansOne-Regular',
+        medium: 'JuliusSansOne-Regular',
+        light: 'JuliusSansOne-Regular',
+        thin: 'JuliusSansOne-Regular',
+        bold: 'JuliusSansOne-Regular',
+    },
+    SpPro: {
+        regular: 'SFPRODISPLAYREGULAR',
+        medium: 'SFPRODISPLAYMEDIUM',
+        light: 'SFPRODISPLAYMEDIUM',
+        thin: 'SFPRODISPLAYMEDIUM',
+        bold: 'SFPRODISPLAYBOLD',
+    }
+
 };
 
 export const fontConfig = {

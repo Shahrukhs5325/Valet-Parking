@@ -34,7 +34,7 @@ const SecondaryButton: React.FC<Props> = ({
             mode={"outlined"}
             loading={loading}
             disabled={disabled}
-            uppercase={uppercase}
+            uppercase={false}
             onPress={() => onPress()}
             style={{ borderRadius: 15, height: 52, justifyContent: 'center', borderColor: palette.txtWhite }}
         >

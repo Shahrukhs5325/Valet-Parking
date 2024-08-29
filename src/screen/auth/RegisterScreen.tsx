@@ -10,6 +10,7 @@ import { handleCognitoError } from '../../constant/constFunction';
 import { addCustomerPostApi } from '../../api/user/userApi';
 import { UserContext } from '../../context/user/UserContext';
 import { getActivationCodeDetails, getClientTheme } from '../../api/common/commonApi';
+import { FONT } from '../../theme/fonts';
 
 type Props = {};
 
@@ -276,10 +277,10 @@ const RegisterScreen: React.FC<Props> = () => {
             backgroundColor={palette.bgGray}
           />
 
-          <Text variant="titleLarge" style={styles.txtSty}>Register</Text>
+          <Text variant="titleLarge" style={styles.txtSty}>Registration</Text>
           <View style={{ gap: 0 }}>
             <TextInputCust
-              placeholder='First Name'
+              placeholder='First name'
               value={formData.firstName}
               onChangeText={value => {
                 setFormData({ ...formData, firstName: value });
@@ -323,7 +324,7 @@ const RegisterScreen: React.FC<Props> = () => {
 
           </View>
           <View style={{ gap: 8, marginTop: 10 }}>
-            <Text variant="titleMedium" style={{ letterSpacing: 3, textTransform: 'uppercase', color: palette.primaryDark }} >Credit card details</Text>
+            <Text variant="titleMedium" style={styles.txtCreditCardTitle} >Credit card details</Text>
 
             <View>
               <Checkbox.Item label="Card name as per user"
@@ -345,7 +346,7 @@ const RegisterScreen: React.FC<Props> = () => {
               />
             </View>
             <View style={{ gap: 4 }}>
-              <Text variant="titleSmall" style={{ color: palette.primaryDark }} >Enter first 6 digits</Text>
+              <Text variant="titleSmall" style={styles.txtTextTitle} >Enter first 6 digits</Text>
               <TextInputCust
                 placeholder='x x x x x x'
                 value={formData.lastSixDigit}
@@ -356,7 +357,7 @@ const RegisterScreen: React.FC<Props> = () => {
               />
             </View>
             <View style={{ gap: 4 }}>
-              <Text variant="titleSmall" style={{ color: palette.primaryDark }} >Enter last 4 digits</Text>
+              <Text variant="titleSmall" style={styles.txtTextTitle} >Enter last 4 digits</Text>
               <TextInputCust
                 placeholder='x x x x'
                 value={formData.firstFourDigit}
@@ -367,8 +368,8 @@ const RegisterScreen: React.FC<Props> = () => {
               />
             </View>
 
-            {isSentOTP ? <View style={{ gap: 4 }}>
-              <Text variant="titleSmall" style={{ color: palette.primaryDark }} >Enter OTP</Text>
+            {!isSentOTP ? <View style={{ gap: 4 }}>
+              <Text variant="titleSmall" style={styles.txtTextTitle} >Enter OTP</Text>
               <TextInputCust
                 placeholder='OTP'
                 value={otp}
@@ -425,8 +426,19 @@ const styles = StyleSheet.create({
     paddingBottom: 24
   },
   txtSty: {
-    fontWeight: '800',
-    color: palette.primaryDark
+    color: palette.txtBlack,
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 24,
+  },
+  txtCreditCardTitle: {
+    letterSpacing: 3,
+    textTransform: 'uppercase',
+    color: palette.primaryDark,
+    fontFamily: FONT.JuliusSansOne.regular,
+  },
+  txtTextTitle: {
+    color: palette.txtBlack,
+    fontSize: 16,
   },
   containerRegister: {
     // position: 'absolute',
