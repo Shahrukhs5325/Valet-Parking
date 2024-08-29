@@ -46,11 +46,12 @@ export const RenderTabNavigation = () => {
             screenOptions={() => ({
                 tabBarStyle: {
                     backgroundColor: userContext?.customTheme?.bgCard,
-                    marginTop: -16,
+                    borderColor: userContext?.customTheme?.bgCard,
+                    marginTop: -20,
                     borderTopRightRadius: 20,
                     borderTopLeftRadius: 20,
-                    height: 64,
-                    shadowColor: "#000000",
+                    height: 62,
+                    shadowColor: "#FFF",
                     shadowOffset: {
                         width: 0,
                         height: 5,
@@ -83,8 +84,8 @@ export const RenderTabNavigation = () => {
                 }}
             />
             <Tab.Screen
-                name={"TransactionScreen"}
-                component={TransactionScreen}
+                name={"CommingSoonScreenb"}
+                component={CommingSoonScreen}
 
                 options={{
                     tabBarShowLabel: false,
@@ -122,8 +123,8 @@ export const RenderTabNavigation = () => {
 
 
             <Tab.Screen
-                name={"CommingSoonScreenb"}
-                component={CommingSoonScreen}
+                name={"TransactionScreen"}
+                component={TransactionScreen}
                 options={{
                     tabBarShowLabel: false,
                     tabBarLabel: "abc",
