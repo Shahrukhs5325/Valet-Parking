@@ -15,6 +15,7 @@ import AirportTransferScreen from "../../screen/airportTransfer/AirportTransferS
 import SucessAirportScreen from "../../screen/airportTransfer/SucessAirportScreen";
 import AirportTransTransactionDetailsScreen from "../../screen/transaction/ariportTransfer/AirportTransTransactionDetailsScreen";
 import ServiceScreen from "../../screen/service/ServiceScreen";
+import TransactionScreen from "../../screen/transaction/valetParking/TransactionScreen";
 
 
 const Stack = createStackNavigator();
@@ -75,6 +76,10 @@ const Navigation = () => {
         <Stack.Screen
           name={"SucessValetScreen"}
           component={SucessValetScreen}
+        />
+        <Stack.Screen
+          name={"TransactionScreen"}
+          component={TransactionScreen}
         />
         <Stack.Screen
           name={"TransactionDetailsScreen"}

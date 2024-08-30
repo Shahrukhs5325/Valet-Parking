@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { ActivityIndicator, Dimensions, FlatList, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Dimensions, FlatList, ImageBackground, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native-paper';
 import { getStoresByCityName } from '../../api/common/commonApi';
 import Arrow from '../../assets/svg/arrow_forward.svg';
@@ -62,6 +62,10 @@ const ValetServicesStoreScreen: React.FC<Props> = ({ route }) => {
         <View style={{ gap: 24, }}>
           <Text style={styles.txtTitleSty}>City: {city.cityName}</Text>
 
+          <ImageBackground
+        source={require('../../assets/longb.png')}
+        style={styles.background}
+      >
           <FlatList
             showsVerticalScrollIndicator={false}
             keyExtractor={(item, index) => index.toString()}
@@ -96,6 +100,7 @@ const ValetServicesStoreScreen: React.FC<Props> = ({ route }) => {
               <Text style={styles.emtTxt}>Data Not Found</Text>
             </>}
           />
+          </ImageBackground>
 
         </View>
       </View>
@@ -128,6 +133,16 @@ const styles = StyleSheet.create({
   listContents: {
     gap: 16,
 
+  },
+  background: {
+    flex: 1,
+    marginHorizontal: 12,
+    marginBottom: 100,
+    resizeMode: 'cover',
+    borderRadius: 25, // Added borderRadius
+    overflow: 'hidden',
+    height: 600,
+    padding:5,
   },
   list: {
 

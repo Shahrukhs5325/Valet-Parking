@@ -6,6 +6,7 @@ import TopBanner from '../../../components/header/TopBanner';
 import Transaction from '../../../components/transaction/Transaction';
 import { palette } from '../../../theme/themes';
 import { UserContext } from '../../../context/user/UserContext';
+import { FONT } from '../../../theme/fonts';
 
 type Props = {};
 
@@ -26,13 +27,13 @@ const TransactionScreen: React.FC<Props> = () => {
       }}>
         <StatusBar
           animated={true}
-          // backgroundColor={palette.txtWhite}
+          backgroundColor={userContext?.customTheme?.primaryDark}
         />
         <ScrollView showsVerticalScrollIndicator={false}>
-          <TopBanner />
+          <TopBanner navbar={true} />
           <View style={styles.compView}>
             <View>
-              <Text   style={styles.txtTitleSty}>Valete History</Text>
+              <Text style={styles.txtTitleSty}>Valete History</Text>
               <Transaction />
             </View>
           </View>
@@ -51,10 +52,10 @@ const styles = StyleSheet.create({
     marginTop: ImageHeight + 10
   },
   txtTitleSty: {
-    fontWeight: '600',
+    fontWeight: '400',
     color: palette.txtWhite,
-    textTransform: 'uppercase',
-    letterSpacing: 3,
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 16,
     paddingBottom: 12
   },
 

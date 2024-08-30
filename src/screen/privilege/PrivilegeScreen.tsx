@@ -3,10 +3,10 @@ import { View, StyleSheet, ImageBackground, Text, Dimensions } from 'react-nativ
 import HeaderTitle from '../../components/header/HeaderTitle';
 import ValetIcon from '../../assets/svg/history/ValetParking.svg';
 import LeisIcon from '../../assets/svg/privilege/Joystick.svg';
-import AirPort from '../../assets/svg/privilege/Layers.svg';
+import PldayIcon from '../../assets/svg/privilege/Layers.svg';
 import Fandb from '../../assets/svg/privilege/Popcorn.svg';
 import EntIcon from '../../assets/svg/privilege/Food.svg';
-import PldayIcon from '../../assets/svg/privilege/Airport.svg';
+import AirPort from '../../assets/svg/privilege/Airport.svg';
 import LinearGradient from 'react-native-linear-gradient';
 import { FlatList } from 'react-native-gesture-handler';
 
@@ -30,25 +30,25 @@ const PrivilegeScreen = () => {
       id: '3',
       service: 'Leisure',
       count: '100 Vouchers',
-      icon: <EntIcon width={44} height={44} />,
+      icon: <LeisIcon width={44} height={44} />,
     },
     {
       id: '4',
       service: 'F&B',
       count: '50 Vouchers',
-      icon: <PldayIcon width={44} height={44} />,
+      icon: <EntIcon width={44} height={44} />,
     },
     {
       id: '5',
       service: 'Entertainment',
       count: '70 Vouchers',
-      icon: <LeisIcon width={44} height={44} />,
+      icon: <Fandb width={44} height={44} />,
     },
     {
       id: '6',
       service: 'Plan your Day',
       count: '20 Packages',
-      icon: <Fandb width={44} height={44} />,
+      icon: <PldayIcon width={44} height={44} />,
     },
   ];
 
@@ -60,7 +60,7 @@ const PrivilegeScreen = () => {
       <LinearGradient
         colors={['rgba(124, 124, 124, 1)', 'rgba(22, 22, 22, 1)', 'rgba(40, 40, 40, 1)']}
         style={[
-          styles.historyItem,
+          styles.mainItem,
           { borderWidth: 1, borderColor: 'rgba(241, 241, 241, 0.3)' },
         ]}
         start={{ x: 0, y: 0 }}
@@ -68,7 +68,7 @@ const PrivilegeScreen = () => {
       >
         <View style={styles.historyIcon}>{item.icon}</View>
         <View style={styles.textContainer}>
-          <Text style={styles.serviceText}>{item.service}</Text>
+          <Text style={styles.serviceText}>{item.service.toUpperCase()}</Text>
           <Text style={styles.countText}>{item.count}</Text>
         </View>
       </LinearGradient>
@@ -78,6 +78,14 @@ const PrivilegeScreen = () => {
   return (
     <View style={styles.container}>
       <HeaderTitle title={'Profile'} />
+      <View>
+        <Text style={styles.text}>
+          HI, AHMED
+        </Text>
+        <Text style={styles.text}>
+          YOU HAVE THE FOOLING PRIVILEGE
+        </Text>
+      </View>
       <ImageBackground
         source={require('../../assets/privilege.png')}
         style={styles.background}
@@ -104,26 +112,30 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     marginHorizontal: 12,
-    marginBottom: 25,
+    marginBottom: 60,
     resizeMode: 'cover',
     borderRadius: 25,
     overflow: 'hidden',
+    marginTop: 5,
   },
   overlay: {
     flex: 1,
     padding: 20,
     justifyContent: 'space-between',
   },
+  text: {
+    padding: 10,
+  },
   cardContainer: {
     flex: 1,
-    margin: 5,
+    margin: 6,
   },
-  historyItem: {
+  mainItem: {
     flexDirection: 'column',
     alignItems: 'center',
     padding: 10,
     borderRadius: 10,
-    height: 200,
+    height: 120,
     justifyContent: 'center',
   },
   historyIcon: {
@@ -133,14 +145,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   serviceText: {
-    fontSize: 16,
+    fontSize: 12,
     color: '#fff',
   },
   countText: {
-    fontSize: 14,
+    fontSize: 10,
+    textAlign: 'center',
+    justifyContent: 'center',
     color: '#fff',
-    backgroundColor: 'gold',
-    paddingHorizontal: 10,
+    width: 120,
+    backgroundColor: 'rgba(199, 149, 75, 1)',
+    paddingHorizontal: 15,
     paddingVertical: 5,
     borderRadius: 5,
   },

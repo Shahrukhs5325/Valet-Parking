@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet, StatusBar } from 'react-native';
+import { View, Text, FlatList, StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import ValetIcon from '../../../assets/svg/history/ValetParking.svg';
 import CoffeeIcon from '../../../assets/svg/history/Coffee.svg';
@@ -8,6 +8,7 @@ import GolfIcon from '../../../assets/svg/history/GolfHole.svg';
 import HeaderTitle from '../../../components/header/HeaderTitle';
 import { palette } from '../../../theme/themes';
 import { FONT } from '../../../theme/fonts';
+import { useNavigation } from '@react-navigation/native';
 
 const historyData = [
   {
@@ -45,27 +46,30 @@ const historyData = [
 ];
 
 const History = () => {
+  const navigation = useNavigation();
 
 
   const renderItem = ({ item }) => (
-    <LinearGradient
-      colors={['rgba(22, 22, 22, 1)', 'rgba(40, 40, 40, 1)']} // 'rgba(124, 124, 124, 1)'
-      style={[
-        styles.historyItem,
-        { borderWidth: 1.2, borderColor: palette.borderClr },
-      ]}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 0 }}>
+    <TouchableOpacity onPress={() => navigation.navigate("TransactionScreen")}>
+      <LinearGradient
+        colors={['rgba(22, 22, 22, 1)', 'rgba(40, 40, 40, 1)']} // 'rgba(124, 124, 124, 1)'
+        style={[
+          styles.historyItem,
+          { borderWidth: 1.2, borderColor: palette.borderClr },
+        ]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}>
 
-      <View style={styles.historyIcon}>{item.icon}</View>
-      <View style={styles.historyDetails}>
-        <Text style={styles.historyService}>{item.service}</Text>
-        <Text style={styles.historyLocation}>{item.location}</Text>
-      </View>
-      <View style={styles.historyStatus}>
-        <Text style={styles.statusExpired}>{item.status}</Text>
-      </View>
-    </LinearGradient>
+        <View style={styles.historyIcon}>{item.icon}</View>
+        <View style={styles.historyDetails}>
+          <Text style={styles.historyService}>{item.service}</Text>
+          <Text style={styles.historyLocation}>{item.location}</Text>
+        </View>
+        <View style={styles.historyStatus}>
+          <Text style={styles.statusExpired}>{item.status}</Text>
+        </View>
+      </LinearGradient>
+    </TouchableOpacity>
   );
 
   return (
