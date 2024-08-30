@@ -9,6 +9,7 @@ export const palette = {
   bgGray: "#1F1F1F",
 
   txtGold: "#AE8C59",
+  borderClr:"#F1F1F14D",
   
   txtWhite: "#FFF",
   txtBlack: "#000",

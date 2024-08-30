@@ -78,7 +78,7 @@ const HomeScreen: React.FC<Props> = () => {
       }}>
         <StatusBar
           animated={true}
-        //  backgroundColor={palette.txtWhite}
+          backgroundColor={palette.primaryDark}
         />
         <ScrollView showsVerticalScrollIndicator={false}>
           <TopBannerHome />
