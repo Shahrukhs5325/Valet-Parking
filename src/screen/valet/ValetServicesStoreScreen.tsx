@@ -9,6 +9,7 @@ import Header from '../../components/header/Header';
 import { UserContext } from '../../context/user/UserContext';
 import { palette } from '../../theme/themes';
 import { FONT } from '../../theme/fonts';
+import HeaderTitle from '../../components/header/HeaderTitle';
 
 type Props = {
   route?: any;
@@ -50,7 +51,7 @@ const ValetServicesStoreScreen: React.FC<Props> = ({ route }) => {
 
   return (
     <View style={{ flex: 1, backgroundColor: userContext?.customTheme?.primaryDark, gap: 50 }}>
-      <Header navbar={true} />
+      <HeaderTitle title={"valet services"} />
       <View style={[styles.container, { backgroundColor: userContext?.customTheme?.primaryDark }]}>
         <StatusBar
           animated={true}
