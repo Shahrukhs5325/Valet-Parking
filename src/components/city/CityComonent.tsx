@@ -39,9 +39,9 @@ const CityComonent: React.FC<Props> = ({ service }) => {
     }
 
     const serviceScreenHandler = (item: any) => {
-        if (service?.key === "Valet_Service") {
+        if (service?.key === "valet_service") {
             navigation.navigate("ValetServicesStoreScreen", { city: item });
-        } else if (service?.key === "Airport_Transfer") {
+        } else if (service?.key === "airport_services") {
             navigation.navigate("AirportTransferScreen", { city: item });
         } else if (service?.key === "Meet_Greet") {
 

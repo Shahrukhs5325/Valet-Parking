@@ -18,7 +18,7 @@ type Props = {
 const ImageHeight = Math.round(Dimensions.get('window').width * 9 / 9);
 
 
-const ValetServiceScreen: React.FC<Props> = ({ route }) => {
+const ServiceScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
   const userContext = React.useContext(UserContext);
   const { service } = route.params;
@@ -63,7 +63,7 @@ const ValetServiceScreen: React.FC<Props> = ({ route }) => {
   );
 };
 
-export default ValetServiceScreen;
+export default ServiceScreen;
 
 const styles = StyleSheet.create({
   compView: {

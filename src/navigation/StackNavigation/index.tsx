@@ -14,7 +14,7 @@ import { UserContext } from "../../context/user/UserContext";
 import AirportTransferScreen from "../../screen/airportTransfer/AirportTransferScreen";
 import SucessAirportScreen from "../../screen/airportTransfer/SucessAirportScreen";
 import AirportTransTransactionDetailsScreen from "../../screen/transaction/ariportTransfer/AirportTransTransactionDetailsScreen";
-import ValetServiceScreen from "../../screen/service/ValetServiceScreen";
+import ServiceScreen from "../../screen/service/ServiceScreen";
 
 
 const Stack = createStackNavigator();
@@ -57,8 +57,8 @@ const Navigation = () => {
           component={HomeScreen}
         /> */}
         <Stack.Screen
-          name={"ValetServiceScreen"}
-          component={ValetServiceScreen}
+          name={"ServiceScreen"}
+          component={ServiceScreen}
         />
         <Stack.Screen
           name={"ValetServicesStoreScreen"}

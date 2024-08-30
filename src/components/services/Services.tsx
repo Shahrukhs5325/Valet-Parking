@@ -16,9 +16,9 @@ interface Props {
 }
 
 const DATA = [
-    { id: 1, key: "Valet_Service", name: "Valet Service", icon: <ParkingIcon /> },
-    { id: 2, key: "Airport_Transfer", name: "Airport Transfer Services", icon: <AirportIcon /> },
-    { id: 3, key: "Meet_Greet", name: "Airport Meet & Greet", icon: <PopcornIcon /> },
+    { id: 1, key: "valet_service", name: "Valet Service", icon: <ParkingIcon /> },
+    { id: 2, key: "airport_services", name: "Airport Services", icon: <AirportIcon /> },
+    { id: 3, key: "entertainment", name: "Entertainment", icon: <PopcornIcon /> },
 
 ]
 
@@ -36,7 +36,7 @@ const Services: React.FC<Props> = ({ }) => {
                     keyExtractor={(item, index) => index.toString()}
                     data={DATA}
                     renderItem={({ item }) =>
-                        <TouchableOpacity onPress={() => navigation.navigate("ValetServiceScreen", { service: item })}>
+                        <TouchableOpacity onPress={() => navigation.navigate("ServiceScreen", { service: item })}>
                             <View style={[styles.card, { backgroundColor: userContext?.customTheme?.bgCard }]}>
 
                                 {item.icon}
