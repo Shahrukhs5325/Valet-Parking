@@ -3,6 +3,7 @@ import { Dimensions, ImageBackground, StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 import { palette } from "../../theme/themes";
 import Header from "./Header";
+import { FONT } from "../../theme/fonts";
 
 
 interface Props {
@@ -17,14 +18,13 @@ const TopBanner: React.FC<Props> = ({ navbar, service }) => {
     return (
         <View style={styles.image}>
             <ImageBackground
-                source={require('../../assets/velet-car.png')}
+                source={require('../../assets/hotel.png')}
                 resizeMode="cover"
                 style={styles.image}>
                 <Header navbar={navbar} />
                 <View style={{ position: 'absolute', bottom: 0, justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', padding: 20, gap: 6 }}>
-                    <Text variant="titleLarge" style={{ color: palette.txtWhite, fontWeight: 800 }}>Valet Services</Text>
-                    <Text variant="bodyMedium" style={{ color: palette.txtWhite, textAlign: 'center' }}>Our professional valet team ensures your vehicle is safe and secure.</Text>
-
+                    <Text style={styles.txtTitle}>Hotels</Text>
+                    <Text style={styles.txtSubTitle}>Unmatched luxury and comfort at premium hotels</Text>
                 </View>
             </ImageBackground>
 
@@ -39,21 +39,28 @@ export default TopBanner;
 
 const styles = StyleSheet.create({
     container: {
-        //   flexDirection: 'row',
-        //  alignItems: "center",
         justifyContent: 'space-between',
         height: 300,
-        // width: '100%'
     },
     image: {
-
         ...StyleSheet.absoluteFillObject,
         resizeMode: 'cover',
         width: WIDTH,
-        // width: 50,
         height: ImageHeight,
-        //  backgroundColor:'red'
     },
+    txtTitle: {
+        fontWeight: '400',
+        color: palette.txtWhite,
+        fontFamily: FONT.JuliusSansOne.regular,
+        fontSize: 30,
+    },
+    txtSubTitle: {
+        fontWeight: '400',
+        color: palette.txtWhite,
+        fontFamily: FONT.JuliusSansOne.regular,
+        fontSize: 14,
+        textAlign: 'center',
+    }
 
 
 });

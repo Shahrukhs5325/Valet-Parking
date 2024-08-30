@@ -83,9 +83,9 @@ export default Header;
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        //  alignItems: "center",
         justifyContent: 'space-between',
-        padding: 15
+        paddingHorizontal: 15,
+        paddingTop: 20,
     },
     txtSty: {
         fontWeight: '400',

@@ -103,7 +103,8 @@ const styles = StyleSheet.create({
   compView: {
     padding: 10,
     gap: 26,
-    marginTop: ImageHeight + 10
+    marginTop: ImageHeight + 10,
+    marginBottom: 30
   },
   txtTitleSty: {
     fontFamily: FONT.JuliusSansOne.regular,
