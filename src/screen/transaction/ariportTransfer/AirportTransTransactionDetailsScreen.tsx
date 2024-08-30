@@ -74,91 +74,91 @@ const AirportTransTransactionDetailsScreen: React.FC<Props> = ({ route }) => {
             <View
               style={[styles.compView, { backgroundColor: userContext?.customTheme?.primaryDark }]}
             >
-              <Text variant="titleLarge" style={styles.txtSty}>Your booking is confirmed</Text>
-              <Text variant="titleSmall" style={styles.txtStysec}>Our team is verifying your booking. You will be notified when verification is complete.</Text>
+              <Text style={styles.txtSty}>Your booking is confirmed</Text>
+              <Text style={styles.txtStysec}>Our team is verifying your booking. You will be notified when verification is complete.</Text>
             </View>
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 60, marginHorizontal: 40 }}>
               <View style={{ alignItems: 'center', gap: 6 }}>
                 {isBeforeStart ? (
-                  <Text variant="displaySmall" style={styles.txtTimeTxt}>00:00</Text>
+                  <Text style={styles.txtTimeTxt}>00:00</Text>
                 ) : timeLeft ? (
-                  <Text variant="displayMedium" style={styles.txtTimeTxt}>
+                  <Text style={styles.txtTimeTxt}>
                     {`${timeLeft.hours}:${timeLeft.minutes}`}
                   </Text>
                 ) : (
-                  <Text variant="displaySmall" style={styles.txtTimeTxt}>00:00</Text>
+                  <Text style={styles.txtTimeTxt}>00:00</Text>
                 )}
 
                 <View style={styles.statusView}>
                   {isBeforeStart ? (
-                    <Text variant="titleSmall" style={styles.txtStatusSty}>Not Started</Text>
+                    <Text style={styles.txtStatusSty}>Not Started</Text>
                   ) : timeLeft ? (
-                    <Text variant="titleSmall" style={styles.txtStatusSty}>In Progress</Text>
+                    <Text style={styles.txtStatusSty}>In Progress</Text>
                   ) : (
-                    <Text variant="titleSmall" style={styles.txtStatusSty}>Complete</Text>
+                    <Text style={styles.txtStatusSty}>Complete</Text>
                   )}
                 </View>
               </View>
               <View style={{ alignItems: 'center', gap: 10 }}>
                 <CallIcon />
-                <Text variant="titleSmall" style={styles.txtCallSup}>Call support</Text>
+                <Text style={styles.txtCallSup}>Call support</Text>
               </View>
 
             </View>
           </View>
 
-          <View style={{ flex: 1, borderTopLeftRadius: 20, borderTopRightRadius: 20, marginTop: -28, backgroundColor: palette.bgGray, paddingBottom: 30, paddingTop: 10 }}>
+          <View style={{ flex: 1, borderTopLeftRadius: 20, borderTopRightRadius: 20, marginTop: -28, backgroundColor: palette.txtWhite, paddingBottom: 30, paddingTop: 10 }}>
             <View style={{ padding: 15, gap: 8 }}>
-              <Text variant="titleMedium" style={styles.txtBlackHeading}>Booking Summary</Text>
+              <Text style={styles.txtBlackHeading}>Booking Summary</Text>
               <View style={{}}>
-                <Text variant="titleMedium" style={styles.txtSummHeading}>Booking ID</Text>
-                <Text variant="bodyLarge" style={styles.txtBodyHeading}>987654321</Text>
+                <Text style={styles.txtSummHeading}>Booking ID</Text>
+                <Text style={styles.txtBodyHeading}>987654321</Text>
               </View>
               <View style={{}}>
-                <Text variant="titleMedium" style={styles.txtSummHeading}>Booked for</Text>
-                <Text variant="bodyLarge" style={styles.txtBodyHeading}>{userContext.user?.customerName}</Text>
+                <Text style={styles.txtSummHeading}>Booked for</Text>
+                <Text style={styles.txtBodyHeading}>{userContext.user?.customerName}</Text>
               </View>
               <View style={{}}>
-                <Text variant="titleMedium" style={styles.txtSummHeading}>Booked Date</Text>
-                <Text variant="bodyLarge" style={styles.txtBodyHeading}>{now}</Text>
+                <Text style={styles.txtSummHeading}>Booked Date</Text>
+                <Text style={styles.txtBodyHeading}>{now}</Text>
               </View>
             </View>
             <View style={{ borderBottomWidth: 1, borderColor: palette.txtGray, marginHorizontal: 30 }}></View>
             <View style={{ padding: 15, gap: 8 }}>
-              <Text variant="titleMedium" style={styles.txtBlackHeading}>Service Details</Text>
+              <Text style={styles.txtBlackHeading}>Service Details</Text>
               <View style={{}}>
-                <Text variant="titleMedium" style={styles.txtSummHeading}>Service Type</Text>
-                <Text variant="bodyLarge" style={styles.txtBodyHeading}>Airport Transfer services</Text>
+                <Text style={styles.txtSummHeading}>Service Type</Text>
+                <Text style={styles.txtBodyHeading}>Airport Transfer services</Text>
               </View>
               <View style={{}}>
-                <Text variant="titleMedium" style={styles.txtSummHeading}>Service Name</Text>
-                <Text variant="bodyLarge" style={styles.txtBodyHeading}>Airport Transfer</Text>
+                <Text style={styles.txtSummHeading}>Service Name</Text>
+                <Text style={styles.txtBodyHeading}>Airport Transfer</Text>
               </View>
 
             </View>
             <View style={{ borderBottomWidth: 1, borderColor: palette.txtGray, marginHorizontal: 30 }}></View>
             <View style={{ padding: 15, gap: 8 }}>
-              <Text variant="titleMedium" style={styles.txtBlackHeading}>Special Requests</Text>
+              <Text style={styles.txtBlackHeading}>Special Requests</Text>
               <View style={{}}>
-                <Text variant="titleMedium" style={styles.txtSummHeading}>Dietary Preferences</Text>
-                <Text variant="bodyLarge" style={styles.txtBodyHeading}>Vegetarian meal</Text>
+                <Text style={styles.txtSummHeading}>Dietary Preferences</Text>
+                <Text style={styles.txtBodyHeading}>Vegetarian meal</Text>
               </View>
             </View>
             <View style={{ borderBottomWidth: 1, borderColor: palette.txtGray, marginHorizontal: 30 }}></View>
             <View style={{ padding: 15, gap: 8 }}>
-              <Text variant="titleMedium" style={styles.txtBlackHeading}>Current Status</Text>
+              <Text style={styles.txtBlackHeading}>Current Status</Text>
               <View style={{}}>
-                <Text variant="titleMedium" style={styles.txtSummHeading}>Booking Status</Text>
-                <Text variant="bodyLarge" style={styles.txtBodyHeading}>Confirmed</Text>
+                <Text style={styles.txtSummHeading}>Booking Status</Text>
+                <Text style={styles.txtBodyHeading}>Confirmed</Text>
               </View>
               <View style={{}}>
-                <Text variant="titleMedium" style={styles.txtSummHeading}>Service Status</Text>
-                <Text variant="bodyLarge" style={styles.txtBodyHeading}>Pending</Text>
+                <Text style={styles.txtSummHeading}>Service Status</Text>
+                <Text style={styles.txtBodyHeading}>Pending</Text>
               </View>
               <View style={{}}>
-                <Text variant="titleMedium" style={styles.txtSummHeading}>Driver Details</Text>
-                <Text variant="bodyLarge" style={styles.txtBodyHeading}>TBA (To be Assigned)</Text>
+                <Text style={styles.txtSummHeading}>Driver Details</Text>
+                <Text style={styles.txtBodyHeading}>TBA (To be Assigned)</Text>
               </View>
 
             </View>
@@ -225,26 +225,32 @@ const styles = StyleSheet.create({
     backgroundColor: palette.txtGold,
   },
   txtStatusSty: {
+    backgroundColor: palette.txtGold,
+    fontWeight: '400',
     color: palette.txtWhite,
-    fontWeight: '700',
+    fontFamily: FONT.Able.regular,
     fontSize: 14,
+    paddingHorizontal: 14,
+    paddingVertical: 4,
+    borderRadius: 15
   },
   txtBlackHeading: {
     color: palette.txtBlack,
-    textTransform: 'uppercase',
-    // letterSpacing: 1,
-    fontWeight: '700',
-    fontSize: 16
+    fontWeight: '400',
+    fontFamily: FONT.Able.regular,
+    fontSize: 16,
   },
   txtSummHeading: {
-    color: palette.txtBlack,
+    color: palette.txtGray,
     fontWeight: '400',
-    fontSize: 12
+    fontFamily: FONT.Able.regular,
+    fontSize: 12,
   },
   txtBodyHeading: {
-    color: palette.txtGray,
-    fontWeight: '500',
-    fontSize: 14
+    color: palette.txtBlack,
+    fontWeight: '400',
+    fontFamily: FONT.Able.regular,
+    fontSize: 14,
   }
 
 
