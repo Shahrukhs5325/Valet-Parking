@@ -5,6 +5,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import { FlatList } from 'react-native-gesture-handler';
 import ZapsIcon from '../../assets/svg/zapsIcon.svg';
 import BarcodeImage from '../../assets/svg/barcode.svg'; // Add your barcode image
+import { FONT } from '../../theme/fonts';
+import { palette } from '../../theme/themes';
 
 const ProfileScreen = () => {
   const [listHeight, setListHeight] = useState(0);
@@ -42,10 +44,10 @@ const ProfileScreen = () => {
           <ZapsIcon style={styles.icon} />
           <View style={styles.profileInfo}>
             <View style={styles.nameIdContainer}>
-              <Text style={styles.heading}>Ahmed Pasha</Text>
-              <Text style={styles.heading}>ID: 0123456</Text>
+              <Text style={styles.itemText}>Ahmed Pasha</Text>
+              <Text style={styles.itemText}>ID: 0123456</Text>
             </View>
-            <BarcodeImage height={87} width={87}/>
+            <BarcodeImage height={87} width={87} />
           </View>
           <Text style={styles.membershipText}>Membership valid upto:</Text>
           <Text style={styles.membershipText}>05/24</Text>
@@ -59,6 +61,7 @@ const ProfileScreen = () => {
           end={{ x: 1, y: 0 }}
         >
           <FlatList
+            scrollEnabled={false}
             ref={flatListRef}
             data={historyData}
             renderItem={renderItem}
@@ -75,23 +78,24 @@ const ProfileScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginHorizontal: 16,
+    gap: 16,
   },
   gradientWrapper: {
     flex: 2,
-    marginHorizontal: 12,
     marginTop: 25,
     marginBottom: 12,
-    borderRadius: 15,
-    overflow: 'hidden',
+    borderRadius: 17,
+    borderWidth: 1,
+    //  borderColor: palette.borderClr,
+    overflow: 'hidden'
   },
   gradientContainer: {
-    paddingHorizontal: 25,
-    paddingBottom: 0, // Ensure no extra padding
-    height: 360,
-    borderRadius: 15,
+    paddingHorizontal: 20,
+    borderRadius: 17,
   },
   flatListContent: {
-    paddingBottom: 0, // Ensure no extra padding
+    gap: 4,
   },
   lastItem: {
     borderBottomWidth: 0, // Remove underline for the last item
@@ -100,22 +104,24 @@ const styles = StyleSheet.create({
   listItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10,
+    paddingHorizontal: 14,
     height: 50,
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(241, 241, 241, 0.3)', // Underline color
+    borderBottomColor: palette.borderClr,
   },
   itemText: {
-    color: 'white',
-    fontSize: 16,
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 14,
+    fontWeight: '400',
+    color: palette.txtWhite,
   },
   background: {
     flex: 1,
-    marginHorizontal: 12,
-    marginBottom: 6, // Decrease margin to reduce space between image and gradient
-    height: 203,
+    // marginHorizontal: 12,
+    // marginBottom: 6, // Decrease margin to reduce space between image and gradient
+    //height: 203,
     resizeMode: 'cover', // Or 'contain' depending on your need
-    borderRadius: 5, // Added borderRadius
+    borderRadius: 17, // Added borderRadius
   },
   overlay: {
     flex: 1,
@@ -132,7 +138,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   nameIdContainer: {
-    flex: 1,
+    gap: 6,
   },
   heading: {
     color: 'white',
@@ -145,8 +151,10 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   membershipText: {
-    color: 'white',
-    fontSize: 10,
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 12,
+    fontWeight: '400',
+    color: palette.txtWhite,
   },
 });
 
