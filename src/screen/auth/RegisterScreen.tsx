@@ -372,7 +372,7 @@ const RegisterScreen: React.FC<Props> = () => {
               />
             </View>
 
-            {!isSentOTP ? <View style={{ gap: 4 }}>
+            {isSentOTP ? <View style={{ gap: 4 }}>
               <Text style={styles.txtTextTitle} >Enter OTP</Text>
               <TextInputCust
                 placeholder='OTP'
