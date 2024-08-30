@@ -3,33 +3,29 @@ import React from "react";
 import { Image, TouchableOpacity, View, StyleSheet } from "react-native";
 import { UserContext } from "../../context/user/UserContext";
 import HomeScreen from "../../screen/home/HomeScreen";
-import CommingSoonScreen from "../../screen/commingSoon/CommingSoonScreen";
-import TransactionScreen from "../../screen/transaction/valetParking/TransactionScreen";
-import HomeActiveIcon from '../../assets/bottomtab/home-white.svg';
-import HomeInActiveIcon from '../../assets/bottomtab/home-gray.svg';
-import BagInActiveIcon from '../../assets/bottomtab/bag-gray.svg';
-import BagActiveIcon from '../../assets/bottomtab/bag-white.svg';
-import CardInActiveIcon from '../../assets/bottomtab/card-gray.svg';
-import CardActiveIcon from '../../assets/bottomtab/card-white.svg';
-import PinInActiveIcon from '../../assets/bottomtab/pin-gray.svg';
-import PinActiveIcon from '../../assets/bottomtab/pin-white.svg';
+import HomeIcon from '../../assets/svg/tab/Home.svg';
+import PriviligeIcon from '../../assets/svg/tab/Membership Card.svg';
+import HistoryIcon from '../../assets/svg/tab/Order History.svg';
+import AccountIcon from '../../assets/svg/tab/Test Account.svg';
 import { palette } from "../../theme/themes";
 import { FONT } from "../../theme/fonts";
 import History from "../../screen/transaction/valetParking/History";
 import ProfileScreen from "../../screen/profile/PrifileScreen";
 import PrivilegeScreen from "../../screen/privilege/PrivilegeScreen";
+
 const Tab = createBottomTabNavigator();
+
 export const RenderTabNavigation = () => {
     const userContext = React.useContext(UserContext);
 
-    const CustomTabBarButton = ({ onPress }) => (
-        <TouchableOpacity onPress={onPress} style={styles.middleButtonContainer}>
-            <Image
-                source={require('../../assets/bottomtab/middle-img.png')}
-                style={styles.middleButtonImage}
-            />
-        </TouchableOpacity>
-    );
+    // const CustomTabBarButton = ({ onPress }) => (
+    //     <TouchableOpacity onPress={onPress} style={styles.middleButtonContainer}>
+    //         <Image
+    //             source={require('../../assets/bottomtab/middle-img.png')}
+    //             style={styles.middleButtonImage}
+    //         />
+    //     </TouchableOpacity>
+    // );
 
     return (
         <Tab.Navigator
@@ -42,7 +38,7 @@ export const RenderTabNavigation = () => {
                     marginTop: -20,
                     borderTopRightRadius: 20,
                     borderTopLeftRadius: 20,
-                    height: 74,
+                    height: 64,
                     shadowColor: "#FFF",
                     shadowOffset: {
                         width: 0,
@@ -66,7 +62,7 @@ export const RenderTabNavigation = () => {
                                     style={styles.middleButtonImage}
                                 />
                             </View>
-                            : <HomeInActiveIcon width={100} height={100} />;
+                            : <HomeIcon width={26} height={26} />;
                     } else if (route.name === "Privileges") {
                         IconComponent = focused ?
                             <View style={styles.activeIconContainer}>
@@ -75,7 +71,7 @@ export const RenderTabNavigation = () => {
                                     style={styles.middleButtonImage}
                                 />
                             </View>
-                            : <BagInActiveIcon width={30} height={30} />;
+                            : <PriviligeIcon width={26} height={39} />;
 
                     } else if (route.name === "History") {
                         IconComponent = focused ?
@@ -85,7 +81,7 @@ export const RenderTabNavigation = () => {
                                     style={styles.middleButtonImage}
                                 />
                             </View>
-                            : <CardInActiveIcon width={30} height={30} />;
+                            : <HistoryIcon width={26} height={39} />;
                     } else if (route.name === "Profile") {
                         IconComponent = focused ?
                             <View style={styles.activeIconContainer}>
@@ -94,7 +90,7 @@ export const RenderTabNavigation = () => {
                                     style={styles.middleButtonImage}
                                 />
                             </View>
-                            : <PinInActiveIcon width={30} height={30} />;
+                            : <AccountIcon width={26} height={26} />;
                     }
 
                     return IconComponent;
@@ -111,18 +107,18 @@ export const RenderTabNavigation = () => {
 
 const styles = StyleSheet.create({
     activeIconContainer: {
-        backgroundColor: '#5C8374', // Gold color
-        width: 74,
-        height: 70,
+        backgroundColor: palette.bgCard,
+        width: 78,
+        height: 74,
         borderRadius: 90,
         alignItems: 'center',
         justifyContent: 'center',
-        top: -5, // This will lift the active icon above others
-        shadowColor: '#5C8374',
-        shadowOffset: { width: 0, height: 10 },
-        shadowOpacity: 0.3,
-        shadowRadius: 10,
-        elevation: 10,
+        top: -6, // This will lift the active icon above others
+        // shadowColor: '#5C8374',
+        // shadowOffset: { width: 0, height: 10 },
+        // shadowOpacity: 0.3,
+        // shadowRadius: 10,
+        // elevation: 1,
     },
     middleButtonContainer: {
         top: -2,
