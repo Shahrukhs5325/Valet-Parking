@@ -2,14 +2,13 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Dimensions, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import { palette } from '../../theme/themes';
-import TopBanner from '../../components/header/TopBanner';
-import Services from '../../components/services/Services';
 import { Text } from 'react-native-paper';
 import Store from '../../components/store/Store';
 import CityComonent from '../../components/city/CityComonent';
 import { UserContext } from '../../context/user/UserContext';
 import { FONT } from '../../theme/fonts';
 import TopBannerValet from '../../components/header/TopBannerValet';
+import TopBannerAirport from '../../components/header/TopBannerAirport';
 
 type Props = {
   route?: any;
@@ -32,6 +31,7 @@ const ServiceScreen: React.FC<Props> = ({ route }) => {
   }, []);
 
 
+  console.log(service);
 
 
 
@@ -46,7 +46,12 @@ const ServiceScreen: React.FC<Props> = ({ route }) => {
           backgroundColor={userContext?.customTheme?.primaryDark}
         />
         <ScrollView showsVerticalScrollIndicator={false}>
-          <TopBannerValet navbar={true} service={service} />
+
+          {service?.key === "valet_service" ?
+            <TopBannerValet service={service} />
+            :
+            <TopBannerAirport service={service} />
+          }
           <View style={styles.compView}>
             <View>
               <Text variant="titleSmall" style={styles.txtTitleSty}>CITIES</Text>

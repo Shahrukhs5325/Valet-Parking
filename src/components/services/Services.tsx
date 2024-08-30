@@ -16,9 +16,9 @@ interface Props {
 }
 
 const DATA = [
-    { id: 1, key: "valet_service", name: "Valet Service", icon: <ParkingIcon /> },
-    { id: 2, key: "airport_services", name: "Airport Services", icon: <AirportIcon /> },
-    { id: 3, key: "entertainment", name: "Entertainment", icon: <PopcornIcon /> },
+    { id: 1, key: "valet_service", name: "Valet Service", icon: <ParkingIcon width={40} height={40} /> },
+    { id: 2, key: "airport_services", name: "Airport Services", icon: <AirportIcon width={40} height={40} /> },
+    { id: 3, key: "entertainment", name: "Entertainment", icon: <PopcornIcon width={40} height={40} /> },
 
 ]
 
