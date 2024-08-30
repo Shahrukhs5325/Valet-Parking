@@ -31,9 +31,6 @@ const ServiceScreen: React.FC<Props> = ({ route }) => {
   }, []);
 
 
-  console.log(service);
-
-
 
   return (
     <>
@@ -48,9 +45,9 @@ const ServiceScreen: React.FC<Props> = ({ route }) => {
         <ScrollView showsVerticalScrollIndicator={false}>
 
           {service?.key === "valet_service" ?
-            <TopBannerValet service={service} />
+            <TopBannerValet navbar={true} service={service} />
             :
-            <TopBannerAirport service={service} />
+            <TopBannerAirport navbar={true} service={service} />
           }
           <View style={styles.compView}>
             <View>

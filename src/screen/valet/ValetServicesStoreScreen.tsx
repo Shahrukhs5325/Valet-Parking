@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     color: palette.txtWhite,
     textAlign: 'center',
-    paddingVertical: 10,
+    paddingVertical: 8,
     backgroundColor: palette.bgCard,
     borderWidth: 1,
     borderColor: palette.txtGray,

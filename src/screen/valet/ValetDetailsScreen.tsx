@@ -102,6 +102,8 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
                   <Text style={styles.txtSty}>Direction</Text>
                 </View>
               </View>
+              
+              <View style={{ borderBottomWidth: 1.4, borderColor: palette.bgGray }} />
 
               <View style={{ gap: 8 }}>
                 <Text variant="titleSmall" style={styles.txtheadSty}>Service description</Text>

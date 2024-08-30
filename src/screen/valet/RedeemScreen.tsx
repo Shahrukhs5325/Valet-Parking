@@ -10,6 +10,8 @@ import { UserContext } from '../../context/user/UserContext';
 import { palette } from '../../theme/themes';
 import { redeemCouponByqrCode } from '../../api/common/commonApi';
 import moment from 'moment';
+import HeaderTitle from '../../components/header/HeaderTitle';
+import { FONT } from '../../theme/fonts';
 
 
 type Props = {
@@ -157,17 +159,25 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
           animated={true}
           backgroundColor={palette.primaryDark}
         />
-        <Header navbar={true} />
+        <HeaderTitle title={"valet services"} />
 
         <View style={styles.compView}>
+          <Text style={styles.txtHeadingSty}>Parking Voucher</Text>
+
           <View style={{ gap: 8, marginVertical: 6, alignItems: 'center' }}>
-            <Text variant="headlineMedium" style={styles.txtTitleSty}>{coupon.templateName}</Text>
-            <Text variant="bodySmall" style={styles.txtSty}>{coupon.address}</Text>
+            <Text style={styles.txtTitleSty}>{coupon.templateName}</Text>
+            <Text style={styles.txtaddSty}>{coupon.address}</Text>
           </View>
 
-          <View style={{ justifyContent: 'center', alignItems: 'center', gap: 10 }}>
-            <Text variant="titleSmall" style={styles.txtheadSty}>Please share this QR to valet counter</Text>
-            <View style={{ backgroundColor: "#FFF", height: 140, width: 140, borderRadius: 17, alignItems: 'center', justifyContent: 'center' }}>
+          <View style={{ borderBottomWidth: 1.4, borderColor: palette.bgGray }} />
+
+          <Text style={styles.txtaddSty}>Number of hours redeemed: {qty} hrs</Text>
+
+          <View style={{ borderBottomWidth: 1.4, borderColor: palette.bgGray }} />
+
+
+          <View style={{ justifyContent: 'center', alignItems: 'center', gap: 10, paddingVertical: 10 }}>
+            <View style={{ backgroundColor: "#FFF", height: 140, width: 140, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }}>
               <QRCode
                 value={coupon?.couponCode}
                 logoSize={30}
@@ -176,10 +186,10 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
               />
             </View>
           </View>
-          <Text variant="titleSmall" style={styles.txtheadSty}>OR</Text>
 
           <View>
-            <Text variant="titleSmall" style={styles.txtheadSty}>Ask code to redeem this service</Text>
+            <Text style={styles.txtheadSty}>Please show this QR at the Valet Counter or ask Valet Representative to enter the code to redeem this service</Text>
+
             <View style={{ width: '60%', alignSelf: 'center' }}>
               <CodeField
                 ref={ref}
@@ -204,7 +214,7 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
           </View>
 
         </View>
-        <View style={{ width: '100%', marginTop: 60 }}>
+        <View style={{ width: '100%', marginTop: 40, paddingHorizontal: 16 }}>
           <PrimaryButton loading={isLoading} onPress={() => redeemCouponByqrCodeHandler()} buttonColor={"light"}>Redeem</PrimaryButton>
 
         </View>
@@ -231,28 +241,49 @@ export default RedeemScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15,
-    // justifyContent: 'center',
-    // alignItems: 'center',
   },
   compView: {
-    padding: 10,
+    padding: 16,
     marginTop: 26,
-    gap: 26,
+    gap: 20,
   },
   txtSty: {
     color: palette.txtWhite,
 
   },
-  txtTitleSty: {
-    fontWeight: '700',
+  txtHeadingSty: {
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 22,
+    fontWeight: '400',
     color: palette.txtWhite,
-    textTransform: 'capitalize',
+    textAlign: 'center',
+    paddingVertical: 8,
+    backgroundColor: palette.bgCard,
+    borderWidth: 1,
+    borderColor: palette.txtGray,
+    borderRadius: 5,
+    width: WIDTH - 120,
+    alignSelf: 'center'
+  },
+  txtTitleSty: {
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 30,
+    fontWeight: '400',
+    color: palette.txtWhite,
     textAlign: 'center'
-
+  },
+  txtaddSty: {
+    fontWeight: '400',
+    color: palette.txtWhite,
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 12,
+    textAlign: 'center'
   },
   txtheadSty: {
+    fontWeight: '400',
     color: palette.txtWhite,
+    fontFamily: FONT.Able.regular,
+    fontSize: 12,
     textAlign: 'center'
   },
   image: {
@@ -271,8 +302,8 @@ const styles = StyleSheet.create({
   title: { textAlign: 'center', fontSize: 30 },
   codeFieldRoot: { marginTop: 20 },
   cell: {
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
     lineHeight: 38,
     fontSize: 20,
     borderWidth: 1,
