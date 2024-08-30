@@ -15,6 +15,9 @@ import PinInActiveIcon from '../../assets/bottomtab/pin-gray.svg';
 import PinActiveIcon from '../../assets/bottomtab/pin-white.svg';
 import { palette } from "../../theme/themes";
 import { FONT } from "../../theme/fonts";
+import History from "../../screen/transaction/valetParking/History";
+import ProfileScreen from "../../screen/profile/PrifileScreen";
+import PrivilegeScreen from "../../screen/privilege/PrivilegeScreen";
 const Tab = createBottomTabNavigator();
 export const RenderTabNavigation = () => {
     const userContext = React.useContext(UserContext);
@@ -99,9 +102,9 @@ export const RenderTabNavigation = () => {
             })}
         >
             <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen name="Privileges" component={CommingSoonScreen} />
-            <Tab.Screen name="History" component={TransactionScreen} />
-            <Tab.Screen name="Profile" component={CommingSoonScreen} />
+            <Tab.Screen name="Privileges" component={PrivilegeScreen} />
+            <Tab.Screen name="History" component={History} />
+            <Tab.Screen name="Profile" component={ProfileScreen} />
         </Tab.Navigator>
     );
 };
