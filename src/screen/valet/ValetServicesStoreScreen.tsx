@@ -10,6 +10,7 @@ import { UserContext } from '../../context/user/UserContext';
 import { palette } from '../../theme/themes';
 import { FONT } from '../../theme/fonts';
 import HeaderTitle from '../../components/header/HeaderTitle';
+import LocationIcon from '../../assets/svg/Location.svg';
 
 type Props = {
   route?: any;
@@ -50,7 +51,7 @@ const ValetServicesStoreScreen: React.FC<Props> = ({ route }) => {
 
 
   return (
-    <View style={{ flex: 1, backgroundColor: userContext?.customTheme?.primaryDark, gap: 50 }}>
+    <View style={{ flex: 1, backgroundColor: userContext?.customTheme?.primaryDark, gap: 20 }}>
       <HeaderTitle title={"valet services"} />
       <View style={[styles.container, { backgroundColor: userContext?.customTheme?.primaryDark }]}>
         <StatusBar
@@ -58,8 +59,8 @@ const ValetServicesStoreScreen: React.FC<Props> = ({ route }) => {
           backgroundColor={userContext?.customTheme?.primaryDark}
         />
 
-        <View style={{ gap: 15, }}>
-          <Text variant="titleLarge" style={styles.txtTitleSty}>Premium Valet Services Across {city.cityName}</Text>
+        <View style={{ gap: 24, }}>
+          <Text style={styles.txtTitleSty}>City: {city.cityName}</Text>
 
           <FlatList
             showsVerticalScrollIndicator={false}
@@ -67,10 +68,20 @@ const ValetServicesStoreScreen: React.FC<Props> = ({ route }) => {
             data={storeList}
             renderItem={({ item }) =>
               <View style={styles.card}>
-                <Text variant="titleMedium" style={styles.txtSty}>{item?.storeName}</Text>
+                <View style={{ gap: 4, width: "82%" }}>
+                  <Text style={styles.txtSty} numberOfLines={1}>{item?.storeName}</Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                    <LocationIcon />
+                    <Text style={styles.kmTxt}>5 Kms away</Text>
+                  </View>
+                </View>
                 <TouchableOpacity onPress={() => navigation.navigate("ValetDetailsScreen", { store: item })}>
-                  <View style={styles.arrowCard}>
-                    <Arrow width={20} height={20} />
+                  <View style={styles.viewTirdArrBtn}>
+                    <View style={styles.viewSecArrBtn}>
+                      <View style={styles.viewFristArrBtn}>
+                        <Arrow width={10} height={11} />
+                      </View>
+                    </View>
                   </View>
                 </TouchableOpacity>
               </View>
@@ -105,9 +116,14 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '400',
     color: palette.txtWhite,
-    textTransform: 'uppercase',
-    letterSpacing: 3,
-    paddingBottom: 12
+    textAlign: 'center',
+    paddingVertical: 10,
+    backgroundColor: palette.bgCard,
+    borderWidth: 1,
+    borderColor: palette.txtGray,
+    borderRadius: 5,
+    width: WIDTH - 120,
+    alignSelf: 'center'
   },
   listContents: {
     gap: 16,
@@ -121,39 +137,51 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 16,
-    backgroundColor: palette.txtWhite,
+    backgroundColor: palette.bgCard,
     width: WIDTH - 40,
-    height: 100,
     borderRadius: 17,
-    gap: 16
-    //   justifyContent: 'space-between'
+    borderWidth: 1,
+    borderColor: palette.txtGray,
   },
   txtSty: {
     fontFamily: FONT.JuliusSansOne.regular,
     fontSize: 16,
     fontWeight: '400',
-    color: palette.txtBlack,
-  },
-  img: {
-    borderRadius: 17,
-    width: WIDTH / 4,
-    height: WIDTH / 4
+    color: palette.txtWhite,
   },
   emtTxt: {
     color: palette.txtWhite,
     textAlign: 'center',
     paddingVertical: 30
   },
-  arrowCard: {
+  viewFristArrBtn: {
+    alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: 90,
     backgroundColor: palette.txtWhite,
-    padding: 6, borderWidth: 5,
-    borderColor: palette.bgGray,
-    height: 46,
-    width: 46,
+    padding: 6,
+    width: 24, height: 24
+  },
+  viewSecArrBtn: {
     alignItems: 'center',
-    justifyContent: 'center'
-  }
+    borderRadius: 90,
+    backgroundColor: "#D9D9D9",
+    padding: 6,
+  },
+  viewTirdArrBtn: {
+    alignItems: 'center',
+    borderRadius: 90,
+    backgroundColor: "#D9D9D91A",
+    padding: 5,
+    marginVertical: 7
+  },
+  kmTxt: {
+    fontWeight: '400',
+    fontSize: 12,
+    color: palette.txtWhite,
+    fontFamily: FONT.Able.regular,
+    lineHeight: 12.7
+  },
 
 
 

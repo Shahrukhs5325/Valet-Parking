@@ -5,16 +5,19 @@ import { Text } from 'react-native-paper';
 import CallIcon from '../../assets/svg/call.svg';
 import ShareIcon from '../../assets/svg/communities.svg';
 import WalkIcon from '../../assets/svg/directions_walk.svg';
-import LocationIcon from '../../assets/svg/location_on.svg';
-import NearmeIcon from '../../assets/svg/near_me.svg';
+import LocationIcon from '../../assets/svg/Location.svg';
+import MapIcon from '../../assets/svg/Waypoint Map.svg';
 import SpotnIcon from '../../assets/svg/stop.svg';
 import PrimaryButton from '../../components/button/PrimaryButton';
 import Header from '../../components/header/Header';
 import { palette } from '../../theme/themes';
-import TermIcon from '../../assets/svg/gifts.svg';
+import TermIcon from '../../assets/svg/Rules Book.svg';
+import HelpIcon from '../../assets/svg/help.svg';
+
 import { useQuery } from '@tanstack/react-query';
 import { UserContext } from '../../context/user/UserContext';
 import { getCustomerCouponsByStoreIdNMerchantId } from '../../api/common/commonApi';
+import { FONT } from '../../theme/fonts';
 
 
 type Props = {
@@ -69,99 +72,47 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
         <View style={[styles.container, { backgroundColor: userContext?.customTheme?.primaryDark }]}>
           <StatusBar
             animated={true}
-          // backgroundColor={palette.primaryDark}
+            backgroundColor={userContext?.customTheme?.primaryDark}
           />
           <ScrollView showsVerticalScrollIndicator={false}>
-            {/* <TopBanner navbar={true} /> */}
             <ImageBackground
-              source={require('../../assets/man-sitting-car.png')}
+              source={require('../../assets/valet-store-img.png')}
               resizeMode="cover"
               style={styles.image}>
               <Header navbar={true} />
             </ImageBackground>
             <View style={[styles.compView, { backgroundColor: userContext?.customTheme?.primaryDark }]}>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <View style={{ width: '75%' }}>
-                  <Text variant="headlineMedium" style={styles.txtTitleSty}>{coupon.templateName}</Text>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginVertical: 6 }}>
-                    <LocationIcon />
-                    <Text variant="titleSmall" style={styles.txtSty}>{coupon.address}</Text>
-                  </View>
+              <View style={{ gap: 10 }}>
+                <Text style={styles.txtTitleSty}>{coupon.templateName}</Text>
+                <Text style={styles.txtaddSty}>{coupon.address}</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                  <LocationIcon />
+                  <Text style={styles.kmTxt}>5 Kms away</Text>
                 </View>
-                <Image source={require('../../assets/valet.png')}
-                  style={styles.img} />
               </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 40, }}>
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginVertical: 6 }}>
-                  <View style={{ width: 16, height: 16, backgroundColor: '#FFF', alignItems: 'center', justifyContent: 'center' }}><WalkIcon /></View>
-                  <Text variant="titleSmall" style={styles.txtSty}>800m away</Text>
-                </View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginVertical: 6 }}>
-                  <SpotnIcon />
-                  <Text variant="titleSmall" style={styles.txtSty}>19 Spots</Text>
-                </View>
-              </View>
+
               <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 6, justifyContent: "space-between" }}>
-
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: userContext?.customTheme?.bgCard, borderRadius: 10 }}>
+                <View style={styles.viewCall}>
                   <CallIcon />
-                  <Text variant="titleSmall" style={styles.txtSty}>Call</Text>
+                  <Text style={styles.txtSty}>Call</Text>
                 </View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: userContext?.customTheme?.bgCard, borderRadius: 10 }}>
-                  <NearmeIcon />
-                  <Text variant="titleSmall" style={styles.txtSty}>Direction</Text>
+                <View style={styles.viewCall}>
+                  <MapIcon />
+                  <Text style={styles.txtSty}>Direction</Text>
                 </View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: userContext?.customTheme?.bgCard, borderRadius: 10 }}>
-                  <ShareIcon />
-                  <Text variant="titleSmall" style={styles.txtSty}>Share</Text>
-                </View>
-
               </View>
 
               <View style={{ gap: 8 }}>
                 <Text variant="titleSmall" style={styles.txtheadSty}>Service description</Text>
                 <View style={{ gap: 4, marginLeft: 16 }}>
-                  <Text variant="bodySmall" style={styles.txtSty}>Safe and secure parking</Text>
-                  <Text variant="bodySmall" style={styles.txtSty}>Professional and courteous staff</Text>
-                  <Text variant="bodySmall" style={styles.txtSty}>Quick and easy vehicle retrieval</Text>
-                  <Text variant="bodySmall" style={styles.txtSty}>Special attention to your vehicle's needs</Text>
-
+                  <Text variant="bodySmall" style={styles.txtDataSty}>Safe and secure parking</Text>
+                  <Text variant="bodySmall" style={styles.txtDataSty}>Professional and courteous staff</Text>
+                  <Text variant="bodySmall" style={styles.txtDataSty}>Quick and easy vehicle retrieval</Text>
+                  <Text variant="bodySmall" style={styles.txtDataSty}>Special attention to your vehicle's needs</Text>
                 </View>
 
               </View>
-
-              {/* <View style={{ gap: 8 }}>
-                <Text variant="titleSmall" style={styles.txtheadSty}>parking duration</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 6, justifyContent: "space-between" }}>
-
-                  <FlatList
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}
-                    keyExtractor={(item, index) => index.toString()}
-                    data={couponList}
-                    renderItem={({ item }) =>
-                      <View style={{}}>
-                        <View style={[styles.serviceView, { backgroundColor: userContext?.customTheme?.bgCard }]}>
-                          <Text variant="bodySmall" style={styles.txtSty}>{coupon?.denomination} Hour</Text>
-                        </View>
-                        <View style={[styles.serviceBtmView, { backgroundColor: userContext?.customTheme?.bgCard }]}>
-                          <Text variant="bodySmall" style={styles.txtSty}>1-Redeems</Text>
-                        </View>
-                      </View>
-                    }
-                    style={styles.list}
-                    contentContainerStyle={styles.listContents}
-                    initialNumToRender={5}
-                    maxToRenderPerBatch={10}
-                    windowSize={10}
-                    updateCellsBatchingPeriod={50}
-                    ListEmptyComponent={<>
-                      <Text variant="bodyMedium" style={styles.emtTxt}>Data Not Found</Text>
-                    </>}
-                  />
-                </View>
-              </View> */}
 
               <View style={{ gap: 8 }}>
                 <Text variant="titleSmall" style={styles.txtheadSty}>parking duration</Text>
@@ -186,11 +137,11 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
               <View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, }}>
                   <TermIcon />
-                  <Text variant="bodyLarge" style={styles.txtSty}>Terms & conditions</Text>
+                  <Text style={styles.txtTermSty}>Terms & conditions</Text>
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, }}>
-                  <TermIcon />
-                  <Text variant="bodyLarge" style={styles.txtSty}>How to redeem</Text>
+                  <HelpIcon />
+                  <Text style={styles.txtTermSty}>How to redeem</Text>
                 </View>
 
               </View>
@@ -202,7 +153,7 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
           </ScrollView>
         </View> :
         <View style={[styles.containerErr, { backgroundColor: userContext?.customTheme?.primaryDark }]}>
-          <Text variant="bodyMedium" style={styles.emtTxt}>Data Not Found</Text>
+          <Text style={styles.emtTxt}>Data Not Found</Text>
         </View>
       }
     </>
@@ -214,36 +165,73 @@ export default ValetDetailsScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //paddingHorizontal: 15,
-
   },
   containerErr: {
     flex: 1,
-    //paddingHorizontal: 15,
     justifyContent: 'center',
     alignItems: 'center',
-
   },
   compView: {
     borderRadius: 17,
-    padding: 10,
+    padding: 16,
     paddingTop: 26,
     marginTop: -10,
     gap: 26,
   },
+  viewCall: {
+    width: WIDTH / 2.8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    backgroundColor: palette.bgCard,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: palette.txtGray,
+  },
   txtSty: {
+    fontFamily: FONT.Able.regular,
+    fontSize: 14,
+    fontWeight: '400',
     color: palette.txtWhite,
   },
   txtTitleSty: {
-    fontWeight: '700',
+    fontWeight: '400',
     color: palette.txtWhite,
-    textTransform: 'capitalize',
-
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 24,
+  },
+  txtaddSty: {
+    fontWeight: '400',
+    color: palette.txtWhite,
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 12,
+  },
+  kmTxt: {
+    fontWeight: '400',
+    fontSize: 12,
+    color: palette.txtWhite,
+    fontFamily: FONT.Able.regular,
   },
   txtheadSty: {
+    fontWeight: '400',
     color: palette.txtWhite,
-    textTransform: 'uppercase',
-    letterSpacing: 3
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 16,
+  },
+  txtDataSty: {
+    fontWeight: '400',
+    fontSize: 12,
+    color: palette.txtWhite,
+    fontFamily: FONT.Able.regular,
+  },
+  txtTermSty: {
+    fontWeight: '400',
+    fontSize: 14,
+    color: palette.txtWhite,
+    fontFamily: FONT.Able.regular,
+    textDecorationLine: 'underline'
   },
   image: {
     resizeMode: 'cover',

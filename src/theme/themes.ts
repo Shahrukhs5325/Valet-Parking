@@ -3,12 +3,13 @@ export const palette = {
   primaryDark: "#000",
   primaryLight: "#FFF",
 
-  txtInputBg:"#1B1B1B",
-  
-  bgCard: "#333333",
+  txtInputBg: "#1B1B1B",
+  bgCard: "#1F1F1F",
   txtGray: "#999999",
-  bgGray: "#F2F2F2",
+  bgGray: "#1F1F1F",
+
   txtGold: "#AE8C59",
+  
   txtWhite: "#FFF",
   txtBlack: "#000",
 };
