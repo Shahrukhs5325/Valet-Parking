@@ -10,7 +10,7 @@ import { UserContext } from "../../context/user/UserContext";
 import { FONT } from "../../theme/fonts";
 
 
-const ImageHeight = Math.round(Dimensions.get('window').width / 3.5);
+const ImageHeight = Math.round(Dimensions.get('window').width / 3.43);
 
 interface Props {
 }

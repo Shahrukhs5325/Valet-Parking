@@ -4,6 +4,7 @@ import { ActivityIndicator, Dimensions, FlatList, Image, StyleSheet, TouchableOp
 import { Text } from "react-native-paper";
 import { getNearByStores } from "../../api/common/commonApi";
 import Arrow from '../../assets/svg/arrow_forward.svg';
+import LocationIcon from '../../assets/svg/Location.svg';
 import { UserContext } from "../../context/user/UserContext";
 import { palette } from "../../theme/themes";
 import { useNavigation } from "@react-navigation/native";
@@ -62,22 +63,31 @@ const Store: React.FC<Props> = ({ location }) => {
                             <View
                                 style={[styles.card, { backgroundColor: userContext?.customTheme?.bgCard }]}
                             >
+                                <View style={{ paddingVertical: 14 }}>
+                                    <Text style={styles.txtServiceSty}>Valet Services</Text>
+                                </View>
+                                <View style={styles.cardContaint}>
+                                    <Image source={require('../../assets/card-car.png')}
+                                        style={styles.img} />
+                                    <View style={{ width: "100%", gap: 2, paddingLeft: 10, }}>
+                                        <Text style={styles.txtTitleSty}>{item.storeName}</Text>
+                                        <Text style={styles.txtSty} numberOfLines={2}>{item.address}</Text>
 
-                                <Image source={require('../../assets/valet.png')}
-                                    style={styles.img} />
-                                <View style={{ width: WIDTH / 2, gap: 3 }}>
-                                    <Text variant="titleMedium" style={styles.txtTitleSty}>{item.storeName}</Text>
-                                    <Text variant="bodySmall" style={styles.txtSty} numberOfLines={3}>{item.address}</Text>
-
-                                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                                        <Text variant="titleMedium" style={styles.kmTxt}>5 Kms</Text>
-                                        <TouchableOpacity onPress={() => navigation.navigate("ValetDetailsScreen", { store: item })}>
-                                            <View style={{ borderRadius: 90, backgroundColor: palette.bgGray, padding: 6 }}>
-                                                <View style={{ borderRadius: 90, backgroundColor: palette.txtWhite, padding: 6 }}>
-                                                    <Arrow width={10} height={11} />
-                                                </View>
+                                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                                            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                                                <LocationIcon />
+                                                <Text style={styles.kmTxt}>5 Kms</Text>
                                             </View>
-                                        </TouchableOpacity>
+                                            <TouchableOpacity onPress={() => navigation.navigate("ValetDetailsScreen", { store: item })}>
+                                                <View style={styles.viewTirdArrBtn}>
+                                                    <View style={styles.viewSecArrBtn}>
+                                                        <View style={styles.viewFristArrBtn}>
+                                                            <Arrow width={10} height={11} />
+                                                        </View>
+                                                    </View>
+                                                </View>
+                                            </TouchableOpacity>
+                                        </View>
                                     </View>
                                 </View>
                             </View>
@@ -103,11 +113,24 @@ const styles = StyleSheet.create({
     container: {
 
     },
-    txtTitleSty: {
+    txtServiceSty: {
         fontWeight: '400',
         color: palette.txtWhite,
         fontFamily: FONT.JuliusSansOne.regular,
         fontSize: 16,
+        backgroundColor: palette.primaryDark,
+        paddingRight: 24,
+        paddingLeft: 10,
+        paddingVertical: 4,
+        alignSelf: 'flex-start',
+        borderBottomLeftRadius: 6,
+        borderBottomRightRadius: 6,
+    },
+    txtTitleSty: {
+        fontWeight: '400',
+        color: palette.txtWhite,
+        fontFamily: FONT.JuliusSansOne.regular,
+        fontSize: 24,
     },
     list: {
     },
@@ -115,33 +138,55 @@ const styles = StyleSheet.create({
         gap: 16
     },
     card: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 16,
-        //   backgroundColor: palette.bgCard,
-        width: WIDTH - 40,
-        height: 145,
+        width: WIDTH - 20,
         borderRadius: 17,
-        gap: 16
+    },
+    cardContaint: {
+        flexDirection: 'row',
+        alignContent: 'center',
+        width: WIDTH - 104,
+        paddingHorizontal: 10
     },
     txtSty: {
         fontWeight: '400',
         color: palette.txtWhite,
-        height: 34,
         fontFamily: FONT.JuliusSansOne.regular,
         fontSize: 10,
-
+        height: 21,
+        flexWrap: 'wrap'
     },
     img: {
         borderRadius: 12,
-        width: 110,
-        height: 110
+        width: 82,
+        height: 83
     },
     kmTxt: {
         fontWeight: '400',
         fontSize: 12,
         color: palette.txtWhite,
         fontFamily: FONT.Able.regular,
+        lineHeight: 12.7
+    },
+    viewFristArrBtn: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 90,
+        backgroundColor: palette.txtWhite,
+        padding: 6,
+        width: 20, height: 20
+    },
+    viewSecArrBtn: {
+        alignItems: 'center',
+        borderRadius: 90,
+        backgroundColor: "#D9D9D9",
+        padding: 5,
+    },
+    viewTirdArrBtn: {
+        alignItems: 'center',
+        borderRadius: 90,
+        backgroundColor: "#D9D9D91A",
+        padding: 5,
+        marginVertical: 6
     }
 
 
