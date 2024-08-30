@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   mainItem: {
-    borderRadius: 30,
+    borderRadius: 17,
   },
   card: {
     width: WIDTH - 20,

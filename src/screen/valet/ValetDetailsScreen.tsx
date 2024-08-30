@@ -58,7 +58,7 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
 
   React.useEffect(() => {
     setCoupon(data?.data?.data && data?.data?.data?.[0]);
-    setCouponList(data?.data?.data)
+    setCouponList(data?.data?.data);
   }, [data?.data?.data]);
 
 
@@ -143,7 +143,7 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
                         return (
                           <View style={styles.dropdownButtonStyle}>
                             <Text style={styles.txtSty}>
-                              {(selectedItem && selectedItem?.title) + " Hrs" || 'Select hrs'}
+                              {(selectQty && selectQty?.title) + " Hrs" || 'Select hrs'}
                             </Text>
                             <DownIcon />
                           </View>
