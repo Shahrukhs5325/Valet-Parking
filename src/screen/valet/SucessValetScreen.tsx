@@ -30,15 +30,14 @@ const SucessValetScreen: React.FC<Props> = ({ route }) => {
 
         <StatusBar
           animated={true}
-          backgroundColor={palette.primaryDark}
+          backgroundColor={userContext?.customTheme?.primaryDark}
         />
         {/* <Header navbar={true} /> */}
 
         <View style={styles.compView}>
           <CircleIcon />
           <View style={{ gap: 14, marginVertical: 6, alignItems: 'center' }}>
-            <Text variant="titleLarge" style={styles.txtTitleSty}>Thank you</Text>
-            <Text variant="titleSmall" style={styles.txtSty}>You’re using valet service at {response?.templateName}</Text>
+            <Text style={styles.txtTitleSty}>Thank you</Text>
           </View>
         </View>
 
@@ -77,24 +76,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  txtSty: {
-    color: palette.txtWhite,
-    fontSize: 16,
-    fontWeight: '400',
-    textAlign: 'center',
-    fontFamily: FONT.JuliusSansOne.regular,
-  },
   txtTitleSty: {
     fontWeight: '400',
     color: palette.txtWhite,
-    textTransform: 'capitalize',
     textAlign: 'center',
     fontFamily: FONT.JuliusSansOne.regular,
-    fontSize: 24,
-  },
-  txtheadSty: {
-    color: palette.txtWhite,
-    textAlign: 'center'
+    fontSize: 22,
   },
 
 

@@ -31,11 +31,11 @@ const Stepper: React.FC<Props> = ({ labels, currentPosition, setCurrentPosition,
         stepIndicatorLabelFontSize: 13,
         currentStepIndicatorLabelFontSize: 13,
         stepIndicatorLabelCurrentColor: userContext?.customTheme?.primaryDark,
-        stepIndicatorLabelFinishedColor: '#ffffff',
+        stepIndicatorLabelFinishedColor: palette.txtGray,
         stepIndicatorLabelUnFinishedColor: userContext?.customTheme?.primaryDark,
-        labelColor: palette.txtBlack,
+        labelColor: palette.txtWhite,
         labelSize: 13,
-        currentStepLabelColor: userContext?.customTheme?.primaryDark,
+        currentStepLabelColor: userContext?.customTheme?.txtWhite,
     }
 
     return (

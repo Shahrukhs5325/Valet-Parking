@@ -4,6 +4,7 @@ import { Text } from "react-native-paper";
 import { UserContext } from "../../context/user/UserContext";
 import { palette } from "../../theme/themes";
 import EditIcon from '../../assets/svg/pencil-1.svg';
+import { FONT } from "../../theme/fonts";
 
 
 interface Props {
@@ -25,71 +26,71 @@ const StepThree: React.FC<Props> = ({ formData, setFormData, setErrors, setCurre
         <>
             <View style={{ marginTop: 15, gap: 20 }}>
                 <View style={styles.containerView}>
-                    <Text variant="titleMedium" style={styles.txtBlackHeading}>Personal Details</Text>
+                    <Text style={styles.txtBlackHeading}>Personal Details</Text>
                     <View style={styles.dataContView}>
                         <View style={styles.txtGapView}>
-                            <Text variant="bodyMedium" style={styles.txtHeading}>Name</Text>
-                            <Text variant="titleMedium" style={styles.txtSummHeading}>{user?.customerName}</Text>
+                            <Text style={styles.txtHeading}>Name</Text>
+                            <Text style={styles.txtSummHeading}>{user?.customerName}</Text>
                         </View>
                         <View style={styles.bottomLineSty}></View>
                         <View style={styles.txtGapView}>
-                            <Text variant="bodyMedium" style={styles.txtHeading}>Mobile number</Text>
-                            <Text variant="titleMedium" style={styles.txtSummHeading}>{user?.phoneNo}</Text>
+                            <Text style={styles.txtHeading}>Mobile number</Text>
+                            <Text style={styles.txtSummHeading}>{user?.phoneNo}</Text>
                         </View>
                         <View style={styles.bottomLineSty}></View>
                         <View style={styles.txtGapView}>
-                            <Text variant="bodyMedium" style={styles.txtHeading}>Email address</Text>
-                            <Text variant="titleMedium" style={styles.txtSummHeading}>{user?.email}</Text>
+                            <Text style={styles.txtHeading}>Email address</Text>
+                            <Text style={styles.txtSummHeading}>{user?.email}</Text>
                         </View>
                     </View>
                 </View>
 
                 <View style={styles.containerView}>
                     <View style={styles.headTxtView}>
-                        <Text variant="titleMedium" style={styles.txtBlackHeading}>Travel and Service Details</Text>
+                        <Text style={styles.txtBlackHeading}>Travel and Service Details</Text>
                         <TouchableOpacity onPress={() => setCurrentPosition(0)}>
                             <EditIcon />
                         </TouchableOpacity>
                     </View>
                     <View style={styles.dataContView}>
                         <View style={styles.txtGapView}>
-                            <Text variant="bodyMedium" style={styles.txtHeading}>Airport</Text>
-                            <Text variant="titleMedium" style={styles.txtSummHeading}>King Abdulaziz International Airport</Text>
+                            <Text style={styles.txtHeading}>Airport</Text>
+                            <Text style={styles.txtSummHeading}>King Abdulaziz International Airport</Text>
                         </View>
                         <View style={styles.bottomLineSty}></View>
                         <View style={styles.txtGapView}>
-                            <Text variant="bodyMedium" style={styles.txtHeading}>Type of Travel</Text>
-                            <Text variant="titleMedium" style={styles.txtSummHeading}>Departure</Text>
+                            <Text style={styles.txtHeading}>Type of Travel</Text>
+                            <Text style={styles.txtSummHeading}>Departure</Text>
                         </View>
                         <View style={styles.bottomLineSty}></View>
                         <View style={styles.txtGapView}>
-                            <Text variant="bodyMedium" style={styles.txtHeading}>Service Area   </Text>
-                            <Text variant="titleMedium" style={styles.txtSummHeading}>Al Rayaan, Jeddah 23642, Saudi Arabia</Text>
+                            <Text style={styles.txtHeading}>Service Area   </Text>
+                            <Text style={styles.txtSummHeading}>Al Rayaan, Jeddah 23642, Saudi Arabia</Text>
                         </View>
                     </View>
                 </View>
 
                 <View style={styles.containerView}>
                     <View style={styles.headTxtView}>
-                        <Text variant="titleMedium" style={styles.txtBlackHeading}>Flight dETAILS</Text>
+                        <Text style={styles.txtBlackHeading}>Flight Details</Text>
                         <TouchableOpacity onPress={() => setCurrentPosition(1)}>
                             <EditIcon />
                         </TouchableOpacity>
                     </View>
                     <View style={styles.dataContView}>
                         <View style={styles.txtGapView}>
-                            <Text variant="bodyMedium" style={styles.txtHeading}>Flight Number</Text>
-                            <Text variant="titleMedium" style={styles.txtSummHeading}>AB123</Text>
+                            <Text style={styles.txtHeading}>Flight Number</Text>
+                            <Text style={styles.txtSummHeading}>AB123</Text>
                         </View>
                         <View style={styles.bottomLineSty}></View>
                         <View style={styles.txtGapView}>
-                            <Text variant="bodyMedium" style={styles.txtHeading}>Flight Origin</Text>
-                            <Text variant="titleMedium" style={styles.txtSummHeading}>Jeddah</Text>
+                            <Text style={styles.txtHeading}>Flight Origin</Text>
+                            <Text style={styles.txtSummHeading}>Jeddah</Text>
                         </View>
                         <View style={styles.bottomLineSty}></View>
                         <View style={styles.txtGapView}>
-                            <Text variant="bodyMedium" style={styles.txtHeading}>Flight Date & Time</Text>
-                            <Text variant="titleMedium" style={styles.txtSummHeading}>Sun, 18 August - 3:00PM</Text>
+                            <Text style={styles.txtHeading}>Flight Date & Time</Text>
+                            <Text style={styles.txtSummHeading}>Sun, 18 August - 3:00PM</Text>
                         </View>
                     </View>
                 </View>
@@ -135,17 +136,22 @@ const styles = StyleSheet.create({
         gap: 4
     },
     txtBlackHeading: {
-        color: palette.txtBlack,
-        textTransform: 'uppercase',
-        letterSpacing: 1,
-        fontWeight: '800',
+        color: palette.txtWhite,
+        fontWeight: '400',
+        fontFamily: FONT.Able.regular,
+        fontSize: 16,
     },
     txtSummHeading: {
         color: palette.txtBlack,
-        fontWeight: '800',
+        fontWeight: '400',
+        fontFamily: FONT.Able.regular,
+        fontSize: 16,
     },
     txtHeading: {
         color: palette.txtGray,
+        fontWeight: '400',
+        fontFamily: FONT.Able.regular,
+        fontSize: 14,
     }
 
 

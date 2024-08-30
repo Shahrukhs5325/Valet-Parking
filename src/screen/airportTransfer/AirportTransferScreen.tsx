@@ -111,7 +111,7 @@ const AirportTransferScreen: React.FC<Props> = ({ route }) => {
                   </View>
                 </> :
                 <View style={{ width: '100%', paddingHorizontal: 15 }}>
-                  <SecondaryButton onPress={() => navigation.navigate("SucessAirportScreen")}>Redeem</SecondaryButton>
+                  <PrimaryButton onPress={() => navigation.navigate("SucessAirportScreen")}>Redeem</PrimaryButton>
                 </View>}
             </View>
 

@@ -8,6 +8,8 @@ import { utcDateConvoter } from '../../../constant/constFunction';
 import { UserContext } from '../../../context/user/UserContext';
 import { palette } from '../../../theme/themes';
 import moment from 'moment';
+import { FONT } from '../../../theme/fonts';
+import PrimaryButton from '../../../components/button/PrimaryButton';
 
 type Props = {
   route?: any;
@@ -73,85 +75,86 @@ const TransactionDetailsScreen: React.FC<Props> = ({ route }) => {
               style={[styles.compView, { backgroundColor: userContext?.customTheme?.primaryDark }]}
             >
               <Text variant="titleLarge" style={styles.txtSty}>Your booking is confirmed</Text>
-              <Text variant="titleSmall" style={styles.txtStysec}>Booking booking confirmed! Your exclusive valete service is confirmed and active</Text>
+              <Text style={styles.txtStysec}>Booking booking confirmed! Your exclusive valete service is confirmed and active</Text>
             </View>
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 60, marginHorizontal: 40 }}>
               <View style={{ alignItems: 'center', gap: 6 }}>
                 {isBeforeStart ? (
-                  <Text variant="displaySmall" style={styles.txtTitleSty}>00:00</Text>
+                  <Text style={styles.txtTitleSty}>00:00</Text>
                 ) : timeLeft ? (
                   <Text variant="displayMedium" style={styles.txtTitleSty}>
                     {`${timeLeft.hours}:${timeLeft.minutes}`}
                   </Text>
                 ) : (
-                  <Text variant="displaySmall" style={styles.txtTitleSty}>00:00</Text>
+                  <Text style={styles.txtTitleSty}>00:00</Text>
                 )}
 
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   {isBeforeStart ? (
-                    <Text variant="titleSmall" style={styles.txtStatusSty}>Not Started</Text>
+                    <Text style={styles.txtStatusSty}>Not Started</Text>
                   ) : timeLeft ? (
-                    <Text variant="displayMedium" style={styles.txtTitleSty}>
-                      <Text variant="titleSmall" style={styles.txtStatusSty}>In Progress</Text>
-                    </Text>
+                    <Text style={styles.txtStatusSty}>In Progress</Text>
                   ) : (
-                    <Text variant="titleSmall" style={styles.txtStatusSty}>Complete</Text>
+                    <Text style={styles.txtStatusSty}>Complete</Text>
                   )}
                 </View>
               </View>
               <View style={{ alignItems: 'center', gap: 10 }}>
                 <CallIcon />
-                <Text variant="titleSmall" style={styles.txtStysec}>Call support</Text>
+                <Text style={styles.txtStysec}>Call support</Text>
               </View>
 
             </View>
           </View>
 
-          <View style={{ flex: 1, borderTopLeftRadius: 20, borderTopRightRadius: 20, marginTop: -28, backgroundColor: palette.bgGray, paddingBottom: 30 }}>
+          <View style={{ flex: 1, borderTopLeftRadius: 20, borderTopRightRadius: 20, marginTop: -28, backgroundColor: palette.txtWhite, paddingBottom: 30 }}>
             <View style={{ padding: 15, gap: 8 }}>
-              <Text variant="titleMedium" style={styles.txtBlackHeading}>Booking Summary</Text>
+              <Text style={styles.txtBlackHeading}>Booking Summary</Text>
               <View style={{}}>
-                <Text variant="titleMedium" style={styles.txtSummHeading}>Booking ID</Text>
-                <Text variant="bodyLarge" style={styles.txtBodyHeading}>987654321</Text>
+                <Text style={styles.txtSummHeading}>Booking ID</Text>
+                <Text style={styles.txtBodyHeading}>987654321</Text>
               </View>
               <View style={{}}>
-                <Text variant="titleMedium" style={styles.txtSummHeading}>Booked for</Text>
-                <Text variant="bodyLarge" style={styles.txtBodyHeading}>{userContext.user?.customerName}</Text>
+                <Text style={styles.txtSummHeading}>Booked for</Text>
+                <Text style={styles.txtBodyHeading}>{userContext.user?.customerName}</Text>
               </View>
               <View style={{}}>
-                <Text variant="titleMedium" style={styles.txtSummHeading}>Booked Date</Text>
-                <Text variant="bodyLarge" style={styles.txtBodyHeading}>{utcDateConvoter(coupon?.createdDateTime)}</Text>
+                <Text style={styles.txtSummHeading}>Booked Date</Text>
+                <Text style={styles.txtBodyHeading}>{utcDateConvoter(coupon?.createdDateTime)}</Text>
               </View>
             </View>
             <View style={{ borderBottomWidth: 1, borderColor: palette.txtGray, marginHorizontal: 30 }}></View>
             <View style={{ padding: 15, gap: 8 }}>
-              <Text variant="titleMedium" style={styles.txtBlackHeading}>Service Details</Text>
+              <Text style={styles.txtBlackHeading}>Service Details</Text>
               <View style={{}}>
-                <Text variant="titleMedium" style={styles.txtSummHeading}>Service Type</Text>
-                <Text variant="bodyLarge" style={styles.txtBodyHeading}>Valet Parking Service</Text>
+                <Text style={styles.txtSummHeading}>Service Type</Text>
+                <Text style={styles.txtBodyHeading}>Valet Parking Service</Text>
               </View>
               <View style={{}}>
-                <Text variant="titleMedium" style={styles.txtSummHeading}>Service Name</Text>
-                <Text variant="bodyLarge" style={styles.txtBodyHeading}>{coupon?.templateName}</Text>
+                <Text style={styles.txtSummHeading}>Service Name</Text>
+                <Text style={styles.txtBodyHeading}>{coupon?.templateName}</Text>
               </View>
 
             </View>
             <View style={{ borderBottomWidth: 1, borderColor: palette.txtGray, marginHorizontal: 30 }}></View>
             <View style={{ padding: 15, gap: 8 }}>
-              <Text variant="titleMedium" style={styles.txtBlackHeading}>Service Time</Text>
+              <Text style={styles.txtBlackHeading}>Service Time</Text>
               <View style={{}}>
-                <Text variant="titleMedium" style={styles.txtSummHeading}>Duration</Text>
-                <Text variant="bodyLarge" style={styles.txtBodyHeading}>{coupon?.validityDuration} Hour</Text>
+                <Text style={styles.txtSummHeading}>Duration</Text>
+                <Text style={styles.txtBodyHeading}>{coupon?.validityDuration} Hour</Text>
               </View>
               <View style={{}}>
-                <Text variant="titleMedium" style={styles.txtSummHeading}>Start Date & Time</Text>
-                <Text variant="bodyLarge" style={styles.txtBodyHeading}>{coupon?.redeemStartDate}</Text>
+                <Text style={styles.txtSummHeading}>Start Date & Time</Text>
+                <Text style={styles.txtBodyHeading}>{coupon?.redeemStartDate}</Text>
               </View>
               <View style={{}}>
-                <Text variant="titleMedium" style={styles.txtSummHeading}>End Date & Time</Text>
-                <Text variant="bodyLarge" style={styles.txtBodyHeading}>{coupon?.redeemEndDate}</Text>
+                <Text style={styles.txtSummHeading}>End Date & Time</Text>
+                <Text style={styles.txtBodyHeading}>{coupon?.redeemEndDate}</Text>
               </View>
+            </View>
+            <View style={{ width: '46%', justifyContent: 'center', alignSelf: 'center', marginTop: 20 }}>
+              <PrimaryButton onPress={() => navigation.replace("HomeScreen")} buttonColor={"light"} >Home</PrimaryButton>
             </View>
           </View>
         </ScrollView>
@@ -174,15 +177,22 @@ const styles = StyleSheet.create({
     //  backgroundColor: palette.primaryDark
   },
   txtSty: {
-    fontWeight: '800',
+    fontWeight: '400',
     color: palette.txtWhite,
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 22,
   },
   txtStysec: {
+    fontWeight: '400',
     color: palette.txtWhite,
+    fontFamily: FONT.Able.regular,
+    fontSize: 14,
   },
   txtTitleSty: {
-    fontWeight: '800',
+    fontWeight: '400',
     color: palette.txtWhite,
+    fontFamily: FONT.Able.regular,
+    fontSize: 38,
     textTransform: 'uppercase',
     letterSpacing: 3,
   },
@@ -192,22 +202,31 @@ const styles = StyleSheet.create({
   },
   txtStatusSty: {
     backgroundColor: palette.txtGold,
+    fontWeight: '400',
     color: palette.txtWhite,
+    fontFamily: FONT.Able.regular,
+    fontSize: 14,
     paddingHorizontal: 14,
     paddingVertical: 4,
     borderRadius: 15
   },
   txtBlackHeading: {
     color: palette.txtBlack,
-    textTransform: 'uppercase',
-    letterSpacing: 1,
+    fontWeight: '400',
+    fontFamily: FONT.Able.regular,
+    fontSize: 16,
   },
   txtSummHeading: {
-    color: palette.txtBlack,
-    fontWeight: '800',
+    color: palette.txtGray,
+    fontWeight: '400',
+    fontFamily: FONT.Able.regular,
+    fontSize: 12,
   },
   txtBodyHeading: {
-    color: palette.txtGray,
+    color: palette.txtBlack,
+    fontWeight: '400',
+    fontFamily: FONT.Able.regular,
+    fontSize: 14,
   }
 
 
