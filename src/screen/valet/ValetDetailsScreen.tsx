@@ -4,7 +4,7 @@ import { ActivityIndicator, Dimensions, FlatList, Image, ImageBackground, Scroll
 import { Text } from 'react-native-paper';
 import CallIcon from '../../assets/svg/call.svg';
 import ShareIcon from '../../assets/svg/communities.svg';
-import WalkIcon from '../../assets/svg/directions_walk.svg';
+import DownIcon from '../../assets/svg/Sort Down.svg';
 import LocationIcon from '../../assets/svg/Location.svg';
 import MapIcon from '../../assets/svg/Waypoint Map.svg';
 import SpotnIcon from '../../assets/svg/stop.svg';
@@ -13,16 +13,22 @@ import Header from '../../components/header/Header';
 import { palette } from '../../theme/themes';
 import TermIcon from '../../assets/svg/Rules Book.svg';
 import HelpIcon from '../../assets/svg/help.svg';
-
 import { useQuery } from '@tanstack/react-query';
 import { UserContext } from '../../context/user/UserContext';
 import { getCustomerCouponsByStoreIdNMerchantId } from '../../api/common/commonApi';
 import { FONT } from '../../theme/fonts';
 
+import SelectDropdown from 'react-native-select-dropdown'
 
 type Props = {
   route?: any;
 };
+
+const ArrQty = [
+  { title: 1, },
+  { title: 2, },
+  { title: 3, },
+]
 
 
 const WIDTH = Dimensions.get('window').width;
@@ -36,10 +42,9 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
 
   const [coupon, setCoupon] = React.useState("");
   const [couponList, setCouponList] = React.useState([]);
-  const [selectQty, setSelectQty] = React.useState(1);
+  const [selectQty, setSelectQty] = React.useState({ title: 1, });
 
 
-  const ArrQty = [1, 2, 3];
 
   const {
     isLoading,
@@ -128,8 +133,32 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
                   <Text style={styles.txtheadSty}>SELECT QUANTITY</Text>
-                  <View style={styles.viewDataCall}>
-                    <Text style={styles.txtheadSty}>100</Text>
+                  <View >
+                    <SelectDropdown
+                      data={ArrQty}
+                      onSelect={(selectedItem, index) => {
+                        setSelectQty(selectedItem);
+                      }}
+                      renderButton={(selectedItem, isOpened) => {
+                        return (
+                          <View style={styles.dropdownButtonStyle}>
+                            <Text style={styles.txtSty}>
+                              {(selectedItem && selectedItem?.title) + " Hrs" || 'Select hrs'}
+                            </Text>
+                            <DownIcon />
+                          </View>
+                        );
+                      }}
+                      renderItem={(item, index, isSelected) => {
+                        return (
+                          <View style={{ ...styles.dropdownItemStyle, ...(isSelected && { backgroundColor: palette.txtBlack }) }}>
+                            <Text style={styles.txtSty}>{item.title} Hrs</Text>
+                          </View>
+                        );
+                      }}
+                      showsVerticalScrollIndicator={false}
+                      dropdownStyle={styles.dropdownMenuStyle}
+                    />
                   </View>
                 </View>
               </View>
@@ -150,7 +179,7 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
 
               </View>
               <View style={{ marginBottom: 20 }}>
-                <PrimaryButton onPress={() => navigation.navigate("RedeemScreen", { coupon: coupon, qty: selectQty, couponList: couponList })} buttonColor={"light"}>Redeem</PrimaryButton>
+                <PrimaryButton onPress={() => navigation.navigate("RedeemScreen", { coupon: coupon, qty: selectQty.title, couponList: couponList })} buttonColor={"light"}>Redeem</PrimaryButton>
 
               </View>
             </View>
@@ -302,7 +331,42 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center', gap: 10,
     paddingVertical: 10,
-  }
+  },
+  dropdownButtonTxtStyle: {
+    flex: 1,
+    fontWeight: '400',
+    fontSize: 12,
+    color: palette.txtWhite,
+    fontFamily: FONT.Able.regular,
+  },
+  dropdownButtonStyle: {
+    width: WIDTH / 4,
+    height: 40,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+    backgroundColor: palette.bgCard,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: palette.txtGray,
+  },
+  dropdownItemStyle: {
+    width: '100%',
+    flexDirection: 'row',
+    paddingHorizontal: 16,
+    alignItems: 'center',
+    paddingVertical: 14,
+  },
+  dropdownMenuStyle: {
+    backgroundColor: palette.bgCard,
+    borderRadius: 8,
+  },
+
+
+
+
+
 
 
 });
