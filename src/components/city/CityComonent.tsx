@@ -1,11 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { ActivityIndicator, Dimensions, FlatList, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Dimensions, FlatList, ImageBackground, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-paper";
 import { getAllCity } from "../../api/common/commonApi";
 import { UserContext } from "../../context/user/UserContext";
 import { palette } from "../../theme/themes";
+import { FONT } from "../../theme/fonts";
 
 const ImageHeight = Math.round(Dimensions.get('window').width / 4);
 
@@ -44,9 +45,9 @@ const CityComonent: React.FC<Props> = ({ service }) => {
         } else if (service?.key === "airport_services") {
             navigation.navigate("AirportTransferScreen", { city: item });
         } else if (service?.key === "Meet_Greet") {
-
+            navigation.navigate("CommingSoonScreen");
         } else {
-
+            navigation.navigate("CommingSoonScreen");
         }
     }
 
@@ -66,13 +67,14 @@ const CityComonent: React.FC<Props> = ({ service }) => {
                         showsHorizontalScrollIndicator={false}
                         keyExtractor={(item, index) => index.toString()}
                         data={data?.data.length > 0 ? data?.data : []}
-                        renderItem={({ item }) =>
+                        renderItem={({ item, i }) =>
                             <TouchableOpacity onPress={() => serviceScreenHandler(item)}>
-                                <View
+                                <ImageBackground
+                                    source={require('../../assets/cityimg/2.png')}
                                     style={[styles.card, { backgroundColor: userContext?.customTheme?.bgCard }]}
                                 >
                                     <Text style={styles.txtSty}>{item.cityName}</Text>
-                                </View>
+                                </ImageBackground>
                             </TouchableOpacity>
                         }
 
@@ -110,7 +112,7 @@ const styles = StyleSheet.create({
     },
     card: {
         margin: 6,
-        padding: 13,
+        paddingVertical: 13,
         //   backgroundColor: palette.bgCard,
         width: ImageHeight,
         height: ImageHeight,
@@ -118,9 +120,17 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end'
     },
     txtSty: {
-        fontWeight: '500',
         color: palette.txtWhite,
+        fontFamily: FONT.Able.regular,
         fontSize: 11,
+        fontWeight: '400',
+        backgroundColor: '#000',
+        width: '90%',
+        paddingHorizontal: 10,
+        paddingVertical: 1,
+        // borderTopLeftRadius:4,
+        borderBottomRightRadius: 4,
+        borderTopLeftRadius: 4
 
     }
 
