@@ -51,11 +51,11 @@ const ServiceScreen: React.FC<Props> = ({ route }) => {
           }
           <View style={styles.compView}>
             <View>
-              <Text variant="titleSmall" style={styles.txtTitleSty}>CITIES</Text>
+              <Text   style={styles.txtTitleSty}>CITIES</Text>
               <CityComonent service={service} />
             </View>
             <View style={{ paddingBottom: 30 }}>
-              <Text variant="titleSmall" style={styles.txtTitleSty}>Near you</Text>
+              <Text   style={styles.txtTitleSty}>Near you</Text>
               <Store />
             </View>
           </View>

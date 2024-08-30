@@ -102,47 +102,49 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
                   <Text style={styles.txtSty}>Direction</Text>
                 </View>
               </View>
-              
+
               <View style={{ borderBottomWidth: 1.4, borderColor: palette.bgGray }} />
 
               <View style={{ gap: 8 }}>
-                <Text variant="titleSmall" style={styles.txtheadSty}>Service description</Text>
+                <Text style={styles.txtheadSty}>Service description</Text>
                 <View style={{ gap: 4, marginLeft: 16 }}>
-                  <Text variant="bodySmall" style={styles.txtDataSty}>Safe and secure parking</Text>
-                  <Text variant="bodySmall" style={styles.txtDataSty}>Professional and courteous staff</Text>
-                  <Text variant="bodySmall" style={styles.txtDataSty}>Quick and easy vehicle retrieval</Text>
-                  <Text variant="bodySmall" style={styles.txtDataSty}>Special attention to your vehicle's needs</Text>
+                  <Text style={styles.txtDataSty}>Safe and secure parking</Text>
+                  <Text style={styles.txtDataSty}>Professional and courteous staff</Text>
+                  <Text style={styles.txtDataSty}>Quick and easy vehicle retrieval</Text>
+                  <Text style={styles.txtDataSty}>Special attention to your vehicle's needs</Text>
                 </View>
 
               </View>
 
-              <View style={{ gap: 8 }}>
-                <Text variant="titleSmall" style={styles.txtheadSty}>parking duration</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 6, justifyContent: "space-around" }}>
+              <View style={{ gap: 18 }}>
+                <Text style={styles.txtheadSty}>Parking duration</Text>
 
-                  {ArrQty.map((item, i) => (
-                    <TouchableOpacity onPress={() => setSelectQty(item)}>
-                      <View key={i} style={item === selectQty ? [styles.serviceView, { backgroundColor: userContext?.customTheme?.primaryDark, borderColor: userContext?.customTheme?.txtWhite }] : [styles.serviceView, { backgroundColor: userContext?.customTheme?.bgCard }]}>
-                        <Text variant="bodySmall" style={styles.txtSty}>{item} Hour</Text>
-                      </View>
-                      {/* <View style={[styles.serviceBtmView, { backgroundColor: userContext?.customTheme?.bgCard }]}> */}
-                      <View style={item === selectQty ? [styles.serviceBtmView, { backgroundColor: userContext?.customTheme?.primaryDark, borderColor: userContext?.customTheme?.txtWhite }] : [styles.serviceBtmView, { backgroundColor: userContext?.customTheme?.bgCard }]}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
+                  <Text style={styles.txtheadSty}>BALANCE HOURS</Text>
+                  <View style={styles.viewDataCall}>
+                    <Text style={styles.txtheadSty}>100</Text>
+                  </View>
+                </View>
 
-                        <Text variant="bodySmall" style={styles.txtSty}>1-Redeems</Text>
-                      </View>
-                    </TouchableOpacity>
-                  ))}
-
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
+                  <Text style={styles.txtheadSty}>SELECT QUANTITY</Text>
+                  <View style={styles.viewDataCall}>
+                    <Text style={styles.txtheadSty}>100</Text>
+                  </View>
                 </View>
               </View>
 
               <View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, }}>
-                  <TermIcon />
+                <View style={styles.viewTerm}>
+                  <View style={{ backgroundColor: palette.bgCard, width: 33, height: 33, borderRadius: 90, justifyContent: 'center', alignItems: 'center' }}>
+                    <TermIcon />
+                  </View>
                   <Text style={styles.txtTermSty}>Terms & conditions</Text>
                 </View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 10, }}>
-                  <HelpIcon />
+                <View style={styles.viewTerm}>
+                  <View style={{ backgroundColor: palette.bgCard, width: 33, height: 33, borderRadius: 90, justifyContent: 'center', alignItems: 'center' }}>
+                    <HelpIcon />
+                  </View>
                   <Text style={styles.txtTermSty}>How to redeem</Text>
                 </View>
 
@@ -185,6 +187,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    backgroundColor: palette.bgCard,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: palette.txtGray,
+  },
+  viewDataCall: {
+    width: WIDTH / 4,
+    alignItems: 'center',
     paddingHorizontal: 16,
     paddingVertical: 10,
     backgroundColor: palette.bgCard,
@@ -286,6 +298,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingVertical: 30
   },
+  viewTerm: {
+    flexDirection: 'row',
+    alignItems: 'center', gap: 10,
+    paddingVertical: 10,
+  }
 
 
 });

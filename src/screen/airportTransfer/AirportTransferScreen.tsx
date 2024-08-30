@@ -58,11 +58,11 @@ const AirportTransferScreen: React.FC<Props> = ({ route }) => {
               style={[styles.compView, { backgroundColor: userContext?.customTheme?.primaryDark }]}
             >
               {currentPosition === 0 ?
-                (<Text variant="titleLarge" style={styles.txtSty}>Enter Your Details for a Smooth Journey</Text>)
+                (<Text style={styles.txtSty}>Enter Your Details for a Smooth Journey</Text>)
                 : currentPosition === 1 ?
-                  (<Text variant="titleLarge" style={styles.txtSty}>Almost there! Just a few more details.</Text>)
+                  (<Text style={styles.txtSty}>Almost there! Just a few more details.</Text>)
                   :
-                  (<Text variant="titleLarge" style={styles.txtSty}>You've done it! Just confirm your flight details</Text>)
+                  (<Text style={styles.txtSty}>You've done it! Just confirm your flight details</Text>)
               }
             </View>
           </View>

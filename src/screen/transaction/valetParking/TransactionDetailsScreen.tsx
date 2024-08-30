@@ -74,7 +74,7 @@ const TransactionDetailsScreen: React.FC<Props> = ({ route }) => {
             <View
               style={[styles.compView, { backgroundColor: userContext?.customTheme?.primaryDark }]}
             >
-              <Text variant="titleLarge" style={styles.txtSty}>Your booking is confirmed</Text>
+              <Text   style={styles.txtSty}>Your booking is confirmed</Text>
               <Text style={styles.txtStysec}>Booking booking confirmed! Your exclusive valete service is confirmed and active</Text>
             </View>
 
@@ -83,7 +83,7 @@ const TransactionDetailsScreen: React.FC<Props> = ({ route }) => {
                 {isBeforeStart ? (
                   <Text style={styles.txtTitleSty}>00:00</Text>
                 ) : timeLeft ? (
-                  <Text variant="displayMedium" style={styles.txtTitleSty}>
+                  <Text   style={styles.txtTitleSty}>
                     {`${timeLeft.hours}:${timeLeft.minutes}`}
                   </Text>
                 ) : (

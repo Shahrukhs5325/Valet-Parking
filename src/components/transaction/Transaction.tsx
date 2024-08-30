@@ -66,12 +66,12 @@ const Transaction: React.FC<Props> = ({ }) => {
                                 <Image source={require('../../assets/valet.png')}
                                     style={styles.img} />
                                 <View style={{ width: '64%' }}>
-                                    <Text variant="titleMedium" style={styles.txtTitleSty}>{item?.templateName}</Text>
-                                    <Text variant="bodySmall" style={styles.txtAddSty} numberOfLines={3}>{item?.address}</Text>
-                                    <Text variant="bodySmall" style={styles.txtSty} numberOfLines={1}>{utcDateConvoter(item?.createdDateTime)}</Text>
+                                    <Text style={styles.txtTitleSty}>{item?.templateName}</Text>
+                                    <Text style={styles.txtAddSty} numberOfLines={3}>{item?.address}</Text>
+                                    <Text style={styles.txtSty} numberOfLines={1}>{utcDateConvoter(item?.createdDateTime)}</Text>
 
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                                        <Text variant="titleMedium" style={styles.txtTitleSty}>5 Kms</Text>
+                                        <Text style={styles.txtTitleSty}>5 Kms</Text>
                                         <TouchableOpacity onPress={() => navigation.navigate("TransactionDetailsScreen", { coupon: item })}>
                                             <View style={{ borderRadius: 90, backgroundColor: palette.txtWhite, padding: 6 }}>
                                                 <Arrow width={20} height={20} />
@@ -89,7 +89,7 @@ const Transaction: React.FC<Props> = ({ }) => {
                         windowSize={10}
                         updateCellsBatchingPeriod={50}
                         ListEmptyComponent={<>
-                            <Text variant="bodyMedium" style={styles.emtTxt}>Data Not Found</Text>
+                            <Text style={styles.emtTxt}>Data Not Found</Text>
                         </>}
                     />
                 </View>

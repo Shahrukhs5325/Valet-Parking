@@ -9,6 +9,7 @@ import { UserContext } from '../../../context/user/UserContext';
 import { palette } from '../../../theme/themes';
 import moment from 'moment';
 import { FONT } from '../../../theme/fonts';
+import PrimaryButton from '../../../components/button/PrimaryButton';
 
 type Props = {
   route?: any;
@@ -161,6 +162,9 @@ const AirportTransTransactionDetailsScreen: React.FC<Props> = ({ route }) => {
                 <Text style={styles.txtBodyHeading}>TBA (To be Assigned)</Text>
               </View>
 
+            </View>
+            <View style={{ width: '46%', justifyContent: 'center', alignSelf: 'center', marginTop: 20 }}>
+              <PrimaryButton onPress={() => navigation.replace("HomeScreen")} buttonColor={"light"} >Cancel Booking</PrimaryButton>
             </View>
           </View>
         </ScrollView>

@@ -35,8 +35,8 @@ const SucessAirportScreen: React.FC<Props> = ({ }) => {
         <View style={styles.compView}>
           <CircleIcon />
           <View style={{ gap: 14, marginVertical: 6, alignItems: 'center' }}>
-            <Text variant="titleLarge" style={styles.txtTitleSty}>Booking Confirmed!</Text>
-            <Text variant="titleSmall" style={styles.txtSty}>Thank you for booking your exclusive airport service with us!</Text>
+            <Text style={styles.txtTitleSty}>Booking Confirmed!</Text>
+            <Text style={styles.txtSty}>Thank you for booking your exclusive airport service with us!</Text>
           </View>
         </View>
 

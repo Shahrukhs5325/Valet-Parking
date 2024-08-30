@@ -71,7 +71,7 @@ const CityComonent: React.FC<Props> = ({ service }) => {
                                 <View
                                     style={[styles.card, { backgroundColor: userContext?.customTheme?.bgCard }]}
                                 >
-                                    <Text variant="titleSmall" style={styles.txtSty}>{item.cityName}</Text>
+                                    <Text style={styles.txtSty}>{item.cityName}</Text>
                                 </View>
                             </TouchableOpacity>
                         }

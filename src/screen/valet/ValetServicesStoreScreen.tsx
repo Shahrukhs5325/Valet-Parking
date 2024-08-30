@@ -93,7 +93,7 @@ const ValetServicesStoreScreen: React.FC<Props> = ({ route }) => {
             windowSize={10}
             updateCellsBatchingPeriod={50}
             ListEmptyComponent={<>
-              <Text variant="bodyMedium" style={styles.emtTxt}>Data Not Found</Text>
+              <Text style={styles.emtTxt}>Data Not Found</Text>
             </>}
           />
 

@@ -20,7 +20,7 @@ const CommingSoonScreen: React.FC<Props> = () => {
         />
         <View style={styles.compView}>
           <View style={{ gap: 8, marginVertical: 6, alignItems: 'center' }}>
-            <Text variant="titleLarge" style={styles.txtTitleSty}>Comming Soon</Text>
+            <Text   style={styles.txtTitleSty}>Comming Soon</Text>
           </View>
         </View>
       </View>

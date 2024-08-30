@@ -32,7 +32,7 @@ const TransactionScreen: React.FC<Props> = () => {
           <TopBanner />
           <View style={styles.compView}>
             <View>
-              <Text variant="titleSmall" style={styles.txtTitleSty}>Valete History</Text>
+              <Text   style={styles.txtTitleSty}>Valete History</Text>
               <Transaction />
             </View>
           </View>
