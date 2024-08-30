@@ -13,18 +13,18 @@ interface Props {
 const WIDTH = Dimensions.get('window').width;
 const ImageHeight = Math.round(Dimensions.get('window').width * 9 / 9);
 
-const TopBanner: React.FC<Props> = ({ navbar, service }) => {
+const TopBannerHome: React.FC<Props> = ({ navbar, service }) => {
 
     return (
         <View style={styles.image}>
             <ImageBackground
-                source={require('../../assets/velet-car.png')}
+                source={require('../../assets/hotel.png')}
                 resizeMode="cover"
                 style={styles.image}>
                 <Header navbar={navbar} />
                 <View style={{ position: 'absolute', bottom: 0, justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', padding: 20, gap: 6 }}>
-                    <Text style={styles.txtTitle}>valet services</Text>
-                    <Text style={styles.txtSubTitle}>Exclusive valet services, where luxury meets seamless convenience</Text>
+                    <Text style={styles.txtTitle}>Hotels</Text>
+                    <Text style={styles.txtSubTitle}>Unmatched luxury and comfort at premium hotels</Text>
                 </View>
             </ImageBackground>
 
@@ -35,7 +35,7 @@ const TopBanner: React.FC<Props> = ({ navbar, service }) => {
 
 
 
-export default TopBanner;
+export default TopBannerHome;
 
 const styles = StyleSheet.create({
     container: {

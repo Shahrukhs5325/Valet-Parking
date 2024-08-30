@@ -36,7 +36,7 @@ const Services: React.FC<Props> = ({ }) => {
                     keyExtractor={(item, index) => index.toString()}
                     data={DATA}
                     renderItem={({ item }) =>
-                        <TouchableOpacity onPress={() => navigation.navigate("ServiceScreen", { service: item })}>
+                        <TouchableOpacity onPress={() => navigation.navigate("ValetServiceScreen", { service: item })}>
                             <View style={[styles.card, { backgroundColor: userContext?.customTheme?.bgCard }]}>
 
                                 {item.icon}

@@ -13,12 +13,12 @@ interface Props {
 const WIDTH = Dimensions.get('window').width;
 const ImageHeight = Math.round(Dimensions.get('window').width * 9 / 9);
 
-const TopBanner: React.FC<Props> = ({ navbar, service }) => {
+const TopBannerValet: React.FC<Props> = ({ navbar, service }) => {
 
     return (
         <View style={styles.image}>
             <ImageBackground
-                source={require('../../assets/velet-car.png')}
+                source={require('../../assets/valet-banner.png')}
                 resizeMode="cover"
                 style={styles.image}>
                 <Header navbar={navbar} />
@@ -35,7 +35,7 @@ const TopBanner: React.FC<Props> = ({ navbar, service }) => {
 
 
 
-export default TopBanner;
+export default TopBannerValet;
 
 const styles = StyleSheet.create({
     container: {

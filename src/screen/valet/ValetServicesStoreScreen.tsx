@@ -17,7 +17,7 @@ type Props = {
 const WIDTH = Math.round(Dimensions.get('window').width);
 
 
-const ValetServicesScreen: React.FC<Props> = ({ route }) => {
+const ValetServicesStoreScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
   const { city } = route.params;
 
@@ -91,7 +91,7 @@ const ValetServicesScreen: React.FC<Props> = ({ route }) => {
   );
 };
 
-export default ValetServicesScreen;
+export default ValetServicesStoreScreen;
 
 const styles = StyleSheet.create({
   container: {

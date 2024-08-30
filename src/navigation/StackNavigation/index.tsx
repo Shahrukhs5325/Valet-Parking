@@ -4,8 +4,7 @@ import React from "react";
 import SplashScreen from "../../screen/splashScreen/SplashScreen";
 import LoginScreen from "../../screen/auth/LoginScreen";
 import RegisterScreen from "../../screen/auth/RegisterScreen";
-import ServiceScreen from "../../screen/service/ServiceScreen";
-import ValetServicesScreen from "../../screen/valet/ValetServicesScreen";
+import ValetServicesStoreScreen from "../../screen/valet/ValetServicesStoreScreen";
 import ValetDetailsScreen from "../../screen/valet/ValetDetailsScreen";
 import RedeemScreen from "../../screen/valet/RedeemScreen";
 import SucessValetScreen from "../../screen/valet/SucessValetScreen";
@@ -15,6 +14,7 @@ import { UserContext } from "../../context/user/UserContext";
 import AirportTransferScreen from "../../screen/airportTransfer/AirportTransferScreen";
 import SucessAirportScreen from "../../screen/airportTransfer/SucessAirportScreen";
 import AirportTransTransactionDetailsScreen from "../../screen/transaction/ariportTransfer/AirportTransTransactionDetailsScreen";
+import ValetServiceScreen from "../../screen/service/ValetServiceScreen";
 
 
 const Stack = createStackNavigator();
@@ -57,12 +57,12 @@ const Navigation = () => {
           component={HomeScreen}
         /> */}
         <Stack.Screen
-          name={"ServiceScreen"}
-          component={ServiceScreen}
+          name={"ValetServiceScreen"}
+          component={ValetServiceScreen}
         />
         <Stack.Screen
-          name={"ValetServicesScreen"}
-          component={ValetServicesScreen}
+          name={"ValetServicesStoreScreen"}
+          component={ValetServicesStoreScreen}
         />
         <Stack.Screen
           name={"ValetDetailsScreen"}

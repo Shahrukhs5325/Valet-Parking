@@ -9,6 +9,7 @@ import Store from '../../components/store/Store';
 import { UserContext } from '../../context/user/UserContext';
 import { palette } from '../../theme/themes';
 import { FONT } from '../../theme/fonts';
+import TopBannerHome from '../../components/header/TopBannerHome';
 
 type Props = {};
 
@@ -80,7 +81,7 @@ const HomeScreen: React.FC<Props> = () => {
         //  backgroundColor={palette.txtWhite}
         />
         <ScrollView showsVerticalScrollIndicator={false}>
-          <TopBanner />
+          <TopBannerHome />
           <View style={styles.compView}>
             <View>
               <Text style={styles.txtTitleSty}>Services you have</Text>

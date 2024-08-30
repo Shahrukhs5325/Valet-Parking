@@ -9,6 +9,7 @@ import Store from '../../components/store/Store';
 import CityComonent from '../../components/city/CityComonent';
 import { UserContext } from '../../context/user/UserContext';
 import { FONT } from '../../theme/fonts';
+import TopBannerValet from '../../components/header/TopBannerValet';
 
 type Props = {
   route?: any;
@@ -17,7 +18,7 @@ type Props = {
 const ImageHeight = Math.round(Dimensions.get('window').width * 9 / 9);
 
 
-const ServiceScreen: React.FC<Props> = ({ route }) => {
+const ValetServiceScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
   const userContext = React.useContext(UserContext);
   const { service } = route.params;
@@ -42,17 +43,17 @@ const ServiceScreen: React.FC<Props> = ({ route }) => {
       }}>
         <StatusBar
           animated={true}
-        //  backgroundColor={userContext?.customTheme?.primaryDark}
+          backgroundColor={userContext?.customTheme?.primaryDark}
         />
         <ScrollView showsVerticalScrollIndicator={false}>
-          <TopBanner navbar={true} service={service} />
+          <TopBannerValet navbar={true} service={service} />
           <View style={styles.compView}>
             <View>
-              <Text variant="titleSmall" style={styles.txtTitleSty}>Services you have</Text>
+              <Text variant="titleSmall" style={styles.txtTitleSty}>CITIES</Text>
               <CityComonent service={service} />
             </View>
             <View style={{ paddingBottom: 30 }}>
-              <Text variant="titleSmall" style={styles.txtTitleSty}>Services you have</Text>
+              <Text variant="titleSmall" style={styles.txtTitleSty}>Near you</Text>
               <Store />
             </View>
           </View>
@@ -62,7 +63,7 @@ const ServiceScreen: React.FC<Props> = ({ route }) => {
   );
 };
 
-export default ServiceScreen;
+export default ValetServiceScreen;
 
 const styles = StyleSheet.create({
   compView: {

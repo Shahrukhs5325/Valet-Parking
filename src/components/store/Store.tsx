@@ -76,7 +76,7 @@ const Store: React.FC<Props> = ({ location }) => {
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                                             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                                                 <LocationIcon />
-                                                <Text style={styles.kmTxt}>5 Kms</Text>
+                                                <Text style={styles.kmTxt}>5 Kms away</Text>
                                             </View>
                                             <TouchableOpacity onPress={() => navigation.navigate("ValetDetailsScreen", { store: item })}>
                                                 <View style={styles.viewTirdArrBtn}>
