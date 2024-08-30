@@ -26,7 +26,7 @@ const Navigation = () => {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      background: userContext?.customTheme?.bgGray
+      background: userContext?.customTheme?.primaryDark
     },
   };
 
@@ -84,11 +84,11 @@ const Navigation = () => {
           name={"AirportTransferScreen"}
           component={AirportTransferScreen}
         />
-         <Stack.Screen
+        <Stack.Screen
           name={"SucessAirportScreen"}
           component={SucessAirportScreen}
         />
-         <Stack.Screen
+        <Stack.Screen
           name={"AirportTransTransactionDetailsScreen"}
           component={AirportTransTransactionDetailsScreen}
         />

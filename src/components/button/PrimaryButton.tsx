@@ -29,8 +29,6 @@ const PrimaryButton: React.FC<Props> = ({
 
     return (
         <Button
-            buttonColor={buttonColor === "light" ? palette.txtWhite : userContext?.customTheme?.primaryDark}
-            textColor={buttonColor === "light" ? palette.primaryDark : palette.txtWhite}
             icon={icon}
             mode={"contained"}
             loading={loading}
@@ -38,10 +36,13 @@ const PrimaryButton: React.FC<Props> = ({
             uppercase={false}
             onPress={() => onPress()}
             style={{
-                borderRadius: 15, height: 52, justifyContent: 'center',
-                borderColor: buttonColor === "light" ? palette.primaryDark : userContext?.customTheme?.txtWhite,
-                borderWidth: 1
+                borderRadius: 10, height: 52, justifyContent: 'center',
+                borderColor: buttonColor === "dark" ? userContext?.customTheme?.txtWhite : palette.primaryDark,
+                borderWidth: 1,
             }}
+            buttonColor={buttonColor === "dark" ? userContext?.customTheme?.primaryDark : palette.txtWhite}
+            textColor={buttonColor === "dark" ? palette.txtWhite : palette.primaryDark}
+
         >
             {children}
         </Button>

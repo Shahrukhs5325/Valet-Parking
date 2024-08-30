@@ -275,10 +275,10 @@ const RegisterScreen: React.FC<Props> = () => {
         <View style={styles.container}>
           <StatusBar
             animated={true}
-            backgroundColor={palette.bgGray}
+            backgroundColor={palette.primaryDark}
           />
 
-          <Text variant="titleLarge" style={styles.txtSty}>SIGN UP</Text>
+          <Text style={styles.txtSty}>SIGN UP</Text>
           <View style={{ gap: 0 }}>
             <TextInputCust
               placeholder='First name'
@@ -325,20 +325,21 @@ const RegisterScreen: React.FC<Props> = () => {
 
           </View>
           <View style={{ gap: 8, marginTop: 10 }}>
-            <Text variant="titleMedium" style={styles.txtCreditCardTitle} >Credit card details</Text>
+            <Text style={styles.txtCreditCardTitle} >Credit card details</Text>
 
             <View>
               <Checkbox.Item label="Card name as per user"
-                disabled={!formData.firstName && !formData.LastName}
+                // disabled={!formData.firstName && !formData.LastName}
                 status={isNameAsPer ? "checked" : "unchecked"}
                 onPress={() => setIsNameAsPer(!isNameAsPer)}
-                color={palette.primaryDark}
+                color={palette.txtWhite}
+                uncheckedColor={palette.txtWhite}
                 labelStyle={styles.txtTextTitle}
                 style={{ marginLeft: -15, marginVertical: -2, }}
               />
             </View>
             <View style={{ gap: 4 }}>
-              <Text variant="titleSmall" style={{ color: palette.primaryDark }} >Enter card holder name</Text>
+              <Text style={styles.txtTextTitle} >Enter card holder name</Text>
               <TextInputCust
                 placeholder='Card holder name'
                 value={formData.creditCardName}
@@ -349,7 +350,7 @@ const RegisterScreen: React.FC<Props> = () => {
               />
             </View>
             <View style={{ gap: 4 }}>
-              <Text variant="titleSmall" style={styles.txtTextTitle} >Enter first 6 digits</Text>
+              <Text style={styles.txtTextTitle} >Enter first 6 digits</Text>
               <TextInputCust
                 placeholder='x x x x x x'
                 value={formData.lastSixDigit}
@@ -360,7 +361,7 @@ const RegisterScreen: React.FC<Props> = () => {
               />
             </View>
             <View style={{ gap: 4 }}>
-              <Text variant="titleSmall" style={styles.txtTextTitle} >Enter last 4 digits</Text>
+              <Text style={styles.txtTextTitle} >Enter last 4 digits</Text>
               <TextInputCust
                 placeholder='x x x x'
                 value={formData.firstFourDigit}
@@ -372,7 +373,7 @@ const RegisterScreen: React.FC<Props> = () => {
             </View>
 
             {!isSentOTP ? <View style={{ gap: 4 }}>
-              <Text variant="titleSmall" style={styles.txtTextTitle} >Enter OTP</Text>
+              <Text style={styles.txtTextTitle} >Enter OTP</Text>
               <TextInputCust
                 placeholder='OTP'
                 value={otp}
@@ -384,25 +385,21 @@ const RegisterScreen: React.FC<Props> = () => {
               />
             </View> : null}
 
-
-
           </View>
 
-          <View style={{ gap: 6 }}>
-            <Text variant="labelMedium" style={{ color: 'red', }}>{errors}</Text>
+          <View style={{ gap: 8 }}>
+            <Text style={{ color: 'red', fontSize: 13 }}>{errors}</Text>
 
             {!isSentOTP ? <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }}>
               <Checkbox.Item
-                //label="Card name as per user"
                 status={isTerm ? "checked" : "unchecked"}
                 onPress={() => setIsTerm(!isTerm)}
-                color={palette.primaryDark}
-              // labelStyle={styles.txtTextTitle}
-
+                uncheckedColor={palette.txtWhite}
+                labelStyle={styles.txtTextTitle}
               />
               <View style={{ marginBottom: 10, }}>
-                <Text variant="titleSmall" style={styles.txtTerm} >I accept the Terms & Conditions</Text>
-                <Text variant="titleSmall" style={styles.txtTerm} >Privacy Policy</Text>
+                <Text style={styles.txtTerm} >I accept the Terms & Conditions</Text>
+                <Text style={[styles.txtTerm, { textDecorationLine: 'underline' }]}>Privacy Policy</Text>
               </View>
             </View> : null}
 
@@ -414,7 +411,7 @@ const RegisterScreen: React.FC<Props> = () => {
 
           <View style={styles.containerRegister}>
             <TouchableOpacity onPress={() => navigation.replace("LoginScreen")}>
-              <Text variant="labelLarge" style={[styles.txtSingIn, { color: palette.txtGray }]}>Already have an account? <Text variant="labelLarge" style={[styles.txtSingIn, { color: palette.txtBlack }]}>Sign in</Text></Text>
+              <Text style={styles.txtSingIn}>Already have an account? Sign in</Text>
             </TouchableOpacity>
           </View>
 
@@ -441,47 +438,45 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    //  alignItems: "center",
     margin: 20,
     gap: 15,
     paddingBottom: 24
   },
   txtSty: {
-    color: palette.txtBlack,
+    color: palette.txtWhite,
     fontFamily: FONT.JuliusSansOne.regular,
     fontSize: 24,
+    fontWeight: '400'
   },
   txtCreditCardTitle: {
     letterSpacing: 3,
-    textTransform: 'uppercase',
-    color: palette.primaryDark,
+    color: palette.txtWhite,
     fontFamily: FONT.JuliusSansOne.regular,
     fontSize: 16,
+    fontWeight: '400'
   },
   txtTextTitle: {
     fontFamily: FONT.Able.regular,
-    color: palette.txtBlack,
+    color: palette.txtWhite,
     fontSize: 16,
     fontWeight: '400'
   },
   containerRegister: {
-    // position: 'absolute',
-    // bottom: -20,
     alignSelf: "center",
-    // textAlign: 'center',
-
   },
   txtTerm: {
     fontFamily: FONT.Able.regular,
-    color: palette.txtGray,
+    color: palette.txtWhite,
     fontSize: 16,
-    fontWeight: '400'
+    fontWeight: '400',
+    textAlign: 'center',
   },
   txtSingIn: {
     textAlign: 'center',
     fontFamily: FONT.Able.regular,
     fontSize: 14,
-    fontWeight: '400'
+    fontWeight: '400',
+    color: palette.txtWhite,
   }
 
 });

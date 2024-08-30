@@ -2,6 +2,9 @@
 export const palette = {
   primaryDark: "#000",
   primaryLight: "#FFF",
+
+  txtInputBg:"#1B1B1B",
+  
   bgCard: "#333333",
   txtGray: "#999999",
   bgGray: "#F2F2F2",

@@ -11,6 +11,8 @@ import { getCustomerByIdApi } from '../../api/user/userApi';
 import { UserContext } from '../../context/user/UserContext';
 import { getClientTheme } from '../../api/common/commonApi';
 import { FONT } from '../../theme/fonts';
+import ZapsLogo from '../../assets/svg/Zaps-logo.svg';
+import SABLogo from '../../assets/svg/sab-new-logo.svg';
 
 type Props = {};
 
@@ -113,9 +115,12 @@ const LoginScreen: React.FC<Props> = () => {
       <View style={styles.container}>
         <StatusBar
           animated={true}
-          backgroundColor={palette.bgGray}
+          backgroundColor={palette.primaryDark}
         />
-        <Text variant="titleLarge" style={styles.txtSty}>Login</Text>
+        <View style={{ alignItems: 'center', marginBottom: 50 }}>
+          <SABLogo />
+        </View>
+        <Text style={styles.txtSty}>Login</Text>
         <View style={{ gap: 0 }}>
           <TextInputCust
             placeholder='Email'
@@ -129,17 +134,22 @@ const LoginScreen: React.FC<Props> = () => {
             secureTextEntry={false}
             right={<TextInputCust.Icon icon="eye" />}
           />
-          <Text variant="labelMedium" style={{ marginVertical: 8, color: 'red', height: 36 }}>{errors}</Text>
+          <Text style={{ marginVertical: 8, color: 'red', height: 36 }}>{errors}</Text>
         </View>
         <View style={{ gap: 30 }}>
           <PrimaryButton loading={isLoading} disabled={isLoading} onPress={() => submitHandler()} >Sign In</PrimaryButton>
-          <Text variant="labelLarge" style={{ textAlign: 'center', color: palette.txtBlack }}>Forgot password?</Text>
+          <Text style={styles.txtforgtPass}>Forgot password?</Text>
         </View>
-        <View style={styles.containerRegister}>
+        <View >
           <TouchableOpacity onPress={() => navigation.replace("RegisterScreen")}>
-            <Text variant="labelLarge" style={[styles.txtRegister, { color: palette.txtGray }]}>Don’t have an account? <Text variant="labelLarge" style={[styles.txtRegister, { color: palette.txtBlack }]}>Sign up</Text></Text>
+            <Text style={styles.txtRegister}>Don’t have an account? Sign up</Text>
           </TouchableOpacity>
         </View>
+        <View style={styles.containerLogo}>
+          <Text style={styles.txtBrand}>Powered by</Text>
+          <ZapsLogo />
+        </View>
+
       </View>
     </>
   );
@@ -151,24 +161,40 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    //  alignItems: "center",
     margin: 20,
     gap: 15
   },
   txtSty: {
-    color: palette.txtBlack,
+    color: palette.txtWhite,
     fontFamily: FONT.JuliusSansOne.regular,
     fontSize: 24,
   },
-  containerRegister: {
-    // position: 'absolute',
-    // bottom: 0,
-    // alignItems: "center",
-    // textAlign: 'center',
-
+  containerLogo: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    position: 'absolute',
+    bottom: 10,
+    alignItems: "center",
+    gap: 6
   },
   txtRegister: {
     textAlign: 'center',
+    fontFamily: FONT.Able.regular,
+    fontSize: 14,
+    fontWeight: '400',
+    color: palette.txtWhite,
+  },
+  txtforgtPass: {
+    textAlign: 'center',
+    color: palette.txtWhite,
+    fontFamily: FONT.Able.regular,
+    fontSize: 16,
+    fontWeight: '400'
+  },
+  txtBrand: {
+    textAlign: 'center',
+    color: palette.txtWhite,
     fontFamily: FONT.Able.regular,
     fontSize: 14,
     fontWeight: '400'
