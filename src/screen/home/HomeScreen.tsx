@@ -83,11 +83,11 @@ const HomeScreen: React.FC<Props> = () => {
           <TopBanner />
           <View style={styles.compView}>
             <View>
-              <Text variant="titleSmall" style={styles.txtTitleSty}>Services you have</Text>
+              <Text style={styles.txtTitleSty}>Services you have</Text>
               <Services />
             </View>
             <View style={{ paddingBottom: 30 }}>
-              <Text variant="titleSmall" style={styles.txtTitleSty}>Services you have</Text>
+              <Text style={styles.txtTitleSty}>Services you have</Text>
               <Store location={location} />
             </View>
           </View>

@@ -2,23 +2,23 @@ import React from "react";
 import { palette } from "../../theme/themes";
 import { Text } from "react-native-paper";
 import { Dimensions, FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
-import Car from '../../assets/svg/car.svg';
-import Parking from '../../assets/svg/Parking.svg';
-import Smiley from '../../assets/svg/smiley-smile.svg';
+import ParkingIcon from '../../assets/svg/Valet Parking.svg';
+import AirportIcon from '../../assets/svg/Airport.svg';
+import PopcornIcon from '../../assets/svg/Popcorn.svg';
 import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../../context/user/UserContext";
 import { FONT } from "../../theme/fonts";
 
 
-const ImageHeight = Math.round(Dimensions.get('window').width / 3.3);
+const ImageHeight = Math.round(Dimensions.get('window').width / 3.5);
 
 interface Props {
 }
 
 const DATA = [
-    { id: 1, key: "Valet_Service", name: "Valet Service", icon: <Car width={30} height={30} /> },
-    { id: 2, key: "Airport_Transfer", name: "Airport Transfer Services", icon: <Parking width={30} height={30} /> },
-    { id: 3, key: "Meet_Greet", name: "Airport Meet & Greet", icon: <Smiley width={30} height={30} /> },
+    { id: 1, key: "Valet_Service", name: "Valet Service", icon: <ParkingIcon /> },
+    { id: 2, key: "Airport_Transfer", name: "Airport Transfer Services", icon: <AirportIcon /> },
+    { id: 3, key: "Meet_Greet", name: "Airport Meet & Greet", icon: <PopcornIcon /> },
 
 ]
 
@@ -40,7 +40,7 @@ const Services: React.FC<Props> = ({ }) => {
                             <View style={[styles.card, { backgroundColor: userContext?.customTheme?.bgCard }]}>
 
                                 {item.icon}
-                                <Text variant="titleSmall" style={styles.txtSty}>{item.name}</Text>
+                                <Text style={styles.txtSty}>{item.name}</Text>
 
                             </View>
                         </TouchableOpacity>
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         color: palette.txtWhite,
         fontFamily: FONT.JuliusSansOne.regular,
-        fontSize: 12,
+        fontSize: 11,
     }
 
 

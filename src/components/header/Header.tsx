@@ -5,8 +5,13 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Icon, Text } from "react-native-paper";
 import BackIcon from '../../assets/svg/back-icon.svg';
 import CrossIcon from '../../assets/svg/cross-icon.svg';
+import BellIcon from '../../assets/svg/bell-Icon.svg';
+
+import SABIcon from '../../assets/svg/sab-logo-small.svg';
+
 import { UserContext } from "../../context/user/UserContext";
 import { palette } from "../../theme/themes";
+import { FONT } from "../../theme/fonts";
 
 interface Props {
     navbar?: boolean | undefined;
@@ -41,15 +46,16 @@ const Header: React.FC<Props> = ({ navbar, isCross = false }) => {
         <View style={styles.container}>
             {!navbar ?
                 <>
-                    <Text variant="titleLarge" style={styles.txtSty}>{userContext?.user?.customerName}</Text>
-                    <View style={{}}>
+                    <Text style={styles.txtSty}>Hi, {userContext?.user?.customerName}</Text>
+                    <View style={{ flexDirection: 'row', gap: 14, alignItems: "center" }}>
                         <TouchableOpacity onPress={() => signOut()}>
-                            <Icon
-
-                                source="bell"
-                                color={palette.txtWhite}
-                                size={24}
-                            />
+                            <BellIcon />
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => signOut()}>
+                            <View style={{ padding: 3, backgroundColor: palette.txtWhite, borderRadius: 4 }}><SABIcon /></View>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => signOut()}>
+                            <BellIcon />
                         </TouchableOpacity>
                     </View>
                 </> :
@@ -82,8 +88,10 @@ const styles = StyleSheet.create({
         padding: 15
     },
     txtSty: {
-        fontWeight: '800',
-        color: palette.txtWhite
+        fontWeight: '400',
+        color: palette.txtWhite,
+        fontFamily: FONT.JuliusSansOne.regular,
+        fontSize: 20,
     },
 
 

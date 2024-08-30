@@ -165,6 +165,7 @@ const styles = StyleSheet.create({
     gap: 15
   },
   txtSty: {
+    fontWeight: '400',
     color: palette.txtWhite,
     fontFamily: FONT.JuliusSansOne.regular,
     fontSize: 24,
