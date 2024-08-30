@@ -9,48 +9,56 @@ import EntIcon from '../../assets/svg/privilege/Food.svg';
 import AirPort from '../../assets/svg/privilege/Airport.svg';
 import LinearGradient from 'react-native-linear-gradient';
 import { FlatList } from 'react-native-gesture-handler';
+import { palette } from '../../theme/themes';
+import { FONT } from '../../theme/fonts';
+import { UserContext } from '../../context/user/UserContext';
 
 const screenWidth = Dimensions.get('window').width;
 
+const data = [
+  {
+    id: '1',
+    service: 'Valet Services',
+    count: '100 Hrs',
+    icon: <ValetIcon width={40} height={40} />,
+  },
+  {
+    id: '2',
+    service: 'Airport Services',
+    count: '12 Packages',
+    icon: <AirPort width={40} height={40} />,
+  },
+  {
+    id: '3',
+    service: 'Leisure',
+    count: '100 Vouchers',
+    icon: <LeisIcon width={40} height={40} />,
+  },
+  {
+    id: '4',
+    service: 'F&B',
+    count: '50 Vouchers',
+    icon: <EntIcon width={40} height={40} />,
+  },
+  {
+    id: '5',
+    service: 'Entertainment',
+    count: '70 Vouchers',
+    icon: <Fandb width={40} height={40} />,
+  },
+  {
+    id: '6',
+    service: 'Plan your Day',
+    count: '20 Packages',
+    icon: <PldayIcon width={40} height={40} />,
+  },
+];
+
+
 const PrivilegeScreen = () => {
-  const data = [
-    {
-      id: '1',
-      service: 'Valet Services',
-      count: '100 Hrs',
-      icon: <ValetIcon width={44} height={44} />,
-    },
-    {
-      id: '2',
-      service: 'Airport Services',
-      count: '12 Packages',
-      icon: <AirPort width={44} height={44} />,
-    },
-    {
-      id: '3',
-      service: 'Leisure',
-      count: '100 Vouchers',
-      icon: <LeisIcon width={44} height={44} />,
-    },
-    {
-      id: '4',
-      service: 'F&B',
-      count: '50 Vouchers',
-      icon: <EntIcon width={44} height={44} />,
-    },
-    {
-      id: '5',
-      service: 'Entertainment',
-      count: '70 Vouchers',
-      icon: <Fandb width={44} height={44} />,
-    },
-    {
-      id: '6',
-      service: 'Plan your Day',
-      count: '20 Packages',
-      icon: <PldayIcon width={44} height={44} />,
-    },
-  ];
+
+  const userContext = React.useContext(UserContext);
+  const user = userContext.user;
 
   // Use a key that changes when the number of columns changes
   const columnCount = 2; // Change this value to change the number of columns
@@ -61,7 +69,7 @@ const PrivilegeScreen = () => {
         colors={['rgba(124, 124, 124, 1)', 'rgba(22, 22, 22, 1)', 'rgba(40, 40, 40, 1)']}
         style={[
           styles.mainItem,
-          { borderWidth: 1, borderColor: 'rgba(241, 241, 241, 0.3)' },
+          { borderWidth: 1, borderColor: palette.borderClr },
         ]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
@@ -77,10 +85,10 @@ const PrivilegeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <HeaderTitle title={'Profile'} />
-      <View>
-        <Text style={styles.text}>
-          HI, AHMED
+      {/* <HeaderTitle title={'PRIVILEGE'} /> */}
+      <View style={{ gap: 10 }}>
+        <Text style={styles.txtTitleSty}>
+          HI, {user?.customerName}
         </Text>
         <Text style={styles.text}>
           YOU HAVE THE FOOLING PRIVILEGE
@@ -108,23 +116,33 @@ const PrivilegeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    margin: 16,
+    paddingTop: 20
   },
   background: {
     flex: 1,
-    marginHorizontal: 12,
     marginBottom: 60,
     resizeMode: 'cover',
     borderRadius: 25,
     overflow: 'hidden',
-    marginTop: 5,
+    marginTop: 30,
   },
   overlay: {
     flex: 1,
-    padding: 20,
+    padding: 16,
     justifyContent: 'space-between',
   },
+  txtTitleSty: {
+    fontWeight: '400',
+    color: palette.txtWhite,
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 20,
+  },
   text: {
-    padding: 10,
+    fontWeight: '400',
+    color: palette.txtWhite,
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 16,
   },
   cardContainer: {
     flex: 1,
@@ -143,21 +161,26 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     alignItems: 'center',
+    gap: 4
   },
   serviceText: {
-    fontSize: 12,
-    color: '#fff',
+    fontWeight: '400',
+    color: palette.txtWhite,
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 14,
   },
   countText: {
-    fontSize: 10,
     textAlign: 'center',
     justifyContent: 'center',
-    color: '#fff',
     width: 120,
     backgroundColor: 'rgba(199, 149, 75, 1)',
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    borderRadius: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 3,
+    borderRadius: 3,
+    fontWeight: '400',
+    color: palette.txtWhite,
+    fontFamily: FONT.Able.regular,
+    fontSize: 14,
   },
   columnWrapper: {
     justifyContent: 'space-between',

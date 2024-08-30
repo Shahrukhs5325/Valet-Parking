@@ -7,8 +7,12 @@ import ZapsIcon from '../../assets/svg/zapsIcon.svg';
 import BarcodeImage from '../../assets/svg/barcode.svg'; // Add your barcode image
 import { FONT } from '../../theme/fonts';
 import { palette } from '../../theme/themes';
+import { UserContext } from '../../context/user/UserContext';
 
 const ProfileScreen = () => {
+  const userContext = React.useContext(UserContext);
+  const user = userContext.user;
+
   const [listHeight, setListHeight] = useState(0);
   const flatListRef = useRef(null);
 
@@ -44,7 +48,7 @@ const ProfileScreen = () => {
           <ZapsIcon style={styles.icon} />
           <View style={styles.profileInfo}>
             <View style={styles.nameIdContainer}>
-              <Text style={styles.itemText}>Ahmed Pasha</Text>
+              <Text style={styles.itemText}>{user?.customerName}</Text>
               <Text style={styles.itemText}>ID: 0123456</Text>
             </View>
             <BarcodeImage height={87} width={87} />

@@ -59,9 +59,9 @@ const Store: React.FC<Props> = ({ location }) => {
       ]}
       style={[
         styles.mainItem,
-        { borderWidth: 1, borderColor: 'rgba(241, 241, 241, 0.3)' }]}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 0 }}>
+        { borderWidth: 1, borderColor: palette.borderClr }]}
+      start={{ x: 1, y: 0 }}
+      end={{ x: 0, y: 1 }}>
       <View style={[styles.card]}>
         <View style={{ paddingVertical: 14 }}>
           <Text style={styles.txtServiceSty}>Valet Services</Text>
