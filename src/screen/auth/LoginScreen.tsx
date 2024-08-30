@@ -97,7 +97,7 @@ const LoginScreen: React.FC<Props> = () => {
       if (res?.data?.data) {
         const theme = res?.data?.data?.customTheme
         console.log("/n**** Custom Theme Color **** ", theme);
-        await userContext.secCustomTheme(theme);
+        await userContext.secCustomTheme(palette);
       } else {
         console.log("\n**** Default Theme ****\n");
         await userContext.secCustomTheme(palette);
