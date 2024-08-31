@@ -46,11 +46,11 @@ const RegisterScreen: React.FC<Props> = () => {
     setIsSentOTP(false);
   }, [formData]);
 
-  React.useEffect(() => {
-    isNameAsPer && setFormData({ ...formData, creditCardName: formData.firstName + " " + formData.LastName });
-    !isNameAsPer && setFormData({ ...formData, creditCardName: "" });
-    setErrors("");
-  }, [isNameAsPer]);
+  // React.useEffect(() => {
+  //   isNameAsPer && setFormData({ ...formData, creditCardName: formData.firstName + " " + formData.LastName });
+  //   !isNameAsPer && setFormData({ ...formData, creditCardName: "" });
+  //   setErrors("");
+  // }, [isNameAsPer]);
 
   const validate = () => {
     const EmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -327,7 +327,7 @@ const RegisterScreen: React.FC<Props> = () => {
           <View style={{ gap: 8, marginTop: 10 }}>
             <Text style={styles.txtCreditCardTitle} >Credit card details</Text>
 
-            <View>
+            {/* <View>
               <Checkbox.Item label="Card name as per user"
                 // disabled={!formData.firstName && !formData.LastName}
                 status={isNameAsPer ? "checked" : "unchecked"}
@@ -337,7 +337,7 @@ const RegisterScreen: React.FC<Props> = () => {
                 labelStyle={styles.txtTextTitle}
                 style={{ marginLeft: -15, marginVertical: -2, }}
               />
-            </View>
+            </View> */}
             <View style={{ gap: 4 }}>
               <Text style={styles.txtTextTitle} >Enter card holder name</Text>
               <TextInputCust

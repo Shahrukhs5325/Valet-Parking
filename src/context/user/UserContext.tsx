@@ -1,6 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import { palette } from '../../theme/themes';
+import Geolocation from '@react-native-community/geolocation';
+import { PermissionsAndroid, Platform } from 'react-native';
 
 
 type UserContextProviderType = {
@@ -53,6 +55,7 @@ export const UserContextProvider = ({ children }: UserContextProviderType) => {
 
     React.useEffect(() => {
         getLangDataAsyncStorage();
+        requestAuthorizationHandler();
     }, []);
 
     const getLangDataAsyncStorage = async () => {
@@ -63,6 +66,53 @@ export const UserContextProvider = ({ children }: UserContextProviderType) => {
             // read error
         }
     }
+
+
+    const requestAuthorizationHandler = async () => {
+        if (Platform.OS === 'ios') {
+            getCurrentLocation();
+        } else {
+            try {
+                const granted = await PermissionsAndroid.request(
+                    PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+                    {
+                        title: 'Device current location permission',
+                        message:
+                            'Allow app to get your current location',
+                        buttonNeutral: 'Ask Me Later',
+                        buttonNegative: 'Cancel',
+                        buttonPositive: 'OK',
+                    },
+                );
+                if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+                    getCurrentLocation();
+                } else {
+                    console.log('Location permission denied');
+                }
+            } catch (err) {
+                console.warn(err);
+            }
+        }
+    }
+
+    const getCurrentLocation = () => {
+        Geolocation.requestAuthorization();
+        Geolocation.getCurrentPosition(
+            (position) => {
+                console.log("**** position: ",position);
+                
+                //   setLocation(position);
+                seGeoLocation(position);
+                // refetch();
+            },
+            (error) => {
+                console.log("map error: ", error);
+                console.log(error.code, error.message);
+            },
+            { enableHighAccuracy: false, timeout: 1000000, maximumAge: 1000000 }
+        );
+    }
+
 
     return (
         <UserContext.Provider value={{ user, setUser, appLanguage, setAppLanguage, geoLocation, seGeoLocation, customTheme, secCustomTheme }}>
