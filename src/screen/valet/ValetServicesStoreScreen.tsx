@@ -11,6 +11,7 @@ import { palette } from '../../theme/themes';
 import { FONT } from '../../theme/fonts';
 import HeaderTitle from '../../components/header/HeaderTitle';
 import LocationIcon from '../../assets/svg/Location.svg';
+import { calculateDistance } from '../../constant/constFunction';
 
 type Props = {
   route?: any;
@@ -36,10 +37,20 @@ const ValetServicesStoreScreen: React.FC<Props> = ({ route }) => {
   });
 
 
-  React.useEffect(() => {
-    setStoreList(data?.data?.data);
-  }, [data?.data?.data]);
+  // React.useEffect(() => {
+  //   setStoreList(data?.data?.data);
+  // }, [data?.data?.data]);
 
+  React.useEffect(() => {
+    const arr: any[] = []
+    if (data?.data?.data?.length > 0) {
+      data?.data?.data.map((item) => {
+        item["distance"] = calculateDistance(userContext, item);
+        arr.push(item)
+      })
+      setStoreList(arr);
+    }
+  }, [data]);
 
   if (isLoading) {
     return (
@@ -69,14 +80,15 @@ const ValetServicesStoreScreen: React.FC<Props> = ({ route }) => {
             <FlatList
               showsVerticalScrollIndicator={false}
               keyExtractor={(item, index) => index.toString()}
-              data={storeList}
+              // data={storeList}
+              data={storeList.sort((a, b) => a.distance - b.distance)}
               renderItem={({ item }) =>
                 <View style={styles.card}>
                   <View style={{ gap: 4, width: "82%" }}>
                     <Text style={styles.txtSty} numberOfLines={1}>{item?.storeName}</Text>
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                       <LocationIcon />
-                      <Text style={styles.kmTxt}>5 Kms away</Text>
+                      <Text style={styles.kmTxt}>{item?.distance} Km away</Text>
                     </View>
                   </View>
                   <TouchableOpacity onPress={() => navigation.navigate("ValetDetailsScreen", { store: item })}>

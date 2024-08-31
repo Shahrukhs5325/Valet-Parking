@@ -171,13 +171,14 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   containerLogo: {
-    flex: 1,
+    // flex: 1,
     width: '100%',
     justifyContent: 'center',
-    position: 'absolute',
-    bottom: 10,
+    // position: 'absolute',
+    // bottom: 0,
     alignItems: "center",
-    gap: 6
+    gap: 6,
+    marginTop: 30,
   },
   txtRegister: {
     textAlign: 'center',

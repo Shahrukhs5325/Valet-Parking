@@ -1,9 +1,20 @@
 import moment from 'moment';
+import { convertDistance, getDistance } from 'geolib';
 
 
 export const utcDateConvoter = (date: any) => {
   return moment(date, 'YYYY-MM-DD').format('DD MMM YYYY');
 };
+
+export const calculateDistance = (user: any, coupon: any) => {
+  const result = getDistance(
+    { latitude: "24.7136", longitude: "46.6753" },
+    // { latitude: user?.geoLocation?.coords?.latitude, longitude: user?.geoLocation?.coords?.longitude },
+    { latitude: coupon?.latitude, longitude: coupon?.longitude }
+  )
+  const distance = convertDistance(result, "km").toFixed(2)
+  return Number(distance)
+}
 
 export const handleCognitoError = (error: any) => {
   if (error.code === 'UsernameExistsException') {
