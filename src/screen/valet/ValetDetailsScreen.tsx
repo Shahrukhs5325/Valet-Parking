@@ -97,7 +97,7 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
               </View>
 
 
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 6, justifyContent: "space-between" }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 6, justifyContent: "space-evenly" }}>
                 <View style={styles.viewCall}>
                   <CallIcon />
                   <Text style={styles.txtSty}>Call</Text>
@@ -125,14 +125,14 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
                 <Text style={styles.txtheadSty}>Parking duration</Text>
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
-                  <Text style={styles.txtheadSty}>BALANCE HOURS</Text>
+                  <Text style={[styles.txtheadSty, { width: "40%" }]}>BALANCE HOURS</Text>
                   <View style={styles.viewDataCall}>
                     <Text style={styles.txtheadSty}>100</Text>
                   </View>
                 </View>
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
-                  <Text style={styles.txtheadSty}>SELECT QUANTITY</Text>
+                  <Text style={[styles.txtheadSty, { width: "40%" }]}>SELECT QUANTITY</Text>
                   <View >
                     <SelectDropdown
                       data={ArrQty}
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
     gap: 26,
   },
   viewCall: {
-    width: WIDTH / 2.8,
+    width: WIDTH / 3.4,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
@@ -346,7 +346,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 12,
-    backgroundColor: palette.bgCard,
+    backgroundColor: "#6A6868",
     borderRadius: 8,
     borderWidth: 1,
     borderColor: palette.txtGray,

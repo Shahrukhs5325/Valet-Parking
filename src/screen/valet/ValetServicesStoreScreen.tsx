@@ -63,43 +63,43 @@ const ValetServicesStoreScreen: React.FC<Props> = ({ route }) => {
           <Text style={styles.txtTitleSty}>City: {city.cityName}</Text>
 
           <ImageBackground
-        source={require('../../assets/longb.png')}
-        style={styles.background}
-      >
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            keyExtractor={(item, index) => index.toString()}
-            data={storeList}
-            renderItem={({ item }) =>
-              <View style={styles.card}>
-                <View style={{ gap: 4, width: "82%" }}>
-                  <Text style={styles.txtSty} numberOfLines={1}>{item?.storeName}</Text>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                    <LocationIcon />
-                    <Text style={styles.kmTxt}>5 Kms away</Text>
-                  </View>
-                </View>
-                <TouchableOpacity onPress={() => navigation.navigate("ValetDetailsScreen", { store: item })}>
-                  <View style={styles.viewTirdArrBtn}>
-                    <View style={styles.viewSecArrBtn}>
-                      <View style={styles.viewFristArrBtn}>
-                        <Arrow width={10} height={11} />
-                      </View>
+            source={require('../../assets/longb.png')}
+            style={styles.background}
+          >
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              keyExtractor={(item, index) => index.toString()}
+              data={storeList}
+              renderItem={({ item }) =>
+                <View style={styles.card}>
+                  <View style={{ gap: 4, width: "82%" }}>
+                    <Text style={styles.txtSty} numberOfLines={1}>{item?.storeName}</Text>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                      <LocationIcon />
+                      <Text style={styles.kmTxt}>5 Kms away</Text>
                     </View>
                   </View>
-                </TouchableOpacity>
-              </View>
-            }
-            style={styles.list}
-            contentContainerStyle={styles.listContents}
-            initialNumToRender={5}
-            maxToRenderPerBatch={10}
-            windowSize={10}
-            updateCellsBatchingPeriod={50}
-            ListEmptyComponent={<>
-              <Text style={styles.emtTxt}>Data Not Found</Text>
-            </>}
-          />
+                  <TouchableOpacity onPress={() => navigation.navigate("ValetDetailsScreen", { store: item })}>
+                    <View style={styles.viewTirdArrBtn}>
+                      <View style={styles.viewSecArrBtn}>
+                        <View style={styles.viewFristArrBtn}>
+                          <Arrow width={10} height={11} />
+                        </View>
+                      </View>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              }
+              style={styles.list}
+              contentContainerStyle={styles.listContents}
+              initialNumToRender={5}
+              maxToRenderPerBatch={10}
+              windowSize={10}
+              updateCellsBatchingPeriod={50}
+              ListEmptyComponent={<>
+                <Text style={styles.emtTxt}>Data Not Found</Text>
+              </>}
+            />
           </ImageBackground>
 
         </View>
@@ -141,11 +141,11 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     borderRadius: 25, // Added borderRadius
     overflow: 'hidden',
-    height: 600,
-    padding:5,
+    // height: 600,
+    padding: 5,
   },
   list: {
-
+    margin: 10,
   },
   card: {
     flexDirection: 'row',
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 16,
     backgroundColor: palette.bgCard,
-    width: WIDTH - 40,
+    width: '100%',
     borderRadius: 17,
     borderWidth: 1,
     borderColor: palette.txtGray,
