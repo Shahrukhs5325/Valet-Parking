@@ -11,7 +11,7 @@ import { palette } from '../../theme/themes';
 import { FONT } from '../../theme/fonts';
 import HeaderTitle from '../../components/header/HeaderTitle';
 import LocationIcon from '../../assets/svg/Location.svg';
-import { calculateDistance } from '../../constant/constFunction';
+import { calculateDistance, openAddressOnMap } from '../../constant/constFunction';
 
 type Props = {
   route?: any;
@@ -86,10 +86,12 @@ const ValetServicesStoreScreen: React.FC<Props> = ({ route }) => {
                 <View style={styles.card}>
                   <View style={{ gap: 4, width: "82%" }}>
                     <Text style={styles.txtSty} numberOfLines={1}>{item?.storeName}</Text>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                      <LocationIcon />
-                      <Text style={styles.kmTxt}>{item?.distance} Km away</Text>
-                    </View>
+                    <TouchableOpacity onPress={() => openAddressOnMap(item?.latitude, item?.longitude, item?.templateName)}>
+                      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                        <LocationIcon />
+                        <Text style={styles.kmTxt}>{item?.distance} Km away</Text>
+                      </View>
+                    </TouchableOpacity>
                   </View>
                   <TouchableOpacity onPress={() => navigation.navigate("ValetDetailsScreen", { store: item })}>
                     <View style={styles.viewTirdArrBtn}>

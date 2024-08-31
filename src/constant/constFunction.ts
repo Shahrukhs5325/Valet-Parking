@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { convertDistance, getDistance } from 'geolib';
+import { Linking, Platform } from 'react-native';
 
 
 export const utcDateConvoter = (date: any) => {
@@ -15,6 +16,20 @@ export const calculateDistance = (user: any, coupon: any) => {
   const distance = convertDistance(result, "km").toFixed(2)
   return Number(distance)
 }
+
+export const openAddressOnMap = (lat: any, long: any, storeName: string) => {
+  const scheme = Platform.select({
+    ios: 'maps:0,0?q=',
+    android: 'geo:0,0?q=',
+  });
+  const latLng = `${lat},${long}`;
+  const label = storeName;
+  const url = Platform.select({
+    ios: `${scheme}${label}@${latLng}`,
+    android: `${scheme}${latLng}(${label})`,
+  });
+  Linking.openURL(url);
+};
 
 export const handleCognitoError = (error: any) => {
   if (error.code === 'UsernameExistsException') {

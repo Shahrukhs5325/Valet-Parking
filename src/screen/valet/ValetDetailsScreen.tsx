@@ -19,6 +19,7 @@ import { getCustomerCouponsByStoreIdNMerchantId } from '../../api/common/commonA
 import { FONT } from '../../theme/fonts';
 
 import SelectDropdown from 'react-native-select-dropdown'
+import { openAddressOnMap } from '../../constant/constFunction';
 
 type Props = {
   route?: any;
@@ -102,10 +103,12 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
                   <CallIcon />
                   <Text style={styles.txtSty}>Call</Text>
                 </View>
-                <View style={styles.viewCall}>
-                  <MapIcon />
-                  <Text style={styles.txtSty}>Direction</Text>
-                </View>
+                <TouchableOpacity onPress={() => openAddressOnMap(coupon?.latitude, coupon?.longitude, coupon?.templateName)}>
+                  <View style={styles.viewCall}>
+                    <MapIcon />
+                    <Text style={styles.txtSty}>Direction</Text>
+                  </View>
+                </TouchableOpacity>
               </View>
 
               <View style={{ borderBottomWidth: 1.4, borderColor: palette.bgGray }} />

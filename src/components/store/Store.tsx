@@ -18,6 +18,7 @@ import { palette } from '../../theme/themes';
 import { useNavigation } from '@react-navigation/native';
 import { FONT } from '../../theme/fonts';
 import LinearGradient from 'react-native-linear-gradient';
+import { calculateDistance } from '../../constant/constFunction';
 
 const WIDTH = Math.round(Dimensions.get('window').width);
 
@@ -44,9 +45,20 @@ const Store: React.FC<Props> = ({ location }) => {
     refetch();
   }, [location, refetch]);
 
+  // React.useEffect(() => {
+  //   if (data?.data?.data) {
+  //     setStoreList(data.data.data);
+  //   }
+  // }, [data]);
+
   React.useEffect(() => {
-    if (data?.data?.data) {
-      setStoreList(data.data.data);
+    const arr: any[] = []
+    if (data?.data?.data?.length > 0) {
+      data?.data?.data.map((item) => {
+        item["distance"] = calculateDistance(userContext, item);
+        arr.push(item)
+      })
+      setStoreList(arr);
     }
   }, [data]);
 
@@ -90,7 +102,7 @@ const Store: React.FC<Props> = ({ location }) => {
                   gap: 6,
                 }}>
                 <LocationIcon />
-                <Text style={styles.kmTxt}>5 Kms away</Text>
+                <Text style={styles.kmTxt}>{item?.distance} Km away</Text>
               </View>
               <TouchableOpacity
                 onPress={() =>
@@ -129,7 +141,7 @@ const Store: React.FC<Props> = ({ location }) => {
           showsHorizontalScrollIndicator={false}
           horizontal={true}
           keyExtractor={(item, index) => index.toString()}
-          data={storeList}
+          data={storeList.sort((a, b) => a.distance - b.distance)}
           renderItem={renderItem}
           style={styles.list}
           contentContainerStyle={styles.listContents}
@@ -174,13 +186,13 @@ const styles = StyleSheet.create({
     borderRadius: 17,
   },
   card: {
-    width: WIDTH - 20,
+    width: WIDTH - 38,
     borderRadius: 17,
   },
   cardContaint: {
     flexDirection: 'row',
     alignContent: 'center',
-    width: WIDTH - 104,
+    width: WIDTH - 116,
     paddingHorizontal: 10,
   },
   txtSty: {
