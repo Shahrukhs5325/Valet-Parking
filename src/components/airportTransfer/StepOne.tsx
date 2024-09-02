@@ -3,6 +3,8 @@ import { Dimensions, StyleSheet, View } from "react-native";
 import { UserContext } from "../../context/user/UserContext";
 import { palette } from "../../theme/themes";
 import TextInputCust from "../textInput/TextInput";
+import { Text } from "react-native-paper";
+import { FONT } from "../../theme/fonts";
 
 const ImageHeight = Math.round(Dimensions.get('window').width / 4);
 
@@ -24,61 +26,114 @@ const StepOne: React.FC<Props> = ({ formData, setFormData, setErrors }) => {
         <>
             <View style={{ gap: 8, }}>
                 <TextInputCust
-                    placeholder='Select Airport'
+                    placeholder='Airport'
                     value={formData.firstName}
                     onChangeText={value => {
-                        setFormData({ ...formData, firstName: value });
+                        // setFormData({ ...formData, firstName: value });
                         setErrors("");
                     }}
                 />
                 <TextInputCust
-                    placeholder='Type of Travel'
-                    value={formData.LastName}
+                    placeholder='Travel type'
+                    // value={formData.LastName}
                     onChangeText={value => {
-                        setFormData({ ...formData, LastName: value });
+                        // setFormData({ ...formData, firstName: value });
                         setErrors("");
                     }}
                 />
                 <TextInputCust
-                    placeholder='Service Area'
-                    value={formData.LastName}
+                    placeholder='Flight number'
+                    // value={formData.LastName}
                     onChangeText={value => {
-                        setFormData({ ...formData, LastName: value });
+                        // setFormData({ ...formData, firstName: value });
                         setErrors("");
                     }}
                 />
                 <TextInputCust
-                    placeholder='Pickup/Dropoff Location'
-                    value={formData.LastName}
+                    placeholder='Flight date and time'
+                    // value={formData.LastName}
                     onChangeText={value => {
-                        setFormData({ ...formData, LastName: value });
+                        // setFormData({ ...formData, firstName: value });
                         setErrors("");
                     }}
                 />
                 <TextInputCust
-                    placeholder='Pickup Date & Time'
-                    value={formData.LastName}
+                    placeholder='Arrival/Departure Terminal'
+                    // value={formData.LastName}
                     onChangeText={value => {
-                        setFormData({ ...formData, LastName: value });
+                        // setFormData({ ...formData, firstName: value });
                         setErrors("");
                     }}
                 />
                 <TextInputCust
-                    placeholder='Select Vehicle Type'
-                    value={formData.LastName}
+                    placeholder='Origin'
+                    // value={formData.LastName}
                     onChangeText={value => {
-                        setFormData({ ...formData, LastName: value });
+                        // setFormData({ ...formData, firstName: value });
                         setErrors("");
                     }}
                 />
                 <TextInputCust
-                    placeholder='Special Requests'
-                    value={formData.LastName}
+                    placeholder='Destination'
+                    // value={formData.LastName}
                     onChangeText={value => {
-                        setFormData({ ...formData, LastName: value });
+                        // setFormData({ ...formData, firstName: value });
                         setErrors("");
                     }}
                 />
+                <TextInputCust
+                    placeholder='Carrier'
+                    // value={formData.LastName}
+                    onChangeText={value => {
+                        // setFormData({ ...formData, firstName: value });
+                        setErrors("");
+                    }}
+                />
+
+                <Text style={styles.txtSty}>Airport Transfer Details:</Text>
+
+
+                <TextInputCust
+                    placeholder='Area'
+                    // value={formData.LastName}
+                    onChangeText={value => {
+                        // setFormData({ ...formData, firstName: value });
+                        setErrors("");
+                    }}
+                />
+                <TextInputCust
+                    placeholder='Location'
+                    // value={formData.LastName}
+                    onChangeText={value => {
+                        // setFormData({ ...formData, firstName: value });
+                        setErrors("");
+                    }}
+                />
+                <TextInputCust
+                    placeholder='Passenger contact details'
+                    // value={formData.LastName}
+                    onChangeText={value => {
+                        // setFormData({ ...formData, firstName: value });
+                        setErrors("");
+                    }}
+                />
+                <TextInputCust
+                    placeholder='Pick-up date & time'
+                    // value={formData.LastName}
+                    onChangeText={value => {
+                        // setFormData({ ...formData, firstName: value });
+                        setErrors("");
+                    }}
+                />
+                <TextInputCust
+                    placeholder='Additional information'
+                    // value={formData.LastName}
+                    onChangeText={value => {
+                        // setFormData({ ...formData, firstName: value });
+                        setErrors("");
+                    }}
+                />
+
             </View>
         </>
     );
@@ -89,33 +144,13 @@ const StepOne: React.FC<Props> = ({ formData, setFormData, setErrors }) => {
 export default StepOne;
 
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'column',
-    },
-    txtTitleSty: {
-        fontWeight: '600',
-        color: palette.txtWhite,
-        textTransform: 'uppercase',
-        letterSpacing: 3
-    },
-    list: {
-    },
-    listContents: {
-        // gap: 16,
-        alignSelf: 'flex-start'
-    },
-    card: {
-        margin: 6,
-        padding: 13,
-        //   backgroundColor: palette.bgCard,
-        width: ImageHeight,
-        height: ImageHeight,
-        borderRadius: 17,
-        justifyContent: 'flex-end'
-    },
+
     txtSty: {
-        fontWeight: '600',
+        fontWeight: '400',
         color: palette.txtWhite,
+        fontFamily: FONT.JuliusSansOne.regular,
+        fontSize: 14,
+        marginVertical: 16
     }
 
 

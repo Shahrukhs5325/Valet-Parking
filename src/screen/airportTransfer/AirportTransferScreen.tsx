@@ -18,7 +18,7 @@ type Props = {
   route: any;
 };
 
-const STEPPER_LABEL = ["Airport Service", "Flight details", "Confirmation"];
+const STEPPER_LABEL = ["Service Details", "Passenger Details", "Confirmation"];
 const WIDTH = Dimensions.get('window').width;
 
 
