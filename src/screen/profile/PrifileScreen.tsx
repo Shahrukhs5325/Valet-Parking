@@ -1,41 +1,19 @@
-import React, { useState, useRef } from 'react';
-import { View, Text, StyleSheet, ImageBackground, LayoutChangeEvent, Image } from 'react-native';
-import HeaderTitle from '../../components/header/HeaderTitle';
+import React from 'react';
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { FlatList } from 'react-native-gesture-handler';
-import ZapsIcon from '../../assets/svg/zapsIcon.svg';
 import BarcodeImage from '../../assets/svg/barcode.svg'; // Add your barcode image
+import ZapsIcon from '../../assets/svg/zapsIcon.svg';
+import HeaderTitle from '../../components/header/HeaderTitle';
+import { UserContext } from '../../context/user/UserContext';
 import { FONT } from '../../theme/fonts';
 import { palette } from '../../theme/themes';
-import { UserContext } from '../../context/user/UserContext';
 
 const ProfileScreen = () => {
   const userContext = React.useContext(UserContext);
   const user = userContext.user;
 
-  const [listHeight, setListHeight] = useState(0);
-  const flatListRef = useRef(null);
 
-  const historyData = [
-    { id: '1', name: 'Change Password' },
-    { id: '2', name: 'Contact Us' },
-    { id: '3', name: 'Terms of Use' },
-    { id: '4', name: 'Privacy Policy' },
-    { id: '5', name: 'Notifications' },
-    { id: '6', name: 'Log Out' },
-    { id: '7', name: 'Delete Account' },
-  ];
 
-  const renderItem = ({ item, index }) => (
-    <View style={[styles.listItem, index === historyData.length - 1 && styles.lastItem]}>
-      <Text style={styles.itemText}>{item?.name?.toUpperCase()}</Text>
-    </View>
-  );
-
-  const handleLayout = (event: LayoutChangeEvent) => {
-    const { height } = event.nativeEvent.layout;
-    setListHeight(height);
-  };
 
   return (
     <View style={styles.container}>
@@ -57,22 +35,57 @@ const ProfileScreen = () => {
           <Text style={styles.membershipText}>05/24</Text>
         </View>
       </ImageBackground>
-      <View style={[styles.gradientWrapper, { height: listHeight }]}>
+      <View style={[styles.gradientWrapper]}>
         <LinearGradient
           colors={['rgba(22, 22, 22, 1)', 'rgba(40, 40, 40, 1)']} // Gradient color
           style={styles.gradientContainer}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
         >
-          <FlatList
-            scrollEnabled={false}
-            ref={flatListRef}
-            data={historyData}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-            contentContainerStyle={styles.flatListContent}
-            onLayout={handleLayout}
-          />
+          <View>
+            <TouchableOpacity>
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>Change Password</Text>
+              </View>
+            </TouchableOpacity>
+            <View style={styles.viewBorder} />
+            <TouchableOpacity>
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>Contact Us</Text>
+              </View>
+            </TouchableOpacity>
+            <View style={styles.viewBorder} />
+            <TouchableOpacity>
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>Terms of Use</Text>
+              </View>
+            </TouchableOpacity>
+            <View style={styles.viewBorder} />
+            <TouchableOpacity>
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>Privacy Policy</Text>
+              </View>
+            </TouchableOpacity>
+            <View style={styles.viewBorder} />
+            <TouchableOpacity>
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>Notifications</Text>
+              </View>
+            </TouchableOpacity>
+            <View style={styles.viewBorder} />
+            <TouchableOpacity>
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>Log Out</Text>
+              </View>
+            </TouchableOpacity>
+            <View style={styles.viewBorder} />
+            <TouchableOpacity>
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>Delete Account</Text>
+              </View>
+            </TouchableOpacity>
+
+          </View>
         </LinearGradient>
       </View>
     </View>
@@ -110,6 +123,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 14,
     height: 50,
+  },
+  viewBorder: {
     borderBottomWidth: 1,
     borderBottomColor: palette.borderClr,
   },
