@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
+import { Dimensions, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
 import StepOne from '../../components/airportTransfer/StepOne';
 import PrimaryButton from '../../components/button/PrimaryButton';
@@ -12,12 +12,14 @@ import Stepper from '../../components/stepper/Stepper';
 import StepTwo from '../../components/airportTransfer/StepTwo';
 import StepThree from '../../components/airportTransfer/StepThree';
 import { FONT } from '../../theme/fonts';
+import HeaderTitle from '../../components/header/HeaderTitle';
 
 type Props = {
   route: any;
 };
 
 const STEPPER_LABEL = ["Airport Service", "Flight details", "Confirmation"];
+const WIDTH = Dimensions.get('window').width;
 
 
 const AirportTransferScreen: React.FC<Props> = ({ route }) => {
@@ -52,8 +54,14 @@ const AirportTransferScreen: React.FC<Props> = ({ route }) => {
           backgroundColor={userContext?.customTheme?.primaryDark}
         />
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={{ flex: 1, backgroundColor: userContext?.customTheme?.primaryDark, paddingBottom: 40 }}>
-            <Header navbar={true} />
+          <View style={{ flex: 1, backgroundColor: userContext?.customTheme?.primaryDark, paddingBottom: 40, gap: 16 }}>
+            
+            <HeaderTitle title={'aIRPORT services'} />
+
+            <View>
+              <Text style={styles.txtHeadingSty}>BOTH</Text>
+            </View>
+
             <View
               style={[styles.compView, { backgroundColor: userContext?.customTheme?.primaryDark }]}
             >
@@ -146,7 +154,21 @@ const styles = StyleSheet.create({
     marginTop: 30,
     flexDirection: 'row',
     justifyContent: 'space-around'
-  }
+  },
+  txtHeadingSty: {
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 20,
+    fontWeight: '400',
+    color: palette.txtWhite,
+    textAlign: 'center',
+    paddingVertical: 6,
+    backgroundColor: palette.bgCard,
+    borderWidth: 1,
+    borderColor: palette.txtGray,
+    borderRadius: 5,
+    width: WIDTH - 120,
+    alignSelf: 'center',
+  },
 
 
 

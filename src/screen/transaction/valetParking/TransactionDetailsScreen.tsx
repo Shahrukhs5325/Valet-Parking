@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
   },
   txtHeadingSty: {
     fontFamily: FONT.JuliusSansOne.regular,
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: '400',
     color: palette.txtWhite,
     textAlign: 'center',
