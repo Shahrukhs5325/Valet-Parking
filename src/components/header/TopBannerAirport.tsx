@@ -22,9 +22,9 @@ const TopBannerAirport: React.FC<Props> = ({ navbar, service }) => {
                 resizeMode="cover"
                 style={styles.image}>
                 <Header navbar={navbar} />
-                <View style={{ position: 'absolute', bottom: 0, justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', padding: 20, gap: 6 }}>
+                <View style={{ position: 'absolute', bottom: 0, justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', padding: 20, gap: 6, alignSelf: 'center' }}>
                     <Text style={styles.txtTitle}>Airport services</Text>
-                    <Text style={styles.txtSubTitle}>Exclusive valet services, where luxury meets seamless convenience</Text>
+                    <Text style={styles.txtSubTitle}>Exclusive airport services, where luxury meets seamless convenience</Text>
                 </View>
             </ImageBackground>
 

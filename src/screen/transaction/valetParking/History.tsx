@@ -15,14 +15,14 @@ import { getTransactionByCustomerId } from '../../../api/common/commonApi';
 import { ActivityIndicator } from 'react-native-paper';
 
 const historyData = [
-  {
-    id: '1',
-    service: 'Valet Services',
-    location: 'Location: Billionaire',
-    status: 'USED',
-    type: 'timer',
-    icon: <ValetIcon width={30} height={30} />,
-  },
+  // {
+  //   id: '1',
+  //   service: 'Valet Services',
+  //   location: 'Location: Billionaire',
+  //   status: 'USED',
+  //   type: 'timer',
+  //   icon: <ValetIcon width={30} height={30} />,
+  // },
   {
     id: '2',
     service: 'F&B',
@@ -34,9 +34,9 @@ const historyData = [
   {
     id: '3',
     service: 'Airport Services',
-    location: 'Meet & Assist',
-    status: 'EXPIRED',
-    type: 'expired',
+    location: 'Meet & Assist + Airport transfer',
+    status: 'Confirmed',
+    type: 'Confirmed',
     icon: <GolfIcon width={30} height={30} />,
   },
   {
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     gap: 20,
   },
   listContents: {
-    gap: 10,
+    gap: 8,
     paddingBottom: 50,
   },
   historyItem: {
@@ -193,15 +193,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 1,
     borderColor: palette.txtWhite,
-    height: 59,
-    width: 59,
+    height: 62,
+    width: 62,
     borderRadius: 50,
   },
   statusExpired: {
     fontWeight: '400',
     color: palette.txtWhite,
     fontFamily: FONT.JuliusSansOne.regular,
-    fontSize: 12,
+    fontSize: 14,
     textAlign: 'center',
   },
 });

@@ -12,6 +12,7 @@ import { redeemCouponByqrCode } from '../../api/common/commonApi';
 import moment from 'moment';
 import HeaderTitle from '../../components/header/HeaderTitle';
 import { FONT } from '../../theme/fonts';
+import LinearGradient from 'react-native-linear-gradient';
 
 
 type Props = {
@@ -164,7 +165,7 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
         <View style={styles.compView}>
           <Text style={styles.txtHeadingSty}>Parking Voucher</Text>
 
-          <View style={{ gap: 8, marginVertical: 6, alignItems: 'center' }}>
+          <View style={{ gap: 8, paddingTop: 20, marginVertical: 6, alignItems: 'center' }}>
             <Text style={styles.txtTitleSty}>{coupon.templateName}</Text>
             <Text style={styles.txtaddSty}>{coupon.address}</Text>
           </View>
@@ -177,14 +178,24 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
 
 
           <View style={{ justifyContent: 'center', alignItems: 'center', gap: 10, paddingVertical: 10 }}>
-            <View style={{ backgroundColor: "#FFF", height: 140, width: 140, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }}>
+            <LinearGradient
+              colors={['rgba(40, 40, 40, 1)', 'rgba(124, 124, 124, 1)', 'rgba(124, 124, 124, 1)']}
+              style={[
+                styles.mainItem,
+                { borderWidth: 1, borderColor: palette.txtWhite },
+              ]}
+              start={{ x: 0, y: 1 }}
+              end={{ x: 1, y: 1 }}
+            >
+              {/* <View style={{ backgroundColor: "#FFF", height: 140, width: 140, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }}> */}
               <QRCode
                 value={coupon?.couponCode}
                 logoSize={30}
                 logoBorderRadius={20}
                 logoBackgroundColor="transparent"
               />
-            </View>
+              {/* </View> */}
+            </LinearGradient>
           </View>
 
           <View>
@@ -250,6 +261,15 @@ const styles = StyleSheet.create({
   txtSty: {
     color: palette.txtWhite,
 
+  },
+  mainItem: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    // padding: 12,
+    borderRadius: 10,
+    height: 140,
+    width: 140,
+    justifyContent: 'center',
   },
   txtHeadingSty: {
     fontFamily: FONT.JuliusSansOne.regular,

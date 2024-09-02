@@ -42,7 +42,7 @@ const StepTwo: React.FC<Props> = ({ formData, setFormData, setErrors }) => {
                     }}
                 />
                 <TextInputCust
-                    placeholder='Age group'
+                    placeholder='Age'
                     // // value={formData.LastName}
                     onChangeText={value => {
                         // setFormData({ ...formData, LastName: value });
@@ -120,7 +120,7 @@ const StepTwo: React.FC<Props> = ({ formData, setFormData, setErrors }) => {
                     }}
                 />
                 <TextInputCust
-                    placeholder='Age group'
+                    placeholder='Age'
                     // // value={formData.LastName}
                     onChangeText={value => {
                         // setFormData({ ...formData, LastName: value });
