@@ -51,11 +51,14 @@ const ServiceScreen: React.FC<Props> = ({ route }) => {
           }
           <View style={styles.compView}>
             <View>
-              <Text   style={styles.txtTitleSty}>CITIES</Text>
+              <Text style={styles.countText}>NUMBER OF HOURS: 100</Text>
+            </View>
+            <View>
+              <Text style={styles.txtTitleSty}>CITIES</Text>
               <CityComonent service={service} />
             </View>
             <View style={{ paddingBottom: 30 }}>
-              <Text   style={styles.txtTitleSty}>Near you</Text>
+              <Text style={styles.txtTitleSty}>Near you</Text>
               <Store />
             </View>
           </View>
@@ -81,6 +84,19 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     letterSpacing: 3,
     paddingBottom: 12
+  },
+  countText: {
+    textAlign: 'center',
+    justifyContent: 'center',
+    //width: 120,
+    backgroundColor: 'rgba(199, 149, 75, 1)',
+    paddingHorizontal: 10,
+    paddingVertical: 3,
+    borderRadius: 5,
+    fontWeight: '400',
+    color: palette.txtWhite,
+    fontFamily: FONT.Able.regular,
+    fontSize: 18,
   },
 
 

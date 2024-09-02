@@ -93,7 +93,7 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
                 <Text style={styles.txtaddSty}>{coupon.address}</Text>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                   <LocationIcon />
-                  <Text style={styles.kmTxt}>5 Kms away</Text>
+                  <Text style={styles.kmTxt}>{store?.distance} Km away</Text>
                 </View>
               </View>
 
@@ -101,12 +101,12 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
               <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 6, justifyContent: "space-evenly" }}>
                 <View style={styles.viewCall}>
                   <CallIcon />
-                  <Text style={styles.txtSty}>Call</Text>
+                  <Text style={styles.txtUtilSty}>Call</Text>
                 </View>
                 <TouchableOpacity onPress={() => openAddressOnMap(coupon?.latitude, coupon?.longitude, coupon?.templateName)}>
                   <View style={styles.viewCall}>
                     <MapIcon />
-                    <Text style={styles.txtSty}>Direction</Text>
+                    <Text style={styles.txtUtilSty}>Direction</Text>
                   </View>
                 </TouchableOpacity>
               </View>
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     gap: 26,
   },
   viewCall: {
-    width: WIDTH / 3.4,
+    width: WIDTH / 2.5,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
@@ -225,6 +225,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     borderColor: palette.txtGray,
+    justifyContent: 'center',
+    height: 44
   },
   viewDataCall: {
     width: WIDTH / 4,
@@ -241,6 +243,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '400',
     color: palette.txtWhite,
+  },
+  txtUtilSty: {
+    fontFamily: FONT.Able.regular,
+    fontSize: 14,
+    fontWeight: '400',
+    color: palette.txtWhite,
+    textAlign: 'center',
   },
   txtTitleSty: {
     fontWeight: '400',
