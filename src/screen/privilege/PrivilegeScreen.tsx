@@ -15,40 +15,47 @@ import { UserContext } from '../../context/user/UserContext';
 
 const screenWidth = Dimensions.get('window').width;
 
+
 const data = [
   {
     id: '1',
-    service: 'Valet Services',
+    name: 'Valet Services',
+    key: "valet_service",
     count: '100 Hrs',
     icon: <ValetIcon width={40} height={40} />,
   },
   {
     id: '2',
-    service: 'Airport Services',
+    name: 'Airport Services',
+    key: "airport_services",
     count: '12 Packages',
     icon: <AirPort width={40} height={40} />,
   },
   {
     id: '3',
-    service: 'Leisure',
+    name: 'Leisure',
+    key: "leisure",
     count: '100 Vouchers',
     icon: <LeisIcon width={40} height={40} />,
   },
   {
     id: '4',
-    service: 'F&B',
+    name: 'F&B',
+    key: "f&b",
     count: '50 Vouchers',
     icon: <EntIcon width={40} height={40} />,
   },
   {
     id: '5',
-    service: 'Entertainment',
+    name: 'Entertainment',
+    key: "entertainment",
     count: '70 Vouchers',
     icon: <Fandb width={40} height={40} />,
   },
   {
     id: '6',
-    service: 'Plan your Day',
+    name: 'Plan your Day',
+    key: "plan",
     count: '20 Packages',
     icon: <PldayIcon width={40} height={40} />,
   },
@@ -76,7 +83,7 @@ const PrivilegeScreen = () => {
       >
         <View style={styles.historyIcon}>{item.icon}</View>
         <View style={styles.textContainer}>
-          <Text style={styles.serviceText}>{item.service.toUpperCase()}</Text>
+          <Text style={styles.serviceText}>{item.name.toUpperCase()}</Text>
           <Text style={styles.countText}>{item.count}</Text>
         </View>
       </LinearGradient>
