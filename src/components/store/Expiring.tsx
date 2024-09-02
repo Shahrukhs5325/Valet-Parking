@@ -39,12 +39,12 @@ const Expiring = () => {
         style={[
           styles.gradientContainer,
           { borderWidth: 1, borderColor: palette.borderClr },
-        ]}         
+        ]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
       >
         <View style={styles.itemContainer}>
-          {data.map((item , index) => (
+          {data.map((item, index) => (
             <View key={item.id} style={styles.item}>
               <View style={styles.iconContainer}>{item.icon}</View>
               <View style={index === data.length - 1 ? styles.noBorder : styles.Details}>
@@ -70,7 +70,7 @@ export default Expiring;
 const styles = StyleSheet.create({
   gradientWrapper: {
     flex: 2,
-    marginTop: 25,
+    // marginTop: 25,
     marginBottom: 12,
     borderRadius: 17,
   },
@@ -84,14 +84,14 @@ const styles = StyleSheet.create({
     borderBottomColor: 'gray',
     overflow: 'hidden', // Prevent content from overflowing the border
   },
-    noBorder: { // No border for the last item
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      flexGrow: 1,
-      gap: 2,
-      overflow: 'hidden',
-    },
+  noBorder: { // No border for the last item
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexGrow: 1,
+    gap: 2,
+    overflow: 'hidden',
+  },
   historyService: {
     fontWeight: '400',
     marginBottom: 15,
