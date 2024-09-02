@@ -10,6 +10,7 @@ import { UserContext } from '../../context/user/UserContext';
 import { palette } from '../../theme/themes';
 import { FONT } from '../../theme/fonts';
 import TopBannerHome from '../../components/header/TopBannerHome';
+import Expiring from '../../components/store/Expiring';
 
 type Props = {};
 
@@ -93,7 +94,7 @@ const HomeScreen: React.FC<Props> = () => {
             </View>
             <View style={{ paddingBottom: 30 }}>
               <Text style={styles.txtTitleSty}>expiring soon</Text>
-              <Store location={location} />
+              <Expiring />
             </View>
           </View>
         </ScrollView>

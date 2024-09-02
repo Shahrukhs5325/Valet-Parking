@@ -161,6 +161,7 @@ const styles = StyleSheet.create({
   historyItem: {
     flexDirection: 'row',
     alignItems: 'center',
+    overflow: 'hidden',
     marginBottom: 10,
     padding: 10,
     borderRadius: 10,

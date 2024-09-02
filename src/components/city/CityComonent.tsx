@@ -10,10 +10,19 @@ import { FONT } from "../../theme/fonts";
 
 const ImageHeight = Math.round(Dimensions.get('window').width / 4);
 
+// Array of image sources
+const images = [
+    require('../../assets/cityimg/1.png'),
+    require('../../assets/cityimg/2.png'),
+    require('../../assets/cityimg/3.png'),
+    require('../../assets/cityimg/4.png'),
+    require('../../assets/cityimg/5.png'),
+    require('../../assets/cityimg/6.png'),
+];
+
 interface Props {
     service: any;
 }
-
 
 const CityComonent: React.FC<Props> = ({ service }) => {
     const navigation = useNavigation();
@@ -27,7 +36,6 @@ const CityComonent: React.FC<Props> = ({ service }) => {
         queryKey: ['City_List', userContext?.user],
         queryFn: () => getAllCity(userContext?.user),
     });
-
 
     React.useEffect(() => { }, [data]);
 
@@ -52,7 +60,6 @@ const CityComonent: React.FC<Props> = ({ service }) => {
     }
 
     return (
-
         data && data?.data && data?.data.length > 0 ?
             <View style={styles.container}>
                 <ScrollView
@@ -67,17 +74,20 @@ const CityComonent: React.FC<Props> = ({ service }) => {
                         showsHorizontalScrollIndicator={false}
                         keyExtractor={(item, index) => index.toString()}
                         data={data?.data.length > 0 ? data?.data : []}
-                        renderItem={({ item, i }) =>
-                            <TouchableOpacity onPress={() => serviceScreenHandler(item)}>
-                                <ImageBackground
-                                    source={require('../../assets/cityimg/2.png')}
-                                    style={[styles.card, { backgroundColor: userContext?.customTheme?.bgCard }]}
-                                >
-                                    <Text style={styles.txtSty}>{item.cityName}</Text>
-                                </ImageBackground>
-                            </TouchableOpacity>
-                        }
-
+                        renderItem={({ item, index }) => {
+                            // Determine the image source based on index
+                            const imageIndex = index % images.length;
+                            return (
+                                <TouchableOpacity onPress={() => serviceScreenHandler(item)}>
+                                    <ImageBackground
+                                        source={images[imageIndex]}
+                                        style={[styles.card, { backgroundColor: userContext?.customTheme?.bgCard }]}
+                                    >
+                                        <Text style={styles.txtSty}>{item.cityName}</Text>
+                                    </ImageBackground>
+                                </TouchableOpacity>
+                            );
+                        }}
                         style={styles.list}
                         contentContainerStyle={styles.listContents}
                         initialNumToRender={5}
@@ -89,8 +99,6 @@ const CityComonent: React.FC<Props> = ({ service }) => {
             </View> : null
     );
 }
-
-
 
 export default CityComonent;
 
@@ -107,13 +115,11 @@ const styles = StyleSheet.create({
     list: {
     },
     listContents: {
-        // gap: 16,
         alignSelf: 'flex-start'
     },
     card: {
         margin: 6,
         paddingVertical: 13,
-        //   backgroundColor: palette.bgCard,
         width: ImageHeight,
         height: ImageHeight,
         borderRadius: 17,
@@ -128,11 +134,7 @@ const styles = StyleSheet.create({
         width: '86%',
         paddingHorizontal: 6,
         paddingVertical: 1,
-        // borderTopLeftRadius:4,
         borderBottomRightRadius: 4,
         borderTopLeftRadius: 4
-
     }
-
-
 });
