@@ -8,7 +8,11 @@ import GolfIcon from '../../../assets/svg/history/GolfHole.svg';
 import HeaderTitle from '../../../components/header/HeaderTitle';
 import { palette } from '../../../theme/themes';
 import { FONT } from '../../../theme/fonts';
-import { useNavigation } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { useQuery } from '@tanstack/react-query';
+import { UserContext } from '../../../context/user/UserContext';
+import { getTransactionByCustomerId } from '../../../api/common/commonApi';
+import { ActivityIndicator } from 'react-native-paper';
 
 const historyData = [
   {
@@ -47,10 +51,44 @@ const historyData = [
 
 const History = () => {
   const navigation = useNavigation();
+  const focus = useIsFocused();  // useIsFocused as shown   
 
+
+  const userContext = React.useContext(UserContext);
+  const [transList, setTransList] = React.useState([]);
+
+  const {
+    isLoading,
+    data,
+    refetch,
+  } = useQuery({
+    queryKey: ['Transaction_List', userContext?.user],
+    queryFn: () => getTransactionByCustomerId(userContext?.user),
+  });
+
+
+  React.useEffect(() => {
+    focus && refetch();
+  }, [focus]);
+
+  React.useEffect(() => {
+    setTransList(data?.data?.data?.cTransaction);
+  }, [data?.data?.data])
+
+
+  if (isLoading) {
+    return (
+      <View style={[styles.containerLoader, { backgroundColor: userContext?.customTheme?.primaryDark }]}>
+        <ActivityIndicator size="small" color="#FFF" />
+      </View>
+    )
+  }
+
+
+  
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => navigation.navigate("TransactionScreen")}>
+    <TouchableOpacity onPress={() => navigation.navigate("TransactionDetailsScreen", { coupon: "" })}>
       <LinearGradient
         colors={['rgba(22, 22, 22, 1)', 'rgba(40, 40, 40, 1)']} // 'rgba(124, 124, 124, 1)'
         style={[
@@ -91,6 +129,11 @@ const History = () => {
 };
 
 const styles = StyleSheet.create({
+  containerLoader: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   container: {
     flex: 1,
     backgroundColor: '#000', // Black background

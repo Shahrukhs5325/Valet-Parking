@@ -10,7 +10,7 @@ import AccountIcon from '../../assets/svg/tab/Test Account.svg';
 import { palette } from "../../theme/themes";
 import { FONT } from "../../theme/fonts";
 import History from "../../screen/transaction/valetParking/History";
-import ProfileScreen from "../../screen/profile/PrifileScreen";
+import ProfileScreen from "../../screen/profile/ProfileScreen";
 import PrivilegeScreen from "../../screen/privilege/PrivilegeScreen";
 
 const Tab = createBottomTabNavigator();

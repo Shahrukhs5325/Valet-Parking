@@ -1,15 +1,14 @@
-import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
-import { Text } from 'react-native-paper';
-import CallIcon from '../../../assets/svg/call-white.svg';
-import Header from '../../../components/header/Header';
-import { utcDateConvoter } from '../../../constant/constFunction';
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import BarcodeImage from '../../../assets/svg/barcode.svg'; // Add your barcode image
+import ZapsIcon from '../../../assets/svg/zapsIcon.svg';
 import { UserContext } from '../../../context/user/UserContext';
-import { palette } from '../../../theme/themes';
-import moment from 'moment';
 import { FONT } from '../../../theme/fonts';
-import PrimaryButton from '../../../components/button/PrimaryButton';
+import { palette } from '../../../theme/themes';
+import HeaderTitle from '../../../components/header/HeaderTitle';
+import { useNavigation } from '@react-navigation/native';
+import moment from 'moment';
 
 type Props = {
   route?: any;
@@ -64,173 +63,155 @@ const TransactionDetailsScreen: React.FC<Props> = ({ route }) => {
   return (
     <>
       <View style={styles.container}>
-        <StatusBar
-          animated={true}
-          backgroundColor={userContext?.customTheme?.primaryDark}
-        />
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={{ flex: 1, backgroundColor: userContext?.customTheme?.primaryDark, paddingBottom: 50 }}>
-            <Header navbar={true} />
-            <View
-              style={[styles.compView, { backgroundColor: userContext?.customTheme?.primaryDark }]}
-            >
-              <Text   style={styles.txtSty}>Your booking is confirmed</Text>
-              <Text style={styles.txtStysec}>Booking booking confirmed! Your exclusive valete service is confirmed and active</Text>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 60, marginHorizontal: 40 }}>
-              <View style={{ alignItems: 'center', gap: 6 }}>
-                {isBeforeStart ? (
-                  <Text style={styles.txtTitleSty}>00:00</Text>
-                ) : timeLeft ? (
-                  <Text   style={styles.txtTitleSty}>
-                    {`${timeLeft.hours}:${timeLeft.minutes}`}
-                  </Text>
-                ) : (
-                  <Text style={styles.txtTitleSty}>00:00</Text>
-                )}
-
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  {isBeforeStart ? (
-                    <Text style={styles.txtStatusSty}>Not Started</Text>
-                  ) : timeLeft ? (
-                    <Text style={styles.txtStatusSty}>In Progress</Text>
-                  ) : (
-                    <Text style={styles.txtStatusSty}>Complete</Text>
-                  )}
-                </View>
+        <HeaderTitle title={'Profile'} />
+        <ImageBackground
+          source={require('../../../assets/profileBack.png')}
+          style={styles.background}
+        >
+          <View style={styles.overlay}>
+            <ZapsIcon style={styles.icon} />
+            <View style={styles.profileInfo}>
+              <View style={styles.nameIdContainer}>
+                <Text style={styles.itemText}>jb</Text>
+                <Text style={styles.itemText}>ID: 0123456</Text>
               </View>
-              <View style={{ alignItems: 'center', gap: 10 }}>
-                <CallIcon />
-                <Text style={styles.txtStysec}>Call support</Text>
-              </View>
-
+              <BarcodeImage height={87} width={87} />
             </View>
+            <Text style={styles.membershipText}>Membership valid upto:</Text>
+            <Text style={styles.membershipText}>05/24</Text>
           </View>
-
-          <View style={{ flex: 1, borderTopLeftRadius: 20, borderTopRightRadius: 20, marginTop: -28, backgroundColor: palette.txtWhite, paddingBottom: 30 }}>
-            <View style={{ padding: 15, gap: 8 }}>
-              <Text style={styles.txtBlackHeading}>Booking Summary</Text>
-              <View style={{}}>
-                <Text style={styles.txtSummHeading}>Booking ID</Text>
-                <Text style={styles.txtBodyHeading}>987654321</Text>
+        </ImageBackground>
+        <View style={[styles.gradientWrapper]}>
+          <LinearGradient
+            colors={['rgba(22, 22, 22, 1)', 'rgba(40, 40, 40, 1)']} // Gradient color
+            style={styles.gradientContainer}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+          >
+            <View>
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>Service</Text>
+                <Text style={styles.itemValueText}>Valet Parking</Text>
               </View>
-              <View style={{}}>
-                <Text style={styles.txtSummHeading}>Booked for</Text>
-                <Text style={styles.txtBodyHeading}>{userContext.user?.customerName}</Text>
+              <View style={styles.viewBorder} />
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>Booking id</Text>
+                <Text style={styles.itemValueText}>1234567890</Text>
               </View>
-              <View style={{}}>
-                <Text style={styles.txtSummHeading}>Booked Date</Text>
-                <Text style={styles.txtBodyHeading}>{utcDateConvoter(coupon?.createdDateTime)}</Text>
+              <View style={styles.viewBorder} />
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>Location</Text>
+                <Text style={styles.itemValueText}>Billionaire, riyadh</Text>
               </View>
-            </View>
-            <View style={{ borderBottomWidth: 1, borderColor: palette.txtGray, marginHorizontal: 30 }}></View>
-            <View style={{ padding: 15, gap: 8 }}>
-              <Text style={styles.txtBlackHeading}>Service Details</Text>
-              <View style={{}}>
-                <Text style={styles.txtSummHeading}>Service Type</Text>
-                <Text style={styles.txtBodyHeading}>Valet Parking Service</Text>
+              <View style={styles.viewBorder} />
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>Duration</Text>
+                <Text style={styles.itemValueText}>2 Hrs</Text>
               </View>
-              <View style={{}}>
-                <Text style={styles.txtSummHeading}>Service Name</Text>
-                <Text style={styles.txtBodyHeading}>{coupon?.templateName}</Text>
+              <View style={styles.viewBorder} />
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>date</Text>
+                <Text style={styles.itemValueText}>9/1/2024</Text>
               </View>
-
-            </View>
-            <View style={{ borderBottomWidth: 1, borderColor: palette.txtGray, marginHorizontal: 30 }}></View>
-            <View style={{ padding: 15, gap: 8 }}>
-              <Text style={styles.txtBlackHeading}>Service Time</Text>
-              <View style={{}}>
-                <Text style={styles.txtSummHeading}>Duration</Text>
-                <Text style={styles.txtBodyHeading}>{coupon?.validityDuration} Hour</Text>
+              <View style={styles.viewBorder} />
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>Start</Text>
+                <Text style={styles.itemValueText}>12:00 Am</Text>
               </View>
-              <View style={{}}>
-                <Text style={styles.txtSummHeading}>Start Date & Time</Text>
-                <Text style={styles.txtBodyHeading}>{coupon?.redeemStartDate}</Text>
-              </View>
-              <View style={{}}>
-                <Text style={styles.txtSummHeading}>End Date & Time</Text>
-                <Text style={styles.txtBodyHeading}>{coupon?.redeemEndDate}</Text>
+              <View style={styles.viewBorder} />
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>End</Text>
+                <Text style={styles.itemValueText}>12:00 Am</Text>
               </View>
             </View>
-            <View style={{ width: '46%', justifyContent: 'center', alignSelf: 'center', marginTop: 20 }}>
-              <PrimaryButton onPress={() => navigation.replace("HomeScreen")} buttonColor={"light"} >Home</PrimaryButton>
-            </View>
-          </View>
-        </ScrollView>
+          </LinearGradient>
+        </View>
       </View>
     </>
   );
 };
 
 export default TransactionDetailsScreen;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginHorizontal: 16,
+    gap: 16,
+  },
+  gradientWrapper: {
+    flex: 2,
+    marginTop: 25,
+    marginBottom: 12,
+    borderRadius: 17,
+    borderWidth: 1,
+    borderColor: palette.borderClr,
+    overflow: 'hidden'
+  },
+  gradientContainer: {
+    paddingHorizontal: 20,
+  },
 
-  },
-  compView: {
-    marginTop: 50,
-    paddingHorizontal: 15,
-    gap: 10,
-    //  backgroundColor: palette.primaryDark
-  },
-  txtSty: {
-    fontWeight: '400',
-    color: palette.txtWhite,
-    fontFamily: FONT.JuliusSansOne.regular,
-    fontSize: 22,
-  },
-  txtStysec: {
-    fontWeight: '400',
-    color: palette.txtWhite,
-    fontFamily: FONT.Able.regular,
-    fontSize: 14,
-  },
-  txtTitleSty: {
-    fontWeight: '400',
-    color: palette.txtWhite,
-    fontFamily: FONT.Able.regular,
-    fontSize: 38,
-    textTransform: 'uppercase',
-    letterSpacing: 3,
-  },
-  img: {
-    width: 100,
-    height: 100
-  },
-  txtStatusSty: {
-    backgroundColor: palette.txtGold,
-    fontWeight: '400',
-    color: palette.txtWhite,
-    fontFamily: FONT.Able.regular,
-    fontSize: 14,
+  listItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: 14,
-    paddingVertical: 4,
-    borderRadius: 15
+    height: 50,
   },
-  txtBlackHeading: {
-    color: palette.txtBlack,
-    fontWeight: '400',
-    fontFamily: FONT.Able.regular,
-    fontSize: 16,
+  viewBorder: {
+    borderBottomWidth: 1,
+    borderBottomColor: palette.borderClr,
   },
-  txtSummHeading: {
-    color: palette.txtGray,
-    fontWeight: '400',
-    fontFamily: FONT.Able.regular,
-    fontSize: 12,
-  },
-  txtBodyHeading: {
-    color: palette.txtBlack,
-    fontWeight: '400',
-    fontFamily: FONT.Able.regular,
+  itemText: {
+    fontFamily: FONT.JuliusSansOne.regular,
     fontSize: 14,
-  }
-
-
-
+    fontWeight: '400',
+    color: palette.txtWhite,
+    width: '30%',
+  },
+  itemValueText: {
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 14,
+    fontWeight: '400',
+    color: palette.txtWhite,
+    width: '100%',
+  },
+  background: {
+    flex: 1,
+    resizeMode: 'cover',
+    borderRadius: 17,
+  },
+  overlay: {
+    flex: 1,
+    padding: 20,
+    justifyContent: 'space-between',
+    borderRadius: 17,
+  },
+  icon: {
+    alignSelf: 'auto',
+  },
+  profileInfo: {
+    marginTop: 15,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  nameIdContainer: {
+    gap: 6,
+  },
+  heading: {
+    color: 'white',
+    fontSize: 14,
+    textAlign: 'auto',
+  },
+  barcodeImage: {
+    width: 100,
+    height: 50,
+    resizeMode: 'contain',
+  },
+  membershipText: {
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 12,
+    fontWeight: '400',
+    color: palette.txtWhite,
+  },
 });
-
-

@@ -7,12 +7,32 @@ import HeaderTitle from '../../components/header/HeaderTitle';
 import { UserContext } from '../../context/user/UserContext';
 import { FONT } from '../../theme/fonts';
 import { palette } from '../../theme/themes';
+import { useNavigation } from '@react-navigation/native';
+import { Auth } from 'aws-amplify';
 
 const ProfileScreen = () => {
+  const navigation = useNavigation();
+
   const userContext = React.useContext(UserContext);
   const user = userContext.user;
 
+  const [isLoading, setIsLoading] = React.useState(false);
 
+  const signOut = async () => {
+    try {
+      setIsLoading(true);
+      await Auth.signOut();
+      await userContext.setUser(null);
+      await userContext.secCustomTheme(palette);
+
+      navigation.replace('LoginScreen');
+
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      console.log('error signing out: ', error);
+    }
+  };
 
 
   return (
@@ -73,7 +93,7 @@ const ProfileScreen = () => {
               </View>
             </TouchableOpacity>
             <View style={styles.viewBorder} />
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => signOut()}>
               <View style={[styles.listItem]}>
                 <Text style={styles.itemText}>Log Out</Text>
               </View>
@@ -136,16 +156,14 @@ const styles = StyleSheet.create({
   },
   background: {
     flex: 1,
-    // marginHorizontal: 12,
-    // marginBottom: 6, // Decrease margin to reduce space between image and gradient
-    //height: 203,
-    resizeMode: 'cover', // Or 'contain' depending on your need
-    borderRadius: 17, // Added borderRadius
+    resizeMode: 'cover',
+    borderRadius: 17,
   },
   overlay: {
     flex: 1,
     padding: 20,
     justifyContent: 'space-between',
+    borderRadius: 17,
   },
   icon: {
     alignSelf: 'auto',
