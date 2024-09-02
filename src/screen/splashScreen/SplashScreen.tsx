@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { StatusBar, StyleSheet, View } from 'react-native';
+import { Animated, StatusBar, StyleSheet, View } from 'react-native';
 import ZapsIcon from '../../assets/svg/logo.svg';
 import SABIcon from '../../assets/svg/splash-logo.svg';
 import { palette } from '../../theme/themes';
@@ -24,7 +24,13 @@ const SplashScreen: React.FC<Props> = () => {
 
   const [isLoginIn, setIsLoginIn] = React.useState(false);
   const [isLogoSpalsh, setIsLogoSpalsh] = React.useState(false);
+  const imageScale = new Animated.Value(0.20);
 
+  Animated.timing(imageScale, {
+    toValue: 0.7,
+    duration: 2000,
+    useNativeDriver: false,
+  }).start();
 
   React.useEffect(() => {
     timerFunction();
@@ -74,7 +80,7 @@ const SplashScreen: React.FC<Props> = () => {
         await getClientThemeApi(user?.data?.data?.correlationId);
 
         setIsLoginIn(true);
-        await navigation.replace("HomeScreen");
+         await navigation.replace("HomeScreen");
         console.log("***** Zaps user *****", user?.data?.data)
       } else {
         await navigation.replace("LoginScreen");
@@ -123,7 +129,10 @@ const SplashScreen: React.FC<Props> = () => {
         {!isLogoSpalsh ?
           <ZapsIcon width={100} /> :
           <View style={styles.container}>
-
+            {/* <Animated.Image
+              source={require('../../assets/Sab-spalsh-logo.png')}
+              style={[styles.image, { transform: [{ scale: imageScale }] }]}
+            /> */}
             <SABIcon width={100} />
             <View style={styles.containerLogo}>
               <Text style={styles.txtBrand}>Powered by</Text>
@@ -158,7 +167,11 @@ const styles = StyleSheet.create({
     fontFamily: FONT.Able.regular,
     fontSize: 14,
     fontWeight: '400'
-  }
+  },
+  image: {
+    // width: 240,
+    // height: "auto",
+  },
 
 });
 
