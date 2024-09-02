@@ -3,13 +3,12 @@ import React from 'react';
 import { Dimensions, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import { palette } from '../../theme/themes';
 import { Text } from 'react-native-paper';
-import Store from '../../components/store/Store';
-import CityComonent from '../../components/city/CityComonent';
 import { UserContext } from '../../context/user/UserContext';
 import { FONT } from '../../theme/fonts';
-import TopBannerValet from '../../components/header/TopBannerValet';
-import TopBannerAirport from '../../components/header/TopBannerAirport';
 import HeaderTitle from '../../components/header/HeaderTitle';
+import SelectDropdown from 'react-native-select-dropdown';
+import DownIcon from '../../assets/svg/Sort Down.svg';
+import PrimaryButton from '../../components/button/PrimaryButton';
 
 type Props = {
   route?: any;
@@ -18,6 +17,22 @@ type Props = {
 const ImageHeight = Math.round(Dimensions.get('window').width * 9 / 9);
 const WIDTH = Dimensions.get('window').width;
 
+const ArrQty = [{ title: "Meet & Greet" }, { title: "Airport Transfer" }, { title: "Both" }];
+
+const MeetAssist = [
+  "Fast track through security, check-in & immigration.",
+  "Porter assistance with checked luggage.",
+  "Priority boarding."
+];
+
+const AIRPORTTRANSFER = [
+  "Area coverage: from / to Dubai International Airport Terminals- 1, 2, 3 (only).",
+  "Distance coverage: Maximum 45 kms from/to Dubai International Airport Terminals- 1, 2, 3 (only).",
+  "Car type: Lexus ES350 or similar.",
+  " No. of passengers: maximum 2 persons/vehicle.",
+  "No. of luggage: 2 pieces/vehicle.",
+  "Waiting period: At arrival: 1 hour | At departure: 15 mins."
+];
 
 const AirportServiceScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
@@ -25,6 +40,7 @@ const AirportServiceScreen: React.FC<Props> = ({ route }) => {
   const { city } = route.params;
 
   const [isEnable, setIsEnable] = React.useState(false);
+  const [selectQty, setSelectQty] = React.useState(null);
 
 
 
@@ -48,24 +64,86 @@ const AirportServiceScreen: React.FC<Props> = ({ route }) => {
 
           <HeaderTitle title={'aIRPORT services'} />
 
-          <View>
-            <Text style={styles.txtHeadingSty}>City: {city?.name}</Text>
-          
-        </View>
-          <View style={styles.compView}>
-            <View>
-              <Text style={styles.countText}>NUMBER OF HOURS: 100</Text>
+
+          <View style={{ margin: 16, gap: 16 }}>
+            <Text style={styles.txtHeadingSty}>City: {city?.cityName}</Text>
+
+
+            <View style={{ marginVertical: 16 }}>
+              <Text style={styles.txtSty}>Dubai international airport - Termiinals 1, 2 & 3</Text>
             </View>
-            <View>
-              <Text style={styles.txtTitleSty}>CITIES</Text>
-              {/* <CityComonent service={service} /> */}
+
+            <View style={styles.compView}>
+
+              <View style={{ gap: 14 }}>
+                <Text style={styles.txtTitleSty}>Select service</Text>
+                <SelectDropdown
+                  data={ArrQty}
+                  onSelect={(selectedItem, index) => {
+                    setSelectQty(selectedItem);
+                  }}
+                  renderButton={(selectedItem, isOpened) => {
+                    return (
+                      <View style={styles.dropdownButtonStyle}>
+                        <Text style={styles.txtSty}>
+                          {(selectQty && selectQty?.title) ||
+                            'Select service'}
+                        </Text>
+                        <DownIcon />
+                      </View>
+                    );
+                  }}
+                  renderItem={(item, index, isSelected) => {
+                    return (
+                      <View
+                        style={{
+                          ...styles.dropdownItemStyle,
+                          ...(isSelected && {
+                            backgroundColor: palette.txtBlack,
+                          }),
+                        }}>
+                        <Text style={styles.txtSty}>{item.title}</Text>
+                      </View>
+                    );
+                  }}
+                  showsVerticalScrollIndicator={false}
+                  dropdownStyle={styles.dropdownMenuStyle}
+                />
+              </View>
+              <View style={{ gap: 12 }}>
+                <Text style={styles.txtTitleSty}>Service description</Text>
+
+                <View>
+                  <Text style={styles.txtSubTitleSty}>Meet & Assist:</Text>
+                  {MeetAssist.map((item, index) => (
+                    <View key={index} style={styles.termContainer}>
+                      <Text style={styles.dot}>•</Text>
+                      <Text style={styles.termText}>{item}</Text>
+                    </View>
+                  ))}
+                </View>
+                <View>
+                  <Text style={styles.txtSubTitleSty}>Airport Transfer:</Text>
+                  {AIRPORTTRANSFER.map((item, index) => (
+                    <View key={index} style={styles.termContainer}>
+                      <Text style={styles.dot}>•</Text>
+                      <Text style={styles.termText}>{item}</Text>
+                    </View>
+                  ))}
+                </View>
+              </View>
             </View>
-            <View style={{ paddingBottom: 30 }}>
-              <Text style={styles.txtTitleSty}>Near you</Text>
-              <Store />
-            </View>
+
           </View>
         </ScrollView>
+        <View style={{ padding: 16 }}>
+          <PrimaryButton
+            onPress={() =>
+              navigation.navigate('AirportTransferScreen', { city: city, })}
+            buttonColor={'light'}>
+            Select
+          </PrimaryButton>
+        </View>
       </View>
     </>
   );
@@ -76,8 +154,7 @@ export default AirportServiceScreen;
 const styles = StyleSheet.create({
   compView: {
     padding: 10,
-    gap: 26,
-    // marginTop: ImageHeight + 10
+    gap: 30,
   },
   txtHeadingSty: {
     fontFamily: FONT.JuliusSansOne.regular,
@@ -93,6 +170,13 @@ const styles = StyleSheet.create({
     width: WIDTH - 120,
     alignSelf: 'center',
   },
+  txtSty: {
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 12,
+    fontWeight: '400',
+    color: palette.txtWhite,
+    alignSelf: 'center',
+  },
   txtTitleSty: {
     fontFamily: FONT.JuliusSansOne.regular,
     fontSize: 16,
@@ -100,7 +184,14 @@ const styles = StyleSheet.create({
     color: palette.txtWhite,
     textTransform: 'uppercase',
     letterSpacing: 3,
-    paddingBottom: 12
+    paddingBottom: 2
+  },
+  txtSubTitleSty: {
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 13,
+    fontWeight: '400',
+    color: palette.txtWhite,
+    marginLeft: 20
   },
   countText: {
     textAlign: 'center',
@@ -114,6 +205,53 @@ const styles = StyleSheet.create({
     color: palette.txtWhite,
     fontFamily: FONT.Able.regular,
     fontSize: 18,
+  },
+  termContainer: {
+    paddingHorizontal: 15,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+  },
+  dot: {
+    fontSize: 16,
+    lineHeight: 20,
+    marginHorizontal: 10,
+    color: palette.txtWhite,
+  },
+  termText: {
+    fontFamily: FONT.Able.regular,
+    fontSize: 12,
+    lineHeight: 20,
+    color: palette.txtWhite,
+  },
+  dropdownButtonTxtStyle: {
+    flex: 1,
+    fontWeight: '400',
+    fontSize: 12,
+    color: palette.txtWhite,
+    fontFamily: FONT.Able.regular,
+  },
+  dropdownButtonStyle: {
+    width: "100%",
+    height: 40,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+    backgroundColor: '#6A6868',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: palette.txtGray,
+  },
+  dropdownItemStyle: {
+    width: '100%',
+    flexDirection: 'row',
+    paddingHorizontal: 16,
+    alignItems: 'center',
+    paddingVertical: 14,
+  },
+  dropdownMenuStyle: {
+    backgroundColor: palette.bgCard,
+    borderRadius: 8,
   },
 
 

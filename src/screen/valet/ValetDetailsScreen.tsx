@@ -275,7 +275,7 @@ const ValetDetailsScreen: React.FC<Props> = ({route}) => {
                     })
                   }
                   buttonColor={'light'}>
-                  Redeem
+                  Submit
                 </PrimaryButton>
               </View>
             </View>

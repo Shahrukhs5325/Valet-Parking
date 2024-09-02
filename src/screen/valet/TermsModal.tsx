@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Dimensions,
   ImageBackground,
   Modal,
   StyleSheet,
@@ -8,7 +9,8 @@ import {
   View,
 } from 'react-native';
 import CrossIcon from '../../assets/svg/cross-icon.svg';
-import {palette} from '../../theme/themes';
+import { palette } from '../../theme/themes';
+import { FONT } from '../../theme/fonts';
 
 interface Terms {
   modalVisible: boolean;
@@ -16,6 +18,9 @@ interface Terms {
   terms: string[];
   onPress: any;
 }
+
+const HEIGHT = Dimensions.get('window').height;
+
 
 const TermsModal: React.FC<Terms> = ({ modalVisible, setModalVisible, terms, onPress }) => {
   return (
@@ -77,10 +82,10 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: 'center',
-    fontWeight: 'bold',
-    marginBottom: 5,
+    fontWeight: '400',
     color: palette.txtWhite,
-    fontSize: 16,
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 14,
   },
   simpleBack: {
     marginTop: 35,
@@ -88,23 +93,22 @@ const styles = StyleSheet.create({
     marginVertical: 25,
     borderRadius: 17,
     padding: 16,
+    gap: 18
   },
   termContainer: {
     paddingHorizontal: 15,
     flexDirection: 'row',
     alignItems: 'flex-start',
-    marginBottom: 8,
   },
   dot: {
     fontSize: 16,
-    lineHeight: 20,
     marginRight: 8,
     color: palette.txtWhite,
   },
   termText: {
-    fontSize: 14,
-    lineHeight: 20,
+    fontWeight: '400',
     color: palette.txtWhite,
-    flex: 1,
+    fontFamily: FONT.Able.regular,
+    fontSize: 14,
   },
 });

@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Dimensions,
   ImageBackground,
   Modal,
   StyleSheet,
@@ -8,7 +9,8 @@ import {
   View,
 } from 'react-native';
 import CrossIcon from '../../assets/svg/cross-icon.svg';
-import {palette} from '../../theme/themes';
+import { palette } from '../../theme/themes';
+import { FONT } from '../../theme/fonts';
 
 interface RedeemModal {
   modalVisible: boolean;
@@ -16,6 +18,9 @@ interface RedeemModal {
   steps: string[];
   onPress: any;
 }
+
+const HEIGHT = Dimensions.get('window').height;
+
 
 const RedeemModal: React.FC<RedeemModal> = ({ modalVisible, setModalVisible, steps, onPress }) => {
   return (
@@ -50,60 +55,62 @@ const RedeemModal: React.FC<RedeemModal> = ({ modalVisible, setModalVisible, ste
 
 export default RedeemModal;
 
+
 const styles = StyleSheet.create({
-    centeredView: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      paddingHorizontal: 12,
-    },
-    background: {
-      flex: 1,
-      resizeMode: 'cover',
-      borderRadius: 17,
-      elevation: 5,
-      marginTop:200,
-      marginBottom:100,
-      width: '100%',
-      overflow: 'hidden',
-      justifyContent: 'center', // Center children vertically
-    },
-    closeButton: {
-      position: 'absolute',
-      top: 0,
-      right: 0,
-      padding: 8,
-      marginBottom: 25,
-      zIndex: 10,
-    },
-    title: {
-      textAlign: 'center',
-      fontWeight: 'bold',
-      marginBottom: 5,
-      color: palette.txtWhite,
-      fontSize: 16,
-    },
-    simpleBack: {
-      backgroundColor: 'rgba(31, 31, 31, 1)',
-      borderRadius: 17,
-      padding: 12,
-    },
-    termContainer: {
-      paddingHorizontal: 15,
-      flexDirection: 'row',
-      alignItems: 'flex-start',
-      marginBottom: 8,
-    },
-    dot: {
-      fontSize: 16,
-      lineHeight: 20,
-      marginRight: 8,
-      color: palette.txtWhite,
-    },
-    termText: {
-      fontSize: 14,
-      lineHeight: 20,
-      color: palette.txtWhite,
-      flex: 1,
-    },
-  });
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+  },
+  background: {
+    flex: 1,
+    resizeMode: 'cover',
+    borderRadius: 17,
+    elevation: 5,
+    width: '100%',
+    overflow: 'hidden',
+    marginTop: 200,
+    marginBottom: 100,
+    // height:HEIGHT/2,
+  },
+  closeButton: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    padding: 8,
+    marginBottom: 25,
+    zIndex: 10,
+  },
+  title: {
+    textAlign: 'center',
+    fontWeight: '400',
+    color: palette.txtWhite,
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 14,
+  },
+  simpleBack: {
+    marginTop: 35,
+    backgroundColor: 'rgba(31, 31, 31, 1)',
+    marginVertical: 25,
+    borderRadius: 17,
+    padding: 16,
+    gap: 18
+  },
+  termContainer: {
+    paddingHorizontal: 15,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+  },
+  dot: {
+    fontSize: 16,
+    marginRight: 8,
+    color: palette.txtWhite,
+  },
+  termText: {
+    fontWeight: '400',
+    color: palette.txtWhite,
+    fontFamily: FONT.Able.regular,
+    fontSize: 14,
+  },
+});

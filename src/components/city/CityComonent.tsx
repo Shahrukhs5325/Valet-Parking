@@ -77,6 +77,8 @@ const CityComonent: React.FC<Props> = ({ service }) => {
                         renderItem={({ item, index }) => {
                             // Determine the image source based on index
                             const imageIndex = index % images.length;
+                            console.log(imageIndex);
+                            
                             return (
                                 <TouchableOpacity onPress={() => serviceScreenHandler(item)}>
                                     <ImageBackground

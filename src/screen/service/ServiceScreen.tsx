@@ -51,7 +51,11 @@ const ServiceScreen: React.FC<Props> = ({ route }) => {
           }
           <View style={styles.compView}>
             <View>
-              <Text style={styles.countText}>NUMBER OF HOURS: 100</Text>
+              {service?.key === "valet_service" ?
+                <Text style={styles.countText}>NUMBER OF HOURS: 100</Text>
+                :
+                <Text style={styles.countText}>NUMBER OF PACKAGES: 12</Text>
+              }
             </View>
             <View>
               <Text style={styles.txtTitleSty}>CITIES</Text>
