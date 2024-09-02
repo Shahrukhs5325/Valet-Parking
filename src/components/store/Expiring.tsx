@@ -14,21 +14,21 @@ const Expiring = () => {
       name: 'gym Membership',
       key: 'Valid until : July 15th',
       dayLeft: '06',
-      icon: <Dumbbell width={40} height={40} />,
+      icon: <Dumbbell width={30} height={30} />,
     },
     {
       id: '2',
       name: 'Golf Club Membership',
       key: 'Valid until : July 13th',
       dayLeft: '02',
-      icon: <FlagIcon width={40} height={40} />,
+      icon: <FlagIcon width={30} height={30} />,
     },
     {
       id: '3',
       name: 'Cafe voucher',
       key: 'Valid until : July 11th',
       dayLeft: '12',
-      icon: <CupIcon width={40} height={40} />,
+      icon: <CupIcon width={30} height={30} />,
     },
   ];
 
@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
   id: {
     color: 'rgba(255, 255, 255, 0.6)',
     textAlign: 'center',
+    fontSize: 10,
   },
   dayLeft: {
     color: palette.txtWhite,
