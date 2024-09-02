@@ -9,6 +9,7 @@ import { UserContext } from '../../context/user/UserContext';
 import { FONT } from '../../theme/fonts';
 import TopBannerValet from '../../components/header/TopBannerValet';
 import TopBannerAirport from '../../components/header/TopBannerAirport';
+import Airport from '../../components/store/Airport';
 
 type Props = {
   route?: any;
@@ -61,9 +62,12 @@ const ServiceScreen: React.FC<Props> = ({ route }) => {
               <Text style={styles.txtTitleSty}>CITIES</Text>
               <CityComonent service={service} />
             </View>
+
             <View style={{ paddingBottom: 30 }}>
               <Text style={styles.txtTitleSty}>Near you</Text>
-              <Store />
+              {service?.key === "valet_service" ?
+                <Store /> :
+                <Airport />}
             </View>
           </View>
         </ScrollView>
