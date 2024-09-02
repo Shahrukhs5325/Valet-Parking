@@ -2,11 +2,15 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StatusBar, StyleSheet, View } from 'react-native';
 import ZapsIcon from '../../assets/svg/logo.svg';
+import SABIcon from '../../assets/svg/splash-logo.svg';
 import { palette } from '../../theme/themes';
 import { Auth } from 'aws-amplify';
 import { getCustomerByIdApi } from '../../api/user/userApi';
 import { UserContext } from '../../context/user/UserContext';
 import { getClientTheme } from '../../api/common/commonApi';
+import { Text } from 'react-native-paper';
+import ZapsPLogo from '../../assets/svg/Zaps-logo.svg';
+import { FONT } from '../../theme/fonts';
 
 type Props = {};
 
@@ -19,18 +23,27 @@ const SplashScreen: React.FC<Props> = () => {
 
 
   const [isLoginIn, setIsLoginIn] = React.useState(false);
-  const [isNewVersion, setIsNewVersion] = React.useState(false);
+  const [isLogoSpalsh, setIsLogoSpalsh] = React.useState(false);
 
 
   React.useEffect(() => {
     timerFunction();
+    timerSpalshFunction()
   }, []);
 
 
   const timerFunction = () => {
     const timerId = setTimeout(() => {
       checkCustomerLogin();
-    }, 2000);
+    }, 6000);
+
+    return () => clearTimeout(timerId);
+  }
+
+  const timerSpalshFunction = () => {
+    const timerId = setTimeout(() => {
+      setIsLogoSpalsh(true);
+    }, 3000);
 
     return () => clearTimeout(timerId);
   }
@@ -107,7 +120,17 @@ const SplashScreen: React.FC<Props> = () => {
           animated={true}
           backgroundColor={palette.primaryDark}
         />
-        <ZapsIcon width={100} />
+        {!isLogoSpalsh ?
+          <ZapsIcon width={100} /> :
+          <View style={styles.container}>
+
+            <SABIcon width={100} />
+            <View style={styles.containerLogo}>
+              <Text style={styles.txtBrand}>Powered by</Text>
+              <ZapsPLogo />
+            </View>
+          </View>
+        }
       </View>
     </>
   );
@@ -122,6 +145,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: palette.primaryDark
   },
+  containerLogo: {
+    position: 'absolute',
+    bottom: 50,
+    width: '100%',
+    alignItems: "center",
+    gap: 6
+  },
+  txtBrand: {
+    textAlign: 'center',
+    color: palette.txtWhite,
+    fontFamily: FONT.Able.regular,
+    fontSize: 14,
+    fontWeight: '400'
+  }
 
 });
 
