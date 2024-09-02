@@ -35,8 +35,8 @@ const SucessAirportScreen: React.FC<Props> = ({ }) => {
         <View style={styles.compView}>
           <CircleIcon />
           <View style={{ gap: 14, marginVertical: 6, alignItems: 'center' }}>
-            <Text style={styles.txtTitleSty}>Booking Confirmed!</Text>
-            <Text style={styles.txtSty}>Thank you for booking your exclusive airport service with us!</Text>
+            <Text style={styles.txtTitleSty}>Thank you</Text>
+            <Text style={styles.txtSty}>Booking confirmed! Your voucher will be emailed to you or can be downloaded from the history tab</Text>
           </View>
         </View>
 
@@ -45,7 +45,7 @@ const SucessAirportScreen: React.FC<Props> = ({ }) => {
             <SecondaryButton onPress={() => navigation.navigate("HomeScreen")} >Home</SecondaryButton>
           </View>
           <View style={{ width: '46%' }}>
-            <PrimaryButton onPress={() => navigation.replace("AirportTransTransactionDetailsScreen")} buttonColor={"light"} >View Status</PrimaryButton>
+            <PrimaryButton onPress={() => navigation.navigate("History")} buttonColor={"light"} >View Status</PrimaryButton>
           </View>
         </View>
       </View>

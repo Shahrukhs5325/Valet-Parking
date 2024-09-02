@@ -87,9 +87,9 @@ const AirportTransferScreen: React.FC<Props> = ({ route }) => {
               {currentPosition === 0 ?
                 (<Text style={styles.txtSty}>Enter Your TRAVEL Details</Text>)
                 : currentPosition === 1 ?
-                  (<Text style={styles.txtSty}>Almost there! Just a few more details.</Text>)
+                  (<Text style={styles.txtSty}>Enter Your TRAVEL Details</Text>)
                   :
-                  (<Text style={styles.txtSty}>You've done it! Just confirm your flight details</Text>)
+                  (<Text style={styles.txtSty}>Enter Your TRAVEL Details</Text>)
               }
             </View>
           </View>
