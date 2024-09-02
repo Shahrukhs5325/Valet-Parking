@@ -65,8 +65,8 @@ const TransactionDetailsScreen: React.FC<Props> = ({ route }) => {
   const isBeforeStart = moment().isBefore(startDate);
 
   console.log(isBeforeStart);
-  console.log(timeLeft);
-  console.log(coupon?.service);
+  console.log(coupon.redeemStartDate);
+  console.log(coupon.redeemEndDate);
 
 
 
@@ -155,12 +155,12 @@ const TransactionDetailsScreen: React.FC<Props> = ({ route }) => {
               <View style={styles.viewBorder} />
               <View style={[styles.listItem]}>
                 <Text style={styles.itemText}>date</Text>
-                <Text style={styles.itemValueText}>{coupon.redeemStartDate ? moment(coupon.redeemEndDate, "DD-MM-YYYY HH:mm").format("DD-MM-YYYY") : "02-09-2024"}</Text>
+                <Text style={styles.itemValueText}>{coupon.redeemStartDate ? moment(coupon.redeemStartDate, "DD-MM-YYYY HH:mm").format("DD-MM-YYYY") : "02-09-2024"}</Text>
               </View>
               <View style={styles.viewBorder} />
               <View style={[styles.listItem]}>
                 <Text style={styles.itemText}>Start</Text>
-                <Text style={styles.itemValueText}>{coupon.redeemStartDate ? moment(coupon.redeemEndDate, "DD-MM-YYYY HH:mm").format("HH:mm a") : "11:00 AM"}</Text>
+                <Text style={styles.itemValueText}>{coupon.redeemStartDate ? moment(coupon.redeemStartDate, "DD-MM-YYYY HH:mm").format("HH:mm a") : "11:00 AM"}</Text>
               </View>
               <View style={styles.viewBorder} />
               <View style={[styles.listItem]}>

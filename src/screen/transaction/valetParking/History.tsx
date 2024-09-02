@@ -19,7 +19,7 @@ const historyData = [
     id: '1',
     service: 'Valet Services',
     location: 'Location: Billionaire',
-    status: '01:59',
+    status: 'USED',
     type: 'timer',
     icon: <ValetIcon width={30} height={30} />,
   },
@@ -78,6 +78,7 @@ const History = () => {
       data?.data?.data?.cTransaction?.map((item) => {
         item["service"] = 'Valet Services',
           item["location"] = 'Billionaire',
+          item["status"] = '01:59',
           arr.push(item)
       })
       setTransList(arr);
