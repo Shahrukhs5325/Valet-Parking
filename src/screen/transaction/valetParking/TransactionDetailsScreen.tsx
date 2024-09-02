@@ -263,6 +263,7 @@ const styles = StyleSheet.create({
     borderRadius: 17,
     height: 124,
     marginTop: 25,
+    overflow: 'hidden',
   },
   overlay: {
     flexDirection: 'row',

@@ -158,6 +158,7 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
     borderRadius: 17,
+    overflow: 'hidden',
   },
   overlay: {
     flex: 1,
