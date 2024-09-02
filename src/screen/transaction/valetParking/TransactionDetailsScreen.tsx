@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import BarcodeImage from '../../../assets/svg/barcode.svg'; // Add your barcode image
 import ZapsIcon from '../../../assets/svg/zapsIcon.svg';
@@ -9,23 +9,28 @@ import { palette } from '../../../theme/themes';
 import HeaderTitle from '../../../components/header/HeaderTitle';
 import { useNavigation } from '@react-navigation/native';
 import moment from 'moment';
+import { openAddressOnMap } from '../../../constant/constFunction';
+import CallIcon from '../../../assets/svg/call.svg';
+import MapIcon from '../../../assets/svg/Waypoint Map.svg';
 
 type Props = {
   route?: any;
 };
 
+const WIDTH = Dimensions.get('window').width;
 
 
 const TransactionDetailsScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
   const { coupon } = route.params;
 
+
   const userContext = React.useContext(UserContext);
 
   const [timeLeft, setTimeLeft] = React.useState(null);
 
-  const startDate = moment(coupon?.redeemStartDate, "DD-MM-YYYY HH:mm");
-  const endDate = moment(coupon?.redeemEndDate, "DD-MM-YYYY HH:mm");
+  const startDate = moment(coupon.redeemStartDate, "DD-MM-YYYY HH:mm");
+  const endDate = moment(coupon.redeemEndDate, "DD-MM-YYYY HH:mm");
 
 
   useEffect(() => {
@@ -59,28 +64,57 @@ const TransactionDetailsScreen: React.FC<Props> = ({ route }) => {
   // Check if the current time is before the redeemStartDate
   const isBeforeStart = moment().isBefore(startDate);
 
+  console.log(isBeforeStart);
+  console.log(timeLeft);
+  console.log(coupon?.redeemStartDate);
+
+
 
   return (
     <>
       <View style={styles.container}>
-        <HeaderTitle title={'Profile'} />
+        <HeaderTitle title={'History'} />
+
         <ImageBackground
           source={require('../../../assets/profileBack.png')}
           style={styles.background}
         >
           <View style={styles.overlay}>
-            <ZapsIcon style={styles.icon} />
-            <View style={styles.profileInfo}>
-              <View style={styles.nameIdContainer}>
-                <Text style={styles.itemText}>jb</Text>
-                <Text style={styles.itemText}>ID: 0123456</Text>
+            {isBeforeStart ? (
+              <View style={styles.viewCol}>
+                <Text style={styles.txtCounter}>00:00</Text>
+                <Text style={styles.txtStatus}>Wait</Text>
               </View>
-              <BarcodeImage height={87} width={87} />
-            </View>
-            <Text style={styles.membershipText}>Membership valid upto:</Text>
-            <Text style={styles.membershipText}>05/24</Text>
+            ) : timeLeft ? (
+              <View style={styles.viewCol}>
+                <Text style={styles.txtCounter}>{timeLeft.hours}:{timeLeft.minutes}</Text>
+                <Text style={styles.txtStatus}>In Progress</Text>
+              </View>
+            ) : (
+              <View style={styles.viewCol}>
+                <Text style={styles.txtCounter}>00:00</Text>
+                <Text style={styles.txtStatus}>Completed</Text>
+              </View>
+            )}
+
+            {!!timeLeft ? <View style={styles.viewCol}>
+              <View style={styles.viewCall}>
+                <CallIcon />
+                <Text style={styles.txtUtilSty}>Call</Text>
+              </View>
+              <View>
+                <TouchableOpacity onPress={() => openAddressOnMap(coupon?.latitude, coupon?.longitude, coupon?.templateName)}>
+                  <View style={styles.viewCall}>
+                    <MapIcon />
+                    <Text style={styles.txtUtilSty}>Direction</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </View> : null}
+
           </View>
         </ImageBackground>
+
         <View style={[styles.gradientWrapper]}>
           <LinearGradient
             colors={['rgba(22, 22, 22, 1)', 'rgba(40, 40, 40, 1)']} // Gradient color
@@ -101,17 +135,17 @@ const TransactionDetailsScreen: React.FC<Props> = ({ route }) => {
               <View style={styles.viewBorder} />
               <View style={[styles.listItem]}>
                 <Text style={styles.itemText}>Location</Text>
-                <Text style={styles.itemValueText}>Billionaire, riyadh</Text>
+                <Text style={styles.itemValueText}>{coupon.templateName}</Text>
               </View>
               <View style={styles.viewBorder} />
               <View style={[styles.listItem]}>
                 <Text style={styles.itemText}>Duration</Text>
-                <Text style={styles.itemValueText}>2 Hrs</Text>
+                <Text style={styles.itemValueText}>{coupon.validityDuration} Hrs</Text>
               </View>
               <View style={styles.viewBorder} />
               <View style={[styles.listItem]}>
                 <Text style={styles.itemText}>date</Text>
-                <Text style={styles.itemValueText}>9/1/2024</Text>
+                {/* <Text style={styles.itemValueText}>{moment(coupon?.redeemEndDate, "DD-MM-YYYY HH:mm")}</Text> */}
               </View>
               <View style={styles.viewBorder} />
               <View style={[styles.listItem]}>
@@ -161,6 +195,31 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: palette.borderClr,
   },
+  txtCounter: {
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 32,
+    fontWeight: '400',
+    color: palette.txtWhite,
+    textAlign: 'center',
+  },
+  txtStatus: {
+    fontFamily: FONT.Able.regular,
+    fontSize: 14,
+    fontWeight: '400',
+    color: palette.txtWhite,
+    backgroundColor: "#C7954B",
+    paddingVertical: 3,
+    width: '100%',
+    textAlign: 'center',
+    borderRadius: 4
+  },
+  txtUtilSty: {
+    fontFamily: FONT.Able.regular,
+    fontSize: 14,
+    fontWeight: '400',
+    color: palette.txtWhite,
+    textAlign: 'center',
+  },
   itemText: {
     fontFamily: FONT.JuliusSansOne.regular,
     fontSize: 14,
@@ -179,12 +238,33 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
     borderRadius: 17,
+    height: 124
   },
   overlay: {
-    flex: 1,
-    padding: 20,
-    justifyContent: 'space-between',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
     borderRadius: 17,
+    height: 124
+  },
+  viewCol: {
+    alignSelf: 'center',
+    // justifyContent: 'space-between',
+    gap: 5,
+    width: '30%'
+  },
+  viewCall: {
+    width: WIDTH / 3,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    backgroundColor: palette.bgCard,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: palette.txtGray,
+    justifyContent: 'center',
+    height: 44
   },
   icon: {
     alignSelf: 'auto',
@@ -195,23 +275,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  nameIdContainer: {
-    gap: 6,
-  },
-  heading: {
-    color: 'white',
-    fontSize: 14,
-    textAlign: 'auto',
-  },
-  barcodeImage: {
-    width: 100,
-    height: 50,
-    resizeMode: 'contain',
-  },
-  membershipText: {
-    fontFamily: FONT.JuliusSansOne.regular,
-    fontSize: 12,
-    fontWeight: '400',
-    color: palette.txtWhite,
-  },
+
+
 });
