@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Animated, StatusBar, StyleSheet, View } from 'react-native';
 import ZapsIcon from '../../assets/svg/logo.svg';
-import SABIcon from '../../assets/svg/splash-logo.svg';
+import SABIcon from '../../assets/svg/sab-xxl-logo.svg';
 import { palette } from '../../theme/themes';
 import { Auth } from 'aws-amplify';
 import { getCustomerByIdApi } from '../../api/user/userApi';
@@ -133,7 +133,7 @@ const SplashScreen: React.FC<Props> = () => {
               source={require('../../assets/Sab-spalsh-logo.png')}
               style={[styles.image, { transform: [{ scale: imageScale }] }]}
             /> */}
-            <SABIcon width={100} />
+            <SABIcon  />
             <View style={styles.containerLogo}>
               <Text style={styles.txtBrand}>Powered by</Text>
               <ZapsPLogo />
