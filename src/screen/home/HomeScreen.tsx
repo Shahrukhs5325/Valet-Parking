@@ -91,6 +91,10 @@ const HomeScreen: React.FC<Props> = () => {
               <Text style={styles.txtTitleSty}>Services you have</Text>
               <Store location={location} />
             </View>
+            <View style={{ paddingBottom: 30 }}>
+              <Text style={styles.txtTitleSty}>expiring soon</Text>
+              <Store location={location} />
+            </View>
           </View>
         </ScrollView>
       </View>

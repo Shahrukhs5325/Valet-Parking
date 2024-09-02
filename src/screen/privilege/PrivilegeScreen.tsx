@@ -115,7 +115,7 @@ const PrivilegeScreen = () => {
           HI, {user?.customerName}
         </Text>
         <Text style={styles.text}>
-          YOU HAVE THE FOOLING PRIVILEGE
+          YOU HAVE THE FOLLOWING PRIVILEGE
         </Text>
       </View>
       <ImageBackground
