@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import {
   ActivityIndicator,
@@ -43,6 +43,8 @@ const ImageHeight = Math.round((Dimensions.get('window').width * 6) / 9);
 const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
   const userContext = React.useContext(UserContext);
+  const scrollViewRef = React.useRef(null);
+  const focus = useIsFocused();
 
   const { store } = route.params;
 
@@ -63,6 +65,10 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
     setCouponList(data?.data?.data);
   }, [data?.data?.data]);
 
+  React.useEffect(() => {
+    focus && onScrollToTop(); refetch();
+  }, [focus]);
+
   if (isLoading) {
     return (
       <View
@@ -74,6 +80,14 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
       </View>
     );
   }
+
+
+  const onScrollToTop = () => {
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: true });
+    }
+  };
+
   const terms = [
     'The gift card is valid for a specified period, typically mentioned on the card or accompanying documentation.',
     'It cannot be redeemed or extended beyond the specified validity period.',
@@ -101,7 +115,7 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
             animated={true}
             backgroundColor={userContext?.customTheme?.primaryDark}
           />
-          <ScrollView showsVerticalScrollIndicator={false}>
+          <ScrollView showsVerticalScrollIndicator={false} ref={scrollViewRef} >
             <ImageBackground
               source={require('../../assets/bg-valet-banner.png')}
               resizeMode="cover"

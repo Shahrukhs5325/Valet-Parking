@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useScrollToTop } from '@react-navigation/native';
 import React from 'react';
 import { Dimensions, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
@@ -27,6 +27,8 @@ const ArrQty = [{ title: 1 }, { title: 2 }, { title: 3 }];
 
 const AirportTransferScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
+  const scrollViewRef = React.useRef(null);
+
   const { city } = route.params;
   const userContext = React.useContext(UserContext);
 
@@ -48,6 +50,13 @@ const AirportTransferScreen: React.FC<Props> = ({ route }) => {
 
   const nextStepHandler = (position: number) => {
     setCurrentPosition(position);
+    onScrollToTop();
+  };
+
+  const onScrollToTop = () => {
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: true });
+    }
   };
 
   return (
@@ -57,7 +66,7 @@ const AirportTransferScreen: React.FC<Props> = ({ route }) => {
           animated={true}
           backgroundColor={userContext?.customTheme?.primaryDark}
         />
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} ref={scrollViewRef} >
           <View style={{ paddingBottom: 16, gap: 16 }}>
 
             <HeaderTitle title={'Airport Services'} />
@@ -171,11 +180,12 @@ const AirportTransferScreen: React.FC<Props> = ({ route }) => {
 
               {currentPosition !== 2 ?
                 <>
+
                   <View style={{ width: '40%' }}>
-                    <PrimaryButton onPress={() => { currentPosition === 0 ? navigation.goBack() : setCurrentPosition(currentPosition - 1) }} buttonColor={"light"} >Back</PrimaryButton>
+                    <SecondaryButton onPress={() => { currentPosition === 0 ? navigation.goBack() : setCurrentPosition(currentPosition - 1); onScrollToTop() }}>Back</SecondaryButton>
                   </View>
                   <View style={{ width: '40%' }}>
-                    <SecondaryButton onPress={() => nextStepHandler(currentPosition + 1)} >Next</SecondaryButton>
+                    <PrimaryButton onPress={() => nextStepHandler(currentPosition + 1)}   >Next</PrimaryButton>
                   </View>
                 </> :
                 <View style={{ width: '100%', paddingHorizontal: 15 }}>

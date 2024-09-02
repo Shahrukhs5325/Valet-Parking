@@ -51,9 +51,9 @@ const Header: React.FC<Props> = ({ navbar, isCross = false }) => {
                         <TouchableOpacity onPress={() => signOut()}>
                             <BellIcon />
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => signOut()}>
+                        {/* <TouchableOpacity onPress={() => signOut()}>
                             <View style={{ padding: 3, backgroundColor: palette.txtWhite, borderRadius: 4 }}><SABIcon /></View>
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
                         <TouchableOpacity onPress={() => signOut()}>
                             <View style={{ borderRadius: 90, borderWidth: 1.2, borderColor: '#fff', width: 23, height: 23, justifyContent: 'center', alignItems: 'center' }}>
                                 <Text style={{ color: '#fff' }}>ار</Text>

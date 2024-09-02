@@ -36,7 +36,7 @@ const SecondaryButton: React.FC<Props> = ({
             disabled={disabled}
             uppercase={false}
             onPress={() => onPress()}
-            style={{ borderRadius: 15, height: 52, justifyContent: 'center', borderColor: palette.txtWhite, borderWidth: 1, }}
+            style={{ borderRadius: 10, height: 52, justifyContent: 'center', borderColor: palette.txtWhite, borderWidth: 1, }}
         >
             {children}
         </Button>
