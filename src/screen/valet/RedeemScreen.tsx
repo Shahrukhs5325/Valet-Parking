@@ -215,7 +215,7 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
 
         </View>
         <View style={{ width: '100%', marginTop: 40, paddingHorizontal: 16 }}>
-          <PrimaryButton loading={isLoading} onPress={() => redeemCouponByqrCodeHandler()} buttonColor={"light"}>Redeem</PrimaryButton>
+          <PrimaryButton loading={isLoading} onPress={() => redeemCouponByqrCodeHandler()} buttonColor={"light"}>Submit</PrimaryButton>
 
         </View>
       </View>
@@ -253,17 +253,17 @@ const styles = StyleSheet.create({
   },
   txtHeadingSty: {
     fontFamily: FONT.JuliusSansOne.regular,
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: '400',
     color: palette.txtWhite,
     textAlign: 'center',
-    paddingVertical: 8,
+    paddingVertical: 6,
     backgroundColor: palette.bgCard,
     borderWidth: 1,
     borderColor: palette.txtGray,
     borderRadius: 5,
     width: WIDTH - 120,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   txtTitleSty: {
     fontFamily: FONT.JuliusSansOne.regular,
@@ -304,13 +304,14 @@ const styles = StyleSheet.create({
   cell: {
     width: 50,
     height: 50,
-    lineHeight: 38,
-    fontSize: 20,
+    // lineHeight: 40,
+    fontSize: 24,
     borderWidth: 1,
     borderColor: '#FFF',
     textAlign: 'center',
     backgroundColor: '#FFF',
-    borderRadius: 10
+    borderRadius: 10,
+    textAlignVertical: 'center',
   },
   focusCell: {
     borderColor: palette.txtWhite

@@ -72,9 +72,22 @@ const PrivilegeScreen = () => {
   // Use a key that changes when the number of columns changes
   const columnCount = 2; // Change this value to change the number of columns
 
+  const serviceScreenHandler = (item: any) => {
+    if (item?.key === "valet_service") {
+      navigation.navigate("ServiceScreen", { service: item })
+    } else if (item?.key === "airport_services") {
+      navigation.navigate("AirportTransferScreen", { city: item });
+    } else if (item?.key === "Meet_Greet") {
+      navigation.navigate("CommingSoonScreen");
+    } else {
+      navigation.navigate("CommingSoonScreen");
+    }
+  }
+
+
   const renderItem = ({ item }) => (
     <View style={styles.cardContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate("ServiceScreen", { service: item })}>
+      <TouchableOpacity onPress={() => serviceScreenHandler(item)}>
         <LinearGradient
           colors={['rgba(124, 124, 124, 1)', 'rgba(22, 22, 22, 1)', 'rgba(40, 40, 40, 1)']}
           style={[
