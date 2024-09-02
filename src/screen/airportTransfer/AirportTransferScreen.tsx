@@ -56,7 +56,7 @@ const AirportTransferScreen: React.FC<Props> = ({ route }) => {
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{ paddingBottom: 16, gap: 16 }}>
 
-            <HeaderTitle title={'aIRPORT services'} />
+            <HeaderTitle title={'Airport Services'} />
             <View style={{ paddingHorizontal: 16, gap: 26, alignItems: 'center' }}>
               <View>
                 <Text style={styles.txtHeadingSty}>BOTH</Text>

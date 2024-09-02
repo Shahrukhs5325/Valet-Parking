@@ -63,7 +63,7 @@ const ValetServicesStoreScreen: React.FC<Props> = ({ route }) => {
 
   return (
     <View style={{ flex: 1, backgroundColor: userContext?.customTheme?.primaryDark, gap: 20 }}>
-      <HeaderTitle title={"valet services"} />
+      <HeaderTitle title={"Valet Services"} />
       <View style={[styles.container, { backgroundColor: userContext?.customTheme?.primaryDark }]}>
         <StatusBar
           animated={true}

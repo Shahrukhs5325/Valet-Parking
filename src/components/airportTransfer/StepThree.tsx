@@ -5,6 +5,7 @@ import { UserContext } from "../../context/user/UserContext";
 import { palette } from "../../theme/themes";
 import EditIcon from '../../assets/svg/pencil-1.svg';
 import { FONT } from "../../theme/fonts";
+import LinearGradient from "react-native-linear-gradient";
 
 
 interface Props {
@@ -24,79 +25,29 @@ const StepThree: React.FC<Props> = ({ formData, setFormData, setErrors, setCurre
 
     return (
         <>
-            <View style={{ marginTop: 15, gap: 20 }}>
-                <View style={styles.containerView}>
-                    <Text style={styles.txtBlackHeading}>Personal Details</Text>
-                    <View style={styles.dataContView}>
-                        <View style={styles.txtGapView}>
-                            <Text style={styles.txtHeading}>Name</Text>
-                            <Text style={styles.txtSummHeading}>{user?.customerName}</Text>
-                        </View>
-                        <View style={styles.bottomLineSty}></View>
-                        <View style={styles.txtGapView}>
-                            <Text style={styles.txtHeading}>Mobile number</Text>
-                            <Text style={styles.txtSummHeading}>{user?.phoneNo}</Text>
-                        </View>
-                        <View style={styles.bottomLineSty}></View>
-                        <View style={styles.txtGapView}>
-                            <Text style={styles.txtHeading}>Email address</Text>
-                            <Text style={styles.txtSummHeading}>{user?.email}</Text>
-                        </View>
-                    </View>
-                </View>
+            <View style={[styles.gradientWrapper]}>
+                <LinearGradient
+                    colors={['rgba(22, 22, 22, 1)', 'rgba(40, 40, 40, 1)']} // Gradient color
+                    style={styles.gradientContainer}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 0 }}
+                >
+                    <View style={{ gap: 16 }}>
 
-                <View style={styles.containerView}>
-                    <View style={styles.headTxtView}>
-                        <Text style={styles.txtBlackHeading}>Travel and Service Details</Text>
-                        <TouchableOpacity onPress={() => setCurrentPosition(0)}>
-                            <EditIcon />
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.dataContView}>
-                        <View style={styles.txtGapView}>
-                            <Text style={styles.txtHeading}>Airport</Text>
-                            <Text style={styles.txtSummHeading}>King Abdulaziz International Airport</Text>
+                        <View style={[styles.listItem]}>
+                            <Text style={styles.itemText}>Service</Text>
+                            <Text style={styles.itemValueText}>bh</Text>
                         </View>
-                        <View style={styles.bottomLineSty}></View>
-                        <View style={styles.txtGapView}>
-                            <Text style={styles.txtHeading}>Type of Travel</Text>
-                            <Text style={styles.txtSummHeading}>Departure</Text>
+                        <View style={[styles.listItem]}>
+                            <Text style={styles.itemText}>Service</Text>
+                            <Text style={styles.itemValueText}>bh</Text>
                         </View>
-                        <View style={styles.bottomLineSty}></View>
-                        <View style={styles.txtGapView}>
-                            <Text style={styles.txtHeading}>Service Area   </Text>
-                            <Text style={styles.txtSummHeading}>Al Rayaan, Jeddah 23642, Saudi Arabia</Text>
-                        </View>
-                    </View>
-                </View>
-
-                <View style={styles.containerView}>
-                    <View style={styles.headTxtView}>
-                        <Text style={styles.txtBlackHeading}>Flight Details</Text>
-                        <TouchableOpacity onPress={() => setCurrentPosition(1)}>
-                            <EditIcon />
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.dataContView}>
-                        <View style={styles.txtGapView}>
-                            <Text style={styles.txtHeading}>Flight Number</Text>
-                            <Text style={styles.txtSummHeading}>AB123</Text>
-                        </View>
-                        <View style={styles.bottomLineSty}></View>
-                        <View style={styles.txtGapView}>
-                            <Text style={styles.txtHeading}>Flight Origin</Text>
-                            <Text style={styles.txtSummHeading}>Jeddah</Text>
-                        </View>
-                        <View style={styles.bottomLineSty}></View>
-                        <View style={styles.txtGapView}>
-                            <Text style={styles.txtHeading}>Flight Date & Time</Text>
-                            <Text style={styles.txtSummHeading}>Sun, 18 August - 3:00PM</Text>
-                        </View>
-                    </View>
-                </View>
 
 
 
+
+                    </View>
+                </LinearGradient>
             </View>
         </>
     );
@@ -112,47 +63,38 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         gap: 8
     },
-    dataContView: {
-        backgroundColor: palette.txtWhite,
-        padding: 14,
-        borderRadius: 10,
-        gap: 4,
-        marginTop: 6
-
+    gradientContainer: {
+        paddingHorizontal: 20,
     },
-    bottomLineSty: {
-        borderBottomWidth: 1,
-        borderColor: palette.bgGray,
-        marginHorizontal: 10,
-        marginVertical: 5
+    gradientWrapper: {
+        // flex: 1,
+        marginTop: 25,
+        marginBottom: 12,
+        borderRadius: 17,
+        borderWidth: 1,
+        borderColor: palette.borderClr,
+        overflow: 'hidden'
     },
-    headTxtView: {
+    listItem: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
-        marginRight: 10
+        paddingHorizontal: 14,
+        height: 50,
     },
-    txtGapView: {
-        gap: 4
-    },
-    txtBlackHeading: {
-        color: palette.txtWhite,
-        fontWeight: '400',
-        fontFamily: FONT.Able.regular,
-        fontSize: 16,
-    },
-    txtSummHeading: {
-        color: palette.txtBlack,
-        fontWeight: '400',
-        fontFamily: FONT.Able.regular,
-        fontSize: 16,
-    },
-    txtHeading: {
-        color: palette.txtGray,
-        fontWeight: '400',
-        fontFamily: FONT.Able.regular,
+    itemText: {
+        fontFamily: FONT.JuliusSansOne.regular,
         fontSize: 14,
-    }
+        fontWeight: '400',
+        color: palette.txtWhite,
+        width: '30%',
+    },
+    itemValueText: {
+        fontFamily: FONT.JuliusSansOne.regular,
+        fontSize: 14,
+        fontWeight: '400',
+        color: palette.txtWhite,
+        width: '100%',
+    },
 
 
 

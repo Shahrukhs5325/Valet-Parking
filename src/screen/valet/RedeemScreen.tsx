@@ -159,7 +159,7 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
           animated={true}
           backgroundColor={palette.primaryDark}
         />
-        <HeaderTitle title={"valet services"} />
+        <HeaderTitle title={"Valet Services"} />
 
         <View style={styles.compView}>
           <Text style={styles.txtHeadingSty}>Parking Voucher</Text>

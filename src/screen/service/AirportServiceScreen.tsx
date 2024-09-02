@@ -62,7 +62,7 @@ const AirportServiceScreen: React.FC<Props> = ({ route }) => {
         />
         <ScrollView showsVerticalScrollIndicator={false}>
 
-          <HeaderTitle title={'aIRPORT services'} />
+          <HeaderTitle title={'Airport Services'} />
 
 
           <View style={{ margin: 16, gap: 16 }}>
