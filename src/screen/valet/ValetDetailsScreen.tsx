@@ -66,7 +66,7 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
   }, [data?.data?.data]);
 
   React.useEffect(() => {
-    focus && onScrollToTop(); refetch();
+    focus &&  refetch();
   }, [focus]);
 
   if (isLoading) {
