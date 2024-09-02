@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ImageBackground, Text, Dimensions } from 'react-native';
+import { View, StyleSheet, ImageBackground, Text, Dimensions, TouchableOpacity } from 'react-native';
 import HeaderTitle from '../../components/header/HeaderTitle';
 import ValetIcon from '../../assets/svg/history/ValetParking.svg';
 import LeisIcon from '../../assets/svg/privilege/Joystick.svg';
@@ -12,6 +12,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import { palette } from '../../theme/themes';
 import { FONT } from '../../theme/fonts';
 import { UserContext } from '../../context/user/UserContext';
+import { useNavigation } from '@react-navigation/native';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -63,6 +64,7 @@ const data = [
 
 
 const PrivilegeScreen = () => {
+  const navigation = useNavigation();
 
   const userContext = React.useContext(UserContext);
   const user = userContext.user;
@@ -72,21 +74,23 @@ const PrivilegeScreen = () => {
 
   const renderItem = ({ item }) => (
     <View style={styles.cardContainer}>
-      <LinearGradient
-        colors={['rgba(124, 124, 124, 1)', 'rgba(22, 22, 22, 1)', 'rgba(40, 40, 40, 1)']}
-        style={[
-          styles.mainItem,
-          { borderWidth: 1, borderColor: palette.borderClr },
-        ]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
-      >
-        <View style={styles.historyIcon}>{item.icon}</View>
-        <View style={styles.textContainer}>
-          <Text style={styles.serviceText}>{item.name.toUpperCase()}</Text>
-          <Text style={styles.countText}>{item.count}</Text>
-        </View>
-      </LinearGradient>
+      <TouchableOpacity onPress={() => navigation.navigate("ServiceScreen", { service: item })}>
+        <LinearGradient
+          colors={['rgba(124, 124, 124, 1)', 'rgba(22, 22, 22, 1)', 'rgba(40, 40, 40, 1)']}
+          style={[
+            styles.mainItem,
+            { borderWidth: 1, borderColor: palette.borderClr },
+          ]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+        >
+          <View style={styles.historyIcon}>{item.icon}</View>
+          <View style={styles.textContainer}>
+            <Text style={styles.serviceText}>{item.name.toUpperCase()}</Text>
+            <Text style={styles.countText}>{item.count}</Text>
+          </View>
+        </LinearGradient>
+      </TouchableOpacity>
     </View>
   );
 
