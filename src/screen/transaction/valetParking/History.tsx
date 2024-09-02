@@ -133,6 +133,7 @@ const History = () => {
       />
       <HeaderTitle title={'History'} />
       <FlatList
+        showsVerticalScrollIndicator={false}
         data={[...transList, ...historyData]}
         renderItem={renderItem}
         keyExtractor={item => item.id}

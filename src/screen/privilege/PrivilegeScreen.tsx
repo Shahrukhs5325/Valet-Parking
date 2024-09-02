@@ -124,6 +124,7 @@ const PrivilegeScreen = () => {
       >
         <View style={styles.overlay}>
           <FlatList
+            showsVerticalScrollIndicator={false}
             data={data}
             renderItem={renderItem}
             keyExtractor={item => item.id}
