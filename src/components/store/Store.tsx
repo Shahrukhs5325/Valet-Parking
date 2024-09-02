@@ -80,7 +80,7 @@ const Store: React.FC<Props> = ({ location }) => {
         </View>
         <View style={styles.cardContaint}>
           <Image
-            source={require('../../assets/card-car.png')}
+            source={require('../../assets/bili-img.png')}
             style={styles.img}
           />
           <View style={{ width: '100%', gap: 2, paddingLeft: 10 }}>

@@ -103,7 +103,7 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
           />
           <ScrollView showsVerticalScrollIndicator={false}>
             <ImageBackground
-              source={require('../../assets/valet-store-img.png')}
+              source={require('../../assets/bg-valet-banner.png')}
               resizeMode="cover"
               style={styles.image}>
               <Header navbar={true} />

@@ -37,10 +37,12 @@ const styles = StyleSheet.create({
         paddingTop: 20,
     },
     txtSty: {
+        width: '80%',
         fontWeight: '400',
         color: palette.txtGold,
         fontFamily: FONT.JuliusSansOne.regular,
         fontSize: 30,
+        textAlign: 'center',
     },
 
 

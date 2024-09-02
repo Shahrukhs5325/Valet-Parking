@@ -17,11 +17,11 @@ interface Props {
 }
 
 const DATA = [
-    { id: 1, key: "airport_services", name: "Airport Services", count: '100 Hrs', icon: <AirportIcon width={40} height={40} /> },
-    { id: 2, key: "valet_service", name: "Valet Services", count: '100 Hrs', icon: <ParkingIcon width={40} height={40} /> },
-    { id: 3, key: "entertainment", name: "Entertainment", count: '100 Hrs', icon: <PopcornIcon width={40} height={40} /> },
-    { id: 4, key: "leisure", name: "Leisure", count: '100 Hrs', icon: <LeisIcon width={40} height={40} /> },
-    { id: 5, key: "entertainment", name: "F & B", count: '100 Hrs', icon: <EntIcon width={40} height={40} /> },
+    { id: 1, key: "airport_services", name: "Airport Services", count: '100 Hrs', credit: 12, icon: <AirportIcon width={40} height={40} /> },
+    { id: 2, key: "valet_service", name: "Valet Services", count: '100 Hrs', credit: 10, icon: <ParkingIcon width={40} height={40} /> },
+    { id: 3, key: "entertainment", name: "Entertainment", count: '100 Hrs', credit: 20, icon: <PopcornIcon width={40} height={40} /> },
+    { id: 4, key: "leisure", name: "Leisure", count: '100 Hrs', credit: 8, icon: <LeisIcon width={40} height={40} /> },
+    { id: 5, key: "entertainment", name: "F & B", count: '100 Hrs', credit: 12, icon: <EntIcon width={40} height={40} /> },
 
 ]
 
@@ -57,7 +57,9 @@ const Services: React.FC<Props> = ({ }) => {
 
                                 {item.icon}
                                 <Text style={styles.txtSty}>{item.name}</Text>
-
+                                <View style={styles.viewCredit}>
+                                    <Text style={styles.txtSty}>{item.credit}</Text>
+                                </View>
                             </View>
                         </TouchableOpacity>
                     }
@@ -84,7 +86,9 @@ const styles = StyleSheet.create({
     list: {
     },
     listContents: {
-        gap: 16
+        gap: 16,
+        marginTop: 8,
+        paddingRight: 12
     },
     card: {
         paddingHorizontal: 12,
@@ -93,12 +97,27 @@ const styles = StyleSheet.create({
         height: ImageHeight,
         borderRadius: 17,
         justifyContent: 'space-between',
+        borderColor: palette.borderClr,
+        borderWidth: 1
     },
     txtSty: {
         fontWeight: '400',
         color: palette.txtWhite,
         fontFamily: FONT.JuliusSansOne.regular,
         fontSize: 11,
+    },
+    viewCredit: {
+        flex: 1,
+        top: -5,
+        right: -5,
+        position: 'absolute',
+        backgroundColor: palette.txtGold,
+        width: 24,
+        height: 24,
+        textAlign: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 90
     }
 
 

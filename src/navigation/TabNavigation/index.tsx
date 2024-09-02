@@ -133,9 +133,10 @@ const styles = StyleSheet.create({
         height: 48,
     },
     lableSty: {
-        fontFamily: FONT.Able.regular,
+        fontFamily: FONT.JuliusSansOne.regular,
         color: palette.txtWhite,
-        fontSize: 14,
-        fontWeight: '400'
+        fontSize: 12,
+        fontWeight: '400',
+        paddingBottom: 4
     }
 });
