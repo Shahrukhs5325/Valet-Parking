@@ -22,7 +22,7 @@ const StepOne: React.FC<Props> = ({ formData, setFormData, setErrors }) => {
 
     return (
         <>
-            <View style={{ gap: 0, margin: 15, }}>
+            <View style={{ gap: 8, }}>
                 <TextInputCust
                     placeholder='Select Airport'
                     value={formData.firstName}

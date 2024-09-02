@@ -22,7 +22,7 @@ const StepTwo: React.FC<Props> = ({ formData, setFormData, setErrors }) => {
 
     return (
         <>
-            <View style={{ gap: 0, margin: 15, paddingBottom: 100 }}>
+            <View style={{ gap: 8, }}>
                 <TextInputCust
                     placeholder='Flight Number'
                     value={formData.firstName}

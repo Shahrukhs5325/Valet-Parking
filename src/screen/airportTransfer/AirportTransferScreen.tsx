@@ -54,19 +54,38 @@ const AirportTransferScreen: React.FC<Props> = ({ route }) => {
           backgroundColor={userContext?.customTheme?.primaryDark}
         />
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={{ flex: 1, backgroundColor: userContext?.customTheme?.primaryDark, paddingBottom: 40, gap: 16 }}>
-            
+          <View style={{ paddingBottom: 16, gap: 16 }}>
+
             <HeaderTitle title={'aIRPORT services'} />
+            <View style={{ paddingHorizontal: 16, gap: 26, alignItems: 'center' }}>
+              <View>
+                <Text style={styles.txtHeadingSty}>BOTH</Text>
+              </View>
 
-            <View>
-              <Text style={styles.txtHeadingSty}>BOTH</Text>
+              <View
+                style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
+                <Text style={[styles.txtheadSty, { width: '40%' }]}>
+                  TOTAL PACKAGES
+                </Text>
+                <View style={styles.viewDataCall}>
+                  <Text style={styles.txtheadSty}>100</Text>
+                </View>
+              </View>
+              <View
+                style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
+                <Text style={[styles.txtheadSty, { width: '40%' }]}>
+                  SELECT QUANTITY
+                </Text>
+                <View style={styles.viewDataCall}>
+                  <Text style={styles.txtheadSty}>100</Text>
+                </View>
+              </View>
             </View>
-
             <View
               style={[styles.compView, { backgroundColor: userContext?.customTheme?.primaryDark }]}
             >
               {currentPosition === 0 ?
-                (<Text style={styles.txtSty}>Enter Your Details for a Smooth Journey</Text>)
+                (<Text style={styles.txtSty}>Enter Your TRAVEL Details</Text>)
                 : currentPosition === 1 ?
                   (<Text style={styles.txtSty}>Almost there! Just a few more details.</Text>)
                   :
@@ -75,13 +94,15 @@ const AirportTransferScreen: React.FC<Props> = ({ route }) => {
             </View>
           </View>
 
-          <View style={{ flex: 1, borderTopLeftRadius: 20, borderTopRightRadius: 20, marginTop: -20, backgroundColor: palette.bgGray, paddingBottom: 30 }}>
-            <Stepper
-              labels={STEPPER_LABEL}
-              currentPosition={currentPosition}
-              setCurrentPosition={setCurrentPosition}
-              onPress={nextStepHandler}
-            />
+          <View style={{ paddingBottom: 30, margin: 16, gap: 16 }}>
+            <View style={{ backgroundColor: palette.bgGray, paddingBottom: 16, borderRadius: 5 }}>
+              <Stepper
+                labels={STEPPER_LABEL}
+                currentPosition={currentPosition}
+                setCurrentPosition={setCurrentPosition}
+                onPress={nextStepHandler}
+              />
+            </View>
 
             {currentPosition === 0 ?
               (<StepOne
@@ -137,10 +158,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   compView: {
-    marginTop: 50,
+    marginTop: 20,
     paddingHorizontal: 15,
     gap: 10,
-    marginBottom: 25
   },
   txtSty: {
     fontWeight: '400',
@@ -168,6 +188,22 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: WIDTH - 120,
     alignSelf: 'center',
+  },
+  viewDataCall: {
+    width: WIDTH / 4,
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    backgroundColor: palette.bgCard,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: palette.txtGray,
+  },
+  txtheadSty: {
+    fontWeight: '400',
+    color: palette.txtWhite,
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 16,
   },
 
 
