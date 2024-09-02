@@ -71,10 +71,18 @@ const History = () => {
     focus && refetch();
   }, [focus]);
 
-  React.useEffect(() => {
-    setTransList(data?.data?.data?.cTransaction);
-  }, [data?.data?.data])
 
+  React.useEffect(() => {
+    const arr: any[] = []
+    if (data?.data?.data?.cTransaction?.length > 0) {
+      data?.data?.data?.cTransaction?.map((item) => {
+        item["service"] = 'Valet Services',
+          item["location"] = 'Billionaire',
+          arr.push(item)
+      })
+      setTransList(arr);
+    }
+  }, [data]);
 
   if (isLoading) {
     return (
@@ -85,10 +93,16 @@ const History = () => {
   }
 
 
-  
+  const detailsScreenHandler = (item) => {
+    if (item.templateName) {
+      navigation.navigate("TransactionDetailsScreen", { coupon: item })
+    } else {
+      navigation.navigate("TransactionDetailsScreen", { coupon: item })
+    }
+  }
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => navigation.navigate("TransactionDetailsScreen", { coupon: "" })}>
+    <TouchableOpacity onPress={() => detailsScreenHandler(item)}>
       <LinearGradient
         colors={['rgba(22, 22, 22, 1)', 'rgba(40, 40, 40, 1)']} // 'rgba(124, 124, 124, 1)'
         style={[
@@ -98,7 +112,7 @@ const History = () => {
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}>
 
-        <View style={styles.historyIcon}>{item.icon}</View>
+        <View style={styles.historyIcon}>{item.service === "Valet Services" ? <ValetIcon width={30} height={30} /> : item.icon}</View>
         <View style={styles.historyDetails}>
           <Text style={styles.historyService}>{item.service}</Text>
           <Text style={styles.historyLocation}>{item.location}</Text>
@@ -118,11 +132,10 @@ const History = () => {
       />
       <HeaderTitle title={'History'} />
       <FlatList
-        data={historyData}
+        data={[...transList, ...historyData]}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         contentContainerStyle={styles.listContents}
-
       />
     </View>
   );
@@ -138,10 +151,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#000', // Black background
     paddingHorizontal: 16,
-    gap: 20
+    gap: 20,
   },
   listContents: {
     gap: 10,
+    paddingBottom: 50,
   },
   historyItem: {
     flexDirection: 'row',

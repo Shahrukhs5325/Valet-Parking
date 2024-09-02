@@ -66,7 +66,7 @@ const TransactionDetailsScreen: React.FC<Props> = ({ route }) => {
 
   console.log(isBeforeStart);
   console.log(timeLeft);
-  console.log(coupon?.redeemStartDate);
+  console.log(coupon?.service);
 
 
 
@@ -135,7 +135,7 @@ const TransactionDetailsScreen: React.FC<Props> = ({ route }) => {
             <View>
               <View style={[styles.listItem]}>
                 <Text style={styles.itemText}>Service</Text>
-                <Text style={styles.itemValueText}>Valet Parking</Text>
+                <Text style={styles.itemValueText}>{coupon?.service}</Text>
               </View>
               <View style={styles.viewBorder} />
               <View style={[styles.listItem]}>
@@ -145,27 +145,27 @@ const TransactionDetailsScreen: React.FC<Props> = ({ route }) => {
               <View style={styles.viewBorder} />
               <View style={[styles.listItem]}>
                 <Text style={styles.itemText}>Location</Text>
-                <Text style={styles.itemValueText}>{coupon.templateName}</Text>
+                <Text style={styles.itemValueText}>{coupon.templateName ? coupon.templateName : 'Billionaire'}</Text>
               </View>
               <View style={styles.viewBorder} />
               <View style={[styles.listItem]}>
                 <Text style={styles.itemText}>Duration</Text>
-                <Text style={styles.itemValueText}>{coupon.validityDuration} Hrs</Text>
+                <Text style={styles.itemValueText}>{coupon.validityDuration ? coupon.validityDuration : 1} Hrs</Text>
               </View>
               <View style={styles.viewBorder} />
               <View style={[styles.listItem]}>
                 <Text style={styles.itemText}>date</Text>
-                {/* <Text style={styles.itemValueText}>{moment(coupon?.redeemEndDate, "DD-MM-YYYY HH:mm")}</Text> */}
+                <Text style={styles.itemValueText}>{coupon.redeemStartDate ? moment(coupon.redeemEndDate, "DD-MM-YYYY HH:mm").format("DD-MM-YYYY") : "02-09-2024"}</Text>
               </View>
               <View style={styles.viewBorder} />
               <View style={[styles.listItem]}>
                 <Text style={styles.itemText}>Start</Text>
-                <Text style={styles.itemValueText}>12:00 Am</Text>
+                <Text style={styles.itemValueText}>{coupon.redeemStartDate ? moment(coupon.redeemEndDate, "DD-MM-YYYY HH:mm").format("HH:mm a") : "11:00 AM"}</Text>
               </View>
               <View style={styles.viewBorder} />
               <View style={[styles.listItem]}>
                 <Text style={styles.itemText}>End</Text>
-                <Text style={styles.itemValueText}>12:00 Am</Text>
+                <Text style={styles.itemValueText}>{coupon.redeemEndDate ? moment(coupon.redeemEndDate, "DD-MM-YYYY HH:mm").format("HH:mm a") : "01:00 PM"}</Text>
               </View>
             </View>
           </LinearGradient>
