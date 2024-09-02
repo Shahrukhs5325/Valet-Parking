@@ -75,6 +75,16 @@ const TransactionDetailsScreen: React.FC<Props> = ({ route }) => {
       <View style={styles.container}>
         <HeaderTitle title={'History'} />
 
+        <View>
+          {isBeforeStart ? (
+            <Text style={styles.txtHeadingSty}>Active Booking</Text>
+          ) : timeLeft ? (
+            <Text style={styles.txtHeadingSty}>Active Booking</Text>
+          ) : (
+            <Text style={styles.txtHeadingSty}>Used</Text>
+          )}
+        </View>
+
         <ImageBackground
           source={require('../../../assets/profileBack.png')}
           style={styles.background}
@@ -173,7 +183,7 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   gradientWrapper: {
-    flex: 2,
+    // flex: 1,
     marginTop: 25,
     marginBottom: 12,
     borderRadius: 17,
@@ -184,7 +194,20 @@ const styles = StyleSheet.create({
   gradientContainer: {
     paddingHorizontal: 20,
   },
-
+  txtHeadingSty: {
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 24,
+    fontWeight: '400',
+    color: palette.txtWhite,
+    textAlign: 'center',
+    paddingVertical: 6,
+    backgroundColor: palette.bgCard,
+    borderWidth: 1,
+    borderColor: palette.txtGray,
+    borderRadius: 5,
+    width: WIDTH - 120,
+    alignSelf: 'center',
+  },
   listItem: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -211,7 +234,7 @@ const styles = StyleSheet.create({
     paddingVertical: 3,
     width: '100%',
     textAlign: 'center',
-    borderRadius: 4
+    borderRadius: 17
   },
   txtUtilSty: {
     fontFamily: FONT.Able.regular,
@@ -235,10 +258,11 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   background: {
-    flex: 1,
+    // flex: 1,
     resizeMode: 'cover',
     borderRadius: 17,
-    height: 124
+    height: 124,
+    marginTop: 25,
   },
   overlay: {
     flexDirection: 'row',
