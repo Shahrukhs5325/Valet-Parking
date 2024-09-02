@@ -1,5 +1,5 @@
-import {useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
+import { useNavigation } from '@react-navigation/native';
+import React, { useState } from 'react';
 import {
   ActivityIndicator,
   Dimensions,
@@ -11,23 +11,23 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Text} from 'react-native-paper';
+import { Text } from 'react-native-paper';
 import CallIcon from '../../assets/svg/call.svg';
 import DownIcon from '../../assets/svg/Sort Down.svg';
 import LocationIcon from '../../assets/svg/Location.svg';
 import MapIcon from '../../assets/svg/Waypoint Map.svg';
 import PrimaryButton from '../../components/button/PrimaryButton';
 import Header from '../../components/header/Header';
-import {palette} from '../../theme/themes';
+import { palette } from '../../theme/themes';
 import TermIcon from '../../assets/svg/Rules Book.svg';
 import HelpIcon from '../../assets/svg/help.svg';
-import {useQuery} from '@tanstack/react-query';
-import {UserContext} from '../../context/user/UserContext';
-import {getCustomerCouponsByStoreIdNMerchantId} from '../../api/common/commonApi';
-import {FONT} from '../../theme/fonts';
+import { useQuery } from '@tanstack/react-query';
+import { UserContext } from '../../context/user/UserContext';
+import { getCustomerCouponsByStoreIdNMerchantId } from '../../api/common/commonApi';
+import { FONT } from '../../theme/fonts';
 
 import SelectDropdown from 'react-native-select-dropdown';
-import {openAddressOnMap} from '../../constant/constFunction';
+import { openAddressOnMap } from '../../constant/constFunction';
 import TermsModal from './TermsModal';
 import RedeemModal from './RedeemModal';
 
@@ -35,24 +35,24 @@ type Props = {
   route?: any;
 };
 
-const ArrQty = [{title: 1}, {title: 2}, {title: 3}];
+const ArrQty = [{ title: 1 }, { title: 2 }, { title: 3 }];
 
 const WIDTH = Dimensions.get('window').width;
 const ImageHeight = Math.round((Dimensions.get('window').width * 6) / 9);
 
-const ValetDetailsScreen: React.FC<Props> = ({route}) => {
+const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
   const userContext = React.useContext(UserContext);
 
-  const {store} = route.params;
+  const { store } = route.params;
 
   const [coupon, setCoupon] = React.useState('');
   const [couponList, setCouponList] = React.useState([]);
-  const [selectQty, setSelectQty] = React.useState({title: 1});
+  const [selectQty, setSelectQty] = React.useState({ title: 1 });
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisibleRedeem, setModalVisibleRedeem] = useState(false);
 
-  const {isLoading, data, refetch} = useQuery({
+  const { isLoading, data, refetch } = useQuery({
     queryKey: ['Coupon_list_by_city', userContext?.user, store],
     queryFn: () =>
       getCustomerCouponsByStoreIdNMerchantId(userContext?.user, store),
@@ -68,7 +68,7 @@ const ValetDetailsScreen: React.FC<Props> = ({route}) => {
       <View
         style={[
           styles.containerErr,
-          {backgroundColor: userContext?.customTheme?.primaryDark},
+          { backgroundColor: userContext?.customTheme?.primaryDark },
         ]}>
         <ActivityIndicator size="large" color="#FFF" />
       </View>
@@ -95,7 +95,7 @@ const ValetDetailsScreen: React.FC<Props> = ({route}) => {
         <View
           style={[
             styles.container,
-            {backgroundColor: userContext?.customTheme?.primaryDark},
+            { backgroundColor: userContext?.customTheme?.primaryDark },
           ]}>
           <StatusBar
             animated={true}
@@ -111,13 +111,13 @@ const ValetDetailsScreen: React.FC<Props> = ({route}) => {
             <View
               style={[
                 styles.compView,
-                {backgroundColor: userContext?.customTheme?.primaryDark},
+                { backgroundColor: userContext?.customTheme?.primaryDark },
               ]}>
-              <View style={{gap: 10}}>
+              <View style={{ gap: 10 }}>
                 <Text style={styles.txtTitleSty}>{coupon.templateName}</Text>
                 <Text style={styles.txtaddSty}>{coupon.address}</Text>
                 <View
-                  style={{flexDirection: 'row', alignItems: 'center', gap: 6}}>
+                  style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                   <LocationIcon />
                   <Text style={styles.kmTxt}>{store?.distance} Km away</Text>
                 </View>
@@ -150,12 +150,12 @@ const ValetDetailsScreen: React.FC<Props> = ({route}) => {
               </View>
 
               <View
-                style={{borderBottomWidth: 1.4, borderColor: palette.bgGray}}
+                style={{ borderBottomWidth: 1.4, borderColor: palette.bgGray }}
               />
 
-              <View style={{gap: 8}}>
+              <View style={{ gap: 8 }}>
                 <Text style={styles.txtheadSty}>Service description</Text>
-                <View style={{gap: 4, marginLeft: 16}}>
+                <View style={{ gap: 4, marginLeft: 16 }}>
                   <Text style={styles.txtDataSty}>Safe and secure parking</Text>
                   <Text style={styles.txtDataSty}>
                     Professional and courteous staff
@@ -169,12 +169,12 @@ const ValetDetailsScreen: React.FC<Props> = ({route}) => {
                 </View>
               </View>
 
-              <View style={{gap: 18}}>
+              <View style={{ gap: 18 }}>
                 <Text style={styles.txtheadSty}>Parking duration</Text>
 
                 <View
-                  style={{flexDirection: 'row', alignItems: 'center', gap: 16}}>
-                  <Text style={[styles.txtheadSty, {width: '40%'}]}>
+                  style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
+                  <Text style={[styles.txtheadSty, { width: '40%' }]}>
                     BALANCE HOURS
                   </Text>
                   <View style={styles.viewDataCall}>
@@ -183,8 +183,8 @@ const ValetDetailsScreen: React.FC<Props> = ({route}) => {
                 </View>
 
                 <View
-                  style={{flexDirection: 'row', alignItems: 'center', gap: 16}}>
-                  <Text style={[styles.txtheadSty, {width: '40%'}]}>
+                  style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
+                  <Text style={[styles.txtheadSty, { width: '40%' }]}>
                     SELECT QUANTITY
                   </Text>
                   <View>
@@ -197,7 +197,7 @@ const ValetDetailsScreen: React.FC<Props> = ({route}) => {
                         return (
                           <View style={styles.dropdownButtonStyle}>
                             <Text style={styles.txtSty}>
-                              {(selectQty && selectQty?.title) + ' Hrs' ||
+                              {(selectQty && "0" + selectQty?.title) + ' Hrs' ||
                                 'Select hrs'}
                             </Text>
                             <DownIcon />
@@ -213,7 +213,7 @@ const ValetDetailsScreen: React.FC<Props> = ({route}) => {
                                 backgroundColor: palette.txtBlack,
                               }),
                             }}>
-                            <Text style={styles.txtSty}>{item.title} Hrs</Text>
+                            <Text style={styles.txtSty}>0{item.title} Hrs</Text>
                           </View>
                         );
                       }}
@@ -249,23 +249,23 @@ const ValetDetailsScreen: React.FC<Props> = ({route}) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => setModalVisibleRedeem(true)}>
-                <View style={styles.viewTerm}>
-                  <View
-                    style={{
-                      backgroundColor: palette.bgCard,
-                      width: 33,
-                      height: 33,
-                      borderRadius: 90,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}>
-                    <HelpIcon />
+                  <View style={styles.viewTerm}>
+                    <View
+                      style={{
+                        backgroundColor: palette.bgCard,
+                        width: 33,
+                        height: 33,
+                        borderRadius: 90,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}>
+                      <HelpIcon />
+                    </View>
+                    <Text style={styles.txtTermSty}>How to redeem</Text>
                   </View>
-                  <Text style={styles.txtTermSty}>How to redeem</Text>
-                </View>
                 </TouchableOpacity>
               </View>
-              <View style={{marginBottom: 20}}>
+              <View style={{ marginBottom: 20 }}>
                 <PrimaryButton
                   onPress={() =>
                     navigation.navigate('RedeemScreen', {
@@ -285,7 +285,7 @@ const ValetDetailsScreen: React.FC<Props> = ({route}) => {
         <View
           style={[
             styles.containerErr,
-            {backgroundColor: userContext?.customTheme?.primaryDark},
+            { backgroundColor: userContext?.customTheme?.primaryDark },
           ]}>
           <Text style={styles.emtTxt}>Data Not Found</Text>
         </View>
@@ -296,7 +296,7 @@ const ValetDetailsScreen: React.FC<Props> = ({route}) => {
           setModalVisible={() => setModalVisible}
           terms={terms}
           onPress={() => setModalVisible(!modalVisible)}
-          />
+        />
       </View>
       <View>
         <RedeemModal
@@ -304,7 +304,7 @@ const ValetDetailsScreen: React.FC<Props> = ({route}) => {
           setModalVisible={() => setModalVisibleRedeem}
           steps={redeemSteps}
           onPress={() => setModalVisibleRedeem(!modalVisibleRedeem)}
-          />
+        />
       </View>
     </>
   );

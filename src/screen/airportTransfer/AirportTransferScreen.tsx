@@ -133,7 +133,7 @@ const AirportTransferScreen: React.FC<Props> = ({ route }) => {
               {currentPosition !== 2 ?
                 <>
                   <View style={{ width: '40%' }}>
-                    <PrimaryButton disabled={currentPosition <= 0} onPress={() => setCurrentPosition(currentPosition - 1)} buttonColor={"light"} >Back</PrimaryButton>
+                    <PrimaryButton onPress={() => { currentPosition === 0 ? navigation.goBack() : setCurrentPosition(currentPosition - 1) }} buttonColor={"light"} >Back</PrimaryButton>
                   </View>
                   <View style={{ width: '40%' }}>
                     <SecondaryButton onPress={() => nextStepHandler(currentPosition + 1)} >Next</SecondaryButton>
