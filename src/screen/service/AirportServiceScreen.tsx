@@ -17,7 +17,7 @@ type Props = {
 const ImageHeight = Math.round(Dimensions.get('window').width * 9 / 9);
 const WIDTH = Dimensions.get('window').width;
 
-const ArrQty = [{ title: "Meet & Greet" }, { title: "Airport Transfer" }, { title: "Both" }];
+const ArrQty = [{ title: "Meet & Assist" }, { title: "Airport Transfer" }, { title: "Both" }];
 
 const MeetAssist = [
   "Fast track through security, check-in & immigration.",

@@ -46,7 +46,7 @@ const SucessValetScreen: React.FC<Props> = ({ route }) => {
             <SecondaryButton onPress={() => navigation.navigate("HomeScreen")} >Home</SecondaryButton>
           </View>
           <View style={{ width: '46%' }}>
-            <PrimaryButton onPress={() => navigation.replace("TransactionDetailsScreen", { coupon: response })} buttonColor={"light"} >View Status</PrimaryButton>
+            <PrimaryButton onPress={() => navigation.navigate("History")} buttonColor={"light"} >View Status</PrimaryButton>
           </View>
         </View>
       </View>

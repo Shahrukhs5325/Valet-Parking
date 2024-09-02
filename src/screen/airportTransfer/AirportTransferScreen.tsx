@@ -13,6 +13,8 @@ import StepTwo from '../../components/airportTransfer/StepTwo';
 import StepThree from '../../components/airportTransfer/StepThree';
 import { FONT } from '../../theme/fonts';
 import HeaderTitle from '../../components/header/HeaderTitle';
+import SelectDropdown from 'react-native-select-dropdown';
+import DownIcon from '../../assets/svg/Sort Down.svg';
 
 type Props = {
   route: any;
@@ -20,6 +22,7 @@ type Props = {
 
 const STEPPER_LABEL = ["Service Details", "Passenger Details", "Confirmation"];
 const WIDTH = Dimensions.get('window').width;
+const ArrQty = [{ title: 1 }, { title: 2 }, { title: 3 }];
 
 
 const AirportTransferScreen: React.FC<Props> = ({ route }) => {
@@ -28,6 +31,7 @@ const AirportTransferScreen: React.FC<Props> = ({ route }) => {
   const userContext = React.useContext(UserContext);
 
   const [currentPosition, setCurrentPosition] = React.useState(0);
+  const [selectQty, setSelectQty] = React.useState(null);
 
   const [formData, setFormData] = React.useState({
     firstName: '',
@@ -76,9 +80,44 @@ const AirportTransferScreen: React.FC<Props> = ({ route }) => {
                 <Text style={[styles.txtheadSty, { width: '40%' }]}>
                   SELECT QUANTITY
                 </Text>
-                <View style={styles.viewDataCall}>
-                  <Text style={styles.txtheadSty}>100</Text>
+                <View>
+                  <SelectDropdown
+                    disabled={currentPosition !== 0}
+                    data={ArrQty}
+                    onSelect={(selectedItem, index) => {
+                      setSelectQty(selectedItem);
+                    }}
+                    renderButton={(selectedItem, isOpened) => {
+                      return (
+                        <View style={styles.dropdownButtonStyle}>
+                          <Text style={styles.txtLableSty}>
+                            {(selectQty && selectQty?.title) ||
+                              'Select'}
+                          </Text>
+                          <DownIcon />
+                        </View>
+                      );
+                    }}
+                    renderItem={(item, index, isSelected) => {
+                      return (
+                        <View
+                          style={{
+                            ...styles.dropdownItemStyle,
+                            ...(isSelected && {
+                              backgroundColor: palette.txtBlack,
+                            }),
+                          }}>
+                          <Text style={styles.txtLableSty}>{item.title}</Text>
+                        </View>
+                      );
+                    }}
+                    showsVerticalScrollIndicator={false}
+                    dropdownStyle={styles.dropdownMenuStyle}
+                  />
                 </View>
+                {/* <View style={styles.viewDataCall}>
+                  <Text style={styles.txtheadSty}>100</Text>
+                </View> */}
               </View>
             </View>
             <View
@@ -204,6 +243,43 @@ const styles = StyleSheet.create({
     color: palette.txtWhite,
     fontFamily: FONT.JuliusSansOne.regular,
     fontSize: 16,
+  },
+  txtLableSty: {
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 12,
+    fontWeight: '400',
+    color: palette.txtWhite,
+    alignSelf: 'center',
+  },
+  dropdownButtonTxtStyle: {
+    flex: 1,
+    fontWeight: '400',
+    fontSize: 12,
+    color: palette.txtWhite,
+    fontFamily: FONT.Able.regular,
+  },
+  dropdownButtonStyle: {
+    width: WIDTH / 4,
+    height: 40,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+    backgroundColor: '#6A6868',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: palette.txtGray,
+  },
+  dropdownItemStyle: {
+    width: '100%',
+    flexDirection: 'row',
+    paddingHorizontal: 16,
+    alignItems: 'center',
+    paddingVertical: 14,
+  },
+  dropdownMenuStyle: {
+    backgroundColor: palette.bgCard,
+    borderRadius: 8,
   },
 
 
