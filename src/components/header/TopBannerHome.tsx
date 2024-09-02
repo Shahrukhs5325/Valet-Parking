@@ -18,13 +18,13 @@ const TopBannerHome: React.FC<Props> = ({ navbar, service }) => {
     return (
         <View style={styles.image}>
             <ImageBackground
-                source={require('../../assets/hotel.png')}
+                source={require('../../assets/airport.png')}
                 resizeMode="cover"
                 style={styles.image}>
                 <Header navbar={navbar} />
-                <View style={{ position: 'absolute', bottom: 0, justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', padding: 20, gap: 6 }}>
-                    <Text style={styles.txtTitle}>Hotels</Text>
-                    <Text style={styles.txtSubTitle}>Unmatched luxury and comfort at premium hotels</Text>
+                <View style={{ position: 'absolute', bottom: 0, justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', alignSelf: 'center', padding: 20, gap: 6 }}>
+                    <Text style={styles.txtTitle}>Airport services</Text>
+                    <Text style={styles.txtSubTitle}>experience unmatched luxury through personalized journeys</Text>
                 </View>
             </ImageBackground>
 
