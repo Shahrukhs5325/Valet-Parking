@@ -18,7 +18,7 @@ const TopBannerAirport: React.FC<Props> = ({ navbar, service }) => {
     return (
         <View style={styles.image}>
             <ImageBackground
-                source={require('../../assets/valet-banner.png')}
+                source={require('../../assets/airport.png')}
                 resizeMode="cover"
                 style={styles.image}>
                 <Header navbar={navbar} />

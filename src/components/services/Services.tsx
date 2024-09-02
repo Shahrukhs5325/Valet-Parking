@@ -34,7 +34,7 @@ const Services: React.FC<Props> = ({ }) => {
         if (item?.key === "valet_service") {
             navigation.navigate("ServiceScreen", { service: item })
         } else if (item?.key === "airport_services") {
-            navigation.navigate("AirportTransferScreen", { city: item });
+            navigation.navigate("ServiceScreen", { service: item });
         } else if (item?.key === "Meet_Greet") {
             navigation.navigate("CommingSoonScreen");
         } else {
