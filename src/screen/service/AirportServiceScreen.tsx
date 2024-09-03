@@ -70,7 +70,7 @@ const AirportServiceScreen: React.FC<Props> = ({ route }) => {
 
 
             <View style={{ marginVertical: 16 }}>
-              <Text style={styles.txtSty}>Dubai international airport - Termiinals 1, 2 & 3</Text>
+              <Text style={styles.txtSty}>Riyadh international airport - Termiinals 1, 2 & 3</Text>
             </View>
 
             <View style={styles.compView}>
@@ -78,6 +78,7 @@ const AirportServiceScreen: React.FC<Props> = ({ route }) => {
               <View style={{ gap: 14 }}>
                 <Text style={styles.txtTitleSty}>Select service</Text>
                 <SelectDropdown
+                  disabled
                   data={ArrQty}
                   onSelect={(selectedItem, index) => {
                     setSelectQty(selectedItem);
@@ -86,10 +87,9 @@ const AirportServiceScreen: React.FC<Props> = ({ route }) => {
                     return (
                       <View style={styles.dropdownButtonStyle}>
                         <Text style={styles.txtSty}>
-                          {(selectQty && selectQty?.title) ||
-                            'Select service'}
+                          Airport Transfer
                         </Text>
-                        <DownIcon />
+                        {/* <DownIcon /> */}
                       </View>
                     );
                   }}
@@ -113,7 +113,7 @@ const AirportServiceScreen: React.FC<Props> = ({ route }) => {
               <View style={{ gap: 12 }}>
                 <Text style={styles.txtTitleSty}>Service description</Text>
 
-                <View>
+                {/* <View>
                   <Text style={styles.txtSubTitleSty}>Meet & Assist:</Text>
                   {MeetAssist.map((item, index) => (
                     <View key={index} style={styles.termContainer}>
@@ -121,7 +121,7 @@ const AirportServiceScreen: React.FC<Props> = ({ route }) => {
                       <Text style={styles.termText}>{item}</Text>
                     </View>
                   ))}
-                </View>
+                </View> */}
                 <View>
                   <Text style={styles.txtSubTitleSty}>Airport Transfer:</Text>
                   {AIRPORTTRANSFER.map((item, index) => (

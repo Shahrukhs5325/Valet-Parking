@@ -130,16 +130,16 @@ const SplashScreen: React.FC<Props> = () => {
           <ZapsIcon width={100} /> :
           <View style={styles.container}>
 
-            <Image
+            {/* <Image
               source={require('../../assets/logo/SNB_Brandmark.png')}
               style={styles.img}
-            />
+            /> */}
             {/* <Image
             source={require('../../assets/logo/Anb_logo.png')}
             style={styles.img}
             /> */}
 
-            {/* <SABIcon /> */}
+            <SABIcon />
 
             <View style={styles.containerLogo}>
               <Text style={styles.txtBrand}>Powered by</Text>

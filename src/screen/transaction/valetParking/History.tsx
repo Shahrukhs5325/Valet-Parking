@@ -34,7 +34,7 @@ const historyData = [
   {
     id: '3',
     service: 'Airport Services',
-    location: 'Meet & Assist + Airport transfer',
+    location: 'Airport transfer',
     status: 'Confirmed',
     type: 'Confirmed',
     icon: <GolfIcon width={30} height={30} />,

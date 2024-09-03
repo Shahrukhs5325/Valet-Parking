@@ -58,7 +58,7 @@ const StepOne: React.FC<Props> = ({ formData, setFormData, setErrors }) => {
                     }}
                 />
                 <TextInputCust
-                    placeholder='Arrival/Departure Terminal'
+                    placeholder='Pick-up/Drop-off Terminal'
                     // value={formData.LastName}
                     onChangeText={value => {
                         // setFormData({ ...formData, firstName: value });
@@ -66,35 +66,7 @@ const StepOne: React.FC<Props> = ({ formData, setFormData, setErrors }) => {
                     }}
                 />
                 <TextInputCust
-                    placeholder='Origin'
-                    // value={formData.LastName}
-                    onChangeText={value => {
-                        // setFormData({ ...formData, firstName: value });
-                        setErrors("");
-                    }}
-                />
-                <TextInputCust
-                    placeholder='Destination'
-                    // value={formData.LastName}
-                    onChangeText={value => {
-                        // setFormData({ ...formData, firstName: value });
-                        setErrors("");
-                    }}
-                />
-                <TextInputCust
-                    placeholder='Carrier'
-                    // value={formData.LastName}
-                    onChangeText={value => {
-                        // setFormData({ ...formData, firstName: value });
-                        setErrors("");
-                    }}
-                />
-
-                <Text style={styles.txtSty}>Airport Transfer Details:</Text>
-
-
-                <TextInputCust
-                    placeholder='Area'
+                    placeholder='Pick-up/Drop-off Area'
                     // value={formData.LastName}
                     onChangeText={value => {
                         // setFormData({ ...formData, firstName: value });
@@ -110,21 +82,23 @@ const StepOne: React.FC<Props> = ({ formData, setFormData, setErrors }) => {
                     }}
                 />
                 <TextInputCust
-                    placeholder='Passenger contact details'
+                    placeholder='Pick-up/Drop-off date'
                     // value={formData.LastName}
                     onChangeText={value => {
                         // setFormData({ ...formData, firstName: value });
                         setErrors("");
                     }}
                 />
+
                 <TextInputCust
-                    placeholder='Pick-up date & time'
+                    placeholder='Pick-up/Drop-off time'
                     // value={formData.LastName}
                     onChangeText={value => {
                         // setFormData({ ...formData, firstName: value });
                         setErrors("");
                     }}
                 />
+                
                 <TextInputCust
                     placeholder='Additional information'
                     // value={formData.LastName}

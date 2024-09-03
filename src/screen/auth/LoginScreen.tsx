@@ -118,11 +118,11 @@ const LoginScreen: React.FC<Props> = () => {
           backgroundColor={palette.primaryDark}
         />
         <View style={{ alignItems: 'center', marginBottom: 50 }}>
-          {/* <SABLogo /> */}
-          <Image
+          <SABLogo />
+          {/* <Image
             source={require('../../assets/logo/SNB_Brandmark.png')}
             style={styles.img}
-          />
+          /> */}
           {/* <Image
             source={require('../../assets/logo/Anb_logo.png')}
             style={styles.img}

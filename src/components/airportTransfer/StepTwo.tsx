@@ -49,22 +49,6 @@ const StepTwo: React.FC<Props> = ({ formData, setFormData, setErrors }) => {
                         setErrors("");
                     }}
                 />
-                <TextInputCust
-                    placeholder='PNR'
-                    // // value={formData.LastName}
-                    onChangeText={value => {
-                        // setFormData({ ...formData, LastName: value });
-                        setErrors("");
-                    }}
-                />
-                <TextInputCust
-                    placeholder='Class'
-                    // // value={formData.LastName}
-                    onChangeText={value => {
-                        // setFormData({ ...formData, LastName: value });
-                        setErrors("");
-                    }}
-                />
 
                 <TextInputCust
                     placeholder='Passenger contact details'
@@ -83,59 +67,7 @@ const StepTwo: React.FC<Props> = ({ formData, setFormData, setErrors }) => {
                     }}
                 />
 
-                <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', gap: 12 }}>
-
-                    <View style={{ flexDirection: 'row', alignItems: 'center', }}>
-                        <Checkbox.Item
-                            status={"unchecked"}
-                            //  onPress={() => setIsTerm(!isTerm)}
-                            uncheckedColor={palette.txtWhite}
-                        />
-                        <Text style={styles.txtSty}>Primary Card Holder</Text>
-                    </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }}>
-                        <Checkbox.Item
-                            status={"unchecked"}
-                            //  onPress={() => setIsTerm(!isTerm)}
-                            uncheckedColor={palette.txtWhite}
-                        />
-                        <Text style={styles.txtSty}>Add Companion</Text>
-                    </View>
-                </View>
-
-                <TextInputCust
-                    placeholder='Title'
-                    // // value={formData.LastName}
-                    onChangeText={value => {
-                        // setFormData({ ...formData, LastName: value });
-                        setErrors("");
-                    }}
-                />
-                <TextInputCust
-                    placeholder='Pax name'
-                    // // value={formData.LastName}
-                    onChangeText={value => {
-                        // setFormData({ ...formData, LastName: value });
-                        setErrors("");
-                    }}
-                />
-                <TextInputCust
-                    placeholder='Age'
-                    // // value={formData.LastName}
-                    onChangeText={value => {
-                        // setFormData({ ...formData, LastName: value });
-                        setErrors("");
-                    }}
-                />
-                <TextInputCust
-                    placeholder='Remarks'
-                    // // value={formData.LastName}
-                    onChangeText={value => {
-                        // setFormData({ ...formData, LastName: value });
-                        setErrors("");
-                    }}
-                />
-
+                 
             </View>
         </>
     );

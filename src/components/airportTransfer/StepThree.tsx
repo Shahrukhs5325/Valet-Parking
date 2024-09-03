@@ -36,7 +36,12 @@ const StepThree: React.FC<Props> = ({ formData, setFormData, setErrors, setCurre
 
                         <View style={[styles.listItem]}>
                             <Text style={styles.itemText}>Service</Text>
-                            <Text style={styles.itemValueText}>Meet & Assist + Airport transfer</Text>
+                            <Text style={styles.itemValueText}>Airport transfer</Text>
+                        </View>
+                        <View style={styles.viewBorder} />
+                        <View style={[styles.listItem]}>
+                            <Text style={styles.itemText}>No. of Pax</Text>
+                            <Text style={styles.itemValueText}>1</Text>
                         </View>
                         <View style={styles.viewBorder} />
                         <View style={[styles.listItem]}>
@@ -50,18 +55,16 @@ const StepThree: React.FC<Props> = ({ formData, setFormData, setErrors, setCurre
                         </View>
                         <View style={styles.viewBorder} />
                         <View style={[styles.listItem]}>
+                            <Text style={styles.itemText}>Mobile</Text>
+                            <Text style={styles.itemValueText}>+966 8451 685451 51</Text>
+                        </View>
+                        <View style={styles.viewBorder} />
+                        <View style={[styles.listItem]}>
                             <Text style={styles.itemText}>Email</Text>
                             <Text style={styles.itemValueText}>zaps@zapsmarketing.com</Text>
                         </View>
 
-                        <View style={styles.viewBorder} />
-                        <Text style={styles.txtTitle}>Meet & Assist</Text>
-                        <View style={styles.viewBorder} />
-
-                        <View style={[styles.listItem]}>
-                            <Text style={styles.itemText}>Airport</Text>
-                            <Text style={styles.itemValueText}>Dubai</Text>
-                        </View>
+            
                         <View style={styles.viewBorder} />
                         <View style={[styles.listItem]}>
                             <Text style={styles.itemText}>Type of travel</Text>
@@ -93,9 +96,7 @@ const StepThree: React.FC<Props> = ({ formData, setFormData, setErrors, setCurre
                             <Text style={styles.itemValueText}>Please take care</Text>
                         </View>
 
-                        <View style={styles.viewBorder} />
-                        <Text style={styles.txtTitle}>Airport Transfer</Text>
-                        <View style={styles.viewBorder} />
+    
 
                         <View style={[styles.listItem]}>
                             <Text style={styles.itemText}>Area</Text>

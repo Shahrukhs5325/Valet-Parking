@@ -74,11 +74,11 @@ const Airport: React.FC<Props> = ({ location }) => {
         </View>
         <View style={styles.cardContaint}>
           <Image
-            source={require('../../assets/airport-img.png')}
+            source={require('../../assets/airport-city/riyadh.png')}
             style={styles.img}
           />
           <View style={{ width: '100%', gap: 2, paddingLeft: 10 }}>
-            <Text style={styles.txtTitleSty}>Dubai</Text>
+            <Text style={styles.txtTitleSty}>Riyadh</Text>
 
             <Text style={styles.txtSty} numberOfLines={1}>
               Silver bundle:

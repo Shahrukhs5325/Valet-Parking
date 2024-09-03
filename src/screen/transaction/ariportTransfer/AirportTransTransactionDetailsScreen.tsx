@@ -132,7 +132,7 @@ const AirportTransTransactionDetailsScreen: React.FC<Props> = ({ route }) => {
             <View>
               <View style={[styles.listItem]}>
                 <Text style={styles.itemText}>Service</Text>
-                <Text style={styles.itemValueText}>Meet & Assist + Airport transfer</Text>
+                <Text style={styles.itemValueText}>Airport transfer</Text>
               </View>
               <View style={styles.viewBorder} />
               <View style={[styles.listItem]}>
@@ -247,14 +247,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   itemText: {
-    fontFamily: FONT.JuliusSansOne.regular,
+    fontFamily: FONT.Able.regular,
     fontSize: 14,
     fontWeight: '400',
     color: palette.txtWhite,
     width: '33%',
   },
   itemValueText: {
-    fontFamily: FONT.JuliusSansOne.regular,
+    fontFamily: FONT.Able.regular,
     fontSize: 14,
     fontWeight: '400',
     color: palette.txtWhite,

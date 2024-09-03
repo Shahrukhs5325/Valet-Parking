@@ -13,7 +13,7 @@ const ImageHeight = Math.round(Dimensions.get('window').width / 3.4);
 const City_ARIPORT = [
     {
         "cityId": 1,
-        "cityName": "Doha"
+        "cityName": "Riyadh"
     },
     {
         "cityId": 2,
@@ -43,7 +43,7 @@ const images = [
     require('../../assets/cityimg/6.png'),
 ];
 const Airport_Images = [
-    require('../../assets/airport-city/Doha.png'),
+    require('../../assets/airport-city/riyadh.png'),
     require('../../assets/airport-city/dubai.png'),
     require('../../assets/airport-city/isambul.png'),
     require('../../assets/airport-city/london.png'),
