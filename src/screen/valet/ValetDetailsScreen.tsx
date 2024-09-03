@@ -66,7 +66,7 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
   }, [data?.data?.data]);
 
   React.useEffect(() => {
-    focus &&  refetch();
+    focus && refetch();
   }, [focus]);
 
   if (isLoading) {
@@ -89,12 +89,16 @@ const ValetDetailsScreen: React.FC<Props> = ({ route }) => {
   };
 
   const terms = [
-    'The gift card is valid for a specified period, typically mentioned on the card or accompanying documentation.',
-    'It cannot be redeemed or extended beyond the specified validity period.',
-    'The gift card can be redeemed for eligible products or services offered by the issuing company or authorized partners.',
-    'The redemption process and eligible redemption locations should be clearly defined.',
-    'Gift cards are non-refundable and cannot be exchanged for cash or credit, except as required by law.',
-  ];
+
+    "Valet services are offered to park and retrieve vehicles within a designated area or facility.",
+    "Operating hours and location specifics are clearly stated.",
+    "Customers must ensure that their vehicles are roadworthy, legally registered, and insured.",
+    "All valuables should be removed or securely stored in the vehicle. The service provider is not responsible for any loss or damage to personal belongings.",
+    "The service provider is not responsible for damages caused by third parties or events outside their control (e.g., natural disasters, vandalism).",
+    "The service fee is charged per vehicle, per service, or based on the duration of the parking.",
+    "Payment terms are clearly defined, and payment is expected upon initial handover of the vehicle unless otherwise agreed.",
+    "The service provider reserves the right to refuse service to any customer at their discretion, particularly if the vehicle is deemed unsafe or if the customer behaves inappropriately."
+  ]
 
   const redeemSteps = [
     'Select the number of hours that you would like to avail.',

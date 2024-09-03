@@ -3,6 +3,7 @@ import {
   Dimensions,
   ImageBackground,
   Modal,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -40,12 +41,16 @@ const TermsModal: React.FC<Terms> = ({ modalVisible, setModalVisible, terms, onP
           </TouchableOpacity>
           <View style={styles.simpleBack}>
             <Text style={styles.title}>TERMS & CONDITIONS</Text>
-            {terms.map((term, index) => (
-              <View key={index} style={styles.termContainer}>
-                <Text style={styles.dot}>•</Text>
-                <Text style={styles.termText}>{term}</Text>
+            <ScrollView showsVerticalScrollIndicator={false}>
+              <View style={styles.simpleDate}>
+                {terms.map((term, index) => (
+                  <View key={index} style={styles.termContainer}>
+                    <Text style={styles.dot}>•</Text>
+                    <Text style={styles.termText}>{term}</Text>
+                  </View>
+                ))}
               </View>
-            ))}
+            </ScrollView>
           </View>
         </ImageBackground>
       </View>
@@ -94,6 +99,9 @@ const styles = StyleSheet.create({
     borderRadius: 17,
     padding: 16,
     gap: 18
+  },
+  simpleDate: {
+    gap: 10
   },
   termContainer: {
     paddingHorizontal: 15,
