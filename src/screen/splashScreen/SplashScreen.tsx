@@ -134,6 +134,10 @@ const SplashScreen: React.FC<Props> = () => {
               source={require('../../assets/logo/SNB_Brandmark.png')}
               style={styles.img}
             />
+            {/* <Image
+            source={require('../../assets/logo/Anb_logo.png')}
+            style={styles.img}
+            /> */}
 
             {/* <SABIcon /> */}
 

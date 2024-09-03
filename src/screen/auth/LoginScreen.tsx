@@ -123,6 +123,11 @@ const LoginScreen: React.FC<Props> = () => {
             source={require('../../assets/logo/SNB_Brandmark.png')}
             style={styles.img}
           />
+          {/* <Image
+            source={require('../../assets/logo/Anb_logo.png')}
+            style={styles.img}
+          /> */}
+
         </View>
         <Text style={styles.txtSty}>Login</Text>
         <View style={{ gap: 0 }}>
