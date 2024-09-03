@@ -104,8 +104,8 @@ const Airport: React.FC<Props> = ({ location }) => {
               </View>
               <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate('ValetDetailsScreen', { store: item })
-                }>
+                  navigation.navigate('AirportServiceScreen', { city: { "cityId": 1, "cityName": "Dubai" } })}
+              >
                 <View style={styles.viewTirdArrBtn}>
                   <View style={styles.viewSecArrBtn}>
                     <View style={styles.viewFristArrBtn}>

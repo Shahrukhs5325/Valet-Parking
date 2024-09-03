@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native-paper';
 import { palette } from '../../theme/themes';
 import PrimaryButton from '../../components/button/PrimaryButton';
@@ -118,7 +118,11 @@ const LoginScreen: React.FC<Props> = () => {
           backgroundColor={palette.primaryDark}
         />
         <View style={{ alignItems: 'center', marginBottom: 50 }}>
-          <SABLogo />
+          {/* <SABLogo /> */}
+          <Image
+            source={require('../../assets/logo/SNB_Brandmark.png')}
+            style={styles.img}
+          />
         </View>
         <Text style={styles.txtSty}>Login</Text>
         <View style={{ gap: 0 }}>
@@ -200,7 +204,11 @@ const styles = StyleSheet.create({
     fontFamily: FONT.Able.regular,
     fontSize: 14,
     fontWeight: '400'
-  }
+  },
+  img: {
+    width: 182,
+    height: 92,
+  },
 
 });
 

@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '400',
     color: palette.txtWhite,
-    width: '30%',
+    width: '33%',
   },
   itemValueText: {
     fontFamily: FONT.JuliusSansOne.regular,

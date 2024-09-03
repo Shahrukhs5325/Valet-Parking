@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import ValetIcon from '../../../assets/svg/history/ValetParking.svg';
 import CoffeeIcon from '../../../assets/svg/history/Coffee.svg';
 import SpaIcon from '../../../assets/svg/history/Spa.svg';
-import GolfIcon from '../../../assets/svg/history/GolfHole.svg';
+import GolfIcon from '../../../assets/svg/Airport-history.svg';
 import HeaderTitle from '../../../components/header/HeaderTitle';
 import { palette } from '../../../theme/themes';
 import { FONT } from '../../../theme/fonts';
@@ -23,14 +23,14 @@ const historyData = [
   //   type: 'timer',
   //   icon: <ValetIcon width={30} height={30} />,
   // },
-  {
-    id: '2',
-    service: 'F&B',
-    location: 'Cafe - Starbucks',
-    status: 'USED',
-    type: 'used',
-    icon: <CoffeeIcon width={30} height={30} />,
-  },
+  // {
+  //   id: '2',
+  //   service: 'F&B',
+  //   location: 'Cafe - Starbucks',
+  //   status: 'USED',
+  //   type: 'used',
+  //   icon: <CoffeeIcon width={30} height={30} />,
+  // },
   {
     id: '3',
     service: 'Airport Services',
@@ -47,6 +47,7 @@ const historyData = [
     type: 'used',
     icon: <SpaIcon width={30} height={30} />,
   },
+  
 ];
 
 const History = () => {
@@ -95,8 +96,8 @@ const History = () => {
 
 
   const detailsScreenHandler = (item) => {
-    if (item.templateName) {
-      navigation.navigate("TransactionDetailsScreen", { coupon: item })
+    if (item.status === "Confirmed") {
+      navigation.navigate("AirportTransTransactionDetailsScreen", { coupon: item })
     } else {
       navigation.navigate("TransactionDetailsScreen", { coupon: item })
     }
@@ -119,7 +120,7 @@ const History = () => {
           <Text style={styles.historyLocation}>{item.location}</Text>
         </View>
         <View style={styles.historyStatus}>
-          <Text style={styles.statusExpired}>{item.status}</Text>
+          <Text style={[styles.statusExpired, item.status === "Confirmed" ? { fontSize: 10 } : { fontSize: 14 }]}>{item.status}</Text>
         </View>
       </LinearGradient>
     </TouchableOpacity>
@@ -202,7 +203,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     color: palette.txtWhite,
     fontFamily: FONT.JuliusSansOne.regular,
-    fontSize: 14,
+    // fontSize: 14,
     textAlign: 'center',
   },
 });

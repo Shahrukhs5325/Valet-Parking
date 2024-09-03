@@ -1,173 +1,177 @@
-import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
-import { Text } from 'react-native-paper';
-import CallIcon from '../../../assets/svg/call-white.svg';
-import Header from '../../../components/header/Header';
-import { utcDateConvoter } from '../../../constant/constFunction';
+import { Dimensions, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import BarcodeImage from '../../../assets/svg/barcode.svg'; // Add your barcode image
+import ZapsIcon from '../../../assets/svg/zapsIcon.svg';
 import { UserContext } from '../../../context/user/UserContext';
-import { palette } from '../../../theme/themes';
-import moment from 'moment';
 import { FONT } from '../../../theme/fonts';
-import PrimaryButton from '../../../components/button/PrimaryButton';
+import { palette } from '../../../theme/themes';
+import HeaderTitle from '../../../components/header/HeaderTitle';
+import { useNavigation } from '@react-navigation/native';
+import moment from 'moment';
+import { openAddressOnMap } from '../../../constant/constFunction';
+import CallIcon from '../../../assets/svg/call.svg';
+import MapIcon from '../../../assets/svg/Waypoint Map.svg';
 
 type Props = {
   route?: any;
 };
 
+const WIDTH = Dimensions.get('window').width;
 
 
 const AirportTransTransactionDetailsScreen: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
-  // const { coupon } = route.params;
-  const coupon = ""
+  const { coupon } = route.params;
+
+
   const userContext = React.useContext(UserContext);
 
   const [timeLeft, setTimeLeft] = React.useState(null);
 
-  const now = moment().format("DD-MMM-YYYY hh:mm");
-  const startDate = moment(coupon?.redeemStartDate, "DD-MM-YYYY hh:mm a");
-  const endDate = moment(coupon?.redeemEndDate, "DD-MM-YYYY hh:mm a");
+  const startDate = moment(coupon.redeemStartDate, "DD-MM-YYYY hh:mm a");
+  const endDate = moment(coupon.redeemEndDate, "DD-MM-YYYY hh:mm a");
 
 
-  // useEffect(() => {
-  //   // Function to calculate the time left
-  //   const calculateTimeLeft = () => {
-  //     const now = moment();
-  //     const difference = moment.duration(endDate.diff(now));
+  useEffect(() => {
+    // Function to calculate the time left
+    const calculateTimeLeft = () => {
+      const now = moment();
+      const difference = moment.duration(endDate.diff(now));
 
-  //     if (difference.asMilliseconds() > 0) {
-  //       setTimeLeft({
-  //         hours: Math.floor(difference.asHours()),
-  //         minutes: difference.minutes(),
-  //       });
-  //     } else {
-  //       setTimeLeft(null); // Timer has ended
-  //     }
-  //   };
+      if (difference.asMilliseconds() > 0) {
+        setTimeLeft({
+          hours: Math.floor(difference.asHours()),
+          minutes: difference.minutes(),
+        });
+      } else {
+        setTimeLeft(null); // Timer has ended
+      }
+    };
 
-  //   // Initial calculation
-  //   calculateTimeLeft();
+    // Initial calculation
+    calculateTimeLeft();
 
-  //   // Update the countdown every minute
-  //   const timer = setInterval(() => {
-  //     calculateTimeLeft();
-  //   }, 1000); // 60,000 milliseconds = 1 minute
+    // Update the countdown every minute
+    const timer = setInterval(() => {
+      calculateTimeLeft();
+    }, 1000); // 60,000 milliseconds = 1 minute
 
-  //   // Clean up the interval on component unmount
-  //   return () => clearInterval(timer);
-  // }, []);
+    // Clean up the interval on component unmount
+    return () => clearInterval(timer);
+  }, []);
 
   // Check if the current time is before the redeemStartDate
   const isBeforeStart = moment().isBefore(startDate);
+ 
+
 
 
   return (
     <>
       <View style={styles.container}>
-        <StatusBar
-          animated={true}
-          backgroundColor={userContext?.customTheme?.primaryDark}
-        />
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={{ flex: 1, backgroundColor: userContext?.customTheme?.primaryDark, paddingBottom: 50 }}>
-            <Header navbar={true} isCross={true} />
-            <View
-              style={[styles.compView, { backgroundColor: userContext?.customTheme?.primaryDark }]}
-            >
-              <Text style={styles.txtSty}>Your booking is confirmed</Text>
-              <Text style={styles.txtStysec}>Our team is verifying your booking. You will be notified when verification is complete.</Text>
-            </View>
+        <HeaderTitle title={'History'} />
 
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 60, marginHorizontal: 40 }}>
-              <View style={{ alignItems: 'center', gap: 6 }}>
-                {isBeforeStart ? (
-                  <Text style={styles.txtTimeTxt}>00:00</Text>
-                ) : timeLeft ? (
-                  <Text style={styles.txtTimeTxt}>
-                    {`${timeLeft.hours}:${timeLeft.minutes}`}
-                  </Text>
-                ) : (
-                  <Text style={styles.txtTimeTxt}>00:00</Text>
-                )}
+        <View>
+          {isBeforeStart ? (
+            <Text style={styles.txtHeadingSty}>Active Booking</Text>
+          ) : timeLeft ? (
+            <Text style={styles.txtHeadingSty}>Active Booking</Text>
+          ) : (
+            <Text style={styles.txtHeadingSty}>Confirmed</Text>
+          )}
+        </View>
 
-                <View style={styles.statusView}>
-                  {isBeforeStart ? (
-                    <Text style={styles.txtStatusSty}>Not Started</Text>
-                  ) : timeLeft ? (
-                    <Text style={styles.txtStatusSty}>In Progress</Text>
-                  ) : (
-                    <Text style={styles.txtStatusSty}>Complete</Text>
-                  )}
-                </View>
+        <ImageBackground
+          source={require('../../../assets/profileBack.png')}
+          style={styles.background}
+        >
+          <View style={styles.overlay}>
+            {isBeforeStart ? (
+              <View style={styles.viewCol}>
+                <Text style={styles.txtCounter}>00:00</Text>
+                <Text style={styles.txtStatus}>Wait</Text>
               </View>
-              <View style={{ alignItems: 'center', gap: 10 }}>
+            ) : timeLeft ? (
+              <View style={styles.viewCol}>
+                <Text style={styles.txtCounter}>{timeLeft.hours}:{timeLeft.minutes}</Text>
+                <Text style={styles.txtStatus}>In Progress</Text>
+              </View>
+            ) : (
+              <View style={styles.viewCol}>
+                <Text style={styles.txtCounter}>00:00</Text>
+                <Text style={styles.txtStatus}>Confirmed</Text>
+              </View>
+            )}
+
+            {!!timeLeft ? <View style={styles.viewCol}>
+              <View style={styles.viewCall}>
                 <CallIcon />
-                <Text style={styles.txtCallSup}>Call support</Text>
+                <Text style={styles.txtUtilSty}>Call</Text>
               </View>
+              <View>
+                <TouchableOpacity onPress={() => openAddressOnMap(coupon?.latitude, coupon?.longitude, coupon?.templateName)}>
+                  <View style={styles.viewCall}>
+                    <MapIcon />
+                    <Text style={styles.txtUtilSty}>Direction</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </View> : null}
 
-            </View>
           </View>
+        </ImageBackground>
 
-          <View style={{ flex: 1, borderTopLeftRadius: 20, borderTopRightRadius: 20, marginTop: -28, backgroundColor: palette.txtWhite, paddingBottom: 30, paddingTop: 10 }}>
-            <View style={{ padding: 15, gap: 8 }}>
-              <Text style={styles.txtBlackHeading}>Booking Summary</Text>
-              <View style={{}}>
-                <Text style={styles.txtSummHeading}>Booking ID</Text>
-                <Text style={styles.txtBodyHeading}>987654321</Text>
+        <View style={[styles.gradientWrapper]}>
+          <LinearGradient
+            colors={['rgba(22, 22, 22, 1)', 'rgba(40, 40, 40, 1)']} // Gradient color
+            style={styles.gradientContainer}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+          >
+            <View>
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>Service</Text>
+                <Text style={styles.itemValueText}>Meet & Assist + Airport transfer</Text>
               </View>
-              <View style={{}}>
-                <Text style={styles.txtSummHeading}>Booked for</Text>
-                <Text style={styles.txtBodyHeading}>{userContext.user?.customerName}</Text>
+              <View style={styles.viewBorder} />
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>Booking id</Text>
+                <Text style={styles.itemValueText}>1234567890</Text>
               </View>
-              <View style={{}}>
-                <Text style={styles.txtSummHeading}>Booked Date</Text>
-                <Text style={styles.txtBodyHeading}>{now}</Text>
+              <View style={styles.viewBorder} />
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>No. of Pax</Text>
+                <Text style={styles.itemValueText}>2</Text>
+              </View>
+              <View style={styles.viewBorder} />
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>Name</Text>
+                <Text style={styles.itemValueText}>Mr. Ahmed</Text>
+              </View>
+              <View style={styles.viewBorder} />
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>Mobile</Text>
+                <Text style={styles.itemValueText}>+966 468 46 464</Text>
+              </View>
+              <View style={styles.viewBorder} />
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>Email</Text>
+                <Text style={styles.itemValueText}>zaps@zapsmarketing.com</Text>
+              </View>
+              <View style={styles.viewBorder} />
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>Booking date</Text>
+                <Text style={styles.itemValueText}>12 July 2024</Text>
+              </View>
+              <View style={styles.viewBorder} />
+              <View style={[styles.listItem]}>
+                <Text style={styles.itemText}>Booking time</Text>
+                <Text style={styles.itemValueText}>9:41 AM</Text>
               </View>
             </View>
-            <View style={{ borderBottomWidth: 1, borderColor: palette.txtGray, marginHorizontal: 30 }}></View>
-            <View style={{ padding: 15, gap: 8 }}>
-              <Text style={styles.txtBlackHeading}>Service Details</Text>
-              <View style={{}}>
-                <Text style={styles.txtSummHeading}>Service Type</Text>
-                <Text style={styles.txtBodyHeading}>Airport Transfer services</Text>
-              </View>
-              <View style={{}}>
-                <Text style={styles.txtSummHeading}>Service Name</Text>
-                <Text style={styles.txtBodyHeading}>Airport Transfer</Text>
-              </View>
-
-            </View>
-            <View style={{ borderBottomWidth: 1, borderColor: palette.txtGray, marginHorizontal: 30 }}></View>
-            <View style={{ padding: 15, gap: 8 }}>
-              <Text style={styles.txtBlackHeading}>Special Requests</Text>
-              <View style={{}}>
-                <Text style={styles.txtSummHeading}>Dietary Preferences</Text>
-                <Text style={styles.txtBodyHeading}>Vegetarian meal</Text>
-              </View>
-            </View>
-            <View style={{ borderBottomWidth: 1, borderColor: palette.txtGray, marginHorizontal: 30 }}></View>
-            <View style={{ padding: 15, gap: 8 }}>
-              <Text style={styles.txtBlackHeading}>Current Status</Text>
-              <View style={{}}>
-                <Text style={styles.txtSummHeading}>Booking Status</Text>
-                <Text style={styles.txtBodyHeading}>Confirmed</Text>
-              </View>
-              <View style={{}}>
-                <Text style={styles.txtSummHeading}>Service Status</Text>
-                <Text style={styles.txtBodyHeading}>Pending</Text>
-              </View>
-              <View style={{}}>
-                <Text style={styles.txtSummHeading}>Driver Details</Text>
-                <Text style={styles.txtBodyHeading}>TBA (To be Assigned)</Text>
-              </View>
-
-            </View>
-            <View style={{ width: '46%', justifyContent: 'center', alignSelf: 'center', marginTop: 20 }}>
-              <PrimaryButton onPress={() => navigation.replace("HomeScreen")} buttonColor={"light"} >Cancel Booking</PrimaryButton>
-            </View>
-          </View>
-        </ScrollView>
+          </LinearGradient>
+        </View>
       </View>
     </>
   );
@@ -178,87 +182,128 @@ export default AirportTransTransactionDetailsScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
+    marginHorizontal: 16,
+    gap: 16,
   },
-  compView: {
-    marginTop: 50,
-    paddingHorizontal: 15,
-    gap: 10,
+  gradientWrapper: {
+    // flex: 1,
+    marginTop: 25,
+    marginBottom: 12,
+    borderRadius: 17,
+    borderWidth: 1,
+    borderColor: palette.borderClr,
+    overflow: 'hidden'
   },
-  txtSty: {
+  gradientContainer: {
+    paddingHorizontal: 20,
+  },
+  txtHeadingSty: {
     fontFamily: FONT.JuliusSansOne.regular,
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: '400',
     color: palette.txtWhite,
+    textAlign: 'center',
+    paddingVertical: 6,
+    backgroundColor: palette.bgCard,
+    borderWidth: 1,
+    borderColor: palette.txtGray,
+    borderRadius: 5,
+    width: WIDTH - 120,
+    alignSelf: 'center',
   },
-  txtTimeTxt: {
-    fontFamily: FONT.JuliusSansOne.regular,
-    fontSize: 38,
-    fontWeight: '400',
-    color: palette.txtWhite,
-  },
-  txtCallSup: {
-    fontSize: 12,
-    fontWeight: '400',
-    color: palette.txtWhite,
-  },
-  txtStysec: {
-    fontFamily: FONT.JuliusSansOne.regular,
-    fontSize: 14,
-    fontWeight: '400',
-    color: palette.txtWhite,
-  },
-  txtTitleSty: {
-    fontWeight: '800',
-    color: palette.txtWhite,
-    textTransform: 'uppercase',
-    letterSpacing: 3,
-  },
-  img: {
-    width: 100,
-    height: 100
-  },
-  statusView: {
-    width: 114,
+  listItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    //  paddingHorizontal: 14,
-    paddingVertical: 5,
-    borderRadius: 15,
-    backgroundColor: palette.txtGold,
+    paddingHorizontal: 14,
+    height: 50,
   },
-  txtStatusSty: {
-    backgroundColor: palette.txtGold,
+  viewBorder: {
+    borderBottomWidth: 0.8,
+    borderBottomColor: palette.borderClr,
+  },
+  txtCounter: {
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 32,
     fontWeight: '400',
     color: palette.txtWhite,
+    textAlign: 'center',
+  },
+  txtStatus: {
     fontFamily: FONT.Able.regular,
     fontSize: 14,
-    paddingHorizontal: 14,
-    paddingVertical: 4,
-    borderRadius: 15
-  },
-  txtBlackHeading: {
-    color: palette.txtBlack,
     fontWeight: '400',
-    fontFamily: FONT.Able.regular,
-    fontSize: 16,
+    color: palette.txtWhite,
+    backgroundColor: "#C7954B",
+    paddingVertical: 3,
+    width: '100%',
+    textAlign: 'center',
+    borderRadius: 17
   },
-  txtSummHeading: {
-    color: palette.txtGray,
-    fontWeight: '400',
-    fontFamily: FONT.Able.regular,
-    fontSize: 12,
-  },
-  txtBodyHeading: {
-    color: palette.txtBlack,
-    fontWeight: '400',
+  txtUtilSty: {
     fontFamily: FONT.Able.regular,
     fontSize: 14,
-  }
-
+    fontWeight: '400',
+    color: palette.txtWhite,
+    textAlign: 'center',
+  },
+  itemText: {
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 14,
+    fontWeight: '400',
+    color: palette.txtWhite,
+    width: '33%',
+  },
+  itemValueText: {
+    fontFamily: FONT.JuliusSansOne.regular,
+    fontSize: 14,
+    fontWeight: '400',
+    color: palette.txtWhite,
+    width: '100%',
+  },
+  background: {
+    // flex: 1,
+    resizeMode: 'cover',
+    borderRadius: 17,
+    height: 124,
+    marginTop: 25,
+    overflow: 'hidden',
+  },
+  overlay: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    borderRadius: 17,
+    height: 124
+  },
+  viewCol: {
+    alignSelf: 'center',
+    // justifyContent: 'space-between',
+    gap: 5,
+    width: '30%'
+  },
+  viewCall: {
+    width: WIDTH / 3,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    backgroundColor: palette.bgCard,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: palette.txtGray,
+    justifyContent: 'center',
+    height: 44
+  },
+  icon: {
+    alignSelf: 'auto',
+  },
+  profileInfo: {
+    marginTop: 15,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
 
 
 });
-
 
