@@ -121,8 +121,8 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
         "qrCode": "",
         "storePin": storeCode,
         "redeemByPin": true,
-        "redeemStartDate": moment().format("DD-MM-YYYY hh:mm"),
-        "redeemEndDate": moment(redeemEndDate).format("DD-MM-YYYY hh:mm"),
+        "redeemStartDate": moment().format("DD-MM-YYYY hh:mm a"),
+        "redeemEndDate": moment(redeemEndDate).format("DD-MM-YYYY hh:mm a"),
         "validityDuration": qty
       }
 
