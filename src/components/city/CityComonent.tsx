@@ -42,6 +42,15 @@ const images = [
     require('../../assets/cityimg/5.png'),
     require('../../assets/cityimg/6.png'),
 ];
+const Airport_Images = [
+    require('../../assets/airport-city/Doha.png'),
+    require('../../assets/airport-city/dubai.png'),
+    require('../../assets/airport-city/isambul.png'),
+    require('../../assets/airport-city/london.png'),
+    require('../../assets/airport-city/parise.png'),
+
+
+];
 
 interface Props {
     service: any;
@@ -107,7 +116,7 @@ const CityComonent: React.FC<Props> = ({ service }) => {
                             return (
                                 <TouchableOpacity onPress={() => serviceScreenHandler(item)}>
                                     <ImageBackground
-                                        source={images[imageIndex]}
+                                        source={service?.key === "valet_service" ? images[imageIndex] : Airport_Images[imageIndex]}
                                         style={[styles.card, { backgroundColor: userContext?.customTheme?.bgCard }]}
                                     >
                                         <Text style={styles.txtSty}>{item.cityName}</Text>
