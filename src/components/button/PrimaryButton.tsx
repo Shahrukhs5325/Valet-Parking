@@ -32,9 +32,9 @@ const PrimaryButton: React.FC<Props> = ({
             icon={icon}
             mode={"contained"}
             loading={loading}
-            disabled={disabled}
+            // disabled={disabled}
             uppercase={false}
-            onPress={() => onPress()}
+            onPress={() => { loading ? console.log("disable") : onPress() }}
             style={{
                 borderRadius: 10, height: 52, justifyContent: 'center',
                 borderColor: buttonColor === "dark" ? userContext?.customTheme?.txtWhite : palette.primaryDark,

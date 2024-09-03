@@ -137,7 +137,7 @@ const LoginScreen: React.FC<Props> = () => {
           <Text style={{ marginVertical: 8, color: 'red', height: 36 }}>{errors}</Text>
         </View>
         <View style={{ gap: 30 }}>
-          <PrimaryButton loading={isLoading} disabled={isLoading} onPress={() => submitHandler()} >Sign In</PrimaryButton>
+          <PrimaryButton loading={isLoading} onPress={() => submitHandler()} >Sign In</PrimaryButton>
           <Text style={styles.txtforgtPass}>Forgot password?</Text>
         </View>
         <View >

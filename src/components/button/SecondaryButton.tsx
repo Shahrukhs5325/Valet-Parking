@@ -33,9 +33,9 @@ const SecondaryButton: React.FC<Props> = ({
             icon={icon}
             mode={"outlined"}
             loading={loading}
-            disabled={disabled}
+            //disabled={disabled}
             uppercase={false}
-            onPress={() => onPress()}
+            onPress={() => { loading ? console.log("disable") : onPress() }}
             style={{ borderRadius: 10, height: 52, justifyContent: 'center', borderColor: palette.txtWhite, borderWidth: 1, }}
         >
             {children}

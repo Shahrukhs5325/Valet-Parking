@@ -69,7 +69,7 @@ export default Expiring;
 
 const styles = StyleSheet.create({
   gradientWrapper: {
-    flex: 2,
+    flex: 1,
     // marginTop: 25,
     marginBottom: 12,
     borderRadius: 17,
@@ -111,19 +111,19 @@ const styles = StyleSheet.create({
     borderRadius: 17,
   },
   itemContainer: {
-    flexDirection: 'column',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    // flexDirection: 'column',
+    // flexWrap: 'wrap',
+    // justifyContent: 'space-between',
   },
   item: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 10,
-    flex: 1,
+    // flex: 1,
   },
   iconContainer: {
     marginBottom: 5,
-    paddingRight: 20,
+    paddingRight: 16,
   },
   name: {
     fontWeight: 'bold',
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   },
   dayLeft: {
     color: palette.txtWhite,
-    fontSize: 20,
+    fontSize: 18,
     textAlign: 'center',
   },
 })
