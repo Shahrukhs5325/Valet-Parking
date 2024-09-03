@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     height: 50,
   },
   viewBorder: {
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.8,
     borderBottomColor: palette.borderClr,
   },
   txtCounter: {

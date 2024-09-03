@@ -177,20 +177,25 @@ const AirportTransferScreen: React.FC<Props> = ({ route }) => {
 
 
             <View style={styles.btnView}>
-
               {currentPosition !== 2 ?
                 <>
-
                   <View style={{ width: '40%' }}>
                     <SecondaryButton onPress={() => { currentPosition === 0 ? navigation.goBack() : setCurrentPosition(currentPosition - 1); onScrollToTop() }}>Back</SecondaryButton>
                   </View>
                   <View style={{ width: '40%' }}>
                     <PrimaryButton onPress={() => nextStepHandler(currentPosition + 1)}   >Next</PrimaryButton>
                   </View>
-                </> :
-                <View style={{ width: '100%', paddingHorizontal: 15 }}>
-                  <PrimaryButton onPress={() => navigation.navigate("SucessAirportScreen")}>Redeem</PrimaryButton>
-                </View>}
+                </>
+                :
+                <>
+                  <View style={{ width: '40%' }}>
+                    <SecondaryButton onPress={() => { currentPosition === 0 ? navigation.goBack() : setCurrentPosition(currentPosition - 1); onScrollToTop() }}>Back</SecondaryButton>
+                  </View>
+                  <View style={{ width: '40%' }}>
+                    <PrimaryButton onPress={() => navigation.navigate("SucessAirportScreen")}>Confirm</PrimaryButton>
+                  </View>
+                </>
+              }
             </View>
 
           </View>
@@ -220,7 +225,7 @@ const styles = StyleSheet.create({
   },
   btnView: {
     width: '100%',
-    marginTop: 30,
+    marginTop: 20,
     flexDirection: 'row',
     justifyContent: 'space-around'
   },

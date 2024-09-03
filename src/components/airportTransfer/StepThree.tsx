@@ -32,16 +32,96 @@ const StepThree: React.FC<Props> = ({ formData, setFormData, setErrors, setCurre
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 0 }}
                 >
-                    <View style={{ gap: 16 }}>
+                    <View style={{ gap: 0 }}>
 
                         <View style={[styles.listItem]}>
                             <Text style={styles.itemText}>Service</Text>
-                            <Text style={styles.itemValueText}>bh</Text>
+                            <Text style={styles.itemValueText}>Meet & Assist + Airport transfer</Text>
                         </View>
+                        <View style={styles.viewBorder} />
                         <View style={[styles.listItem]}>
-                            <Text style={styles.itemText}>Service</Text>
-                            <Text style={styles.itemValueText}>bh</Text>
+                            <Text style={styles.itemText}>Title</Text>
+                            <Text style={styles.itemValueText}>Mr.</Text>
                         </View>
+                        <View style={styles.viewBorder} />
+                        <View style={[styles.listItem]}>
+                            <Text style={styles.itemText}>Name</Text>
+                            <Text style={styles.itemValueText}>Pasha</Text>
+                        </View>
+                        <View style={styles.viewBorder} />
+                        <View style={[styles.listItem]}>
+                            <Text style={styles.itemText}>Email</Text>
+                            <Text style={styles.itemValueText}>zaps@zapsmarketing.com</Text>
+                        </View>
+
+                        <View style={styles.viewBorder} />
+                        <Text style={styles.txtTitle}>Meet & Assist</Text>
+                        <View style={styles.viewBorder} />
+
+                        <View style={[styles.listItem]}>
+                            <Text style={styles.itemText}>Airport</Text>
+                            <Text style={styles.itemValueText}>Dubai</Text>
+                        </View>
+                        <View style={styles.viewBorder} />
+                        <View style={[styles.listItem]}>
+                            <Text style={styles.itemText}>Type of travel</Text>
+                            <Text style={styles.itemValueText}>Departure</Text>
+                        </View>
+                        <View style={styles.viewBorder} />
+                        <View style={[styles.listItem]}>
+                            <Text style={styles.itemText}>Flight number</Text>
+                            <Text style={styles.itemValueText}>SV761</Text>
+                        </View>
+                        <View style={styles.viewBorder} />
+                        <View style={[styles.listItem]}>
+                            <Text style={styles.itemText}>Flight date & time</Text>
+                            <Text style={styles.itemValueText}>11 September 2024 | 11:59 PM</Text>
+                        </View>
+                        <View style={styles.viewBorder} />
+                        <View style={[styles.listItem]}>
+                            <Text style={styles.itemText}>Terminal</Text>
+                            <Text style={styles.itemValueText}>3</Text>
+                        </View>
+                        <View style={styles.viewBorder} />
+                        <View style={[styles.listItem]}>
+                            <Text style={styles.itemText}>Carrier</Text>
+                            <Text style={styles.itemValueText}>Saudi Airlines</Text>
+                        </View>
+                        <View style={styles.viewBorder} />
+                        <View style={[styles.listItem]}>
+                            <Text style={styles.itemText}>Remarks</Text>
+                            <Text style={styles.itemValueText}>Please take care</Text>
+                        </View>
+
+                        <View style={styles.viewBorder} />
+                        <Text style={styles.txtTitle}>Airport Transfer</Text>
+                        <View style={styles.viewBorder} />
+
+                        <View style={[styles.listItem]}>
+                            <Text style={styles.itemText}>Area</Text>
+                            <Text style={styles.itemValueText}>Dubai Marina</Text>
+                        </View>
+                        <View style={styles.viewBorder} />
+                        <View style={[styles.listItem]}>
+                            <Text style={styles.itemText}>Location</Text>
+                            <Text style={styles.itemValueText}>Novotel Suites</Text>
+                        </View>
+                        <View style={styles.viewBorder} />
+                        <View style={[styles.listItem]}>
+                            <Text style={styles.itemText}>Pick-up date</Text>
+                            <Text style={styles.itemValueText}>11 September 2024</Text>
+                        </View>
+                        <View style={styles.viewBorder} />
+                        <View style={[styles.listItem]}>
+                            <Text style={styles.itemText}>Pick-up time</Text>
+                            <Text style={styles.itemValueText}>11:59 PM</Text>
+                        </View>
+                        <View style={styles.viewBorder} />
+                        <View style={[styles.listItem]}>
+                            <Text style={styles.itemText}>Additional info</Text>
+                            <Text style={styles.itemValueText}>Please be on time</Text>
+                        </View>
+
 
 
 
@@ -78,23 +158,35 @@ const styles = StyleSheet.create({
     listItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 14,
-        height: 50,
+        paddingHorizontal: 10,
+        height: 52,
     },
     itemText: {
-        fontFamily: FONT.JuliusSansOne.regular,
+        fontFamily: FONT.Able.regular,
         fontSize: 14,
         fontWeight: '400',
         color: palette.txtWhite,
-        width: '30%',
+        width: '33%',
     },
     itemValueText: {
-        fontFamily: FONT.JuliusSansOne.regular,
+        fontFamily: FONT.Able.regular,
         fontSize: 14,
         fontWeight: '400',
         color: palette.txtWhite,
         width: '100%',
     },
+    viewBorder: {
+        borderBottomWidth: 0.8,
+        borderBottomColor: palette.borderClr,
+    },
+    txtTitle: {
+        fontFamily: FONT.Able.regular,
+        fontSize: 15,
+        fontWeight: '400',
+        color: palette.txtWhite,
+        width: '100%',
+        paddingVertical: 26
+    }
 
 
 
