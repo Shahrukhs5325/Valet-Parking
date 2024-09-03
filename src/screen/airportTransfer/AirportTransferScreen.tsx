@@ -100,10 +100,10 @@ const AirportTransferScreen: React.FC<Props> = ({ route }) => {
                       return (
                         <View style={styles.dropdownButtonStyle}>
                           <Text style={styles.txtLableSty}>
-                            {(selectQty && selectQty?.title) ||
+                            {(selectQty && "0" + selectQty?.title) ||
                               'Select'}
                           </Text>
-                          <DownIcon />
+                          {currentPosition === 0 ? <DownIcon /> : null}
                         </View>
                       );
                     }}
@@ -116,7 +116,7 @@ const AirportTransferScreen: React.FC<Props> = ({ route }) => {
                               backgroundColor: palette.txtBlack,
                             }),
                           }}>
-                          <Text style={styles.txtLableSty}>{item.title}</Text>
+                          <Text style={styles.txtLableSty}>0{item.title}</Text>
                         </View>
                       );
                     }}

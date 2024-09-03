@@ -36,7 +36,7 @@ const SucessAirportScreen: React.FC<Props> = ({ }) => {
           <CircleIcon />
           <View style={{ gap: 14, marginVertical: 6, alignItems: 'center' }}>
             <Text style={styles.txtTitleSty}>Thank you</Text>
-            <Text style={styles.txtSty}>Booking confirmed! Your voucher will be emailed to you or can be downloaded from the history tab</Text>
+            <Text style={styles.txtSty}>Booking confirmation received</Text>
           </View>
         </View>
 
