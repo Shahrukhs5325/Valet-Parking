@@ -26,8 +26,8 @@ const AirportTransTransactionDetailsScreen: React.FC<Props> = ({ route }) => {
   const [timeLeft, setTimeLeft] = React.useState(null);
 
   const now = moment().format("DD-MMM-YYYY hh:mm");
-  const startDate = moment(coupon?.redeemStartDate, "DD-MM-YYYY hh:mm");
-  const endDate = moment(coupon?.redeemEndDate, "DD-MM-YYYY hh:mm");
+  const startDate = moment(coupon?.redeemStartDate, "DD-MM-YYYY hh:mm a");
+  const endDate = moment(coupon?.redeemEndDate, "DD-MM-YYYY hh:mm a");
 
 
   // useEffect(() => {
