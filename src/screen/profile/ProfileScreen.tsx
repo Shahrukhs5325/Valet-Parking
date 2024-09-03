@@ -47,7 +47,7 @@ const ProfileScreen = () => {
           <View style={styles.profileInfo}>
             <View style={styles.nameIdContainer}>
               <Text style={styles.itemText}>{user?.customerName}</Text>
-              <Text style={styles.itemText}>ID: 0123456</Text>
+              <Text style={styles.itemText}>ID: {user?.customerId}</Text>
             </View>
             <BarcodeImage height={87} width={87} />
           </View>

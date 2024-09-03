@@ -14,6 +14,7 @@ import { FONT } from '../../theme/fonts';
 
 type Props = {};
 
+export const PasswordRegex = '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_])(?=.{8,}$)';
 
 
 const RegisterScreen: React.FC<Props> = () => {
@@ -54,6 +55,9 @@ const RegisterScreen: React.FC<Props> = () => {
 
   const validate = () => {
     const EmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passRegex = new RegExp(PasswordRegex);
+
+    const isPassValid = passRegex.test(formData.password);
 
     const isEmailValid = EmailRegex.test(formData.email);
 
@@ -69,7 +73,7 @@ const RegisterScreen: React.FC<Props> = () => {
     } else if (!isEmailValid) {
       setErrors("Please enter valid email");
       return false;
-    } else if (formData.password.length < 5) {
+    } else if (!formData.password || !isPassValid) {
       setErrors("Password with 8 characters including 1 uppercase letter, 1 special character, and alphanumeric characters");
       return false;
     } else if (!formData?.activationCode) {
