@@ -8,8 +8,31 @@ import { UserContext } from "../../context/user/UserContext";
 import { palette } from "../../theme/themes";
 import { FONT } from "../../theme/fonts";
 
-const ImageHeight = Math.round(Dimensions.get('window').width / 4);
+const ImageHeight = Math.round(Dimensions.get('window').width / 3.48);
 
+const City_ARIPORT = [
+    {
+        "cityId": 1,
+        "cityName": "Doha"
+    },
+    {
+        "cityId": 2,
+        "cityName": "Dubai"
+    },
+    {
+        "cityId": 3,
+        "cityName": "Istanbul"
+    },
+    {
+        "cityId": 3,
+        "cityName": "London"
+    },
+    {
+        "cityId": 3,
+        "cityName": "Paris"
+    },
+
+]
 // Array of image sources
 const images = [
     require('../../assets/cityimg/1.png'),
@@ -59,6 +82,8 @@ const CityComonent: React.FC<Props> = ({ service }) => {
         }
     }
 
+    console.log(data?.data);
+
     return (
         data && data?.data && data?.data.length > 0 ?
             <View style={styles.container}>
@@ -69,16 +94,16 @@ const CityComonent: React.FC<Props> = ({ service }) => {
                     alwaysBounceVertical={false}
                 >
                     <FlatList
-                        numColumns={Math.ceil(data?.data?.length / 2)}
+                        numColumns={service?.key === "valet_service" ? Math.ceil(data?.data?.length / 2) : 3}
                         showsVerticalScrollIndicator={false}
                         showsHorizontalScrollIndicator={false}
                         keyExtractor={(item, index) => index.toString()}
-                        data={data?.data.length > 0 ? data?.data : []}
+                        data={service?.key === "valet_service" ? data?.data : City_ARIPORT}
                         renderItem={({ item, index }) => {
                             // Determine the image source based on index
                             const imageIndex = index % images.length;
                             console.log(imageIndex);
-                            
+
                             return (
                                 <TouchableOpacity onPress={() => serviceScreenHandler(item)}>
                                     <ImageBackground
