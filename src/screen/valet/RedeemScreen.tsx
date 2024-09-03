@@ -99,9 +99,7 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
     setIsLoading(true);
 
     try {
-      const CurrentDate = moment();
-      const redeemEndDate = moment(CurrentDate).add(qty, 'hours');
-
+      const redeemEndDate = moment().add(qty, 'hours');
       const payload = {
         "couponCode": coupon?.couponCode,
         "redeemptionId": 0,
@@ -123,10 +121,11 @@ const RedeemScreen: React.FC<Props> = ({ route }) => {
         "qrCode": "",
         "storePin": storeCode,
         "redeemByPin": true,
-        "redeemStartDate": moment(CurrentDate).format("DD-MM-YYYY HH:MM"),
-        "redeemEndDate": moment(redeemEndDate).format("DD-MM-YYYY HH:MM"),
+        "redeemStartDate": moment().format("DD-MM-YYYY hh:mm"),
+        "redeemEndDate": moment(redeemEndDate).format("DD-MM-YYYY hh:mm"),
         "validityDuration": qty
       }
+
       const res = await redeemCouponByqrCode(payload);
       if (res.status === 200) {
         const redeemDate = {

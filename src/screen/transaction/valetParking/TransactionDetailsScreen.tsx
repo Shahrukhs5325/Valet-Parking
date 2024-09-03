@@ -29,8 +29,8 @@ const TransactionDetailsScreen: React.FC<Props> = ({ route }) => {
 
   const [timeLeft, setTimeLeft] = React.useState(null);
 
-  const startDate = moment(coupon.redeemStartDate, "DD-MM-YYYY HH:mm");
-  const endDate = moment(coupon.redeemEndDate, "DD-MM-YYYY HH:mm");
+  const startDate = moment(coupon.redeemStartDate, "DD-MM-YYYY hh:mm");
+  const endDate = moment(coupon.redeemEndDate, "DD-MM-YYYY hh:mm");
 
 
   useEffect(() => {
@@ -155,17 +155,17 @@ const TransactionDetailsScreen: React.FC<Props> = ({ route }) => {
               <View style={styles.viewBorder} />
               <View style={[styles.listItem]}>
                 <Text style={styles.itemText}>date</Text>
-                <Text style={styles.itemValueText}>{coupon.redeemStartDate ? moment(coupon.redeemStartDate, "DD-MM-YYYY HH:mm").format("DD-MM-YYYY") : "02-09-2024"}</Text>
+                <Text style={styles.itemValueText}>{coupon.redeemStartDate ? moment(coupon.redeemStartDate, "DD-MM-YYYY hh:mm").format("DD-MM-YYYY") : "02-09-2024"}</Text>
               </View>
               <View style={styles.viewBorder} />
               <View style={[styles.listItem]}>
                 <Text style={styles.itemText}>Start</Text>
-                <Text style={styles.itemValueText}>{coupon.redeemStartDate ? moment(coupon.redeemStartDate, "DD-MM-YYYY HH:mm").format("HH:mm a") : "11:00 AM"}</Text>
+                <Text style={styles.itemValueText}>{coupon.redeemStartDate ? moment(coupon.redeemStartDate, "DD-MM-YYYY hh:mm").format("HH:mm a") : "11:00 AM"}</Text>
               </View>
               <View style={styles.viewBorder} />
               <View style={[styles.listItem]}>
                 <Text style={styles.itemText}>End</Text>
-                <Text style={styles.itemValueText}>{coupon.redeemEndDate ? moment(coupon.redeemEndDate, "DD-MM-YYYY HH:mm").format("HH:mm a") : "01:00 PM"}</Text>
+                <Text style={styles.itemValueText}>{coupon.redeemEndDate ? moment(coupon.redeemEndDate, "DD-MM-YYYY hh:mm").format("HH:mm a") : "01:00 PM"}</Text>
               </View>
             </View>
           </LinearGradient>
