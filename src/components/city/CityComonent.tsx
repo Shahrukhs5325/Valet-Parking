@@ -8,7 +8,7 @@ import { UserContext } from "../../context/user/UserContext";
 import { palette } from "../../theme/themes";
 import { FONT } from "../../theme/fonts";
 
-const ImageHeight = Math.round(Dimensions.get('window').width / 3.48);
+const ImageHeight = Math.round(Dimensions.get('window').width / 3.4);
 
 const City_ARIPORT = [
     {
