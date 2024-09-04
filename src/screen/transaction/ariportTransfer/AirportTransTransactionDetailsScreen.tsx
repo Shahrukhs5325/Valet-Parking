@@ -142,7 +142,7 @@ const AirportTransTransactionDetailsScreen: React.FC<Props> = ({ route }) => {
               <View style={styles.viewBorder} />
               <View style={[styles.listItem]}>
                 <Text style={styles.itemText}>No. of Pax</Text>
-                <Text style={styles.itemValueText}>2</Text>
+                <Text style={styles.itemValueText}>1</Text>
               </View>
               <View style={styles.viewBorder} />
               <View style={[styles.listItem]}>

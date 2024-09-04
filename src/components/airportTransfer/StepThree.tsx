@@ -78,7 +78,7 @@ const StepThree: React.FC<Props> = ({ formData, setFormData, setErrors, setCurre
                         <View style={styles.viewBorder} />
                         <View style={[styles.listItem]}>
                             <Text style={styles.itemText}>Flight date & time</Text>
-                            <Text style={styles.itemValueText}>11 September 2024 | 11:59 PM</Text>
+                            <Text style={styles.itemValueText}>11 September 2024 | 08:00 PM</Text>
                         </View>
                         <View style={styles.viewBorder} />
                         <View style={[styles.listItem]}>
@@ -115,7 +115,7 @@ const StepThree: React.FC<Props> = ({ formData, setFormData, setErrors, setCurre
                         <View style={styles.viewBorder} />
                         <View style={[styles.listItem]}>
                             <Text style={styles.itemText}>Pick-up time</Text>
-                            <Text style={styles.itemValueText}>11:59 PM</Text>
+                            <Text style={styles.itemValueText}>05:00 PM</Text>
                         </View>
                         <View style={styles.viewBorder} />
                         <View style={[styles.listItem]}>

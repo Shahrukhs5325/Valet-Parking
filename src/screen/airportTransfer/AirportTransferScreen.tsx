@@ -72,7 +72,7 @@ const AirportTransferScreen: React.FC<Props> = ({ route }) => {
             <HeaderTitle title={'Airport Services'} />
             <View style={{ paddingHorizontal: 16, gap: 26, alignItems: 'center' }}>
               <View>
-                <Text style={styles.txtHeadingSty}>BOTH</Text>
+                <Text style={styles.txtHeadingSty}>Airpport Transfer</Text>
               </View>
 
               <View
@@ -81,7 +81,7 @@ const AirportTransferScreen: React.FC<Props> = ({ route }) => {
                   TOTAL PACKAGES
                 </Text>
                 <View style={styles.viewDataCall}>
-                  <Text style={styles.txtheadSty}>100</Text>
+                  <Text style={styles.txtheadSty}>12</Text>
                 </View>
               </View>
               <View
