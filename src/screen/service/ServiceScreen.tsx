@@ -4,7 +4,7 @@ import { Dimensions, ScrollView, StatusBar, StyleSheet, View } from 'react-nativ
 import { palette } from '../../theme/themes';
 import { Text } from 'react-native-paper';
 import Store from '../../components/store/Store';
-import CityComonent from '../../components/city/CityComonent';
+import CityComponent from '../../components/city/CityComponent';
 import { UserContext } from '../../context/user/UserContext';
 import { FONT } from '../../theme/fonts';
 import TopBannerValet from '../../components/header/TopBannerValet';
@@ -60,7 +60,7 @@ const ServiceScreen: React.FC<Props> = ({ route }) => {
             </View>
             <View>
               <Text style={styles.txtTitleSty}>CITIES</Text>
-              <CityComonent service={service} />
+              <CityComponent service={service} />
             </View>
 
             <View style={{ paddingBottom: 30 }}>

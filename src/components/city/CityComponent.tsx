@@ -56,7 +56,7 @@ interface Props {
     service: any;
 }
 
-const CityComonent: React.FC<Props> = ({ service }) => {
+const CityComponent: React.FC<Props> = ({ service }) => {
     const navigation = useNavigation();
     const userContext = React.useContext(UserContext);
 
@@ -136,7 +136,7 @@ const CityComonent: React.FC<Props> = ({ service }) => {
     );
 }
 
-export default CityComonent;
+export default CityComponent;
 
 const styles = StyleSheet.create({
     container: {
