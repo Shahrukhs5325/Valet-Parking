@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   ActivityIndicator,
+  Animated,
   Dimensions,
   FlatList,
   Image,
@@ -19,6 +20,7 @@ import { useNavigation } from '@react-navigation/native';
 import { FONT } from '../../theme/fonts';
 import LinearGradient from 'react-native-linear-gradient';
 import { calculateDistance } from '../../constant/constFunction';
+import PaginationDot from '../pagination/PaginationDot';
 
 const WIDTH = Math.round(Dimensions.get('window').width);
 
@@ -35,7 +37,7 @@ const Airport: React.FC<Props> = ({ location }) => {
   const userContext = React.useContext(UserContext);
   const [storeList, setStoreList] = React.useState<StoreItem[]>([]);
   const navigation = useNavigation();
-
+  const scrollX = useRef(new Animated.Value(0)).current;
   const { isLoading, data, refetch } = useQuery({
     queryKey: ['Near_Store_List', userContext?.user],
     queryFn: () => getNearByStores(userContext?.user, location),
@@ -133,7 +135,7 @@ const Airport: React.FC<Props> = ({ location }) => {
     );
   }
   return storeList && storeList.length > 0 ? (
-    <View style={styles.container}>
+    <><View style={styles.container}>
       <View>
         <FlatList
           showsHorizontalScrollIndicator={false}
@@ -147,9 +149,15 @@ const Airport: React.FC<Props> = ({ location }) => {
           maxToRenderPerBatch={10}
           windowSize={10}
           updateCellsBatchingPeriod={50}
-        />
+          pagingEnabled
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+            { useNativeDriver: false }
+          )}
+          snapToAlignment='center' />
       </View>
     </View>
+    <PaginationDot data={storeList} scrollX={scrollX} index={4}/></>
   ) : null;
 };
 
