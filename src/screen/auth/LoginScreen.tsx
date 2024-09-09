@@ -120,7 +120,7 @@ const LoginScreen: React.FC<Props> = () => {
         <View style={{ alignItems: 'center', marginBottom: 50 }}>
           {/* <SABLogo /> */}
           <Image
-            source={require('../../assets/logo/SNB_Brandmark.png')}
+            source={require('../../assets/logo/alr.png')}
             style={styles.img}
           />
           {/* <Image
@@ -211,8 +211,8 @@ const styles = StyleSheet.create({
     fontWeight: '400'
   },
   img: {
-    width: 182,
-    height: 92,
+    width: 100,
+    height: 100,
   },
 
 });

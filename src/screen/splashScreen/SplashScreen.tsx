@@ -131,7 +131,7 @@ const SplashScreen: React.FC<Props> = () => {
           <View style={styles.container}>
 
             <Image
-              source={require('../../assets/logo/SNB_Brandmark.png')}
+              source={require('../../assets/logo/alr.png')}
               style={styles.img}
             />
             {/* <Image
@@ -180,8 +180,8 @@ const styles = StyleSheet.create({
     // height: "auto",
   },
   img: {
-    width: 232,
-    height: 92,
+    width: 100,
+    height: 100,
   },
 
 });
